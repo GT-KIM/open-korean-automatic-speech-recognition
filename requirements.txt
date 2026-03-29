@@ -1,0 +1,17 @@
+jiwer
+librosa
+numpy
+torch==2.9.1
+torchvision
+torchaudio
+torchcodec
+soundfile
+tqdm
+transformers
+datasets
+accelerate
+kiwipiepy
+jamo
+calflops
+openai-whisper
+qwen-asr
