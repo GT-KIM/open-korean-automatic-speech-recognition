@@ -6,7 +6,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-STATIC_FILES = ("index.html", "styles.css", "app.js")
+STATIC_FILES = (
+    "index.html",
+    "styles.css",
+    "app.js",
+    "robots.txt",
+    "sitemap.xml",
+    "google340a95f996780abe.html",
+)
 
 
 def main():
