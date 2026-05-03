@@ -2,6 +2,8 @@
 
 OpenKoASR 공개 리더보드는 전체 평가 실행 결과만 받습니다. 스모크 테스트, 디버깅 실행, `--limit`을 사용한 부분 실행은 개발에는 유용하지만 순위 결과로 제출하지 않습니다.
 
+리더보드가 GitHub Pages에 반영되는 전체 흐름은 `doc/leaderboard_update_workflow.md`를 함께 참고하세요.
+
 ## 필수 기준
 
 - `--limit` 없이 실행합니다.
@@ -42,4 +44,5 @@ python -m openkoasr.main \
 2. `python scripts/generate_leaderboard.py --results_dir results --markdown_path leaderboard.md`를 실행합니다.
 3. `python scripts/build_pages.py --output_dir _site`를 실행합니다.
 4. `python -m unittest discover -s tests`를 실행합니다.
-5. `doc/leaderboard_data.json`에 로컬 절대 경로나 secret이 없는지 확인합니다.
+5. `python scripts/public_readiness_check.py`를 실행합니다.
+6. `doc/leaderboard_data.json`에 로컬 절대 경로나 secret이 없는지 확인합니다.

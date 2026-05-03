@@ -22,6 +22,7 @@
 - repository Actions 설정에서 기본 `GITHUB_TOKEN` 권한을 read-only로 설정합니다.
 - workflow YAML에는 필요한 권한만 명시합니다.
 - GitHub Pages source는 GitHub Actions로 설정합니다.
+- repository About 영역의 Website URL에는 `https://gt-kim.github.io/open-korean-automatic-speech-recognition/`를 등록합니다.
 - workflow에서 꼭 필요하지 않다면 repository secret을 만들지 않습니다.
 
 ## Secret과 데이터 보호
