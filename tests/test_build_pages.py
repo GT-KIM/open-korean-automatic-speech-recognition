@@ -53,7 +53,10 @@ class BuildPagesTest(unittest.TestCase):
         data = json.loads((output_dir / "leaderboard_data.json").read_text(encoding="utf-8"))
         metadata = json.loads((output_dir / "metadata.json").read_text(encoding="utf-8"))
         self.assertIn("datasetTabs", index)
+        self.assertIn("subsetTabs", index)
         self.assertIn("Overall Model Leaderboard", app)
+        self.assertIn("AIHub", app)
+        self.assertIn("All subsets", app)
         self.assertEqual(data[0]["model"], "mock")
         self.assertEqual(metadata["row_count"], 1)
 
