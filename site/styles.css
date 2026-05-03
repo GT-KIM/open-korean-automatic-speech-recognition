@@ -411,7 +411,7 @@ select {
 
 table {
   width: 100%;
-  min-width: 1120px;
+  min-width: 1040px;
   border-collapse: collapse;
 }
 
@@ -441,9 +441,14 @@ tbody tr:last-child td {
 
 .model-cell {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   min-width: 180px;
+}
+
+.model-stack {
+  display: block;
+  min-width: 0;
 }
 
 .row-toggle {
@@ -466,6 +471,17 @@ tbody tr:last-child td {
   font-weight: 800;
 }
 
+.model-name-link {
+  color: var(--text);
+  text-decoration-color: rgba(20, 124, 116, 0.45);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.model-name-link:hover {
+  color: var(--teal);
+}
+
 .model-repo,
 .subset-name,
 .artifact-path {
@@ -473,6 +489,27 @@ tbody tr:last-child td {
   color: var(--muted);
   font-size: 12px;
   margin-top: 2px;
+}
+
+.model-card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin-top: 6px;
+  border: 1px solid #b8d7d2;
+  border-radius: 999px;
+  background: var(--teal-weak);
+  color: #0d5d58;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  padding: 5px 8px;
+  text-decoration: none;
+}
+
+.model-card-link:hover {
+  border-color: var(--teal);
+  background: #c8e7e1;
 }
 
 .metric-cell {
@@ -526,11 +563,55 @@ tbody tr:last-child td {
   display: inline-block;
   margin: 2px 4px 2px 0;
   border-radius: 999px;
-  background: var(--gold-weak);
-  color: #74500d;
+  background: #fff4d3;
+  color: #5f410b;
   font-size: 12px;
   font-weight: 700;
-  padding: 5px 8px;
+  padding: 6px 9px;
+}
+
+.detail-inline-list {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+
+.detail-inline-list > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.coverage-cell {
+  min-width: 220px;
+}
+
+.coverage-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.coverage-summary span {
+  min-width: 76px;
+  font-weight: 800;
+}
+
+.coverage-summary i {
+  border-radius: 999px;
+  background: #e8ede5;
+  color: #344039;
+  font-style: normal;
+  font-weight: 700;
+  padding: 3px 8px;
 }
 
 .coverage-summary {

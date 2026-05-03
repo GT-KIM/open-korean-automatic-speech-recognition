@@ -50,8 +50,6 @@ const overallColumns = [
   "Avg RTFx",
   "Avg Latency",
   "Datasets",
-  "Best Run",
-  "Sources",
 ];
 
 const els = {
@@ -419,10 +417,7 @@ function renderOverallRow(row, rank) {
       <td>
         <span class="model-cell">
           <button class="row-toggle" type="button" data-expand-key="${escapeAttr(row.key)}" aria-expanded="${expanded}" aria-label="${escapeAttr(row.model)} 상세 보기">${expanded ? "-" : "+"}</button>
-          <span>
-            <span class="model-name">${escapeHtml(row.model || "-")}</span>
-            <span class="model-repo">${escapeHtml(row.model_repo || "")}</span>
-          </span>
+          ${renderModelIdentity(row.model, row.model_repo)}
         </span>
       </td>
       ${renderOverallMetricCell(row, "cer")}
@@ -464,10 +459,7 @@ function renderDatasetRow(row, rank) {
       <td>
         <span class="model-cell">
           <button class="row-toggle" type="button" data-expand-key="${escapeAttr(row.run_id)}" aria-expanded="${expanded}" aria-label="${escapeAttr(row.model)} 상세 보기">${expanded ? "-" : "+"}</button>
-          <span>
-            <span class="model-name">${escapeHtml(row.model || "-")}</span>
-            <span class="model-repo">${escapeHtml(row.model_repo || "")}</span>
-          </span>
+          ${renderModelIdentity(row.model, row.model_repo)}
         </span>
       </td>
       <td>
@@ -501,6 +493,39 @@ function renderMetricCell(row, metric) {
     </td>`;
 }
 
+function renderModelIdentity(model, repo) {
+  const url = modelRepoUrl(repo);
+  const modelName = escapeHtml(model || "-");
+  const repoName = escapeHtml(repo || "");
+  if (!url) {
+    return `
+      <span class="model-stack">
+        <span class="model-name">${modelName}</span>
+        <span class="model-repo">${repoName}</span>
+      </span>`;
+  }
+  return `
+    <span class="model-stack">
+      <a class="model-name model-name-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${modelName}</a>
+      <span class="model-repo">${repoName}</span>
+      <a class="model-card-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">model card</a>
+    </span>`;
+}
+
+function modelRepoUrl(repo) {
+  const value = String(repo || "").trim();
+  if (!value) {
+    return "";
+  }
+  if (/^https?:\/\//i.test(value)) {
+    return value;
+  }
+  if (!value.includes("/")) {
+    return "";
+  }
+  return `https://huggingface.co/${value.split("/").map(encodeURIComponent).join("/")}`;
+}
+
 function renderOverallDetailRow(row) {
   const coverage = row.rows
     .map(
@@ -531,10 +556,13 @@ function renderOverallDetailRow(row) {
               ${definition("ranking metric", `average ${metricLabels[state.sortMetric]}`)}
               ${definition("dataset slices", formatInteger(row.dataset_count))}
               ${definition("best contributing run", row.best_run.run_id || "-")}
-              ${definition("sources", row.sources.join(", "))}
               ${definition("dedupe policy", "best model/dataset slice by current sort metric")}
               ${definition("primary score", formatNumber(overallSortValue(row, state.sortMetric)))}
             </dl>
+            <div class="detail-inline-list">
+              <span>Sources</span>
+              ${renderSourcePills(row.sources)}
+            </div>
           </div>
         </div>
       </td>
