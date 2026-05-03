@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gt-kim.github.io/open-korean-automatic-speech-recognition/sitemap.xml
