@@ -54,6 +54,8 @@ class BuildPagesTest(unittest.TestCase):
         self.assertIn("Overall Model Leaderboard", app)
         self.assertIn("AIHub", app)
         self.assertIn("All subsets", app)
+        self.assertIn("model card", app)
+        self.assertNotIn('"Best Run"', app)
         self.assertEqual(data[0]["model"], "mock")
         self.assertEqual(metadata["row_count"], 1)
 
