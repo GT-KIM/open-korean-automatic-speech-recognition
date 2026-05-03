@@ -3,8 +3,6 @@
 
 from .word_error_rate import word_error_rate
 from .character_error_rate import character_error_rate
-from .morpheme_error_rate import morpheme_error_rate
-from .jamo_error_rate import jamo_error_rate
 from .sentence_error_rate import sentence_error_rate
 from .performance import (
     real_time_factor,
@@ -13,6 +11,16 @@ from .performance import (
     get_num_parameters,
 )
 from .evaluator import Evaluator
+
+
+def morpheme_error_rate(sentence1: str, sentence2: str) -> dict:
+    from .morpheme_error_rate import morpheme_error_rate as _metric
+    return _metric(sentence1, sentence2)
+
+
+def jamo_error_rate(sentence1: str, sentence2: str) -> dict:
+    from .jamo_error_rate import jamo_error_rate as _metric
+    return _metric(sentence1, sentence2)
 
 __all__ = [
     "word_error_rate",

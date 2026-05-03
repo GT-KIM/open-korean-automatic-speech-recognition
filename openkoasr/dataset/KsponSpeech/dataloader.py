@@ -11,7 +11,6 @@ from tqdm import tqdm
 import numpy as np
 #import soundfile as sf
 import librosa
-import torchaudio
 
 from openkoasr.dataset.KsponSpeech import utils
 

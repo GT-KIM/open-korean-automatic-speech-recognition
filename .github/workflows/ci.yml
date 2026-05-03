@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install package without heavyweight model dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . --no-deps
+      - name: Public readiness scan
+        run: python scripts/public_readiness_check.py
+      - name: Run tests
+        run: python -m unittest discover -s tests
+      - name: Compile Python source
+        shell: bash
+        run: |
+          while IFS= read -r file; do
+            python -m py_compile "$file"
+          done < <(find openkoasr scripts tests -name "*.py" -type f)
+      - name: Check JavaScript syntax
+        run: node --check site/app.js
+      - name: Build Pages static site
+        run: python scripts/build_pages.py --output_dir _site

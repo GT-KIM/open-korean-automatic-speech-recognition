@@ -1,0 +1,227 @@
+[
+  {
+    "run_id": "readme-legacy-whisper-tiny-kspon-clean",
+    "model": "whisper_tiny",
+    "model_repo": "openai/whisper-tiny",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "RTX3090ti",
+    "metrics": {
+      "macro": {
+        "wer": 0.5555,
+        "cer": 0.3977,
+        "mer": 0.4675,
+        "jer": 0.3051,
+        "rtf": 0.0592,
+        "latency": 0.1364
+      }
+    },
+    "model_metrics": {
+      "flops": "55.56 GFLOPS",
+      "params": "37.18 M"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "outlier_count": 120,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "source": "README legacy table",
+    "_artifact": "README.md#리더보드"
+  },
+  {
+    "run_id": "readme-legacy-whisper-base-kspon-clean",
+    "model": "whisper_base",
+    "model_repo": "openai/whisper-base",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "RTX3090ti",
+    "metrics": {
+      "macro": {
+        "wer": 0.4589,
+        "cer": 0.3347,
+        "mer": 0.3644,
+        "jer": 0.2483,
+        "rtf": 0.0581,
+        "latency": 0.1309
+      }
+    },
+    "model_metrics": {
+      "flops": "142.6 GFLOPS",
+      "params": "71.83 M"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "outlier_count": 64,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "source": "README legacy table",
+    "_artifact": "README.md#리더보드"
+  },
+  {
+    "run_id": "readme-legacy-whisper-small-kspon-clean",
+    "model": "whisper_small",
+    "model_repo": "openai/whisper-small",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "RTX3090ti",
+    "metrics": {
+      "macro": {
+        "wer": 0.3608,
+        "cer": 0.273,
+        "mer": 0.2452,
+        "jer": 0.1945,
+        "rtf": 0.0818,
+        "latency": 0.1898
+      }
+    },
+    "model_metrics": {
+      "flops": "619.9 GFLOPS",
+      "params": "240.58 M"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "outlier_count": 69,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "source": "README legacy table",
+    "_artifact": "README.md#리더보드"
+  },
+  {
+    "run_id": "readme-legacy-whisper-medium-kspon-clean",
+    "model": "whisper_medium",
+    "model_repo": "openai/whisper-medium",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "RTX3090ti",
+    "metrics": {
+      "macro": {
+        "wer": 0.3231,
+        "cer": 0.2557,
+        "mer": 0.2094,
+        "jer": 0.1771,
+        "rtf": 0.1038,
+        "latency": 0.2435
+      }
+    },
+    "model_metrics": {
+      "flops": "2170 GFLOPS",
+      "params": "762.32 M"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "outlier_count": 30,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "source": "README legacy table",
+    "_artifact": "README.md#리더보드"
+  },
+  {
+    "run_id": "readme-legacy-whisper-large-v3-kspon-clean",
+    "model": "whisper-large-v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "RTX3090ti",
+    "metrics": {
+      "macro": {
+        "wer": 0.2952,
+        "cer": 0.2312,
+        "mer": 0.1835,
+        "jer": 0.1604,
+        "rtf": 0.174,
+        "latency": 0.3959
+      }
+    },
+    "model_metrics": {
+      "flops": "4510 GFLOPS",
+      "params": "1540 M"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "outlier_count": 23,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "source": "README legacy table",
+    "_artifact": "README.md#리더보드"
+  },
+  {
+    "run_id": "readme-legacy-qwen3-asr-0-6b-kspon-clean",
+    "model": "qwen3_asr_0_6b",
+    "model_repo": "Qwen/Qwen3-ASR-0.6B",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "RTX3090ti",
+    "metrics": {
+      "macro": {
+        "wer": 0.3204,
+        "cer": 0.174,
+        "mer": 0.2162,
+        "jer": 0.1317,
+        "rtf": 0.246,
+        "latency": 0.6072
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "outlier_count": 43,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "source": "README legacy table",
+    "_artifact": "README.md#리더보드"
+  },
+  {
+    "run_id": "readme-legacy-qwen3-asr-1-7b-kspon-clean",
+    "model": "qwen3_asr_1_7b",
+    "model_repo": "Qwen/Qwen3-ASR-1.7B",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "RTX3090ti",
+    "metrics": {
+      "macro": {
+        "wer": 0.2736,
+        "cer": 0.1454,
+        "mer": 0.1685,
+        "jer": 0.1093,
+        "rtf": 0.2289,
+        "latency": 0.5607
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "outlier_count": 55,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "source": "README legacy table",
+    "_artifact": "README.md#리더보드"
+  }
+]

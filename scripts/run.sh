@@ -1,1 +1,1 @@
-python -m openkoasr.main --dataset_name KsponSpeech --model_name qwen3_asr_0_6b
+python -m openkoasr.main --dataset_name KsponSpeech --model_name qwen3_asr_1_7b

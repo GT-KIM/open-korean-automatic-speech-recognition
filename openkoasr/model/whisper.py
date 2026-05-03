@@ -1,6 +1,7 @@
 import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 
+from openkoasr.dataset.sample import get_sample_audio
 from openkoasr.model.base import BaseASRInferenceModel
 
 class WhisperASRInferenceModel(BaseASRInferenceModel):
@@ -24,7 +25,7 @@ class WhisperASRInferenceModel(BaseASRInferenceModel):
         return processor
 
     def extract_input_features(self, sample, sample_rate):
-        input_features = self.processor(sample[0][0], sampling_rate=sample_rate, return_tensors="pt").input_features
+        input_features = self.processor(get_sample_audio(sample), sampling_rate=sample_rate, return_tensors="pt").input_features
         input_features = input_features.to(self.model_config.device, dtype=self.TORCH_DTYPE[self.model_config.dtype])
         return input_features
 

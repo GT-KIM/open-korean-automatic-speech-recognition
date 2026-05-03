@@ -1,5 +1,12 @@
 from openkoasr.model.base import BaseASRInferenceModel
-from openkoasr.model.whisper import WhisperASRInferenceModel
+from openkoasr.model.mock import MockASRInferenceModel
+from openkoasr.registry import Registry
+
+try:
+    from openkoasr.model.whisper import WhisperASRInferenceModel
+except Exception:
+    WhisperASRInferenceModel = None
+
 try:
     from openkoasr.model.qwen3_asr import Qwen3ASRInferenceModel
 except Exception:
@@ -7,27 +14,31 @@ except Exception:
 
 __all__ = [
     "BaseASRInferenceModel",
-    "WhisperASRInferenceModel",
+    "MockASRInferenceModel",
 ]
 
+if WhisperASRInferenceModel is not None:
+    __all__.append("WhisperASRInferenceModel")
 if Qwen3ASRInferenceModel is not None:
     __all__.append("Qwen3ASRInferenceModel")
 
-model_factory = {
-    "whisper": WhisperASRInferenceModel,
-    "whisper_tiny": WhisperASRInferenceModel,
-    "whisper_base": WhisperASRInferenceModel,
-    "whisper_small": WhisperASRInferenceModel,
-    "whisper_medium": WhisperASRInferenceModel,
-    "whisper_large": WhisperASRInferenceModel,
-}
+model_registry = Registry("model")
+model_registry.register("mock", MockASRInferenceModel)
+
+if WhisperASRInferenceModel is not None:
+    model_registry.register("whisper", WhisperASRInferenceModel)
+    model_registry.register("whisper_tiny", WhisperASRInferenceModel)
+    model_registry.register("whisper_base", WhisperASRInferenceModel)
+    model_registry.register("whisper_small", WhisperASRInferenceModel)
+    model_registry.register("whisper_medium", WhisperASRInferenceModel)
+    model_registry.register("whisper_large", WhisperASRInferenceModel)
 
 if Qwen3ASRInferenceModel is not None:
-    model_factory.update({
-        "qwen3_asr": Qwen3ASRInferenceModel,
-        "qwen3_asr_0_6b": Qwen3ASRInferenceModel,
-        "qwen3_asr_1_7b": Qwen3ASRInferenceModel,
-    })
+    model_registry.register("qwen3_asr", Qwen3ASRInferenceModel)
+    model_registry.register("qwen3_asr_0_6b", Qwen3ASRInferenceModel)
+    model_registry.register("qwen3_asr_1_7b", Qwen3ASRInferenceModel)
+
+model_factory = model_registry.as_dict()
 
 class ModelFactory:
     @staticmethod
@@ -36,11 +47,11 @@ class ModelFactory:
         model_class = None
 
         if family is not None:
-            model_class = model_factory.get(family, None)
+            model_class = model_registry.get(family, None)
 
         # Backward compatibility
         if model_class is None:
-            model_class = model_factory.get(config.name, None)
+            model_class = model_registry.get(config.name, None)
 
         if model_class is None:
             if family == "qwen3_asr" or str(getattr(config, "name", "")).startswith("qwen3_asr"):
@@ -48,8 +59,13 @@ class ModelFactory:
                     "Qwen3-ASR model is requested but unavailable. "
                     "Please install dependency: `pip install -U qwen-asr`."
                 )
+            if family == "whisper" or str(getattr(config, "name", "")).startswith("whisper"):
+                raise ValueError(
+                    "Whisper model is requested but unavailable. "
+                    "Please install torch and transformers dependencies."
+                )
             raise ValueError(
                 f"Model {config.name} is not supported. "
-                f"(family={family})"
+                f"(family={family}; available={', '.join(model_registry.keys())})"
             )
         return model_class(config)

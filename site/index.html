@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenKoASR Leaderboard</title>
+    <meta
+      name="description"
+      content="OpenKoASR full-evaluation Korean ASR leaderboard."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./" aria-label="OpenKoASR leaderboard home">
+          <span class="brand-mark" aria-hidden="true">OK</span>
+          <span>
+            <span class="eyebrow">Open-source Korean ASR benchmark</span>
+            <span class="brand-title">OpenKoASR Leaderboard</span>
+          </span>
+        </a>
+        <span class="status-pill" id="dataStatus">full evaluation only</span>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro-band" aria-labelledby="pageTitle">
+        <div>
+          <h1 id="pageTitle">한국어 ASR 공개 리더보드</h1>
+          <p>
+            전체 evaluation samples로 생성된 결과만 기본 표시합니다. 샘플 smoke run은
+            공개 순위에서 제외됩니다.
+          </p>
+        </div>
+        <div class="metric-strip" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="summary-grid" aria-label="Leaderboard summary">
+        <article class="summary-card">
+          <span class="summary-label">Full Runs</span>
+          <strong id="summaryRuns">-</strong>
+          <span class="summary-note">published evaluations</span>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Models</span>
+          <strong id="summaryModels">-</strong>
+          <span class="summary-note">unique systems</span>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Datasets</span>
+          <strong id="summaryDatasets">-</strong>
+          <span class="summary-note">dataset/subset slices</span>
+        </article>
+        <article class="summary-card highlight">
+          <span class="summary-label">Best CER</span>
+          <strong id="summaryBestCer">-</strong>
+          <span class="summary-note" id="summaryBestCerLabel">waiting for data</span>
+        </article>
+      </section>
+
+      <nav class="tab-bar" id="datasetTabs" aria-label="Leaderboard views"></nav>
+
+      <section class="controls-band" aria-label="Leaderboard controls">
+        <label class="control-field">
+          <span>검색</span>
+          <input id="searchInput" type="search" placeholder="model, dataset, GPU, run id" />
+        </label>
+        <label class="control-field">
+          <span>모델</span>
+          <select id="modelFilter"></select>
+        </label>
+        <label class="control-field">
+          <span>정렬</span>
+          <select id="sortMetric">
+            <option value="cer">CER 낮은순</option>
+            <option value="wer">WER 낮은순</option>
+            <option value="mer">MER 낮은순</option>
+            <option value="jer">JER 낮은순</option>
+            <option value="ser">SER 낮은순</option>
+            <option value="rtf">RTFx 낮은순</option>
+            <option value="latency">Latency 낮은순</option>
+            <option value="outlier_rate">Outlier 낮은순</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="table-section" aria-labelledby="resultsTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="resultsTitle">Results</h2>
+            <p id="rowCount">Loading leaderboard data...</p>
+          </div>
+          <div class="legend">
+            <span><i class="legend-dot macro"></i>macro average</span>
+            <span><i class="legend-dot micro"></i>micro details</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="leaderboardTable">
+            <thead id="leaderboardHead"></thead>
+            <tbody id="leaderboardBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
