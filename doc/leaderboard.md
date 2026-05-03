@@ -1,5 +1,7 @@
 # 리더보드 아티팩트
 
+공개 리더보드 사이트: https://gt-kim.github.io/open-korean-automatic-speech-recognition/
+
 평가 결과는 `results/<run_id>/` 아래에 저장됩니다.
 
 - `summary.json`: 실행 메타데이터, 환경 정보, 집계 지표, 모델 단위 지표
