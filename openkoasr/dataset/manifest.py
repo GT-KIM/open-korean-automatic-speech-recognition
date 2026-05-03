@@ -2,6 +2,8 @@ import csv
 import json
 from pathlib import Path
 
+from openkoasr.dataset.sample import identity_collate
+
 
 class ManifestSpeechDataset:
     def __init__(self, config):
@@ -24,6 +26,7 @@ class ManifestSpeechDataset:
             batch_size=batch_size,
             shuffle=shuffle,
             num_workers=num_workers,
+            collate_fn=identity_collate,
         )
 
     def _load_manifest(self):
@@ -63,9 +66,18 @@ class ManifestSpeechDataset:
                 audio, sample_rate = librosa.load(str(path), sr=None, mono=True)
                 return audio, int(sample_rate)
             except Exception as librosa_error:
-                raise RuntimeError(
-                    f"Could not load audio file {path}. Install soundfile or librosa."
-                ) from librosa_error or soundfile_error
+                try:
+                    import torchaudio
+                    import numpy as np
+
+                    audio, sample_rate = torchaudio.load(str(path))
+                    if getattr(audio, "ndim", 1) > 1:
+                        audio = audio.mean(dim=0)
+                    return audio.detach().cpu().numpy().astype(np.float32), int(sample_rate)
+                except Exception as torchaudio_error:
+                    raise RuntimeError(
+                        f"Could not load audio file {path}. Install soundfile, librosa, or torchaudio."
+                    ) from torchaudio_error or librosa_error or soundfile_error
 
     def __len__(self):
         return len(self.data)

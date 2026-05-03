@@ -1,6 +1,9 @@
 import io
+import wave
 import zipfile
 from pathlib import Path
+
+from openkoasr.dataset.sample import identity_collate
 
 
 class AIHubLowQualityTelephoneDataset:
@@ -37,10 +40,15 @@ class AIHubLowQualityTelephoneDataset:
             if not audio_zip.exists():
                 raise FileNotFoundError(f"Missing audio zip: {audio_zip}")
 
-            with zipfile.ZipFile(label_zip) as labels:
+            with zipfile.ZipFile(label_zip) as labels, zipfile.ZipFile(audio_zip) as audio_zip_file:
                 label_names = sorted(name for name in labels.namelist() if name.endswith(".txt"))
+                audio_names = set(name for name in audio_zip_file.namelist() if name.endswith(".wav"))
                 for label_name in label_names:
                     audio_name = label_name[:-4] + ".wav"
+                    if audio_name not in audio_names:
+                        raise FileNotFoundError(
+                            f"Missing matching audio for label {label_name} in {audio_zip}"
+                        )
                     rows.append(
                         {
                             "domain_id": domain_id,
@@ -48,7 +56,7 @@ class AIHubLowQualityTelephoneDataset:
                             "audio_zip": str(audio_zip),
                             "label_name": label_name,
                             "audio_name": audio_name,
-                            "id": f"{domain_id}/{audio_name[:-4]}",
+                            "id": audio_name[:-4],
                         }
                     )
         return rows
@@ -64,6 +72,7 @@ class AIHubLowQualityTelephoneDataset:
             batch_size=batch_size,
             shuffle=shuffle,
             num_workers=num_workers,
+            collate_fn=identity_collate,
         )
 
     def __len__(self):
@@ -110,13 +119,64 @@ class AIHubLowQualityTelephoneDataset:
                 audio, sample_rate = librosa.load(io.BytesIO(audio_bytes), sr=None, mono=True)
                 return self._resample_if_needed(audio, int(sample_rate))
             except Exception as librosa_error:
-                raise RuntimeError("Could not decode wav bytes from telephone dataset.") from (
-                    librosa_error or soundfile_error
-                )
+                try:
+                    audio, sample_rate = _load_wav_with_stdlib(audio_bytes)
+                    return self._resample_if_needed(audio, int(sample_rate))
+                except Exception as wave_error:
+                    raise RuntimeError(
+                        "Could not decode wav bytes from telephone dataset. "
+                        "Install soundfile, librosa, or provide standard PCM WAV files."
+                    ) from wave_error or librosa_error or soundfile_error
 
     def _resample_if_needed(self, audio, sample_rate):
         if sample_rate == self.sample_rate:
             return audio, sample_rate
-        import librosa
+        try:
+            import librosa
 
-        return librosa.resample(audio, orig_sr=sample_rate, target_sr=self.sample_rate), self.sample_rate
+            return librosa.resample(audio, orig_sr=sample_rate, target_sr=self.sample_rate), self.sample_rate
+        except Exception:
+            try:
+                import torch
+                import torchaudio.functional as F
+
+                tensor = torch.as_tensor(audio, dtype=torch.float32)
+                resampled = F.resample(tensor, orig_freq=sample_rate, new_freq=self.sample_rate)
+                return resampled.numpy(), self.sample_rate
+            except Exception:
+                return _resample_linear(audio, sample_rate, self.sample_rate), self.sample_rate
+
+
+def _load_wav_with_stdlib(audio_bytes):
+    import numpy as np
+
+    with wave.open(io.BytesIO(audio_bytes), "rb") as handle:
+        channels = handle.getnchannels()
+        sample_rate = handle.getframerate()
+        sample_width = handle.getsampwidth()
+        frames = handle.readframes(handle.getnframes())
+    if sample_width == 2:
+        audio = np.frombuffer(frames, dtype="<i2").astype(np.float32) / 32768.0
+    elif sample_width == 1:
+        audio = (np.frombuffer(frames, dtype=np.uint8).astype(np.float32) - 128.0) / 128.0
+    elif sample_width == 4:
+        audio = np.frombuffer(frames, dtype="<i4").astype(np.float32) / 2147483648.0
+    else:
+        raise ValueError(f"Unsupported WAV sample width: {sample_width}")
+
+    if channels > 1:
+        audio = audio.reshape(-1, channels).mean(axis=1)
+    return audio, sample_rate
+
+
+def _resample_linear(audio, original_sample_rate, target_sample_rate):
+    import numpy as np
+
+    audio = np.asarray(audio, dtype=np.float32)
+    if audio.size == 0:
+        return audio
+    duration = audio.size / float(original_sample_rate)
+    target_length = max(1, int(round(duration * target_sample_rate)))
+    old_positions = np.linspace(0.0, duration, num=audio.size, endpoint=False)
+    new_positions = np.linspace(0.0, duration, num=target_length, endpoint=False)
+    return np.interp(new_positions, old_positions, audio).astype(np.float32)

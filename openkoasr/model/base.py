@@ -7,6 +7,8 @@ except Exception:  # pragma: no cover - exercised in lightweight test envs.
 
 
 class BaseASRInferenceModel(ABC):
+    supports_batch_transcribe = False
+
     def __init__(self):
         if torch is None:
             self.TORCH_DTYPE = {
@@ -23,17 +25,25 @@ class BaseASRInferenceModel(ABC):
 
     @abstractmethod
     def initialize_model(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def initialize_processor(self):
-        pass
+        raise NotImplementedError
 
     def inference_sample(self, sample, sampling_rate):
         raise NotImplementedError
 
     def transcribe(self, sample, sampling_rate=16000):
         return self.inference_sample(sample, sampling_rate=sampling_rate)
+
+    def transcribe_batch(self, samples, sampling_rates=None):
+        if sampling_rates is None:
+            sampling_rates = [16000] * len(samples)
+        return [
+            self.transcribe(sample, sampling_rate=sampling_rate)
+            for sample, sampling_rate in zip(samples, sampling_rates)
+        ]
 
     def metadata(self):
         config = getattr(self, "model_config", None)

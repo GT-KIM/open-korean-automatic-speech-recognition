@@ -12,6 +12,7 @@ from openkoasr.dataset.sample import (
     get_sample_metadata,
     get_sample_rate,
     get_sample_text,
+    iter_samples,
 )
 from openkoasr.evaluation.results import (
     AggregateResult,
@@ -44,6 +45,7 @@ class EvaluationRunner:
         normalization_preset="punctuation_agnostic",
         warmup_samples=0,
         log_interval=1,
+        log_outliers=False,
         command="",
     ):
         self.dataset_config = dataset_config
@@ -55,6 +57,7 @@ class EvaluationRunner:
         self.normalization_preset = normalization_preset
         self.warmup_samples = warmup_samples
         self.log_interval = max(1, int(log_interval or 1))
+        self.log_outliers = bool(log_outliers)
         self.command = command
 
     @classmethod
@@ -96,29 +99,48 @@ class EvaluationRunner:
         self._warmup(model, eval_dataloader)
 
         samples = []
-        for raw_index, sample in enumerate(eval_dataloader):
+        for batch in eval_dataloader:
+            batch_samples = list(iter_samples(batch))
+            if self.limit is not None:
+                remaining = self.limit - len(samples)
+                if remaining <= 0:
+                    break
+                batch_samples = batch_samples[:remaining]
+
+            if getattr(model, "supports_batch_transcribe", False) and len(batch_samples) > 1:
+                sample_results = self._evaluate_batch(
+                    model=model,
+                    evaluator=evaluator,
+                    batch_samples=batch_samples,
+                    start_index=len(samples),
+                )
+            else:
+                sample_results = [
+                    self._evaluate_sample(
+                        model=model,
+                        evaluator=evaluator,
+                        sample=sample,
+                        index=len(samples) + offset,
+                    )
+                    for offset, sample in enumerate(batch_samples)
+                ]
+
+            for sample_result in sample_results:
+                samples.append(sample_result)
+                should_log = (
+                    sample_result.index == 0
+                    or (self.log_outliers and sample_result.is_outlier)
+                    or (sample_result.index + 1) % self.log_interval == 0
+                    or (
+                        self.limit is None
+                        and dataset_total_samples is not None
+                        and sample_result.index + 1 == dataset_total_samples
+                    )
+                )
+                if should_log:
+                    self._log_sample(sample_result, total=dataset_total_samples or "?")
             if self.limit is not None and len(samples) >= self.limit:
                 break
-
-            sample_result = self._evaluate_sample(
-                model=model,
-                evaluator=evaluator,
-                sample=sample,
-                index=raw_index,
-            )
-            samples.append(sample_result)
-            should_log = (
-                sample_result.index == 0
-                or sample_result.is_outlier
-                or (sample_result.index + 1) % self.log_interval == 0
-                or (
-                    self.limit is None
-                    and dataset_total_samples is not None
-                    and sample_result.index + 1 == dataset_total_samples
-                )
-            )
-            if should_log:
-                self._log_sample(sample_result, total=dataset_total_samples or "?")
 
         aggregate = AggregateResult.from_samples(samples)
         is_full_evaluation = (
@@ -191,6 +213,53 @@ class EvaluationRunner:
             metadata=get_sample_metadata(sample),
         )
 
+    def _evaluate_batch(self, model, evaluator, batch_samples, start_index):
+        sample_rates = [get_sample_rate(sample) for sample in batch_samples]
+        references = [get_sample_text(sample) for sample in batch_samples]
+        audio_durations = [
+            get_audio_duration_seconds(get_sample_audio(sample), sample_rate)
+            for sample, sample_rate in zip(batch_samples, sample_rates)
+        ]
+
+        _synchronize_model_device(self.model_config)
+        start_time = time.perf_counter()
+        predictions = model.transcribe_batch(batch_samples, sampling_rates=sample_rates)
+        _synchronize_model_device(self.model_config)
+        batch_processing_time = time.perf_counter() - start_time
+        per_sample_time = batch_processing_time / max(1, len(batch_samples))
+
+        results = []
+        for offset, (sample, sample_rate, reference, prediction, audio_duration) in enumerate(
+            zip(batch_samples, sample_rates, references, predictions, audio_durations)
+        ):
+            normalized_reference = normalize_text(reference, preset=self.normalization_preset)
+            normalized_prediction = normalize_text(prediction, preset=self.normalization_preset)
+            metrics = evaluator.evaluate(
+                sentence1=normalized_prediction,
+                sentence2=normalized_reference,
+                total_processing_time=per_sample_time,
+                total_audio_length=audio_duration,
+            )
+            is_outlier = self.outlier_policy.is_outlier(metrics)
+            index = start_index + offset
+            results.append(
+                SampleResult(
+                    index=index,
+                    sample_id=get_sample_id(sample, index),
+                    reference=reference,
+                    prediction=prediction,
+                    normalized_reference=normalized_reference,
+                    normalized_prediction=normalized_prediction,
+                    metrics=metrics,
+                    processing_time=per_sample_time,
+                    audio_duration=audio_duration,
+                    sample_rate=sample_rate,
+                    is_outlier=is_outlier,
+                    metadata=get_sample_metadata(sample),
+                )
+            )
+        return results
+
     def _model_metrics(self, model, evaluator, dataloader):
         model_metrics = {}
         if "params" in evaluator.metrics and hasattr(model, "model"):
@@ -200,7 +269,8 @@ class EvaluationRunner:
                 logger.error(f"Could not calculate parameter count: {error}")
         if "flops" in evaluator.metrics and hasattr(model, "extract_input_features"):
             try:
-                first_sample = next(iter(dataloader))
+                first_batch = next(iter(dataloader))
+                first_sample = next(iter(iter_samples(first_batch)))
                 sample_rate = get_sample_rate(first_sample)
                 dummy_input = model.extract_input_features(first_sample, sample_rate=sample_rate)
                 model_metrics.update(
@@ -214,13 +284,16 @@ class EvaluationRunner:
         if self.warmup_samples <= 0:
             return
         logger.info(f"Running {self.warmup_samples} warmup sample(s).")
-        for index, sample in enumerate(dataloader):
-            if index >= self.warmup_samples:
-                break
-            sample_rate = get_sample_rate(sample)
-            _synchronize_model_device(self.model_config)
-            model.transcribe(sample, sampling_rate=sample_rate)
-            _synchronize_model_device(self.model_config)
+        warmup_count = 0
+        for batch in dataloader:
+            for sample in iter_samples(batch):
+                if warmup_count >= self.warmup_samples:
+                    return
+                sample_rate = get_sample_rate(sample)
+                _synchronize_model_device(self.model_config)
+                model.transcribe(sample, sampling_rate=sample_rate)
+                _synchronize_model_device(self.model_config)
+                warmup_count += 1
 
     def _log_sample(self, sample, total):
         logger.info(f"Sample {sample.index + 1}/{total}:")

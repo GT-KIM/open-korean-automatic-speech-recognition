@@ -34,6 +34,21 @@ class RunnerAndWriterTest(unittest.TestCase):
         self.assertTrue(Path(paths["predictions"]).exists())
         self.assertTrue(Path(paths["error_analysis"]).exists())
 
+    def test_mock_runner_respects_batch_size_without_dropping_samples(self):
+        runner = EvaluationRunner.from_names(
+            dataset_name="mock",
+            model_name="mock",
+            batch_size=2,
+            outlier_policy=OutlierPolicy(metric="cer", threshold=1.0),
+            normalization_preset="strict",
+            command="test command",
+        )
+        result = runner.run()
+
+        self.assertEqual(result.aggregate.total_samples, 3)
+        self.assertEqual(result.metadata.evaluated_samples, 3)
+        self.assertTrue(result.metadata.is_full_evaluation)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,6 +1,36 @@
 DEFAULT_SAMPLE_RATE = 16000
 
 
+def identity_collate(batch):
+    return batch
+
+
+def iter_samples(batch):
+    if isinstance(batch, list):
+        for sample in batch:
+            yield sample
+        return
+
+    if isinstance(batch, tuple) and len(batch) >= 2:
+        audio_batch, text_batch = batch[0], batch[1]
+        batch_size = _batch_size(audio_batch, text_batch)
+        if batch_size is not None and batch_size > 1:
+            for index in range(batch_size):
+                yield (audio_batch[index], text_batch[index])
+            return
+
+    yield batch
+
+
+def _batch_size(audio_batch, text_batch):
+    if isinstance(text_batch, (list, tuple)):
+        return len(text_batch)
+    shape = getattr(audio_batch, "shape", None)
+    if shape is not None and len(shape) >= 2:
+        return int(shape[0])
+    return None
+
+
 def _first_sequence_value(value):
     if isinstance(value, (list, tuple)):
         return value[0] if value else None

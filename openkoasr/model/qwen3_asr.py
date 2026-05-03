@@ -8,6 +8,8 @@ from openkoasr.model.base import BaseASRInferenceModel
 
 
 class Qwen3ASRInferenceModel(BaseASRInferenceModel):
+    supports_batch_transcribe = True
+
     def __init__(self, model_config):
         super().__init__()
         self.model_config = model_config
@@ -36,19 +38,27 @@ class Qwen3ASRInferenceModel(BaseASRInferenceModel):
         raise NotImplementedError("Qwen3-ASR does not expose raw input_features in this backend.")
 
     def inference_sample(self, sample, sampling_rate):
-        wav = get_sample_audio(sample)
-        if torch.is_tensor(wav):
-            wav = wav.detach().cpu().float().numpy()
-        else:
-            wav = np.asarray(wav, dtype=np.float32)
+        return self.transcribe_batch([sample], [sampling_rate])[0]
+
+    def transcribe_batch(self, samples, sampling_rates=None):
+        sampling_rates = sampling_rates or [16000] * len(samples)
+        audio_inputs = [
+            (_as_float32_numpy(get_sample_audio(sample)), int(sampling_rate))
+            for sample, sampling_rate in zip(samples, sampling_rates)
+        ]
 
         language = getattr(self.model_config, "language", None)
+        languages = [language] * len(audio_inputs) if language else None
         results = self.model.transcribe(
-            audio=(wav, sampling_rate),
-            language=language,
+            audio=audio_inputs,
+            language=languages,
             return_time_stamps=False,
         )
 
-        if not results:
-            return ""
-        return results[0].text
+        return [result.text if result else "" for result in results]
+
+
+def _as_float32_numpy(value):
+    if torch.is_tensor(value):
+        return value.detach().cpu().float().numpy()
+    return np.asarray(value, dtype=np.float32)

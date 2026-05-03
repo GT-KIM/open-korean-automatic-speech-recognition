@@ -42,6 +42,7 @@ def main():
     rows = load_rows(Path(args.results_dir), include_partial=args.include_partial)
     rows.extend(load_submitted_rows(Path(args.submitted_rows_path), include_partial=args.include_partial))
     rows = [sanitize_public_row(row) for row in rows]
+    rows = dedupe_rows(rows)
     rows.sort(key=lambda row: _metric(row, "cer", default=float("inf")))
 
     markdown = render_markdown(rows)
@@ -92,6 +93,24 @@ def sanitize_public_row(row):
     if command:
         row["command"] = sanitize_public_command(command, row.get("dataset"))
     return row
+
+
+def dedupe_rows(rows):
+    selected = {}
+    for row in rows:
+        key = (row.get("model"), row.get("dataset"), row.get("subset"))
+        if None in key[:2]:
+            key = (row.get("run_id"), row.get("model"), row.get("dataset"), row.get("subset"))
+        current = selected.get(key)
+        if current is None or _row_priority(row) > _row_priority(current):
+            selected[key] = row
+    return list(selected.values())
+
+
+def _row_priority(row):
+    artifact = str(row.get("_artifact", "")).replace("\\", "/")
+    generated_artifact = artifact.endswith("/leaderboard_row.json") or artifact.startswith("results/")
+    return (1 if generated_artifact else 0, str(row.get("run_id", "")))
 
 
 def sanitize_public_command(command, dataset=None):
