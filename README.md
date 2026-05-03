@@ -17,6 +17,8 @@ Markdown 표는 `leaderboard.md`에서 확인할 수 있습니다. README에는 
 
 > 기본 리더보드는 `--limit` 없이 전체 평가 세트를 끝까지 실행한 결과만 포함합니다. 기존 수동 정리 결과는 `doc/submitted_results.json`에 `README legacy table` 출처로 보관되어 있으며, 실제 전체 평가 아티팩트로 재평가되면 교체할 예정입니다.
 
+새 결과를 추가하거나 외부 contributor의 결과를 검토하는 절차는 `doc/leaderboard_update_workflow.md`를 참고하세요.
+
 ## 서론
 국내 학계와 산업계에서 한국어 음성 인식 연구가 활발히 이루어지고 있지만, 공개 모델을 같은 조건에서 재현 가능하게 비교할 수 있는 자료는 아직 부족합니다. OpenKoASR은 Hugging Face의 [Open ASR Leaderboard](https://huggingface.co/spaces/hf-audio/open_asr_leaderboard)([GitHub](https://github.com/huggingface/open_asr_leaderboard))처럼 동일한 평가 지표와 검증 세트를 기준으로 한국어 ASR 모델을 비교하는 것을 목표로 합니다.
 

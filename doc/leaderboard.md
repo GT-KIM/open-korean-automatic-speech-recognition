@@ -10,6 +10,8 @@
 
 직접 실행한 결과 외에 검토된 과거 결과나 외부 제출 결과는 `doc/submitted_results.json`에 저장합니다. 이 파일의 행은 `leaderboard_row.json`과 같은 요약 스키마를 사용하며, 저장소 리더보드를 생성할 때 자동으로 합쳐집니다.
 
+업데이트 권한과 검토 흐름은 `doc/leaderboard_update_workflow.md`를 따릅니다. 외부 contributor의 결과도 maintainer 승인과 PR review를 거쳐 병합하면 GitHub Pages에 반영됩니다.
+
 저장소 단위 리더보드를 생성하려면 아래 명령을 실행합니다.
 
 ```bash
