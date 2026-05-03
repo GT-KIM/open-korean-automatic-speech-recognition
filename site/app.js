@@ -1,9 +1,12 @@
 const OVERALL_TAB = "overall";
+const ALL_SLICES = "__all_slices__";
+const AIHUB_DATASET = "AIHubLowQualityTelephone";
 
 const state = {
   rows: [],
   search: "",
   activeTab: OVERALL_TAB,
+  subsetByDataset: {},
   model: "all",
   sortMetric: "cer",
   expandedKey: null,
@@ -58,6 +61,7 @@ const els = {
   rowCount: document.getElementById("rowCount"),
   status: document.getElementById("dataStatus"),
   tabs: document.getElementById("datasetTabs"),
+  subsetTabs: document.getElementById("subsetTabs"),
   search: document.getElementById("searchInput"),
   model: document.getElementById("modelFilter"),
   sortMetric: document.getElementById("sortMetric"),
@@ -90,6 +94,7 @@ function wireControls() {
     render();
   });
   els.tabs.addEventListener("click", handleTabClick);
+  els.subsetTabs.addEventListener("click", handleSubsetClick);
   els.body.addEventListener("click", handleTableClick);
 }
 
@@ -139,7 +144,7 @@ function renderTabs() {
     },
     ...datasets.map((dataset) => ({
       key: dataset,
-      label: dataset,
+      label: displayDatasetName(dataset),
       note: "dataset",
       count: state.rows.filter((row) => row.dataset === dataset).length,
     })),
@@ -170,11 +175,66 @@ function handleTabClick(event) {
   state.activeTab = button.getAttribute("data-tab");
   state.expandedKey = null;
   renderTabs();
+  renderSubsetTabs();
   render();
+}
+
+function handleSubsetClick(event) {
+  const button = event.target.closest("[data-subset]");
+  if (!button || state.activeTab === OVERALL_TAB) {
+    return;
+  }
+  state.subsetByDataset[state.activeTab] = button.getAttribute("data-subset");
+  state.expandedKey = null;
+  renderSubsetTabs();
+  render();
+}
+
+function renderSubsetTabs() {
+  if (state.activeTab === OVERALL_TAB) {
+    els.subsetTabs.innerHTML = "";
+    els.subsetTabs.hidden = true;
+    return;
+  }
+
+  const datasetRows = state.rows.filter((row) => row.dataset === state.activeTab);
+  const subsets = uniqueSorted(datasetRows.map((row) => row.subset || "default")).sort(compareSubsets);
+  if (subsets.length <= 1) {
+    els.subsetTabs.innerHTML = "";
+    els.subsetTabs.hidden = true;
+    return;
+  }
+
+  const activeSubset = activeDatasetSubset();
+  const buttons = [
+    { key: ALL_SLICES, label: "All subsets", count: datasetRows.length },
+    ...subsets.map((subset) => ({
+      key: subset,
+      label: displaySubsetName(subset),
+      count: datasetRows.filter((row) => (row.subset || "default") === subset).length,
+    })),
+  ];
+
+  els.subsetTabs.hidden = false;
+  els.subsetTabs.innerHTML = buttons
+    .map(
+      (button) => `
+        <button
+          class="subset-button ${activeSubset === button.key ? "active" : ""}"
+          type="button"
+          data-subset="${escapeAttr(button.key)}"
+          aria-pressed="${activeSubset === button.key}"
+        >
+          <span>${escapeHtml(button.label)}</span>
+          <b>${button.count}</b>
+        </button>`,
+    )
+    .join("");
 }
 
 function render() {
   renderSummary();
+  renderSubsetTabs();
   if (state.activeTab === OVERALL_TAB) {
     renderOverall();
   } else {
@@ -196,7 +256,7 @@ function renderSummary() {
   els.summaryDatasets.textContent = datasetSlices.size.toString();
   els.summaryBestCer.textContent = best ? formatNumber(best.cer) : "-";
   els.summaryBestCerLabel.textContent = best
-    ? `${best.row.model} · ${datasetLabel(best.row)}`
+    ? `${best.row.model} · ${compactDatasetLabel(best.row)}`
     : "waiting for data";
 }
 
@@ -216,8 +276,12 @@ function renderOverall() {
 function renderDataset() {
   const rows = sortRows(filterDatasetRows(state.rows, state.activeTab));
   els.table.className = "dataset-table";
-  els.resultsTitle.textContent = `${state.activeTab} Results`;
-  els.rowCount.textContent = `${rows.length} run(s), sorted by ${metricLabels[state.sortMetric]}`;
+  const subset = activeDatasetSubset();
+  const subsetLabel = subset === ALL_SLICES ? "" : ` · ${displaySubsetName(subset)}`;
+  els.resultsTitle.textContent = `${displayDatasetName(state.activeTab)} Results${subsetLabel}`;
+  els.rowCount.textContent =
+    `${rows.length} run(s), sorted by ${metricLabels[state.sortMetric]}. ` +
+    "Subset selection applies within the active dataset.";
   els.head.innerHTML = renderHeader(datasetColumns);
   els.body.innerHTML = rows.length
     ? rows.map((row, index) => renderDatasetRow(row, index + 1)).join("")
@@ -236,7 +300,6 @@ function renderHeader(columns) {
 function isNumericColumn(column) {
   return (
     column === "Rank" ||
-    column === "Datasets" ||
     column === "Samples" ||
     column.includes("CER") ||
     column.includes("WER") ||
@@ -249,8 +312,12 @@ function isNumericColumn(column) {
 }
 
 function filterDatasetRows(rows, dataset) {
+  const subset = activeDatasetSubset();
   return rows.filter((row) => {
     if (row.dataset !== dataset) {
+      return false;
+    }
+    if (subset !== ALL_SLICES && (row.subset || "default") !== subset) {
       return false;
     }
     if (state.model !== "all" && row.model !== state.model) {
@@ -282,7 +349,7 @@ function sortRows(rows) {
     if (aValue !== bValue) {
       return aValue - bValue;
     }
-    return datasetLabel(a).localeCompare(datasetLabel(b)) || String(a.model).localeCompare(String(b.model));
+    return compactDatasetLabel(a).localeCompare(compactDatasetLabel(b)) || String(a.model).localeCompare(String(b.model));
   });
 }
 
@@ -303,7 +370,7 @@ function buildOverallRows() {
     if (!row.model || !row.dataset) {
       continue;
     }
-    const key = `${row.model}::${datasetLabel(row)}`;
+    const key = `${row.model}::${row.dataset}::${row.subset || "default"}`;
     const current = byModelAndDataset.get(key);
     if (!current || sortValue(row, state.sortMetric) < sortValue(current, state.sortMetric)) {
       byModelAndDataset.set(key, row);
@@ -325,7 +392,8 @@ function buildOverallRows() {
       model_repo: bestRun.model_repo,
       rows: sortRows(rows),
       dataset_count: rows.length,
-      datasets: rows.map(datasetLabel),
+      datasets: rows.map(compactDatasetLabel),
+      dataset_groups: groupDatasetCoverage(rows),
       sources: uniqueSorted(rows.map((row) => row.source || "run artifact")),
       best_run: bestRun,
       metrics: {
@@ -365,12 +433,12 @@ function renderOverallRow(row, rank) {
       <td class="numeric latency">${formatNumber(row.metrics.rtf)}</td>
       <td class="numeric latency">${formatSeconds(row.metrics.latency)}</td>
       <td>
-        <span class="dataset-name">${formatInteger(row.dataset_count)}</span>
-        <span class="subset-name">${escapeHtml(row.datasets.join(", "))}</span>
+        <span class="dataset-name">${formatInteger(row.dataset_count)} slices</span>
+        ${renderDatasetCoverageSummary(row.dataset_groups)}
       </td>
       <td>
         <span class="run-id">${escapeHtml(row.best_run.run_id || "-")}</span>
-        <span class="artifact-path">${escapeHtml(datasetLabel(row.best_run))}</span>
+        <span class="artifact-path">${escapeHtml(compactDatasetLabel(row.best_run))}</span>
       </td>
       <td>${renderSourcePills(row.sources)}</td>
     </tr>
@@ -403,8 +471,8 @@ function renderDatasetRow(row, rank) {
         </span>
       </td>
       <td>
-        <span class="dataset-name">${escapeHtml(row.dataset || "-")}</span>
-        <span class="subset-name">${escapeHtml(row.subset || "default")}</span>
+        <span class="dataset-name">${escapeHtml(displayDatasetName(row.dataset))}</span>
+        <span class="subset-name">${escapeHtml(displaySubsetName(row.subset || "default"))}</span>
       </td>
       ${renderMetricCell(row, "cer")}
       ${renderMetricCell(row, "wer")}
@@ -439,7 +507,7 @@ function renderOverallDetailRow(row) {
       (run) => `
         <div class="coverage-item">
           <span>
-            <strong>${escapeHtml(datasetLabel(run))}</strong>
+            <strong>${escapeHtml(compactDatasetLabel(run))}</strong>
             <small>${escapeHtml(run.run_id || "-")}</small>
           </span>
           <span class="coverage-metrics">
@@ -613,8 +681,86 @@ function renderSourcePills(sources) {
   return sources.map((source) => `<span class="source-pill">${escapeHtml(source)}</span>`).join("");
 }
 
+function renderDatasetCoverageSummary(groups) {
+  return Object.entries(groups)
+    .map(
+      ([dataset, subsets]) => `
+        <span class="coverage-summary">
+          <span>${escapeHtml(displayDatasetName(dataset))}</span>
+          ${subsets.map((subset) => `<i>${escapeHtml(displaySubsetName(subset))}</i>`).join("")}
+        </span>`,
+    )
+    .join("");
+}
+
+function groupDatasetCoverage(rows) {
+  const groups = {};
+  for (const row of rows) {
+    const dataset = row.dataset || "-";
+    groups[dataset] = groups[dataset] || [];
+    groups[dataset].push(row.subset || "default");
+  }
+  return Object.fromEntries(
+    Object.entries(groups).map(([dataset, subsets]) => [
+      dataset,
+      uniqueSorted(subsets).sort(compareSubsets),
+    ]),
+  );
+}
+
+function activeDatasetSubset() {
+  if (state.activeTab === OVERALL_TAB) {
+    return ALL_SLICES;
+  }
+  return state.subsetByDataset[state.activeTab] || defaultSubsetForDataset(state.activeTab);
+}
+
+function defaultSubsetForDataset(dataset) {
+  const subsets = new Set(
+    state.rows
+      .filter((row) => row.dataset === dataset)
+      .map((row) => row.subset || "default"),
+  );
+  if (dataset === AIHUB_DATASET && subsets.has("all")) {
+    return "all";
+  }
+  return ALL_SLICES;
+}
+
+function displayDatasetName(dataset) {
+  if (dataset === AIHUB_DATASET) {
+    return "AIHub";
+  }
+  return dataset || "-";
+}
+
+function displaySubsetName(subset) {
+  if (!subset || subset === "default") {
+    return "default";
+  }
+  if (String(subset).toLowerCase() === "all") {
+    return "All";
+  }
+  return subset;
+}
+
+function compactDatasetLabel(row) {
+  const dataset = displayDatasetName(row.dataset);
+  return row.subset ? `${dataset} ${displaySubsetName(row.subset)}` : dataset;
+}
+
 function datasetLabel(row) {
-  return row.subset ? `${row.dataset} / ${row.subset}` : row.dataset || "-";
+  return compactDatasetLabel(row);
+}
+
+function compareSubsets(a, b) {
+  const order = ["clean", "other", "D01", "D02", "D03", "D04", "all", "default"];
+  const aIndex = order.indexOf(a);
+  const bIndex = order.indexOf(b);
+  if (aIndex !== -1 || bIndex !== -1) {
+    return (aIndex === -1 ? Number.MAX_SAFE_INTEGER : aIndex) - (bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex);
+  }
+  return String(a).localeCompare(String(b));
 }
 
 function searchText(row) {
@@ -623,6 +769,7 @@ function searchText(row) {
     row.model_repo,
     row.dataset,
     row.subset,
+    compactDatasetLabel(row),
     row.gpu,
     row.run_id,
     row.command,
