@@ -3,6 +3,7 @@ import torch
 
 from qwen_asr import Qwen3ASRModel
 
+from openkoasr.dataset.sample import get_sample_audio
 from openkoasr.model.base import BaseASRInferenceModel
 
 
@@ -35,7 +36,7 @@ class Qwen3ASRInferenceModel(BaseASRInferenceModel):
         raise NotImplementedError("Qwen3-ASR does not expose raw input_features in this backend.")
 
     def inference_sample(self, sample, sampling_rate):
-        wav = sample[0][0]
+        wav = get_sample_audio(sample)
         if torch.is_tensor(wav):
             wav = wav.detach().cpu().float().numpy()
         else:

@@ -8,6 +8,17 @@ class ConfigParser:
                 value = ConfigParser(value)
             self.__dict__.update({key: value})
 
+    def to_dict(self):
+        result = {}
+        for key, value in self.__dict__.items():
+            if isinstance(value, ConfigParser):
+                value = value.to_dict()
+            result[key] = value
+        return result
+
+    def get(self, key, default=None):
+        return getattr(self, key, default)
+
 if __name__ == "__main__":
     dummy_config = ConfigParser(
         {

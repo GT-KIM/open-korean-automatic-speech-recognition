@@ -1,14 +1,19 @@
-# OpenKoASR Docs
+# OpenKoASR 문서
 
 OpenKoASR 문서 인덱스입니다.
 
 ## 데이터셋 문서
 
 - [KsponSpeech](./data/KsponSpeech.md)
+- [AIHubLowQualityTelephone](./data/AIHubLowQualityTelephone.md)
 
 ## 평가 지표 문서
 
-- [Metrics](./metrics.md)
+- [평가 지표](./metrics.md)
+- [리더보드 아티팩트](./leaderboard.md)
+- [데이터 정책](./data_policy.md)
+- [결과 제출](./result_submission.md)
+- [저장소 설정](./repository_settings.md)
 
 ## 문서 사용 가이드
 

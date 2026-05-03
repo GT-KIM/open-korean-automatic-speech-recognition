@@ -1,8 +1,15 @@
 # Copyright (c) 2025 Gwantae Kim. All Rights Reserved.
 # Licensed under the MIT License.
 
-import torch
-from calflops import calculate_flops
+try:
+    import torch
+except Exception:  # pragma: no cover - optional in mock-only runs.
+    torch = None
+
+try:
+    from calflops import calculate_flops
+except Exception:  # pragma: no cover - optional in mock-only runs.
+    calculate_flops = None
 
 def real_time_factor(total_processing_time: float, total_audio_length: float) -> dict:
     """
@@ -24,6 +31,8 @@ def get_flops(model, dummy_input) -> dict:
     """
     모델의 FLOPS (Floating Point Operations Per Second)를 계산합니다.
     """
+    if calculate_flops is None or torch is None:
+        raise RuntimeError("FLOPS calculation requires torch and calflops.")
     flops, macs, params = calculate_flops(model=model,
                                           args=[dummy_input],
                                           kwargs={"attention_mask": torch.ones_like(dummy_input),},
@@ -31,7 +40,7 @@ def get_flops(model, dummy_input) -> dict:
                                           print_results=False)
     return {"flops": flops, "macs": macs, "params": params}
 
-def get_num_parameters(model: torch.nn.Module) -> dict:
+def get_num_parameters(model) -> dict:
     """
     모델의 파라미터 수를 계산합니다.
     """

@@ -28,11 +28,12 @@ def _measure_mer(
     return hits, substitutions, deletions, insertions
 
 
-def morpheme_error_rate(sentence1: str, sentence2: str) -> dict:
+def morpheme_error_rate(sentence1: str, sentence2: str, kiwi: Kiwi = None) -> dict:
     """
     형태소 오류율 (Morpheme Error Rate, MER)을 계산합니다.
     """
-    kiwi = Kiwi()
+    if kiwi is None:
+        kiwi = Kiwi()
     hits, substitutions, deletions, insertions = _measure_mer(sentence1, sentence2, kiwi)
     total_morphemes = len(_get_morphemes(sentence2, kiwi))
 
