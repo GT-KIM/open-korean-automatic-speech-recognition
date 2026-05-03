@@ -427,10 +427,15 @@ function renderOverallRow(row, rank) {
       ${renderOverallMetricCell(row, "ser")}
       <td class="numeric latency">${formatNumber(row.metrics.rtf)}</td>
       <td class="numeric latency">${formatSeconds(row.metrics.latency)}</td>
-      <td class="coverage-cell">
+      <td>
         <span class="dataset-name">${formatInteger(row.dataset_count)} slices</span>
         ${renderDatasetCoverageSummary(row.dataset_groups)}
       </td>
+      <td>
+        <span class="run-id">${escapeHtml(row.best_run.run_id || "-")}</span>
+        <span class="artifact-path">${escapeHtml(compactDatasetLabel(row.best_run))}</span>
+      </td>
+      <td>${renderSourcePills(row.sources)}</td>
     </tr>
     ${detail}`;
 }

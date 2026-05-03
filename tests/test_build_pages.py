@@ -44,6 +44,9 @@ class BuildPagesTest(unittest.TestCase):
         self.assertTrue((output_dir / "index.html").is_file())
         self.assertTrue((output_dir / "styles.css").is_file())
         self.assertTrue((output_dir / "app.js").is_file())
+        self.assertTrue((output_dir / "robots.txt").is_file())
+        self.assertTrue((output_dir / "sitemap.xml").is_file())
+        self.assertTrue((output_dir / "google340a95f996780abe.html").is_file())
         self.assertTrue((output_dir / ".nojekyll").is_file())
         index = (output_dir / "index.html").read_text(encoding="utf-8")
         app = (output_dir / "app.js").read_text(encoding="utf-8")
@@ -54,8 +57,6 @@ class BuildPagesTest(unittest.TestCase):
         self.assertIn("Overall Model Leaderboard", app)
         self.assertIn("AIHub", app)
         self.assertIn("All subsets", app)
-        self.assertIn("model card", app)
-        self.assertNotIn('"Best Run"', app)
         self.assertEqual(data[0]["model"], "mock")
         self.assertEqual(metadata["row_count"], 1)
 

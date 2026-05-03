@@ -614,6 +614,29 @@ tbody tr:last-child td {
   padding: 3px 8px;
 }
 
+.coverage-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.coverage-summary span {
+  margin-right: 2px;
+  font-weight: 800;
+}
+
+.coverage-summary i {
+  border-radius: 999px;
+  background: var(--surface-muted);
+  color: #4b574f;
+  font-style: normal;
+  font-weight: 700;
+  padding: 2px 7px;
+}
+
 .detail-row td {
   background: #fbfcf9;
   padding: 0;
