@@ -15,6 +15,8 @@ OpenKoASR 문서 인덱스입니다.
 - [데이터 정책](./data_policy.md)
 - [결과 제출](./result_submission.md)
 - [저장소 설정](./repository_settings.md)
+- [AIHub 파이프라인 점검](./aihub_pipeline_check.md)
+- [외부 링크 스니펫](./external_links.md)
 
 ## 문서 사용 가이드
 

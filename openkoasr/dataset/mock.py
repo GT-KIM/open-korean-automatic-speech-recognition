@@ -1,5 +1,7 @@
 import math
 
+from openkoasr.dataset.sample import identity_collate
+
 
 class MockSpeechDataset:
     def __init__(self, config):
@@ -15,7 +17,18 @@ class MockSpeechDataset:
             ]
 
     def generate_dataloader(self, batch_size=1, shuffle=False, num_workers=0):
-        return [self[index] for index in range(len(self))]
+        try:
+            from torch.utils.data import DataLoader
+        except Exception:
+            return [self[index] for index in range(len(self))]
+
+        return DataLoader(
+            self,
+            batch_size=batch_size,
+            shuffle=shuffle,
+            num_workers=num_workers,
+            collate_fn=identity_collate,
+        )
 
     def __len__(self):
         return len(self.data)

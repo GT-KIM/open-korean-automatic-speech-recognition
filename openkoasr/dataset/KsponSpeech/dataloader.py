@@ -13,6 +13,7 @@ import numpy as np
 import librosa
 
 from openkoasr.dataset.KsponSpeech import utils
+from openkoasr.dataset.sample import identity_collate
 
 class KsponSpeechDataset(Dataset):
     def __init__(self, config):
@@ -28,7 +29,8 @@ class KsponSpeechDataset(Dataset):
             self,
             batch_size=batch_size,
             shuffle=shuffle,
-            num_workers=num_workers
+            num_workers=num_workers,
+            collate_fn=identity_collate,
         )
         return dataloader
 

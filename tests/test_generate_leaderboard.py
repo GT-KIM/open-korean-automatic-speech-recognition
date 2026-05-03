@@ -98,6 +98,50 @@ class GenerateLeaderboardTest(unittest.TestCase):
         data = json.loads((root / "leaderboard_data.json").read_text(encoding="utf-8"))
         self.assertEqual(data[0]["model"], "submitted")
 
+    def test_generated_rows_take_precedence_over_legacy_duplicates(self):
+        temp_root = Path.cwd() / ".tmp_tests"
+        temp_root.mkdir(exist_ok=True)
+        root = temp_root / f"leaderboard-dedupe-{uuid.uuid4().hex}"
+        run_dir = root / "results" / "run-2"
+        run_dir.mkdir(parents=True)
+        generated = {
+            "run_id": "run-2",
+            "model": "whisper_tiny",
+            "dataset": "KsponSpeech",
+            "subset": "clean",
+            "metrics": {"macro": {"cer": 0.2}},
+            "evaluated_samples": 3000,
+            "dataset_total_samples": 3000,
+            "is_full_evaluation": True,
+        }
+        submitted = dict(generated)
+        submitted["run_id"] = "readme-legacy-whisper-tiny-kspon-clean"
+        submitted["metrics"] = {"macro": {"cer": 0.3}}
+        (run_dir / "leaderboard_row.json").write_text(json.dumps(generated), encoding="utf-8")
+        submitted_path = root / "submitted_results.json"
+        submitted_path.write_text(json.dumps([submitted]), encoding="utf-8")
+
+        subprocess.run(
+            [
+                sys.executable,
+                "scripts/generate_leaderboard.py",
+                "--results_dir",
+                str(root / "results"),
+                "--markdown_path",
+                str(root / "leaderboard.md"),
+                "--data_path",
+                str(root / "leaderboard_data.json"),
+                "--submitted_rows_path",
+                str(submitted_path),
+            ],
+            check=True,
+        )
+
+        data = json.loads((root / "leaderboard_data.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["run_id"], "run-2")
+        self.assertEqual(data[0]["metrics"]["macro"]["cer"], 0.2)
+
     def test_sanitizes_local_paths_in_public_commands(self):
         command = (
             "/tmp/work/open-korean-automatic-speech-recognition/"

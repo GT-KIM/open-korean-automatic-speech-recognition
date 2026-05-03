@@ -31,6 +31,11 @@ def parse_args():
     parser.add_argument("--num_workers", type=int, default=0)
     parser.add_argument("--warmup_samples", type=int, default=0)
     parser.add_argument("--log_interval", type=int, default=1)
+    parser.add_argument(
+        "--log_outliers",
+        action="store_true",
+        help="Log every outlier sample in addition to periodic progress logs.",
+    )
     parser.add_argument("--manifest_path", default=None)
     parser.add_argument("--dataset_rootpath", default=None)
     parser.add_argument("--dataset_subset", default=None)
@@ -72,6 +77,7 @@ def main():
         normalization_preset=args.normalization_preset,
         warmup_samples=args.warmup_samples,
         log_interval=args.log_interval,
+        log_outliers=args.log_outliers,
         command=" ".join(sys.argv),
     )
     result = runner.run()

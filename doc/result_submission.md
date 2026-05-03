@@ -34,9 +34,9 @@ python -m openkoasr.main \
 
 - `verified`: OpenKoASR 전체 평가 아티팩트에서 생성했고, 데이터 정책 준수를 검토한 결과입니다.
 - `submitted`: 과거 결과나 외부 보고를 바탕으로 `doc/submitted_results.json`에 정리한 결과입니다.
-- `legacy`: 재현 가능한 전체 평가 아티팩트로 교체하기 전까지 비교용으로 보관하는 기존 README/table 결과입니다.
+- `README legacy table`: 이전 README 표에서 옮긴 curated full-evaluation 결과입니다. 부분 실행이 아니라 전체 평가로 확인된 행만 보관합니다.
 
-기본 리더보드는 전체 평가 결과만 포함합니다. UI는 독자가 실행 아티팩트와 legacy 행을 구분할 수 있도록 출처 label을 함께 표시할 수 있습니다.
+기본 리더보드는 전체 평가 결과만 포함합니다. UI는 독자가 실행 아티팩트 기반 행과 curated row의 출처를 구분할 수 있도록 source label을 함께 표시할 수 있습니다.
 
 ## Pull Request 체크리스트
 
@@ -45,4 +45,5 @@ python -m openkoasr.main \
 3. `python scripts/build_pages.py --output_dir _site`를 실행합니다.
 4. `python -m unittest discover -s tests`를 실행합니다.
 5. `python scripts/public_readiness_check.py`를 실행합니다.
-6. `doc/leaderboard_data.json`에 로컬 절대 경로나 secret이 없는지 확인합니다.
+6. `python scripts/validate_leaderboard_data.py`를 실행합니다.
+7. `doc/leaderboard_data.json`에 로컬 절대 경로나 secret이 없는지 확인합니다.
