@@ -413,11 +413,12 @@ table {
   width: 100%;
   min-width: 1040px;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 th,
 td {
-  padding: 13px 12px;
+  padding: 11px 10px;
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: middle;
@@ -427,7 +428,86 @@ th {
   background: #f9faf7;
   color: #4b574f;
   font-size: 12px;
+  line-height: 1.25;
   text-transform: uppercase;
+}
+
+.overall-table {
+  min-width: 1160px;
+}
+
+.dataset-table {
+  min-width: 1220px;
+}
+
+.overall-table th:nth-child(1),
+.overall-table tbody tr:not(.detail-row) td:nth-child(1) {
+  width: 52px;
+}
+
+.overall-table th:nth-child(2),
+.overall-table tbody tr:not(.detail-row) td:nth-child(2) {
+  width: 250px;
+}
+
+.overall-table th:nth-child(n + 3):nth-child(-n + 7),
+.overall-table tbody tr:not(.detail-row) td:nth-child(n + 3):nth-child(-n + 7) {
+  width: 96px;
+}
+
+.overall-table th:nth-child(8),
+.overall-table tbody tr:not(.detail-row) td:nth-child(8) {
+  width: 78px;
+}
+
+.overall-table th:nth-child(9),
+.overall-table tbody tr:not(.detail-row) td:nth-child(9) {
+  width: 94px;
+}
+
+.overall-table th:nth-child(10),
+.overall-table tbody tr:not(.detail-row) td:nth-child(10) {
+  width: 250px;
+}
+
+.dataset-table th:nth-child(1),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(1) {
+  width: 50px;
+}
+
+.dataset-table th:nth-child(2),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(2) {
+  width: 230px;
+}
+
+.dataset-table th:nth-child(3),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(3) {
+  width: 120px;
+}
+
+.dataset-table th:nth-child(n + 4):nth-child(-n + 8),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(n + 4):nth-child(-n + 8) {
+  width: 86px;
+}
+
+.dataset-table th:nth-child(9),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(9) {
+  width: 72px;
+}
+
+.dataset-table th:nth-child(10),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(10) {
+  width: 90px;
+}
+
+.dataset-table th:nth-child(11),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(11) {
+  width: 126px;
+}
+
+.dataset-table th:nth-child(12),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(12) {
+  width: 170px;
 }
 
 td.numeric,
@@ -443,7 +523,12 @@ tbody tr:last-child td {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  min-width: 180px;
+  min-width: 0;
+}
+
+.model-stack {
+  display: block;
+  min-width: 0;
 }
 
 .model-stack {
@@ -465,10 +550,21 @@ tbody tr:last-child td {
 }
 
 .model-name,
-.dataset-name,
-.run-id {
+.dataset-name {
   display: block;
   font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.model-name-link {
+  color: var(--text);
+  text-decoration-color: rgba(20, 124, 116, 0.45);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.model-name-link:hover {
+  color: var(--teal);
 }
 
 .model-name-link {
@@ -483,8 +579,7 @@ tbody tr:last-child td {
 }
 
 .model-repo,
-.subset-name,
-.artifact-path {
+.subset-name {
   display: block;
   color: var(--muted);
   font-size: 12px;
@@ -513,7 +608,7 @@ tbody tr:last-child td {
 }
 
 .metric-cell {
-  min-width: 82px;
+  min-width: 0;
 }
 
 .metric-value {
@@ -526,6 +621,8 @@ tbody tr:last-child td {
   display: block;
   height: 4px;
   margin-top: 6px;
+  margin-left: auto;
+  max-width: 70px;
   border-radius: 999px;
   background: var(--surface-muted);
   overflow: hidden;
@@ -555,8 +652,8 @@ tbody tr:last-child td {
 }
 
 .gpu-cell {
-  max-width: 210px;
   color: #39443d;
+  overflow-wrap: anywhere;
 }
 
 .source-pill {

@@ -36,7 +36,6 @@ const datasetColumns = [
   "Latency",
   "Samples",
   "GPU",
-  "Run",
 ];
 
 const overallColumns = [
@@ -114,7 +113,7 @@ async function loadLeaderboard() {
     els.rowCount.innerHTML =
       '<span class="error-state">leaderboard_data.json을 불러오지 못했습니다.</span>';
     els.body.innerHTML =
-      '<tr><td colspan="13" class="empty-state error-state">정적 빌드에 데이터 파일이 포함되어 있는지 확인하세요.</td></tr>';
+      `<tr><td colspan="${datasetColumns.length}" class="empty-state error-state">정적 빌드에 데이터 파일이 포함되어 있는지 확인하세요.</td></tr>`;
     console.error(error);
   }
 }
@@ -427,15 +426,10 @@ function renderOverallRow(row, rank) {
       ${renderOverallMetricCell(row, "ser")}
       <td class="numeric latency">${formatNumber(row.metrics.rtf)}</td>
       <td class="numeric latency">${formatSeconds(row.metrics.latency)}</td>
-      <td>
+      <td class="coverage-cell">
         <span class="dataset-name">${formatInteger(row.dataset_count)} slices</span>
         ${renderDatasetCoverageSummary(row.dataset_groups)}
       </td>
-      <td>
-        <span class="run-id">${escapeHtml(row.best_run.run_id || "-")}</span>
-        <span class="artifact-path">${escapeHtml(compactDatasetLabel(row.best_run))}</span>
-      </td>
-      <td>${renderSourcePills(row.sources)}</td>
     </tr>
     ${detail}`;
 }
@@ -475,10 +469,6 @@ function renderDatasetRow(row, rank) {
       <td class="numeric latency">${formatSeconds(metricValue(row, "latency"))}</td>
       <td class="numeric">${samplePill(row)}</td>
       <td class="gpu-cell">${escapeHtml(row.gpu || "-")}</td>
-      <td>
-        <span class="run-id">${escapeHtml(row.run_id || "-")}</span>
-        <span class="artifact-path">${escapeHtml(row._artifact || "")}</span>
-      </td>
     </tr>
     ${detail}`;
 }
@@ -594,6 +584,7 @@ function renderDatasetDetailRow(row) {
           <div class="detail-group">
             <h3>Run metadata</h3>
             <dl class="meta-list">
+              ${definition("run id", row.run_id || "-")}
               ${definition("samples", `${row.evaluated_samples || row.total_samples || 0} / ${row.dataset_total_samples || row.total_samples || 0}`)}
               ${definition("outliers", `${row.outlier_count || 0} (${formatPercent(outlierRate(row))})`)}
               ${definition("torch", row.torch || "-")}
