@@ -411,6 +411,7 @@ select {
 
 table {
   width: 100%;
+  min-width: 1040px;
   border-collapse: collapse;
   table-layout: fixed;
 }
@@ -530,6 +531,11 @@ tbody tr:last-child td {
   min-width: 0;
 }
 
+.model-stack {
+  display: block;
+  min-width: 0;
+}
+
 .row-toggle {
   display: inline-grid;
   place-items: center;
@@ -548,6 +554,17 @@ tbody tr:last-child td {
   display: block;
   font-weight: 800;
   overflow-wrap: anywhere;
+}
+
+.model-name-link {
+  color: var(--text);
+  text-decoration-color: rgba(20, 124, 116, 0.45);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.model-name-link:hover {
+  color: var(--teal);
 }
 
 .model-name-link {
@@ -667,22 +684,21 @@ tbody tr:last-child td {
 }
 
 .coverage-cell {
-  min-width: 0;
+  min-width: 220px;
 }
 
 .coverage-summary {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 5px;
-  margin-top: 6px;
+  gap: 6px;
+  margin-top: 7px;
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.25;
 }
 
 .coverage-summary span {
-  flex: 0 0 74px;
+  min-width: 76px;
   font-weight: 800;
 }
 
@@ -692,7 +708,7 @@ tbody tr:last-child td {
   color: #344039;
   font-style: normal;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 3px 8px;
 }
 
 .coverage-summary {
