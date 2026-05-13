@@ -9,6 +9,28 @@ description = "Open-source Korean ASR evaluation and leaderboard tooling."
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
+keywords = [
+  "automatic-speech-recognition",
+  "asr",
+  "benchmark",
+  "korean-asr",
+  "korean-speech-recognition",
+  "leaderboard",
+  "qwen3-asr",
+  "whisper",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
   "jiwer",
   "librosa",
@@ -38,6 +60,13 @@ test = [
   "pytest>=8",
   "jamo>=0.4",
 ]
+
+[project.urls]
+Homepage = "https://gt-kim.github.io/open-korean-automatic-speech-recognition/"
+Source = "https://github.com/GT-KIM/open-korean-automatic-speech-recognition"
+Issues = "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues"
+Leaderboard = "https://gt-kim.github.io/open-korean-automatic-speech-recognition/"
+Documentation = "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/tree/main/doc"
 
 [tool.setuptools.packages.find]
 include = ["openkoasr*"]

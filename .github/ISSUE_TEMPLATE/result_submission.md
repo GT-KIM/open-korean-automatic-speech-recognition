@@ -8,6 +8,7 @@ labels: result
 ## 결과
 
 - Model:
+- Model repository/card:
 - Dataset/subset:
 - Command:
 - Hardware:
@@ -27,3 +28,4 @@ labels: result
 - [ ] 실행 명령은 로컬 절대 경로가 아니라 `$KSPON_ROOT` 같은 공개 placeholder를 사용합니다.
 - [ ] 제한된 오디오, 전사, 인증 정보, 비공개 샘플별 아티팩트를 첨부하지 않았습니다.
 - [ ] 결과는 `doc/result_submission.md`와 `doc/data_policy.md`를 따릅니다.
+- [ ] 모델 카드나 프로젝트 페이지에서 OpenKoASR을 링크할 경우 `doc/external_links.md`의 배지를 사용했습니다.

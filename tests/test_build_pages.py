@@ -42,6 +42,8 @@ class BuildPagesTest(unittest.TestCase):
         )
 
         self.assertTrue((output_dir / "index.html").is_file())
+        self.assertTrue((output_dir / "leaderboard-card.png").is_file())
+        self.assertTrue((output_dir / "leaderboard-card.svg").is_file())
         self.assertTrue((output_dir / "styles.css").is_file())
         self.assertTrue((output_dir / "app.js").is_file())
         self.assertTrue((output_dir / "robots.txt").is_file())
@@ -54,6 +56,9 @@ class BuildPagesTest(unittest.TestCase):
         metadata = json.loads((output_dir / "metadata.json").read_text(encoding="utf-8"))
         self.assertIn("datasetTabs", index)
         self.assertIn("subsetTabs", index)
+        self.assertIn("SoftwareSourceCode", index)
+        self.assertIn("GitHub repository", index)
+        self.assertIn("leaderboard-card.png", index)
         self.assertIn("Overall Model Leaderboard", app)
         self.assertIn("AIHub", app)
         self.assertIn("All subsets", app)

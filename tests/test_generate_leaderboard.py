@@ -21,6 +21,7 @@ class GenerateLeaderboardTest(unittest.TestCase):
                 {
                     "run_id": "run-1",
                     "model": "mock",
+                    "model_repo": "org/mock",
                     "dataset": "mock",
                     "subset": None,
                     "gpu": None,
@@ -53,7 +54,8 @@ class GenerateLeaderboardTest(unittest.TestCase):
 
         markdown = (root / "leaderboard.md").read_text(encoding="utf-8")
         data = json.loads((root / "leaderboard_data.json").read_text(encoding="utf-8"))
-        self.assertIn("mock", markdown)
+        self.assertIn("[mock](https://huggingface.co/org/mock)", markdown)
+        self.assertIn("Live leaderboard", markdown)
         self.assertEqual(data[0]["model"], "mock")
 
     def test_merges_submitted_rows(self):
