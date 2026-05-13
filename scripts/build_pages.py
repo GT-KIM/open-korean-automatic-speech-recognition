@@ -8,6 +8,8 @@ from pathlib import Path
 
 STATIC_FILES = (
     "index.html",
+    "leaderboard-card.png",
+    "leaderboard-card.svg",
     "styles.css",
     "app.js",
     "robots.txt",

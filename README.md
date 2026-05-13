@@ -1,11 +1,27 @@
 # OpenKoASR
 
-OpenKoASR은 한국어 자동 음성 인식(ASR) 모델을 동일한 평가 파이프라인으로 비교하기 위한 오픈소스 프로젝트입니다.
+[![Live Leaderboard](https://img.shields.io/badge/Live-Korean%20ASR%20Leaderboard-147c74?logo=githubpages&logoColor=white)](https://gt-kim.github.io/open-korean-automatic-speech-recognition/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-open--korean--automatic--speech--recognition-181717?logo=github)](https://github.com/GT-KIM/open-korean-automatic-speech-recognition)
+[![CI](https://github.com/GT-KIM/open-korean-automatic-speech-recognition/actions/workflows/ci.yml/badge.svg)](https://github.com/GT-KIM/open-korean-automatic-speech-recognition/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+OpenKoASR은 한국어 자동 음성 인식(ASR) 모델을 동일한 평가 파이프라인으로 비교하기 위한 오픈소스 리더보드입니다. Korean ASR leaderboard, Korean speech recognition benchmark, Whisper Korean, Qwen3-ASR, KsponSpeech, AIHub telephone speech 같은 검색어로 찾기 쉽게 공개 리더보드와 재현 가능한 평가 아티팩트를 함께 제공합니다.
 
 - Live leaderboard: https://gt-kim.github.io/open-korean-automatic-speech-recognition/
+- GitHub repository: https://github.com/GT-KIM/open-korean-automatic-speech-recognition
 - 단일 실행 엔트리(`python -m openkoasr.main`) 기반 평가
 - WER/CER/MER/JER/SER/RTF/Latency(지연 시간) 정량 비교
 - Whisper / Qwen3-ASR 모델군 지원
+
+## 주요 링크
+
+| 목적 | 링크 |
+| :-- | :-- |
+| 공개 리더보드 | [OpenKoASR Korean ASR Leaderboard](https://gt-kim.github.io/open-korean-automatic-speech-recognition/) |
+| 리더보드 JSON | [leaderboard_data.json](https://gt-kim.github.io/open-korean-automatic-speech-recognition/leaderboard_data.json) |
+| Markdown 리더보드 | [leaderboard.md](leaderboard.md) |
+| 결과 제출 가이드 | [doc/result_submission.md](doc/result_submission.md) |
+| 외부 링크/배지 스니펫 | [doc/external_links.md](doc/external_links.md) |
 
 ## 리더보드
 

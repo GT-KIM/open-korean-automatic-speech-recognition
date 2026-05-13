@@ -2,6 +2,10 @@
 
 공개 리더보드 사이트: https://gt-kim.github.io/open-korean-automatic-speech-recognition/
 
+- GitHub repository: https://github.com/GT-KIM/open-korean-automatic-speech-recognition
+- 공개 JSON 데이터: https://gt-kim.github.io/open-korean-automatic-speech-recognition/leaderboard_data.json
+- 결과 제출: https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new?template=result_submission.md
+
 평가 결과는 `results/<run_id>/` 아래에 저장됩니다.
 
 - `summary.json`: 실행 메타데이터, 환경 정보, 집계 지표, 모델 단위 지표

@@ -21,6 +21,13 @@ COLUMNS = [
     ("run_id", "Run"),
 ]
 
+LIVE_LEADERBOARD_URL = "https://gt-kim.github.io/open-korean-automatic-speech-recognition/"
+LEADERBOARD_JSON_URL = f"{LIVE_LEADERBOARD_URL}leaderboard_data.json"
+RESULT_SUBMISSION_URL = (
+    "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new"
+    "?template=result_submission.md"
+)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -146,6 +153,12 @@ def render_markdown(rows):
             "`results/**/leaderboard_row.json` or curated in `doc/submitted_results.json`."
         ),
         "",
+        (
+            f"[Live leaderboard]({LIVE_LEADERBOARD_URL}) | "
+            f"[Leaderboard JSON]({LEADERBOARD_JSON_URL}) | "
+            f"[Submit a result]({RESULT_SUBMISSION_URL})"
+        ),
+        "",
         "| " + " | ".join(label for _, label in COLUMNS) + " |",
         "| " + " | ".join(":--" if key in {"model", "dataset", "subset", "gpu", "run_id"} else "--:" for key, _ in COLUMNS) + " |",
     ]
@@ -158,13 +171,41 @@ def render_markdown(rows):
 
 
 def format_cell(row, key):
+    if key == "model":
+        return format_model_cell(row)
     if key in {"wer", "cer", "mer", "jer", "ser", "rtf", "latency"}:
         value = _metric(row, key)
         return "" if value is None else f"{value:.4f}"
     if key == "outliers":
         return f"{row.get('outlier_count', 0)} / {row.get('evaluated_samples', row.get('total_samples', 0))}"
     value = row.get(key)
-    return "" if value is None else str(value)
+    return "" if value is None else escape_markdown_table_cell(value)
+
+
+def format_model_cell(row):
+    model = row.get("model")
+    if model is None:
+        return ""
+    model_text = escape_markdown_table_cell(model)
+    url = model_repo_url(row.get("model_repo"))
+    if not url:
+        return model_text
+    return f"[{model_text}]({url})"
+
+
+def model_repo_url(repo):
+    value = str(repo or "").strip()
+    if not value:
+        return ""
+    if re.match(r"^https?://", value, flags=re.IGNORECASE):
+        return value
+    if "/" not in value:
+        return ""
+    return "https://huggingface.co/" + "/".join(part for part in value.split("/") if part)
+
+
+def escape_markdown_table_cell(value):
+    return str(value).replace("|", "\\|")
 
 
 def _metric(row, metric, default=None):

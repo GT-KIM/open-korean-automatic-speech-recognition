@@ -18,6 +18,12 @@ OpenKoASR 문서 인덱스입니다.
 - [AIHub 파이프라인 점검](./aihub_pipeline_check.md)
 - [외부 링크 스니펫](./external_links.md)
 
+## 공개 노출 문서
+
+- GitHub About, topics, social preview, release 설정은 [저장소 설정](./repository_settings.md)을 확인합니다.
+- Hugging Face model card, 논문/블로그, 프로젝트 페이지에 붙일 링크와 배지는 [외부 링크 스니펫](./external_links.md)을 사용합니다.
+- 새 결과를 외부 contributor에게 받을 때는 [결과 제출](./result_submission.md)과 [리더보드 업데이트 절차](./leaderboard_update_workflow.md)를 함께 안내합니다.
+
 ## 문서 사용 가이드
 
 1. 프로젝트 전체 사용법은 루트 `README.md`를 먼저 확인합니다.

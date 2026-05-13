@@ -25,6 +25,22 @@
 - repository About 영역의 Website URL에는 `https://gt-kim.github.io/open-korean-automatic-speech-recognition/`를 등록합니다.
 - workflow에서 꼭 필요하지 않다면 repository secret을 만들지 않습니다.
 
+## 저장소 노출 설정
+
+GitHub UI의 About 영역은 검색과 외부 공유 미리보기에 직접 노출됩니다.
+
+- Description:
+  `Open-source Korean ASR leaderboard and speech recognition benchmark for Whisper, Qwen3-ASR, KsponSpeech, and AIHub telephone speech.`
+- Website:
+  `https://gt-kim.github.io/open-korean-automatic-speech-recognition/`
+- Topics:
+  `korean-asr`, `korean-speech-recognition`, `automatic-speech-recognition`, `speech-recognition`, `asr`, `leaderboard`, `benchmark`, `whisper`, `qwen3-asr`, `ksponspeech`, `aihub`
+- Include in the home page: Releases, Packages, Environments는 사용하지 않으면 숨기고, `README`, `Issues`, `Pull requests`, `Actions`, `Security`는 보이게 둡니다.
+- Social preview image:
+  GitHub social preview에는 `site/leaderboard-card.png`를 업로드합니다. `site/leaderboard-card.svg`는 같은 디자인의 편집 가능한 원본으로 둡니다.
+- 첫 공개 release에는 `v0.1.0` 태그와 함께 live leaderboard, result submission guide, 지원 데이터셋/모델 범위를 적습니다.
+- 저장소 상단에 result submission issue template을 노출하고, 모델 카드/블로그에는 `doc/external_links.md`의 배지를 사용합니다.
+
 ## Secret과 데이터 보호
 
 - 가능하면 GitHub secret scanning과 push protection을 켭니다.
