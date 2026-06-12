@@ -6,7 +6,7 @@
     <title>OpenKoASR: 한국어 ASR 리더보드 | Korean Speech Recognition Benchmark</title>
     <meta
       name="description"
-      content="OpenKoASR is an open-source Korean ASR leaderboard and speech recognition benchmark for Whisper, Qwen3-ASR, KsponSpeech, AIHub telephone speech, WER, CER, RTF, and latency."
+      content="OpenKoASR is an open-source Korean ASR leaderboard and speech recognition benchmark for Whisper, Qwen3-ASR, KsponSpeech, AIHub telephone speech, WER, CER, RTFx, and latency."
     />
     <meta
       name="keywords"
@@ -27,7 +27,7 @@
     <meta property="og:title" content="OpenKoASR: 한국어 ASR 리더보드" />
     <meta
       property="og:description"
-      content="Compare open Korean automatic speech recognition models with reproducible WER, CER, RTF, and latency results."
+      content="Compare open Korean automatic speech recognition models with reproducible WER, CER, RTFx, and latency results."
     />
     <meta
       property="og:url"
@@ -60,7 +60,7 @@
             "@id": "https://gt-kim.github.io/open-korean-automatic-speech-recognition/#dataset",
             "name": "OpenKoASR Korean ASR Leaderboard",
             "alternateName": "OpenKoASR",
-            "description": "Open-source leaderboard for Korean automatic speech recognition models evaluated with WER, CER, MER, JER, SER, RTF, and latency metrics.",
+            "description": "Open-source leaderboard for Korean automatic speech recognition models evaluated with WER, CER, MER, JER, SER, RTFx, and latency metrics.",
             "url": "https://gt-kim.github.io/open-korean-automatic-speech-recognition/",
             "sameAs": [
               "https://github.com/GT-KIM/open-korean-automatic-speech-recognition"
@@ -130,6 +130,10 @@
           >GitHub</a>
           <a
             class="topbar-link"
+            href="https://gt-kim.github.io/korean_asr/series/"
+          >Analysis series</a>
+          <a
+            class="topbar-link"
             href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new?template=result_submission.md"
             target="_blank"
             rel="noopener noreferrer"
@@ -192,6 +196,42 @@
         </article>
       </section>
 
+      <section class="insight-band" aria-labelledby="insightsTitle">
+        <div class="insight-copy">
+          <span class="eyebrow">Korean ASR analysis</span>
+          <h2 id="insightsTitle">Korean ASR 분석 시리즈</h2>
+          <p>
+            리더보드의 WER, RTFx, outlier 수치를 한국어 ASR 평가 관점에서 해석합니다.
+          </p>
+        </div>
+        <div class="insight-links">
+          <a
+            class="insight-link"
+            href="https://gt-kim.github.io/korean_asr/series/wer-trap-korean-asr-metrics/"
+          >
+            <span>01</span>
+            <strong>WER의 한계와 극복 방법</strong>
+            <small>CER, JER, MER을 함께 읽는 이유</small>
+          </a>
+          <a
+            class="insight-link"
+            href="https://gt-kim.github.io/korean_asr/series/rtfx-ondevice-korean-asr/"
+          >
+            <span>02</span>
+            <strong>RTFx와 배포 가능한 ASR</strong>
+            <small>정확도와 처리 속도의 파레토 비교</small>
+          </a>
+          <a
+            class="insight-link"
+            href="https://gt-kim.github.io/korean_asr/series/wer-over-1-transformer-repetition-outliers/"
+          >
+            <span>03</span>
+            <strong>반복 환각과 outlier 처리</strong>
+            <small>평균 성능과 안정성 지표를 분리해서 보기</small>
+          </a>
+        </div>
+      </section>
+
       <nav class="tab-bar" id="datasetTabs" aria-label="Leaderboard views"></nav>
       <nav class="subset-bar" id="subsetTabs" aria-label="Dataset subsets"></nav>
 
@@ -212,7 +252,7 @@
             <option value="mer">MER 낮은순</option>
             <option value="jer">JER 낮은순</option>
             <option value="ser">SER 낮은순</option>
-            <option value="rtf">RTFx 낮은순</option>
+            <option value="rtfx">RTFx 높은순</option>
             <option value="latency">Latency 낮은순</option>
             <option value="outlier_rate">Outlier 낮은순</option>
           </select>

@@ -98,7 +98,7 @@ def _write_predictions_csv(path, samples):
         "mer",
         "jer",
         "ser",
-        "rtf",
+        "rtfx",
         "latency",
     ]
     with path.open("w", encoding="utf-8", newline="") as handle:
@@ -114,7 +114,7 @@ def _write_predictions_csv(path, samples):
                 "normalized_prediction": sample.normalized_prediction,
                 "is_outlier": sample.is_outlier,
             }
-            for metric in ("wer", "cer", "mer", "jer", "ser", "rtf", "latency"):
+            for metric in ("wer", "cer", "mer", "jer", "ser", "rtfx", "latency"):
                 row[metric] = sample.metrics.get(metric)
             writer.writerow(_json_safe(row))
 

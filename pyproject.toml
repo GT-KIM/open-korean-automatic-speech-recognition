@@ -49,6 +49,7 @@ dependencies = [
   "calflops",
   "openai-whisper",
   "qwen-asr",
+  "SpeechRecognition",
 ]
 
 [project.optional-dependencies]

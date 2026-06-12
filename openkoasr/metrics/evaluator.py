@@ -38,7 +38,7 @@ class Evaluator:
             "mer": morpheme_error_rate,
             "jer": jamo_error_rate,
             "ser": sentence_error_rate,
-            "rtf": real_time_factor,
+            "rtfx": real_time_factor,
             "latency": latency,
             "flops": get_flops,
             "params": get_num_parameters,

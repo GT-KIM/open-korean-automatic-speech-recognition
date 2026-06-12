@@ -10,7 +10,7 @@ mock_asr_config = {
             "wer",
             "cer",
             "ser",
-            "rtf",
+            "rtfx",
             "latency",
         ]
     },

@@ -232,6 +232,74 @@ select {
   background: #fffaf0;
 }
 
+.insight-band {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1.8fr);
+  gap: 18px;
+  align-items: stretch;
+  margin: 0 0 24px;
+  padding: 22px 0 24px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.insight-copy h2 {
+  margin: 5px 0 0;
+  font-size: 22px;
+  line-height: 1.24;
+}
+
+.insight-copy p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.insight-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.insight-link {
+  display: grid;
+  gap: 7px;
+  min-height: 130px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 14px;
+  text-decoration: none;
+}
+
+.insight-link:hover {
+  border-color: #87bdb5;
+  box-shadow: inset 0 0 0 1px rgba(20, 124, 116, 0.16);
+}
+
+.insight-link:focus {
+  outline: 3px solid rgba(20, 124, 116, 0.22);
+  outline-offset: 2px;
+}
+
+.insight-link span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.insight-link strong {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.insight-link small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .tab-bar {
   display: flex;
   gap: 10px;
@@ -473,11 +541,11 @@ th {
 }
 
 .overall-table {
-  min-width: 1160px;
+  min-width: 1260px;
 }
 
 .dataset-table {
-  min-width: 1220px;
+  min-width: 1340px;
 }
 
 .overall-table th:nth-child(1),
@@ -507,6 +575,11 @@ th {
 
 .overall-table th:nth-child(10),
 .overall-table tbody tr:not(.detail-row) td:nth-child(10) {
+  width: 104px;
+}
+
+.overall-table th:nth-child(11),
+.overall-table tbody tr:not(.detail-row) td:nth-child(11) {
   width: 250px;
 }
 
@@ -542,11 +615,16 @@ th {
 
 .dataset-table th:nth-child(11),
 .dataset-table tbody tr:not(.detail-row) td:nth-child(11) {
-  width: 126px;
+  width: 112px;
 }
 
 .dataset-table th:nth-child(12),
 .dataset-table tbody tr:not(.detail-row) td:nth-child(12) {
+  width: 126px;
+}
+
+.dataset-table th:nth-child(13),
+.dataset-table tbody tr:not(.detail-row) td:nth-child(13) {
   width: 170px;
 }
 
@@ -688,6 +766,27 @@ tbody tr:last-child td {
   border-radius: 7px;
   background: var(--surface-muted);
   font-size: 13px;
+  font-weight: 700;
+}
+
+.outlier-cell {
+  font-variant-numeric: tabular-nums;
+}
+
+.outlier-pill {
+  display: inline-grid;
+  justify-items: end;
+  gap: 2px;
+  min-width: 86px;
+}
+
+.outlier-pill strong {
+  font-size: 13px;
+}
+
+.outlier-pill small {
+  color: var(--muted);
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -925,6 +1024,7 @@ tbody tr:last-child td {
 
 @media (max-width: 980px) {
   .intro-band,
+  .insight-band,
   .detail-panel {
     grid-template-columns: 1fr;
   }
@@ -936,6 +1036,10 @@ tbody tr:last-child td {
   .summary-grid,
   .controls-band {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insight-links {
+    grid-template-columns: 1fr;
   }
 
   .section-head {

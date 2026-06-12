@@ -16,11 +16,14 @@ OpenKoASR의 기본 품질 지표는 아래와 같습니다.
 
 ## 2. 성능 지표
 
-- **RTF (Real-Time Factor)**
-  - 계산: `총 처리 시간 / 총 오디오 길이`
-  - 1보다 작으면 실시간보다 빠른 처리에 해당
+- **RTFx (Real-Time Factor times, 실시간 배속)**
+  - 계산: `총 오디오 길이 / 총 처리 시간`
+  - **값이 클수록 빠릅니다.** 예: RTFx 20이면 실시간 대비 20배 빠른 처리에 해당
+  - 샘플별로 계산한 뒤 outlier를 제외하고 macro 평균을 냅니다.
+  - HuggingFace [Open ASR Leaderboard](https://huggingface.co/spaces/hf-audio/open_asr_leaderboard)와 동일한 정의입니다.
+  - 참고: 전통적인 RTF(`처리 시간 / 오디오 길이`, 값이 작을수록 빠름)의 역수입니다.
 - **Latency**
-  - 샘플 1개 추론에 걸린 지연 시간(초)
+  - 샘플 1개 추론에 걸린 지연 시간(초), 값이 작을수록 좋습니다.
 
 ## 3. 모델 규모/연산량 지표
 

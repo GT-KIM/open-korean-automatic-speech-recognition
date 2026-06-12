@@ -25,7 +25,7 @@ class GenerateLeaderboardTest(unittest.TestCase):
                     "dataset": "mock",
                     "subset": None,
                     "gpu": None,
-                    "metrics": {"macro": {"wer": 0.0, "cer": 0.0, "latency": 0.1}},
+                    "metrics": {"macro": {"wer": 0.0, "cer": 0.0, "rtf": 0.25, "latency": 0.1}},
                         "total_samples": 2,
                         "evaluated_samples": 2,
                         "dataset_total_samples": 2,
@@ -55,8 +55,11 @@ class GenerateLeaderboardTest(unittest.TestCase):
         markdown = (root / "leaderboard.md").read_text(encoding="utf-8")
         data = json.loads((root / "leaderboard_data.json").read_text(encoding="utf-8"))
         self.assertIn("[mock](https://huggingface.co/org/mock)", markdown)
+        self.assertIn("| 4.0000 |", markdown)
         self.assertIn("Live leaderboard", markdown)
         self.assertEqual(data[0]["model"], "mock")
+        self.assertNotIn("rtf", data[0]["metrics"]["macro"])
+        self.assertEqual(data[0]["metrics"]["macro"]["rtfx"], 4.0)
 
     def test_merges_submitted_rows(self):
         temp_root = Path.cwd() / ".tmp_tests"
