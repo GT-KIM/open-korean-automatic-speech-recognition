@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 
-RATE_METRICS = ("wer", "cer", "mer", "jer", "ser", "rtf", "latency")
+RATE_METRICS = ("wer", "cer", "mer", "jer", "ser", "rtfx", "latency")
 EDIT_METRICS = ("wer", "cer", "mer", "jer")
 
 

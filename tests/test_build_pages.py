@@ -21,7 +21,7 @@ class BuildPagesTest(unittest.TestCase):
                         "run_id": "run-1",
                         "model": "mock",
                         "dataset": "mock",
-                        "metrics": {"macro": {"cer": 0.0}},
+                        "metrics": {"macro": {"cer": 0.0, "rtf": 0.25}},
                         "is_full_evaluation": True,
                     }
                 ]
@@ -59,6 +59,8 @@ class BuildPagesTest(unittest.TestCase):
         self.assertIn("SoftwareSourceCode", index)
         self.assertIn("GitHub repository", index)
         self.assertIn("leaderboard-card.png", index)
+        self.assertIn("Korean ASR 분석 시리즈", index)
+        self.assertIn("Outliers", app)
         self.assertIn("Overall Model Leaderboard", app)
         self.assertIn("AIHub", app)
         self.assertIn("All subsets", app)
@@ -66,6 +68,8 @@ class BuildPagesTest(unittest.TestCase):
         self.assertNotIn('"Best Run"', app)
         self.assertNotIn('"Run",', app)
         self.assertEqual(data[0]["model"], "mock")
+        self.assertNotIn("rtf", data[0]["metrics"]["macro"])
+        self.assertEqual(data[0]["metrics"]["macro"]["rtfx"], 4.0)
         self.assertEqual(metadata["row_count"], 1)
 
 

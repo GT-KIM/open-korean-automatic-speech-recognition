@@ -8,12 +8,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.5555,
         "cer": 0.3977,
-        "mer": 0.4675,
         "jer": 0.3051,
-        "rtf": 0.0592,
-        "latency": 0.1364
+        "latency": 0.1364,
+        "mer": 0.4675,
+        "rtfx": 16.89189189189189,
+        "wer": 0.5555
       }
     },
     "model_metrics": {
@@ -41,12 +41,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.4589,
         "cer": 0.3347,
-        "mer": 0.3644,
         "jer": 0.2483,
-        "rtf": 0.0581,
-        "latency": 0.1309
+        "latency": 0.1309,
+        "mer": 0.3644,
+        "rtfx": 17.21170395869191,
+        "wer": 0.4589
       }
     },
     "model_metrics": {
@@ -74,12 +74,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.3608,
         "cer": 0.273,
-        "mer": 0.2452,
         "jer": 0.1945,
-        "rtf": 0.0818,
-        "latency": 0.1898
+        "latency": 0.1898,
+        "mer": 0.2452,
+        "rtfx": 12.224938875305623,
+        "wer": 0.3608
       }
     },
     "model_metrics": {
@@ -107,12 +107,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.3231,
         "cer": 0.2557,
-        "mer": 0.2094,
         "jer": 0.1771,
-        "rtf": 0.1038,
-        "latency": 0.2435
+        "latency": 0.2435,
+        "mer": 0.2094,
+        "rtfx": 9.633911368015413,
+        "wer": 0.3231
       }
     },
     "model_metrics": {
@@ -140,12 +140,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.2952,
         "cer": 0.2312,
-        "mer": 0.1835,
         "jer": 0.1604,
-        "rtf": 0.174,
-        "latency": 0.3959
+        "latency": 0.3959,
+        "mer": 0.1835,
+        "rtfx": 5.74712643678161,
+        "wer": 0.2952
       }
     },
     "model_metrics": {
@@ -173,12 +173,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.3204,
         "cer": 0.174,
-        "mer": 0.2162,
         "jer": 0.1317,
-        "rtf": 0.246,
-        "latency": 0.6072
+        "latency": 0.6072,
+        "mer": 0.2162,
+        "rtfx": 4.065040650406504,
+        "wer": 0.3204
       }
     },
     "model_metrics": {},
@@ -203,12 +203,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.2736,
         "cer": 0.1454,
-        "mer": 0.1685,
         "jer": 0.1093,
-        "rtf": 0.2289,
-        "latency": 0.5607
+        "latency": 0.5607,
+        "mer": 0.1685,
+        "rtfx": 4.36871996505024,
+        "wer": 0.2736
       }
     },
     "model_metrics": {},

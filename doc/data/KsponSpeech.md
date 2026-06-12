@@ -62,7 +62,7 @@ KsponSpeech 평가는 다음 흐름으로 진행됩니다.
 1. `DatasetFactory.load_dataset(config)`
 2. `generate_dataloader(batch_size=1, shuffle=False, num_workers=0)`
 3. 모델 추론 (`model.inference_sample`)
-4. `Evaluator.evaluate()`로 WER/CER/MER/JER/SER/RTF/Latency 계산
+4. `Evaluator.evaluate()`로 WER/CER/MER/JER/SER/RTFx/Latency 계산
 5. Outlier 기준(`--outlier_metric`, `--outlier_threshold`) 초과 샘플 제외 후 평균 집계
 
 ## 재현 체크리스트

@@ -13,13 +13,17 @@ except Exception:  # pragma: no cover - optional in mock-only runs.
 
 def real_time_factor(total_processing_time: float, total_audio_length: float) -> dict:
     """
-    실시간 계수 (Real-Time Factor, RTF)를 계산합니다.
+    실시간 배속 (Real-Time Factor times, RTFx)를 계산합니다.
+
+    RTFx = 오디오 길이 / 처리 시간 (값이 클수록 빠름).
+    예: RTFx 20이면 실시간 대비 20배 빠른 처리에 해당합니다.
+    (HuggingFace Open ASR Leaderboard와 동일한 정의)
     """
-    if total_audio_length == 0:
-        rtf = float('inf')
+    if total_processing_time == 0:
+        rtfx = float('inf')
     else:
-        rtf = total_processing_time / total_audio_length
-    return {"rtf": rtf}
+        rtfx = total_audio_length / total_processing_time
+    return {"rtfx": rtfx}
 
 def latency(total_processing_time: float) -> dict:
     """

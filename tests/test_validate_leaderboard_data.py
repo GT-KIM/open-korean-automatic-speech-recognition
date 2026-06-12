@@ -60,6 +60,23 @@ class ValidateLeaderboardDataTest(unittest.TestCase):
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("metrics.macro.cer", completed.stdout)
 
+    def test_rejects_legacy_rtf_metric(self):
+        temp_root = Path.cwd() / ".tmp_tests" / f"validate-{uuid.uuid4().hex}"
+        temp_root.mkdir(parents=True)
+        row = _row()
+        row["metrics"]["macro"]["rtf"] = 0.1
+        path = temp_root / "rows.json"
+        path.write_text(json.dumps([row]), encoding="utf-8")
+
+        completed = subprocess.run(
+            [sys.executable, "scripts/validate_leaderboard_data.py", str(path)],
+            text=True,
+            capture_output=True,
+        )
+
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("metrics.macro.rtf is legacy", completed.stdout)
+
 
 def _row():
     return {
@@ -74,7 +91,7 @@ def _row():
                 "cer": 0.1,
                 "mer": 0.1,
                 "jer": 0.1,
-                "rtf": 0.1,
+                "rtfx": 10.0,
                 "latency": 0.1,
             }
         },

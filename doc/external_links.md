@@ -5,7 +5,7 @@ Use these snippets when linking OpenKoASR from Hugging Face model cards, blog po
 ## Markdown
 
 ```markdown
-[OpenKoASR Korean ASR Leaderboard](https://gt-kim.github.io/open-korean-automatic-speech-recognition/) reports reproducible full-evaluation WER/CER/MER/JER/SER, RTF, and latency results for open Korean ASR models.
+[OpenKoASR Korean ASR Leaderboard](https://gt-kim.github.io/open-korean-automatic-speech-recognition/) reports reproducible full-evaluation WER/CER/MER/JER/SER, RTFx, and latency results for open Korean ASR models.
 ```
 
 ```markdown
@@ -13,7 +13,7 @@ OpenKoASR is an open-source Korean ASR benchmark and leaderboard for Whisper, Qw
 ```
 
 ```markdown
-[OpenKoASR 한국어 ASR 리더보드](https://gt-kim.github.io/open-korean-automatic-speech-recognition/)는 공개 한국어 음성 인식 모델의 WER/CER/MER/JER/SER, RTF, latency 전체 평가 결과를 제공합니다.
+[OpenKoASR 한국어 ASR 리더보드](https://gt-kim.github.io/open-korean-automatic-speech-recognition/)는 공개 한국어 음성 인식 모델의 WER/CER/MER/JER/SER, RTFx, latency 전체 평가 결과를 제공합니다.
 ```
 
 ## Hugging Face Model Card Badge

@@ -7,7 +7,7 @@
   <text x="152" y="154" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="38" font-weight="800" fill="#ffffff">OK</text>
   <text x="236" y="126" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#147c74">OpenKoASR</text>
   <text x="236" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="48" font-weight="800" fill="#17211c">Korean ASR Leaderboard</text>
-  <text x="236" y="226" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" fill="#66736a">Reproducible WER, CER, RTF, and latency results</text>
+  <text x="236" y="226" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" fill="#66736a">Reproducible WER, CER, RTFx, and latency results</text>
 
   <g transform="translate(96 286)">
     <rect width="1008" height="214" rx="18" fill="#fbfcf9" stroke="#d9ded3"/>

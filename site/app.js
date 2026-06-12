@@ -2,6 +2,10 @@ const OVERALL_TAB = "overall";
 const ALL_SLICES = "__all_slices__";
 const AIHUB_DATASET = "AIHubLowQualityTelephone";
 
+// Metrics where a higher value is better (e.g. RTFx = audio/processing speedup).
+// Everything else (error rates, latency, outlier rate) is lower-is-better.
+const HIGHER_IS_BETTER = new Set(["rtfx"]);
+
 const state = {
   rows: [],
   search: "",
@@ -18,9 +22,9 @@ const metricLabels = {
   mer: "MER",
   jer: "JER",
   ser: "SER",
-  rtf: "RTFx",
+  rtfx: "RTFx",
   latency: "Latency",
-  outlier_rate: "Outlier",
+  outlier_rate: "Outlier rate",
 };
 
 const datasetColumns = [
@@ -34,6 +38,7 @@ const datasetColumns = [
   "SER",
   "RTFx",
   "Latency",
+  "Outliers",
   "Samples",
   "GPU",
 ];
@@ -48,6 +53,7 @@ const overallColumns = [
   "Avg SER",
   "Avg RTFx",
   "Avg Latency",
+  "Avg Outlier",
   "Datasets",
 ];
 
@@ -102,7 +108,7 @@ async function loadLeaderboard() {
       throw new Error(`HTTP ${response.status}`);
     }
     const data = await response.json();
-    state.rows = Array.isArray(data) ? data : [];
+    state.rows = Array.isArray(data) ? data.map(normalizeRow) : [];
     state.rows = state.rows.filter((row) => row.is_full_evaluation !== false);
     populateModelFilter();
     renderTabs();
@@ -304,7 +310,8 @@ function isNumericColumn(column) {
     column.includes("JER") ||
     column.includes("SER") ||
     column.includes("RTFx") ||
-    column.includes("Latency")
+    column.includes("Latency") ||
+    column.includes("Outlier")
   );
 }
 
@@ -399,7 +406,7 @@ function buildOverallRows() {
         mer: averageMetric(rows, "mer"),
         jer: averageMetric(rows, "jer"),
         ser: averageMetric(rows, "ser"),
-        rtf: averageMetric(rows, "rtf"),
+        rtfx: averageMetric(rows, "rtfx"),
         latency: averageMetric(rows, "latency"),
         outlier_rate: averageValues(rows.map(outlierRate)),
       },
@@ -424,8 +431,9 @@ function renderOverallRow(row, rank) {
       ${renderOverallMetricCell(row, "mer")}
       ${renderOverallMetricCell(row, "jer")}
       ${renderOverallMetricCell(row, "ser")}
-      <td class="numeric latency">${formatNumber(row.metrics.rtf)}</td>
+      <td class="numeric latency">${formatNumber(row.metrics.rtfx)}</td>
       <td class="numeric latency">${formatSeconds(row.metrics.latency)}</td>
+      <td class="numeric outlier-cell">${formatPercent(row.metrics.outlier_rate)}</td>
       <td class="coverage-cell">
         <span class="dataset-name">${formatInteger(row.dataset_count)} slices</span>
         ${renderDatasetCoverageSummary(row.dataset_groups)}
@@ -465,8 +473,9 @@ function renderDatasetRow(row, rank) {
       ${renderMetricCell(row, "mer")}
       ${renderMetricCell(row, "jer")}
       ${renderMetricCell(row, "ser")}
-      <td class="numeric latency">${formatNumber(metricValue(row, "rtf"))}</td>
+      <td class="numeric latency">${formatNumber(metricValue(row, "rtfx"))}</td>
       <td class="numeric latency">${formatSeconds(metricValue(row, "latency"))}</td>
+      <td class="numeric outlier-cell">${outlierPill(row)}</td>
       <td class="numeric">${samplePill(row)}</td>
       <td class="gpu-cell">${escapeHtml(row.gpu || "-")}</td>
     </tr>
@@ -547,7 +556,7 @@ function renderOverallDetailRow(row) {
               ${definition("dataset slices", formatInteger(row.dataset_count))}
               ${definition("best contributing run", row.best_run.run_id || "-")}
               ${definition("dedupe policy", "best model/dataset slice by current sort metric")}
-              ${definition("primary score", formatNumber(overallSortValue(row, state.sortMetric)))}
+              ${definition("primary score", formatNumber(overallScore(row, state.sortMetric)))}
             </dl>
             <div class="detail-inline-list">
               <span>Sources</span>
@@ -646,9 +655,31 @@ function definition(term, value) {
   return `<div><dt>${escapeHtml(term)}</dt><dd>${escapeHtml(value)}</dd></div>`;
 }
 
+function normalizeRow(row) {
+  const metrics = row.metrics || {};
+  const macro = metrics.macro || {};
+  if (!Number.isFinite(macro.rtfx) && Number.isFinite(macro.rtf) && macro.rtf > 0) {
+    return {
+      ...row,
+      metrics: {
+        ...metrics,
+        macro: {
+          ...macro,
+          rtfx: 1 / macro.rtf,
+        },
+      },
+    };
+  }
+  return row;
+}
+
 function metricValue(row, metric) {
   const macro = (row.metrics && row.metrics.macro) || {};
   const value = macro[metric];
+  if (metric === "rtfx" && !Number.isFinite(value)) {
+    const rtf = macro.rtf;
+    return Number.isFinite(rtf) && rtf > 0 ? 1 / rtf : NaN;
+  }
   return Number.isFinite(value) ? value : NaN;
 }
 
@@ -656,13 +687,26 @@ function sortValue(row, metric) {
   if (metric === "outlier_rate") {
     return outlierRate(row);
   }
-  const value = metricValue(row, metric);
-  return Number.isFinite(value) ? value : Number.POSITIVE_INFINITY;
+  return orderableScore(metric, metricValue(row, metric));
 }
 
 function overallSortValue(row, metric) {
+  return orderableScore(metric, row.metrics[metric]);
+}
+
+// Raw (human-readable) value of the active ranking metric, without sort negation.
+function overallScore(row, metric) {
   const value = row.metrics[metric];
-  return Number.isFinite(value) ? value : Number.POSITIVE_INFINITY;
+  return Number.isFinite(value) ? value : NaN;
+}
+
+// Map a metric value to an always-ascending score: smaller = better.
+// Higher-is-better metrics are negated; missing values always sink to the bottom.
+function orderableScore(metric, value) {
+  if (!Number.isFinite(value)) {
+    return Number.POSITIVE_INFINITY;
+  }
+  return HIGHER_IS_BETTER.has(metric) ? -value : value;
 }
 
 function averageMetric(rows, metric) {
@@ -694,6 +738,16 @@ function samplePill(row) {
   const evaluated = row.evaluated_samples || row.total_samples || 0;
   const total = row.dataset_total_samples || row.total_samples || 0;
   return `<span class="sample-pill">${formatInteger(evaluated)} / ${formatInteger(total)}</span>`;
+}
+
+function outlierPill(row) {
+  const count = row.outlier_count || 0;
+  const denominator = row.evaluated_samples || row.total_samples || 0;
+  return `
+    <span class="outlier-pill">
+      <strong>${formatPercent(outlierRate(row))}</strong>
+      <small>${formatInteger(count)} / ${formatInteger(denominator)}</small>
+    </span>`;
 }
 
 function renderSourcePills(sources) {

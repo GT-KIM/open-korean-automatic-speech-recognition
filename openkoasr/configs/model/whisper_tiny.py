@@ -16,7 +16,7 @@ whisper_config = {
             "mer",
             "jer",
             "ser",
-            "rtf",
+            "rtfx",
             "latency",
             "flops",
             "params"
