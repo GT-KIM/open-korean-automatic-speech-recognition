@@ -14,7 +14,7 @@
         "jer": 0.09521413787951283,
         "latency": 0.12440204308250716,
         "mer": 0.2220015158087544,
-        "rtf": 0.04888959432304979,
+        "rtfx": 39.490694344116655,
         "ser": 0.9084836339345357,
         "wer": 0.3998882808648997
       },
@@ -61,7 +61,7 @@
         "jer": 0.11072253685626399,
         "latency": 0.2739186552772628,
         "mer": 0.25169977143102046,
-        "rtf": 0.1052857599173621,
+        "rtfx": 17.540413160237357,
         "ser": 0.9104876419505677,
         "wer": 0.42945186431072985
       },
@@ -108,7 +108,7 @@
         "jer": 0.10983572907401443,
         "latency": 0.09220851378431337,
         "mer": 0.2473624126500212,
-        "rtf": 0.053713559812488536,
+        "rtfx": 35.518592207992356,
         "ser": 0.8265374331550802,
         "wer": 0.39831201789307497
       },
@@ -155,7 +155,7 @@
         "jer": 0.13264052702349355,
         "latency": 0.12437825849811729,
         "mer": 0.22224628945605643,
-        "rtf": 0.025452176104390004,
+        "rtfx": 54.84609904442957,
         "ser": 0.9074935400516796,
         "wer": 0.39825990749712326
       },
@@ -202,7 +202,7 @@
         "jer": 0.12617633290889782,
         "latency": 0.10731743527591955,
         "mer": 0.24293576958241606,
-        "rtf": 0.026309089222499436,
+        "rtfx": 51.11862014494029,
         "ser": 0.9097857556456282,
         "wer": 0.4030723346144415
       },
@@ -249,7 +249,7 @@
         "jer": 0.13088174374071837,
         "latency": 0.14543644003417697,
         "mer": 0.2318954395060814,
-        "rtf": 0.03938379162117059,
+        "rtfx": 40.452531153753895,
         "ser": 0.8726690391459074,
         "wer": 0.39364467527820163
       },
@@ -296,7 +296,7 @@
         "jer": 0.1279383903873307,
         "latency": 0.22528228352682378,
         "mer": 0.2838483149422758,
-        "rtf": 0.12762017374614762,
+        "rtfx": 15.11054870357014,
         "ser": 0.8587684069611781,
         "wer": 0.4397431307550217
       },
@@ -343,7 +343,7 @@
         "jer": 0.1400991597377933,
         "latency": 0.12444127850401132,
         "mer": 0.25542053783263585,
-        "rtf": 0.04755043659896766,
+        "rtfx": 37.31042511931628,
         "ser": 0.9055908938734516,
         "wer": 0.43803268540227364
       },
@@ -396,7 +396,7 @@
         "jer": 0.15030947929247404,
         "latency": 0.1050231262524985,
         "mer": 0.28893964515496345,
-        "rtf": 0.025684961577960533,
+        "rtfx": 53.96368089873334,
         "ser": 0.9237730595196658,
         "wer": 0.4561792935225462
       },
@@ -443,7 +443,7 @@
         "jer": 0.15553874598343698,
         "latency": 0.133829838200425,
         "mer": 0.2843193039593066,
-        "rtf": 0.033376108783023016,
+        "rtfx": 46.48465081332629,
         "ser": 0.9049200956335725,
         "wer": 0.4444782954222496
       },
@@ -505,7 +505,7 @@
         "jer": 0.16190279447757736,
         "latency": 0.1556838386543905,
         "mer": 0.2800342728880154,
-        "rtf": 0.03265182445416517,
+        "rtfx": 45.969815294549115,
         "ser": 0.9270941054808687,
         "wer": 0.45928598730826226
       },
@@ -552,7 +552,7 @@
         "jer": 0.15112214736669646,
         "latency": 0.12358125491428915,
         "mer": 0.26819393555080695,
-        "rtf": 0.07006472661995326,
+        "rtfx": 27.388102084235197,
         "ser": 0.855072463768116,
         "wer": 0.44723331334487315
       },
@@ -605,7 +605,7 @@
         "jer": 0.16358870436457992,
         "latency": 0.12773422860057915,
         "mer": 0.29606072389504257,
-        "rtf": 0.03436215110241467,
+        "rtfx": 46.11461063845517,
         "ser": 0.9233891064435742,
         "wer": 0.4774843023453198
       },
@@ -652,7 +652,7 @@
         "jer": 0.15868883188185595,
         "latency": 0.07838813447877142,
         "mer": 0.297636022632811,
-        "rtf": 0.030163917796807577,
+        "rtfx": 62.01156832003284,
         "ser": 0.9263967882234861,
         "wer": 0.47806204773210575
       },
@@ -699,12 +699,12 @@
     "gpu": "RTX3090ti",
     "metrics": {
       "macro": {
-        "wer": 0.2952,
         "cer": 0.2312,
-        "mer": 0.1835,
         "jer": 0.1604,
-        "rtf": 0.174,
-        "latency": 0.3959
+        "latency": 0.3959,
+        "mer": 0.1835,
+        "rtfx": 5.74712643678161,
+        "wer": 0.2952
       }
     },
     "model_metrics": {
@@ -738,7 +738,7 @@
         "jer": 0.1712688168201572,
         "latency": 0.05435807062911198,
         "mer": 0.30401768508893284,
-        "rtf": 0.03031943358725245,
+        "rtfx": 61.00192353972281,
         "ser": 0.873855544252289,
         "wer": 0.47940573484907495
       },
@@ -791,7 +791,7 @@
         "jer": 0.19047392975432756,
         "latency": 0.12978054307721512,
         "mer": 0.34961120968991866,
-        "rtf": 0.03244339578100125,
+        "rtfx": 48.832052286244604,
         "ser": 0.9383382071190884,
         "wer": 0.5211787203960404
       },
@@ -853,7 +853,7 @@
         "jer": 0.19816417582772405,
         "latency": 0.1393971984526744,
         "mer": 0.3646377556943653,
-        "rtf": 0.0328434312945876,
+        "rtfx": 48.37400269631142,
         "ser": 0.931789612967251,
         "wer": 0.5213016771777238
       },
@@ -900,7 +900,7 @@
         "jer": 0.20560713047644985,
         "latency": 0.1525034928165796,
         "mer": 0.3255522040962483,
-        "rtf": 0.030963315031424857,
+        "rtfx": 44.51080054683762,
         "ser": 0.9704049844236761,
         "wer": 0.5220682364132126
       },
@@ -953,7 +953,7 @@
         "jer": 0.20775700863617827,
         "latency": 0.0446205964713072,
         "mer": 0.4010925116455242,
-        "rtf": 0.01709590262247838,
+        "rtfx": 110.3829929250208,
         "ser": 0.9540114132259148,
         "wer": 0.5662936979262466
       },
@@ -1006,7 +1006,7 @@
         "jer": 0.22896089416550733,
         "latency": 0.13349545347055178,
         "mer": 0.3378105710522497,
-        "rtf": 0.032428220085015974,
+        "rtfx": 41.29912352263382,
         "ser": 0.9498662324066535,
         "wer": 0.5193087250639337
       },
@@ -1059,7 +1059,7 @@
         "jer": 0.230755782456491,
         "latency": 0.12532418525042427,
         "mer": 0.34373977542736267,
-        "rtf": 0.033434129102011045,
+        "rtfx": 40.3985831236815,
         "ser": 0.9483695652173914,
         "wer": 0.5361035461596796
       },
@@ -1112,7 +1112,7 @@
         "jer": 0.2410994296205802,
         "latency": 0.06854450211507992,
         "mer": 0.37643147869029436,
-        "rtf": 0.01650303348952882,
+        "rtfx": 80.42917253286431,
         "ser": 0.9623455350897645,
         "wer": 0.5546205193476259
       },
@@ -1165,7 +1165,7 @@
         "jer": 0.24831605283668193,
         "latency": 0.13545867163849648,
         "mer": 0.3776224880113759,
-        "rtf": 0.03307060670661541,
+        "rtfx": 41.03600920282823,
         "ser": 0.9564766052258457,
         "wer": 0.5637061760883081
       },
@@ -1233,7 +1233,7 @@
         "jer": 0.22962476977253574,
         "latency": 0.03545186478161866,
         "mer": 0.404851677760153,
-        "rtf": 0.020215003862586987,
+        "rtfx": 95.2757058532547,
         "ser": 0.9205702647657841,
         "wer": 0.5632818192142809
       },
@@ -1272,6 +1272,53 @@
     "_artifact": "results\\full-20260503\\20260503T084323817330Z\\leaderboard_row.json"
   },
   {
+    "run_id": "20260611T112044282099Z",
+    "model": "google_speech_recognition",
+    "model_repo": "https://pypi.org/project/SpeechRecognition/",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D01",
+    "gpu": null,
+    "torch": "2.9.1+cpu",
+    "cuda": null,
+    "metrics": {
+      "macro": {
+        "cer": 0.30479185344721155,
+        "jer": 0.2566069821905109,
+        "latency": 1.243938528920022,
+        "mer": 0.3601957052157023,
+        "rtfx": 4.1431447477754935,
+        "ser": 0.9817298797409806,
+        "wer": 0.5707849441085961
+      },
+      "micro": {
+        "wer": 0.6301854622078528,
+        "cer": 0.28356051517035025,
+        "mer": 0.3362578787642985,
+        "jer": 0.24194770332436105,
+        "ser": 0.9817298797409806
+      },
+      "latency_percentiles": {
+        "p50": 1.0505561999989368,
+        "p90": 2.1353757600007155,
+        "p95": 2.5596491699996475,
+        "p99": 3.7295199230001534
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 8664,
+    "dataset_total_samples": 8664,
+    "evaluated_samples": 8664,
+    "is_full_evaluation": true,
+    "valid_samples": 8648,
+    "outlier_count": 16,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D01 --model_name google_speech_recognition --normalization_preset kspon --output_dir results/google_speech_recognition_full --batch_size 1 --num_workers 0 --log_interval 1000 --save_predictions",
+    "_artifact": "results\\google_speech_recognition_full\\20260611T112044282099Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "20260503T103445151160Z",
     "model": "whisper_small",
     "model_repo": "openai/whisper-small",
@@ -1286,7 +1333,7 @@
         "jer": 0.24926336947948277,
         "latency": 0.06731512034544035,
         "mer": 0.38531505235143665,
-        "rtf": 0.01776988330542849,
+        "rtfx": 76.75014361676824,
         "ser": 0.9625519117857654,
         "wer": 0.5736311633323594
       },
@@ -1339,7 +1386,7 @@
         "jer": 0.24216848614151573,
         "latency": 0.14252292454971485,
         "mer": 0.44314847468593954,
-        "rtf": 0.034493755757966,
+        "rtfx": 48.79705077822212,
         "ser": 0.962043795620438,
         "wer": 0.6070193778304386
       },
@@ -1386,7 +1433,7 @@
         "jer": 0.2566195917487431,
         "latency": 0.12070616391514605,
         "mer": 0.41455956017725526,
-        "rtf": 0.024613886345453785,
+        "rtfx": 60.925014361131126,
         "ser": 0.970757180156658,
         "wer": 0.5932728386808831
       },
@@ -1425,6 +1472,100 @@
     "_artifact": "results\\full-20260503\\20260503T101656776514Z\\leaderboard_row.json"
   },
   {
+    "run_id": "20260611T233041686594Z",
+    "model": "google_speech_recognition",
+    "model_repo": "https://pypi.org/project/SpeechRecognition/",
+    "dataset": "KsponSpeech",
+    "subset": "other",
+    "gpu": null,
+    "torch": "2.9.1+cpu",
+    "cuda": null,
+    "metrics": {
+      "macro": {
+        "cer": 0.31403110633803977,
+        "jer": 0.2706352290712442,
+        "latency": 1.1155687433333321,
+        "mer": 0.37991935956216244,
+        "rtfx": 3.740590363386542,
+        "ser": 0.9683333333333334,
+        "wer": 0.5406653543420008
+      },
+      "micro": {
+        "wer": 0.5611118327055462,
+        "cer": 0.25796919864265205,
+        "mer": 0.3156697494033413,
+        "jer": 0.2171883250296684,
+        "ser": 0.9683333333333334
+      },
+      "latency_percentiles": {
+        "p50": 0.9142717000001994,
+        "p90": 2.1471534100001914,
+        "p95": 2.46766832500034,
+        "p99": 3.0689301519997003
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "valid_samples": 3000,
+    "outlier_count": 0,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset other --model_name google_speech_recognition --normalization_preset kspon --output_dir results/google_speech_recognition_full --batch_size 1 --num_workers 0 --log_interval 500 --save_predictions",
+    "_artifact": "results\\google_speech_recognition_full\\20260611T233041686594Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260611T163019846455Z",
+    "model": "google_speech_recognition",
+    "model_repo": "https://pypi.org/project/SpeechRecognition/",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D04",
+    "gpu": null,
+    "torch": "2.9.1+cpu",
+    "cuda": null,
+    "metrics": {
+      "macro": {
+        "cer": 0.32241140391535555,
+        "jer": 0.26790045069951557,
+        "latency": 1.1330333173931406,
+        "mer": 0.38474380793380236,
+        "rtfx": 4.17523805243056,
+        "ser": 0.9943206020161863,
+        "wer": 0.617323680068385
+      },
+      "micro": {
+        "wer": 0.6642191920155113,
+        "cer": 0.29740143977128364,
+        "mer": 0.3549122567457411,
+        "jer": 0.2509543552654453,
+        "ser": 0.9943206020161863
+      },
+      "latency_percentiles": {
+        "p50": 0.93213795000338,
+        "p90": 1.9372788999971817,
+        "p95": 2.3934331999980714,
+        "p99": 3.6340879500003207
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 14105,
+    "dataset_total_samples": 14105,
+    "evaluated_samples": 14105,
+    "is_full_evaluation": true,
+    "valid_samples": 14086,
+    "outlier_count": 19,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D04 --model_name google_speech_recognition --normalization_preset kspon --output_dir results/google_speech_recognition_full --batch_size 1 --num_workers 0 --log_interval 1500 --save_predictions",
+    "_artifact": "results\\google_speech_recognition_full\\20260611T163019846455Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "aggregate-aihub-all-whisper-small-20260503T165812Z",
     "model": "whisper_small",
     "model_repo": "openai/whisper-small",
@@ -1439,7 +1580,7 @@
         "jer": 0.2761776715868044,
         "latency": 0.07502959786818807,
         "mer": 0.4340920493240066,
-        "rtf": 0.01808035232918296,
+        "rtfx": 77.122430605119,
         "ser": 0.9689486801281725,
         "wer": 0.6125684032449201
       },
@@ -1507,7 +1648,7 @@
         "jer": 0.28128799923460296,
         "latency": 0.14384949948902923,
         "mer": 0.43875840566380986,
-        "rtf": 0.03337067638271794,
+        "rtfx": 41.03329550310559,
         "ser": 0.9660417639602376,
         "wer": 0.6202726405084047
       },
@@ -1560,7 +1701,7 @@
         "jer": 0.26823118306558696,
         "latency": 0.04658565707995999,
         "mer": 0.49843830550073553,
-        "rtf": 0.017952070599766688,
+        "rtfx": 115.74454486769646,
         "ser": 0.9712254570074476,
         "wer": 0.6569817681577498
       },
@@ -1599,6 +1740,68 @@
     "_artifact": "results\\full-20260503\\20260503T075923023494Z\\leaderboard_row.json"
   },
   {
+    "run_id": "aggregate-aihub-all-google-speech-recognition-20260612T053009Z",
+    "model": "google_speech_recognition",
+    "model_repo": "https://pypi.org/project/SpeechRecognition/",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "all",
+    "gpu": null,
+    "torch": "2.9.1+cpu",
+    "cuda": null,
+    "metrics": {
+      "macro": {
+        "cer": 0.37101298645319086,
+        "jer": 0.3229090105635853,
+        "latency": 1.2256371680129443,
+        "mer": 0.42986416928112675,
+        "rtfx": 4.298780020739703,
+        "ser": 0.9911697564157238,
+        "wer": 0.6351890579766313
+      },
+      "micro": {
+        "wer": 0.7899610325972823,
+        "cer": 0.35788080924623056,
+        "mer": 0.41117334221105667,
+        "jer": 0.3172535776206846,
+        "ser": 0.9911697564157238
+      },
+      "latency_percentiles": {
+        "p50": 0.9941244000001461,
+        "p90": 2.1267029200007532,
+        "p95": 2.615025989999231,
+        "p99": 3.811375312000342
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 39916,
+    "dataset_total_samples": 39916,
+    "evaluated_samples": 39916,
+    "is_full_evaluation": true,
+    "valid_samples": 39863,
+    "outlier_count": 53,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset all --model_name google_speech_recognition --normalization_preset kspon --output_dir results/full",
+    "source": "aggregated from full AIHub D01-D04 runs",
+    "aggregation": {
+      "subsets": [
+        "D01",
+        "D02",
+        "D03",
+        "D04"
+      ],
+      "source_run_ids": [
+        "20260611T112044282099Z",
+        "20260612T052922881353Z",
+        "20260611T064319962916Z",
+        "20260611T163019846455Z"
+      ]
+    },
+    "_artifact": "results\\google_speech_recognition_full\\aggregated\\aggregate-aihub-all-google-speech-recognition-20260612T053009Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "20260503T075532897072Z",
     "model": "whisper_tiny",
     "model_repo": "openai/whisper-tiny",
@@ -1613,7 +1816,7 @@
         "jer": 0.28866802724764357,
         "latency": 0.030267780543827127,
         "mer": 0.5001781077629391,
-        "rtf": 0.016836180871357957,
+        "rtfx": 115.34222117784971,
         "ser": 0.9377793056033001,
         "wer": 0.6417061426198065
       },
@@ -1652,6 +1855,53 @@
     "_artifact": "results\\full-20260503\\20260503T075532897072Z\\leaderboard_row.json"
   },
   {
+    "run_id": "20260610T021005900995Z",
+    "model": "google_speech_recognition",
+    "model_repo": "https://pypi.org/project/SpeechRecognition/",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": null,
+    "torch": "2.9.1+cpu",
+    "cuda": null,
+    "metrics": {
+      "macro": {
+        "cer": 0.3815876966574331,
+        "jer": 0.3384687125262183,
+        "latency": 1.121117944348055,
+        "mer": 0.4410475957087438,
+        "rtfx": 3.0396163624606922,
+        "ser": 0.9536512170723574,
+        "wer": 0.5724670521335702
+      },
+      "micro": {
+        "wer": 0.5577520971431924,
+        "cer": 0.271316237310017,
+        "mer": 0.3274300150560135,
+        "jer": 0.2302106512386886,
+        "ser": 0.9536512170723574
+      },
+      "latency_percentiles": {
+        "p50": 0.9934472000459209,
+        "p90": 1.905796500016004,
+        "p95": 2.3446989999734793,
+        "p99": 3.009722843987401
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "valid_samples": 2999,
+    "outlier_count": 1,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset clean --model_name google_speech_recognition --normalization_preset kspon --output_dir results/google_speech_recognition_full --batch_size 1 --num_workers 0 --log_interval 100 --save_predictions",
+    "_artifact": "results\\google_speech_recognition_full\\20260610T021005900995Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "20260503T085510938250Z",
     "model": "whisper_base",
     "model_repo": "openai/whisper-base",
@@ -1666,7 +1916,7 @@
         "jer": 0.31900949083330743,
         "latency": 0.05359508365648293,
         "mer": 0.5115648165021445,
-        "rtf": 0.013147254730937466,
+        "rtfx": 114.32941090804336,
         "ser": 0.9864306784660767,
         "wer": 0.6856208057433133
       },
@@ -1719,7 +1969,7 @@
         "jer": 0.3242325747494696,
         "latency": 0.08013616588762776,
         "mer": 0.5157200269416151,
-        "rtf": 0.01844061161406113,
+        "rtfx": 77.65073444218719,
         "ser": 0.9785373074076565,
         "wer": 0.6850857582089149
       },
@@ -1772,7 +2022,7 @@
         "jer": 0.33030903525034105,
         "latency": 0.049215581136051054,
         "mer": 0.5201480017430868,
-        "rtf": 0.013096820657933364,
+        "rtfx": 111.54901261235923,
         "ser": 0.9867803221844976,
         "wer": 0.7111211710517231
       },
@@ -1811,6 +2061,53 @@
     "_artifact": "results\\full-20260503\\20260503T092947492745Z\\leaderboard_row.json"
   },
   {
+    "run_id": "20260612T052922881353Z",
+    "model": "google_speech_recognition",
+    "model_repo": "https://pypi.org/project/SpeechRecognition/",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D02",
+    "gpu": null,
+    "torch": "2.9.1+cpu",
+    "cuda": null,
+    "metrics": {
+      "macro": {
+        "cer": 0.43054106308086626,
+        "jer": 0.3861127456724654,
+        "latency": 1.2577045632198869,
+        "mer": 0.4893662074784157,
+        "rtfx": 4.482602168443028,
+        "ser": 0.9929572829592576,
+        "wer": 0.6749423750615915
+      },
+      "micro": {
+        "wer": 0.9402873857241364,
+        "cer": 0.4118302219804524,
+        "mer": 0.46807843251681425,
+        "jer": 0.37145412411121487,
+        "ser": 0.9929572829592576
+      },
+      "latency_percentiles": {
+        "p50": 0.9951586999995925,
+        "p90": 2.1763707599995543,
+        "p95": 2.717685280001751,
+        "p99": 3.9006736919979446
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 15211,
+    "dataset_total_samples": 15211,
+    "evaluated_samples": 15211,
+    "is_full_evaluation": true,
+    "valid_samples": 15193,
+    "outlier_count": 18,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D02 --model_name google_speech_recognition --normalization_preset kspon --output_dir results/google_speech_recognition_full --batch_size 1 --num_workers 0 --log_interval 1500 --save_predictions",
+    "_artifact": "results\\google_speech_recognition_full\\20260612T052922881353Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "aggregate-aihub-all-whisper-base-20260503T165810Z",
     "model": "whisper_base",
     "model_repo": "openai/whisper-base",
@@ -1825,7 +2122,7 @@
         "jer": 0.3600644759807549,
         "latency": 0.056338141266108865,
         "mer": 0.5743824994276515,
-        "rtf": 0.013767466894589506,
+        "rtfx": 111.20572781072796,
         "ser": 0.9892897697945701,
         "wer": 0.7466448498608109
       },
@@ -1893,7 +2190,7 @@
         "jer": 0.3876990003358355,
         "latency": 0.0784415708388592,
         "mer": 0.6263403963403016,
-        "rtf": 0.01572999101970927,
+        "rtfx": 102.39379604186891,
         "ser": 0.9978483055406132,
         "wer": 0.7852953145996954
       },
@@ -1946,7 +2243,7 @@
         "jer": 0.40868660104967813,
         "latency": 0.06188029606304989,
         "mer": 0.6558153649743045,
-        "rtf": 0.014514959969353376,
+        "rtfx": 110.18699714018918,
         "ser": 0.9922448699471553,
         "wer": 0.810956279803918
       },
@@ -1999,7 +2296,7 @@
         "jer": 0.41612924396857265,
         "latency": 0.045338210945745167,
         "mer": 0.6404202332170794,
-        "rtf": 0.011069585204613996,
+        "rtfx": 142.89066713718879,
         "ser": 0.9946763460375075,
         "wer": 0.7837152550952092
       },
@@ -2052,7 +2349,7 @@
         "jer": 0.42499043907756645,
         "latency": 0.047553258651147304,
         "mer": 0.6444729548129063,
-        "rtf": 0.01267183232039557,
+        "rtfx": 131.2828280676195,
         "ser": 0.9926113889096201,
         "wer": 0.8077474820415489
       },
@@ -2105,7 +2402,7 @@
         "jer": 0.45900742263967104,
         "latency": 0.0522253371966439,
         "mer": 0.6997897766910354,
-        "rtf": 0.012789312045021586,
+        "rtfx": 131.52491821332148,
         "ser": 0.9949712643678161,
         "wer": 0.8428911543763842
       },
@@ -2159,6 +2456,53 @@
     "_artifact": "results\\full-20260503\\aggregated\\aggregate-aihub-all-whisper-tiny-20260503T165814Z\\leaderboard_row.json"
   },
   {
+    "run_id": "20260611T064319962916Z",
+    "model": "google_speech_recognition",
+    "model_repo": "https://pypi.org/project/SpeechRecognition/",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D03",
+    "gpu": null,
+    "torch": "2.9.1+cpu",
+    "cuda": null,
+    "metrics": {
+      "macro": {
+        "cer": 0.5532816753264272,
+        "jer": 0.5233099238414312,
+        "latency": 1.566002733781,
+        "mer": 0.602407465171614,
+        "rtfx": 4.450296609654969,
+        "ser": 0.9963842975206612,
+        "wer": 0.7408948139035562
+      },
+      "micro": {
+        "wer": 1.5662481259370316,
+        "cer": 0.5834505556337037,
+        "mer": 0.6240884864973352,
+        "jer": 0.5606994459833795,
+        "ser": 0.9963842975206612
+      },
+      "latency_percentiles": {
+        "p50": 1.2829070999996475,
+        "p90": 2.6885913999994955,
+        "p95": 3.0736852249997355,
+        "p99": 4.146945024999652
+      }
+    },
+    "model_metrics": {},
+    "total_samples": 1936,
+    "dataset_total_samples": 1936,
+    "evaluated_samples": 1936,
+    "is_full_evaluation": true,
+    "valid_samples": 1936,
+    "outlier_count": 0,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D03 --model_name google_speech_recognition --normalization_preset kspon --output_dir results/google_speech_recognition_full --batch_size 1 --num_workers 0 --log_interval 250 --save_predictions",
+    "_artifact": "results\\google_speech_recognition_full\\20260611T064319962916Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "20260503T082519170241Z",
     "model": "whisper_tiny",
     "model_repo": "openai/whisper-tiny",
@@ -2173,7 +2517,7 @@
         "jer": 0.5077641112124703,
         "latency": 0.05982108967093557,
         "mer": 0.7760042907793275,
-        "rtf": 0.014013649872125358,
+        "rtfx": 125.10993678378809,
         "ser": 0.9969546742209632,
         "wer": 0.9031532811379234
       },
@@ -2226,7 +2570,7 @@
         "jer": 0.5266392375381395,
         "latency": 0.059042700506526366,
         "mer": 0.7863066845971648,
-        "rtf": 0.011955980404759418,
+        "rtfx": 131.46124531971557,
         "ser": 0.9983333333333333,
         "wer": 0.9034898450991726
       },

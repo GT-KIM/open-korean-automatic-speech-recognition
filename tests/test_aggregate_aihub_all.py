@@ -89,10 +89,11 @@ def _sample(index):
             "ser": 1.0,
             "ser_error_sentences": 1,
             "ser_total_sentences": 1,
-            "rtf": 0.1,
+            "rtfx": 10.0,
             "latency": 0.2,
         },
         "processing_time": 0.2,
+        "audio_duration": 2.0,
         "is_outlier": False,
     }
 

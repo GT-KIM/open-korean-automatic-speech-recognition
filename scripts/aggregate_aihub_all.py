@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 AIHUB_SUBSETS = ("D01", "D02", "D03", "D04")
-RATE_METRICS = ("wer", "cer", "mer", "jer", "ser", "rtf", "latency")
+RATE_METRICS = ("wer", "cer", "mer", "jer", "ser", "rtfx", "latency")
 EDIT_METRICS = ("wer", "cer", "mer", "jer")
 
 

@@ -13,7 +13,7 @@ qwen3_asr_config = {
             "mer",
             "jer",
             "ser",
-            "rtf",
+            "rtfx",
             "latency"
         ]
     }

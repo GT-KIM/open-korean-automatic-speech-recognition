@@ -21,7 +21,7 @@ REQUIRED_FIELDS = {
 }
 
 REQUIRED_MACRO_METRICS = ("wer", "cer", "mer", "jer")
-OPTIONAL_MACRO_METRICS = ("ser", "rtf", "latency")
+OPTIONAL_MACRO_METRICS = ("ser", "rtfx", "latency")
 LOCAL_PATH_PATTERNS = (
     re.compile(r"C:\\Users\\", re.IGNORECASE),
     re.compile(r"/mnt/[a-z]/", re.IGNORECASE),
@@ -121,6 +121,8 @@ def validate_row(path, index, row, problems):
         value = macro.get(metric)
         if value is not None and _as_number(value) is None:
             problems.append(f"{label}: metrics.macro.{metric} must be numeric")
+    if "rtf" in macro:
+        problems.append(f"{label}: metrics.macro.rtf is legacy; use metrics.macro.rtfx")
 
     policy = row.get("outlier_policy")
     if not isinstance(policy, dict) or "metric" not in policy or "threshold" not in policy:

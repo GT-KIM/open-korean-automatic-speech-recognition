@@ -14,7 +14,7 @@ COLUMNS = [
     ("mer", "MER"),
     ("jer", "JER"),
     ("ser", "SER"),
-    ("rtf", "RTFx"),
+    ("rtfx", "RTFx"),
     ("latency", "Latency(s)"),
     ("gpu", "GPU"),
     ("outliers", "Outliers"),
@@ -96,9 +96,26 @@ def load_submitted_rows(path, include_partial=False):
 
 def sanitize_public_row(row):
     row = dict(row)
+    row = normalize_metric_schema(row)
     command = row.get("command")
     if command:
         row["command"] = sanitize_public_command(command, row.get("dataset"))
+    return row
+
+
+def normalize_metric_schema(row):
+    metrics = row.get("metrics")
+    if not isinstance(metrics, dict):
+        return row
+    metrics = dict(metrics)
+    macro = metrics.get("macro")
+    if isinstance(macro, dict):
+        macro = dict(macro)
+        rtf = macro.pop("rtf", None)
+        if "rtfx" not in macro and isinstance(rtf, (int, float)) and rtf > 0:
+            macro["rtfx"] = 1 / rtf
+        metrics["macro"] = macro
+    row["metrics"] = metrics
     return row
 
 
@@ -173,7 +190,7 @@ def render_markdown(rows):
 def format_cell(row, key):
     if key == "model":
         return format_model_cell(row)
-    if key in {"wer", "cer", "mer", "jer", "ser", "rtf", "latency"}:
+    if key in {"wer", "cer", "mer", "jer", "ser", "rtfx", "latency"}:
         value = _metric(row, key)
         return "" if value is None else f"{value:.4f}"
     if key == "outliers":

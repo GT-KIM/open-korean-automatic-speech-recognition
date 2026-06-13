@@ -12,6 +12,16 @@ try:
 except Exception:
     Qwen3ASRInferenceModel = None
 
+try:
+    from openkoasr.model.hf_ctc import HfCtcASRInferenceModel
+except Exception:
+    HfCtcASRInferenceModel = None
+
+try:
+    from openkoasr.model.commercial_api import CommercialApiASRInferenceModel
+except Exception:
+    CommercialApiASRInferenceModel = None
+
 __all__ = [
     "BaseASRInferenceModel",
     "MockASRInferenceModel",
@@ -21,6 +31,10 @@ if WhisperASRInferenceModel is not None:
     __all__.append("WhisperASRInferenceModel")
 if Qwen3ASRInferenceModel is not None:
     __all__.append("Qwen3ASRInferenceModel")
+if HfCtcASRInferenceModel is not None:
+    __all__.append("HfCtcASRInferenceModel")
+if CommercialApiASRInferenceModel is not None:
+    __all__.append("CommercialApiASRInferenceModel")
 
 model_registry = Registry("model")
 model_registry.register("mock", MockASRInferenceModel)
@@ -37,6 +51,12 @@ if Qwen3ASRInferenceModel is not None:
     model_registry.register("qwen3_asr", Qwen3ASRInferenceModel)
     model_registry.register("qwen3_asr_0_6b", Qwen3ASRInferenceModel)
     model_registry.register("qwen3_asr_1_7b", Qwen3ASRInferenceModel)
+
+if HfCtcASRInferenceModel is not None:
+    model_registry.register("hf_ctc", HfCtcASRInferenceModel)
+
+if CommercialApiASRInferenceModel is not None:
+    model_registry.register("commercial_api", CommercialApiASRInferenceModel)
 
 model_factory = model_registry.as_dict()
 
@@ -63,6 +83,16 @@ class ModelFactory:
                 raise ValueError(
                     "Whisper model is requested but unavailable. "
                     "Please install torch and transformers dependencies."
+                )
+            if family == "hf_ctc":
+                raise ValueError(
+                    "Hugging Face CTC ASR model is requested but unavailable. "
+                    "Please install torch and transformers dependencies."
+                )
+            if family == "commercial_api":
+                raise ValueError(
+                    "Commercial API ASR model is requested but unavailable. "
+                    "Please install numpy and use a supported Python runtime."
                 )
             raise ValueError(
                 f"Model {config.name} is not supported. "

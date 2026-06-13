@@ -6,6 +6,7 @@ __pycache__
 .env.*
 !.env.example
 .cache/
+.openkoasr_cache/
 .pytest_cache/
 .ruff_cache/
 .coverage

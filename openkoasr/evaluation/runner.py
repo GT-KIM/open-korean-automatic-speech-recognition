@@ -187,6 +187,9 @@ class EvaluationRunner:
         prediction = model.transcribe(sample, sampling_rate=sample_rate)
         _synchronize_model_device(self.model_config)
         processing_time = time.perf_counter() - start_time
+        model_processing_time = getattr(model, "last_processing_time", None)
+        if isinstance(model_processing_time, (int, float)) and model_processing_time >= 0:
+            processing_time = float(model_processing_time)
 
         normalized_reference = normalize_text(reference, preset=self.normalization_preset)
         normalized_prediction = normalize_text(prediction, preset=self.normalization_preset)
@@ -304,7 +307,7 @@ class EvaluationRunner:
                 f"  - [OUTLIER DETECTED] based on "
                 f"{self.outlier_policy.metric.upper()} > {self.outlier_policy.threshold}"
             )
-        for metric in ("wer", "cer", "mer", "jer", "ser", "rtf", "latency"):
+        for metric in ("wer", "cer", "mer", "jer", "ser", "rtfx", "latency"):
             if metric in sample.metrics:
                 logger.info(f"  - {metric.upper()}:          {sample.metrics[metric]:.4f}")
         logger.info("-" * 30)

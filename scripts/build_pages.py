@@ -45,7 +45,7 @@ def build_pages(site_dir, data_path, markdown_path=None, output_dir=Path("_site"
     if not data_path.is_file():
         raise FileNotFoundError(f"Missing leaderboard data file: {data_path}")
 
-    rows = _load_rows(data_path)
+    rows = _normalize_rows(_load_rows(data_path))
 
     if output_dir.exists():
         shutil.rmtree(output_dir)
@@ -57,7 +57,10 @@ def build_pages(site_dir, data_path, markdown_path=None, output_dir=Path("_site"
             raise FileNotFoundError(f"Missing static asset: {source}")
         shutil.copy2(source, output_dir / filename)
 
-    shutil.copy2(data_path, output_dir / "leaderboard_data.json")
+    (output_dir / "leaderboard_data.json").write_text(
+        json.dumps(rows, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     if markdown_path:
         markdown_path = Path(markdown_path)
         if markdown_path.is_file():
@@ -82,6 +85,29 @@ def _load_rows(data_path):
     if not isinstance(rows, list):
         raise ValueError(f"Leaderboard data must be a JSON list: {data_path}")
     return rows
+
+
+def _normalize_rows(rows):
+    return [_normalize_row(row) for row in rows]
+
+
+def _normalize_row(row):
+    if not isinstance(row, dict):
+        return row
+    row = dict(row)
+    metrics = row.get("metrics")
+    if not isinstance(metrics, dict):
+        return row
+    metrics = dict(metrics)
+    macro = metrics.get("macro")
+    if isinstance(macro, dict):
+        macro = dict(macro)
+        rtf = macro.pop("rtf", None)
+        if "rtfx" not in macro and isinstance(rtf, (int, float)) and rtf > 0:
+            macro["rtfx"] = 1 / rtf
+        metrics["macro"] = macro
+    row["metrics"] = metrics
+    return row
 
 
 if __name__ == "__main__":
