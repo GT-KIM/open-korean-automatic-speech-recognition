@@ -1,5 +1,565 @@
 [
   {
+    "run_id": "20260613T122228281671Z",
+    "model": "whisper_large_v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D03",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.09046511328882603,
+        "jer": 0.07448980292924229,
+        "latency": 1.0160134276614736,
+        "mer": 0.11207178331345032,
+        "rtfx": 12.893492944530943,
+        "ser": 0.7602067183462532,
+        "wer": 0.2376752426089572
+      },
+      "micro": {
+        "wer": 0.2240581922679718,
+        "cer": 0.08006988087421443,
+        "mer": 0.10219922380336352,
+        "jer": 0.06536596628954053,
+        "ser": 0.7602067183462532
+      },
+      "latency_percentiles": {
+        "p50": 0.721271300000808,
+        "p90": 2.3407898749992455,
+        "p95": 2.6476280000006227,
+        "p99": 2.9271592224996894
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 1543490560,
+      "trainable_parameters": 1541570560,
+      "flops": "4.45 TFLOPS",
+      "macs": "2.23 TMACs",
+      "params": "1.54 B"
+    },
+    "total_samples": 1936,
+    "dataset_total_samples": 1936,
+    "evaluated_samples": 1936,
+    "is_full_evaluation": true,
+    "valid_samples": 1935,
+    "outlier_count": 1,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D03 --model_name whisper_large_v3 --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 500 --batch_size 4 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T122228281671Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T103157818700Z",
+    "model": "whisper_large_v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D01",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.09329807087786235,
+        "jer": 0.0711048853282619,
+        "latency": 0.2342729365326674,
+        "mer": 0.12923561506681472,
+        "rtfx": 22.296202158118295,
+        "ser": 0.7399212233549582,
+        "wer": 0.25334615193309123
+      },
+      "micro": {
+        "wer": 0.24319433941881818,
+        "cer": 0.08624284235444009,
+        "mer": 0.11694933970782152,
+        "jer": 0.06662422543227127,
+        "ser": 0.7399212233549582
+      },
+      "latency_percentiles": {
+        "p50": 0.21700065000004543,
+        "p90": 0.3491990499987878,
+        "p95": 0.4065508999992744,
+        "p99": 0.5193617999993876
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 1543490560,
+      "trainable_parameters": 1541570560,
+      "flops": "4.47 TFLOPS",
+      "macs": "2.24 TMACs",
+      "params": "1.54 B"
+    },
+    "total_samples": 8664,
+    "dataset_total_samples": 8664,
+    "evaluated_samples": 8664,
+    "is_full_evaluation": true,
+    "valid_samples": 8632,
+    "outlier_count": 32,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D01 --model_name whisper_large_v3 --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 1000 --batch_size 4 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T103157818700Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T135536202882Z",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "openai/whisper-large-v3-turbo",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D03",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.09344856346466457,
+        "jer": 0.0773481880870257,
+        "latency": 0.07637367373318187,
+        "mer": 0.11677735460062243,
+        "rtfx": 86.61862509933005,
+        "ser": 0.7590486039296794,
+        "wer": 0.2437667892883072
+      },
+      "micro": {
+        "wer": 0.23408651902430258,
+        "cer": 0.08348870205555751,
+        "mer": 0.10718269016283738,
+        "jer": 0.0681129385142039,
+        "ser": 0.7590486039296794
+      },
+      "latency_percentiles": {
+        "p50": 0.07487323124996692,
+        "p90": 0.08988584999951854,
+        "p95": 0.09403657499933615,
+        "p99": 0.1047439875001146
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 808878080,
+      "trainable_parameters": 806958080,
+      "flops": "3.89 TFLOPS",
+      "macs": "1.95 TMACs",
+      "params": "806.96 M"
+    },
+    "total_samples": 1936,
+    "dataset_total_samples": 1936,
+    "evaluated_samples": 1936,
+    "is_full_evaluation": true,
+    "valid_samples": 1934,
+    "outlier_count": 2,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D03 --model_name whisper_large_v3_turbo --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 500 --batch_size 8 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T135536202882Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T133405845599Z",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "openai/whisper-large-v3-turbo",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D01",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.09637457158999532,
+        "jer": 0.07340297266260402,
+        "latency": 0.06654160577235024,
+        "mer": 0.13601919812778612,
+        "rtfx": 75.61806717744864,
+        "ser": 0.7517369152385364,
+        "wer": 0.2582515450704835
+      },
+      "micro": {
+        "wer": 0.247568224804107,
+        "cer": 0.08856079215944489,
+        "mer": 0.12113204607134045,
+        "jer": 0.06855114397764006,
+        "ser": 0.7517369152385364
+      },
+      "latency_percentiles": {
+        "p50": 0.06468342500011204,
+        "p90": 0.07744578750043729,
+        "p95": 0.08177185000022291,
+        "p99": 0.093467149999924
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 808878080,
+      "trainable_parameters": 806958080,
+      "flops": "3.9 TFLOPS",
+      "macs": "1.95 TMACs",
+      "params": "806.96 M"
+    },
+    "total_samples": 8664,
+    "dataset_total_samples": 8664,
+    "evaluated_samples": 8664,
+    "is_full_evaluation": true,
+    "valid_samples": 8636,
+    "outlier_count": 28,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D01 --model_name whisper_large_v3_turbo --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 1000 --batch_size 8 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T133405845599Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T131335399592Z",
+    "model": "whisper_large_v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D04",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.09638002078530791,
+        "jer": 0.0735816885953017,
+        "latency": 0.21278674376334214,
+        "mer": 0.1355194293653869,
+        "rtfx": 22.535644713669466,
+        "ser": 0.7528105877330298,
+        "wer": 0.27032975576930646
+      },
+      "micro": {
+        "wer": 0.25010222403953847,
+        "cer": 0.086923230028919,
+        "mer": 0.1210236191123057,
+        "jer": 0.06704596375146586,
+        "ser": 0.7528105877330298
+      },
+      "latency_percentiles": {
+        "p50": 0.19207180000012158,
+        "p90": 0.3210932749989297,
+        "p95": 0.3734516499989695,
+        "p99": 0.5056516182506288
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 1543490560,
+      "trainable_parameters": 1541570560,
+      "flops": "4.48 TFLOPS",
+      "macs": "2.24 TMACs",
+      "params": "1.54 B"
+    },
+    "total_samples": 14105,
+    "dataset_total_samples": 14105,
+    "evaluated_samples": 14105,
+    "is_full_evaluation": true,
+    "valid_samples": 14054,
+    "outlier_count": 51,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D04 --model_name whisper_large_v3 --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 1500 --batch_size 4 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T131335399592Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T141216255385Z",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "openai/whisper-large-v3-turbo",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D04",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.09896721962814455,
+        "jer": 0.0760256324821756,
+        "latency": 0.06624859754357212,
+        "mer": 0.1387328565243611,
+        "rtfx": 69.76979355103863,
+        "ser": 0.7588758448950551,
+        "wer": 0.2738817021126844
+      },
+      "micro": {
+        "wer": 0.25526785714285716,
+        "cer": 0.08897533055741605,
+        "mer": 0.12365493418600221,
+        "jer": 0.06889852467574571,
+        "ser": 0.7588758448950551
+      },
+      "latency_percentiles": {
+        "p50": 0.06430785000065953,
+        "p90": 0.07800033750027069,
+        "p95": 0.08325911999972958,
+        "p99": 0.09779689999959373
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 808878080,
+      "trainable_parameters": 806958080,
+      "flops": "3.9 TFLOPS",
+      "macs": "1.95 TMACs",
+      "params": "806.96 M"
+    },
+    "total_samples": 14105,
+    "dataset_total_samples": 14105,
+    "evaluated_samples": 14105,
+    "is_full_evaluation": true,
+    "valid_samples": 14055,
+    "outlier_count": 50,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D04 --model_name whisper_large_v3_turbo --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 1500 --batch_size 8 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T141216255385Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "aggregate-aihub-all-whisper-large-v3-20260613T141229Z",
+    "model": "whisper_large_v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "all",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.10619157416372757,
+        "jer": 0.08209009296236901,
+        "latency": 0.28644476981908373,
+        "mer": 0.1516401767868995,
+        "rtfx": 21.592541844854125,
+        "ser": 0.764300621055543,
+        "wer": 0.2837354154421848
+      },
+      "micro": {
+        "wer": 0.2690914215585529,
+        "cer": 0.0963097968228111,
+        "mer": 0.1363964862351399,
+        "jer": 0.0747332871001154,
+        "ser": 0.764300621055543
+      },
+      "latency_percentiles": {
+        "p50": 0.21850629999971716,
+        "p90": 0.4073844499998813,
+        "p95": 0.5584036000000197,
+        "p99": 1.9055360249985824
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 1543490560,
+      "trainable_parameters": 1541570560,
+      "flops": "4.47 TFLOPS",
+      "macs": "2.24 TMACs",
+      "params": "1.54 B"
+    },
+    "total_samples": 39916,
+    "dataset_total_samples": 39916,
+    "evaluated_samples": 39916,
+    "is_full_evaluation": true,
+    "valid_samples": 39771,
+    "outlier_count": 145,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset all --model_name whisper_large_v3 --normalization_preset kspon --output_dir results/full",
+    "source": "aggregated from full AIHub D01-D04 runs",
+    "aggregation": {
+      "subsets": [
+        "D01",
+        "D02",
+        "D03",
+        "D04"
+      ],
+      "source_run_ids": [
+        "20260613T103157818700Z",
+        "20260613T114723504497Z",
+        "20260613T122228281671Z",
+        "20260613T131335399592Z"
+      ]
+    },
+    "_artifact": "results\\full-whisper-large-v3-20260613\\aggregated\\aggregate-aihub-all-whisper-large-v3-20260613T141229Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "aggregate-aihub-all-whisper-large-v3-turbo-20260613T141230Z",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "openai/whisper-large-v3-turbo",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "all",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.10865565864683067,
+        "jer": 0.08413688550305819,
+        "latency": 0.06729667790817627,
+        "mer": 0.15638316737184232,
+        "rtfx": 75.62441711132536,
+        "ser": 0.7723730517848165,
+        "wer": 0.2881673195925975
+      },
+      "micro": {
+        "wer": 0.27543089478801447,
+        "cer": 0.09865559371944663,
+        "mer": 0.14059618349579686,
+        "jer": 0.07669725384297096,
+        "ser": 0.7723730517848165
+      },
+      "latency_percentiles": {
+        "p50": 0.0654357000003074,
+        "p90": 0.07934613750057906,
+        "p95": 0.08414087500023015,
+        "p99": 0.09578404999956547
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 808878080,
+      "trainable_parameters": 806958080,
+      "flops": "3.9 TFLOPS",
+      "macs": "1.95 TMACs",
+      "params": "806.96 M"
+    },
+    "total_samples": 39916,
+    "dataset_total_samples": 39916,
+    "evaluated_samples": 39916,
+    "is_full_evaluation": true,
+    "valid_samples": 39780,
+    "outlier_count": 136,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset all --model_name whisper_large_v3_turbo --normalization_preset kspon --output_dir results/full",
+    "source": "aggregated from full AIHub D01-D04 runs",
+    "aggregation": {
+      "subsets": [
+        "D01",
+        "D02",
+        "D03",
+        "D04"
+      ],
+      "source_run_ids": [
+        "20260613T133405845599Z",
+        "20260613T135224406259Z",
+        "20260613T135536202882Z",
+        "20260613T141216255385Z"
+      ]
+    },
+    "_artifact": "results\\full-whisper-large-v3-20260613\\aggregated\\aggregate-aihub-all-whisper-large-v3-turbo-20260613T141230Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T114723504497Z",
+    "model": "whisper_large_v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D02",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.12464827339388408,
+        "jer": 0.09721273246642977,
+        "latency": 0.2913174965643454,
+        "mer": 0.18441390631830915,
+        "rtfx": 21.42780891282103,
+        "ser": 0.7893729372937294,
+        "wer": 0.3193690588801494
+      },
+      "micro": {
+        "wer": 0.3074681459783112,
+        "cer": 0.11256339954787747,
+        "mer": 0.1664925444011777,
+        "jer": 0.08712213427704513,
+        "ser": 0.7893729372937294
+      },
+      "latency_percentiles": {
+        "p50": 0.23825281249992258,
+        "p90": 0.44513330000154383,
+        "p95": 0.5924112250013422,
+        "p99": 1.3312819320002753
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 1543490560,
+      "trainable_parameters": 1541570560,
+      "flops": "4.46 TFLOPS",
+      "macs": "2.23 TMACs",
+      "params": "1.54 B"
+    },
+    "total_samples": 15211,
+    "dataset_total_samples": 15211,
+    "evaluated_samples": 15211,
+    "is_full_evaluation": true,
+    "valid_samples": 15150,
+    "outlier_count": 61,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D02 --model_name whisper_large_v3 --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 1500 --batch_size 4 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T114723504497Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T135224406259Z",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "openai/whisper-large-v3-turbo",
+    "dataset": "AIHubLowQualityTelephone",
+    "subset": "D02",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.1265798421052799,
+        "jer": 0.09864240007259416,
+        "latency": 0.06754060153496243,
+        "mer": 0.18941094693320995,
+        "rtfx": 79.6546892274573,
+        "ser": 0.7983503794127351,
+        "wer": 0.3241295504115578
+      },
+      "micro": {
+        "wer": 0.31539933958163335,
+        "cer": 0.11498883921916275,
+        "mer": 0.17195300545250694,
+        "jer": 0.0890626453146117,
+        "ser": 0.7983503794127351
+      },
+      "latency_percentiles": {
+        "p50": 0.06595199999992474,
+        "p90": 0.07946677000018101,
+        "p95": 0.08338815000024624,
+        "p99": 0.09177346249998664
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 808878080,
+      "trainable_parameters": 806958080,
+      "flops": "3.89 TFLOPS",
+      "macs": "1.95 TMACs",
+      "params": "806.96 M"
+    },
+    "total_samples": 15211,
+    "dataset_total_samples": 15211,
+    "evaluated_samples": 15211,
+    "is_full_evaluation": true,
+    "valid_samples": 15155,
+    "outlier_count": 56,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name AIHubLowQualityTelephone --dataset_rootpath $AIHUB_TELEPHONE_ROOT --dataset_subset D02 --model_name whisper_large_v3_turbo --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 1500 --batch_size 8 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T135224406259Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "20260503T151705877082Z",
     "model": "qwen3_asr_1_7b",
     "model_repo": "Qwen/Qwen3-ASR-1.7B",
@@ -139,6 +699,59 @@
     },
     "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset clean --model_name qwen3_asr_1_7b --normalization_preset kspon --output_dir results/full-20260503 --warmup_samples 1 --log_interval 500 --batch_size 32 --num_workers 0",
     "_artifact": "results\\full-20260503\\20260503T150932121213Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T095716065626Z",
+    "model": "whisper_large_v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "KsponSpeech",
+    "subset": "other",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.16557144730207263,
+        "jer": 0.12217383964055412,
+        "latency": 0.22354752037561576,
+        "mer": 0.2185892994226576,
+        "rtfx": 20.403132861422105,
+        "ser": 0.8804674457429048,
+        "wer": 0.3959897818406614
+      },
+      "micro": {
+        "wer": 0.3975376640207355,
+        "cer": 0.15084621813623067,
+        "mer": 0.1920637289653371,
+        "jer": 0.11362031355440122,
+        "ser": 0.8804674457429048
+      },
+      "latency_percentiles": {
+        "p50": 0.2187328999989404,
+        "p90": 0.31049179999899934,
+        "p95": 0.33614065000074334,
+        "p99": 0.382403699999486
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 1543490560,
+      "trainable_parameters": 1541570560,
+      "flops": "4.48 TFLOPS",
+      "macs": "2.24 TMACs",
+      "params": "1.54 B"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "valid_samples": 2995,
+    "outlier_count": 5,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset other --model_name whisper_large_v3 --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 500 --batch_size 4 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T095716065626Z\\leaderboard_row.json"
   },
   {
     "run_id": "20260503T161924528431Z",
@@ -282,6 +895,112 @@
     "_artifact": "results\\full-20260503\\20260503T165637340335Z\\leaderboard_row.json"
   },
   {
+    "run_id": "20260613T132341172620Z",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "openai/whisper-large-v3-turbo",
+    "dataset": "KsponSpeech",
+    "subset": "other",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.17028355455186175,
+        "jer": 0.12432703565156518,
+        "latency": 0.06580408495065836,
+        "mer": 0.22759124842617282,
+        "rtfx": 68.97135434826345,
+        "ser": 0.8799732530926112,
+        "wer": 0.40706790282468736
+      },
+      "micro": {
+        "wer": 0.406911883589329,
+        "cer": 0.15482907054496825,
+        "mer": 0.19980966953406357,
+        "jer": 0.115599709130478,
+        "ser": 0.8799732530926112
+      },
+      "latency_percentiles": {
+        "p50": 0.06591310000021622,
+        "p90": 0.07291886250004609,
+        "p95": 0.07393289999981789,
+        "p99": 0.07938141249996988
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 808878080,
+      "trainable_parameters": 806958080,
+      "flops": "3.9 TFLOPS",
+      "macs": "1.95 TMACs",
+      "params": "806.96 M"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "valid_samples": 2991,
+    "outlier_count": 9,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset other --model_name whisper_large_v3_turbo --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 500 --batch_size 8 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T132341172620Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T094423596588Z",
+    "model": "whisper_large_v3",
+    "model_repo": "openai/whisper-large-v3",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.18040260383153056,
+        "jer": 0.13182700829724558,
+        "latency": 0.19959277528521321,
+        "mer": 0.22838945831616073,
+        "rtfx": 15.92641106724307,
+        "ser": 0.802013422818792,
+        "wer": 0.3948065793343024
+      },
+      "micro": {
+        "wer": 0.36323607427055704,
+        "cer": 0.14722646609472323,
+        "mer": 0.18312162956526185,
+        "jer": 0.10947701495197985,
+        "ser": 0.802013422818792
+      },
+      "latency_percentiles": {
+        "p50": 0.1862116000002061,
+        "p90": 0.30261330000030284,
+        "p95": 0.3344096000000718,
+        "p99": 0.4008489500001815
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 1543490560,
+      "trainable_parameters": 1541570560,
+      "flops": "4.51 TFLOPS",
+      "macs": "2.25 TMACs",
+      "params": "1.54 B"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "valid_samples": 2980,
+    "outlier_count": 20,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset clean --model_name whisper_large_v3 --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 500 --batch_size 4 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T094423596588Z\\leaderboard_row.json"
+  },
+  {
     "run_id": "20260503T124153468914Z",
     "model": "qwen3_asr_0_6b",
     "model_repo": "Qwen/Qwen3-ASR-0.6B",
@@ -380,6 +1099,59 @@
     },
     "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset other --model_name whisper_medium --normalization_preset kspon --output_dir results/full-20260503 --warmup_samples 1 --log_interval 500 --batch_size 8 --num_workers 0",
     "_artifact": "results\\full-20260503\\20260503T104945732451Z\\leaderboard_row.json"
+  },
+  {
+    "run_id": "20260613T131836637511Z",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "openai/whisper-large-v3-turbo",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "metrics": {
+      "macro": {
+        "cer": 0.19483608102312822,
+        "jer": 0.14213713178933451,
+        "latency": 0.06389871368746274,
+        "mer": 0.25530214128702516,
+        "rtfx": 49.4931846492558,
+        "ser": 0.8254447801275596,
+        "wer": 0.41657170972696533
+      },
+      "micro": {
+        "wer": 0.38008400233930567,
+        "cer": 0.15539031272043263,
+        "mer": 0.1985683241723124,
+        "jer": 0.11470050670906579,
+        "ser": 0.8254447801275596
+      },
+      "latency_percentiles": {
+        "p50": 0.06351474999974016,
+        "p90": 0.0719021499999144,
+        "p95": 0.0752078249997794,
+        "p99": 0.08591140399968906
+      }
+    },
+    "model_metrics": {
+      "total_parameters": 808878080,
+      "trainable_parameters": 806958080,
+      "flops": "3.9 TFLOPS",
+      "macs": "1.95 TMACs",
+      "params": "806.96 M"
+    },
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "is_full_evaluation": true,
+    "valid_samples": 2979,
+    "outlier_count": 21,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "command": "python -m openkoasr.main --dataset_name KsponSpeech --dataset_rootpath $KSPON_ROOT --dataset_subset clean --model_name whisper_large_v3_turbo --normalization_preset kspon --output_dir results/full-whisper-large-v3-20260613 --warmup_samples 1 --log_interval 500 --batch_size 8 --num_workers 0",
+    "_artifact": "results\\full-whisper-large-v3-20260613\\20260613T131836637511Z\\leaderboard_row.json"
   },
   {
     "run_id": "20260503T134506305691Z",
