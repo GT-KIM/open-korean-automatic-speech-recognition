@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 
 import numpy as np
-from transformers import WhisperConfig, WhisperFeatureExtractor, WhisperTokenizer
+from transformers import WhisperFeatureExtractor, WhisperTokenizer
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -37,7 +37,9 @@ def push(adb, *sources, destination):
 
 
 def quantize(values, tensor_spec):
-    params = tensor_spec["quantization_parameters"]
+    params = tensor_spec.get("quantization_parameters")
+    if params is None:
+        return np.asarray(values, dtype=tensor_spec["dtype"])
     scale = params["scale"]
     zero_point = params["zero_point"]
     dtype = np.dtype(tensor_spec["dtype"])
@@ -112,7 +114,6 @@ def transcribe_sample(
     audio,
     feature_extractor,
     tokenizer,
-    config,
     metadata,
     workdir,
     forced_decoder_ids,
@@ -120,6 +121,11 @@ def transcribe_sample(
     encoder = metadata["model_files"]["encoder.bin"]
     decoder = metadata["model_files"]["decoder.bin"]
     decoder_inputs = decoder["inputs"]
+    decoder_layers = sum(
+        name.startswith("k_cache_self_") and name.endswith("_in")
+        for name in decoder_inputs
+    )
+    decoder_start_token_id = tokenizer.convert_tokens_to_ids("<|startoftranscript|>")
 
     features = feature_extractor(audio, sampling_rate=16000, return_tensors="np")[
         "input_features"
@@ -143,7 +149,7 @@ def transcribe_sample(
 
     self_sources = {}
     initial_cache_paths = []
-    for layer in range(config.decoder_layers):
+    for layer in range(decoder_layers):
         for prefix in ("k", "v"):
             name = f"{prefix}_cache_self_{layer}_in"
             spec = decoder_inputs[name]
@@ -153,7 +159,7 @@ def transcribe_sample(
             self_sources[name] = f"{REMOTE_ROOT}/input/{cache_path.name}"
     push(adb, *initial_cache_paths, destination=f"{REMOTE_ROOT}/input/")
 
-    output_ids = [config.decoder_start_token_id]
+    output_ids = [decoder_start_token_id]
     attention = np.full(decoder_inputs["attention_mask"]["shape"], -100.0, dtype=np.float32)
     position_path = workdir / "position_ids.raw"
     token_path = workdir / "input_ids.raw"
@@ -171,7 +177,7 @@ def transcribe_sample(
             f"input_ids:={REMOTE_ROOT}/input/input_ids.raw",
             f"position_ids:={REMOTE_ROOT}/input/position_ids.raw",
         ]
-        for layer in range(config.decoder_layers):
+        for layer in range(decoder_layers):
             for prefix in ("k", "v"):
                 name = f"{prefix}_cache_self_{layer}_in"
                 mappings.append(f"{name}:={self_sources[name]}")
@@ -217,12 +223,15 @@ def transcribe_sample(
         if step < len(forced_decoder_ids):
             next_token = forced_decoder_ids[step]
         else:
-            next_token = int(np.fromfile(logits_path, dtype=np.uint16).argmax())
+            next_token = int(
+                np.fromfile(logits_path, dtype=decoder["outputs"]["logits"]["dtype"])
+                .argmax()
+            )
         output_ids.append(next_token)
         print(f"decoder step={step + 1} token={next_token}", flush=True)
-        if next_token == config.eos_token_id:
+        if next_token == tokenizer.eos_token_id:
             break
-        for layer in range(config.decoder_layers):
+        for layer in range(decoder_layers):
             for prefix in ("k", "v"):
                 name = f"{prefix}_cache_self_{layer}_in"
                 self_sources[name] = (
@@ -257,16 +266,17 @@ def main():
     parser.add_argument("--language", default="korean")
     parser.add_argument("--save-predictions", action="store_true")
     parser.add_argument("--keep-remote", action="store_true")
+    parser.add_argument("--hf-model", default="openai/whisper-small")
+    parser.add_argument("--allow-hf-download", action="store_true")
     args = parser.parse_args()
 
     metadata = json.loads((args.model_dir / "metadata.json").read_text(encoding="utf-8"))
     feature_extractor = WhisperFeatureExtractor.from_pretrained(
-        "openai/whisper-small", local_files_only=True
+        args.hf_model, local_files_only=not args.allow_hf_download
     )
     tokenizer = WhisperTokenizer.from_pretrained(
-        "openai/whisper-small", local_files_only=True
+        args.hf_model, local_files_only=not args.allow_hf_download
     )
-    config = WhisperConfig.from_pretrained("openai/whisper-small", local_files_only=True)
     forced_decoder_ids = [
         token_id
         for _, token_id in tokenizer.get_decoder_prompt_ids(
@@ -289,7 +299,6 @@ def main():
                     audio,
                     feature_extractor,
                     tokenizer,
-                    config,
                     metadata,
                     workdir,
                     forced_decoder_ids,
@@ -351,6 +360,7 @@ def main():
         "model": metadata["model_name"],
         "precision": metadata["precision"],
         "language": args.language,
+        "hf_model": args.hf_model,
         "forced_decoder_ids": forced_decoder_ids,
         "device": "Samsung SM-F966N / Qualcomm SM8750",
         "predictions_saved": args.save_predictions,

@@ -53,8 +53,10 @@ def load_samples(dataset_root, subset, limit=None):
 
 
 def quantize(values, tensor_spec):
-    params = tensor_spec["quantization_parameters"]
     dtype = np.dtype(tensor_spec["dtype"])
+    params = tensor_spec.get("quantization_parameters")
+    if params is None:
+        return values.astype(dtype)
     limits = np.iinfo(dtype)
     return np.clip(
         np.rint(values / params["scale"] + params["zero_point"]),
@@ -63,7 +65,9 @@ def quantize(values, tensor_spec):
     ).astype(dtype)
 
 
-def prepare_features(samples, feature_cache, tensor_spec):
+def prepare_features(
+    samples, feature_cache, tensor_spec, hf_model, *, local_files_only=True
+):
     record_bytes = int(np.prod(tensor_spec["shape"])) * np.dtype(
         tensor_spec["dtype"]
     ).itemsize
@@ -80,7 +84,7 @@ def prepare_features(samples, feature_cache, tensor_spec):
 
     feature_cache.parent.mkdir(parents=True, exist_ok=True)
     extractor = WhisperFeatureExtractor.from_pretrained(
-        "openai/whisper-small", local_files_only=True
+        hf_model, local_files_only=local_files_only
     )
     with feature_cache.open("ab") as output:
         for offset, (_, _, audio_path, _) in enumerate(
@@ -154,14 +158,26 @@ def read_cached_results(result_cache):
     return results
 
 
-def run_device(adb, count, start, result_cache):
+def run_device(
+    adb,
+    count,
+    start,
+    result_cache,
+    forced_decoder_ids,
+    decoder_start_token_id,
+    end_token_id,
+):
+    forced_tokens = ",".join(str(token) for token in forced_decoder_ids)
     command = (
         f"cd {REMOTE_ROOT}; export LD_LIBRARY_PATH={REMOTE_ROOT}/lib; "
         f"export ADSP_LIBRARY_PATH={REMOTE_ROOT}/dsp; "
         f"./bin/qnn-whisper-runner "
         f"--backend ./lib/libQnnHtp.so --system ./lib/libQnnSystem.so "
         f"--encoder ./model/encoder.bin --decoder ./model/decoder.bin "
-        f"--features ./input/features.raw --start {start} --count {count}"
+        f"--features ./input/features.raw "
+        f"--forced-tokens {forced_tokens} "
+        f"--decoder-start-token {decoder_start_token_id} --end-token {end_token_id} "
+        f"--start {start} --count {count}"
     )
     result_cache.parent.mkdir(parents=True, exist_ok=True)
     with result_cache.open("a", encoding="ascii", buffering=1) as output:
@@ -303,12 +319,36 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--keep-remote", action="store_true")
     parser.add_argument("--keep-result-cache", action="store_true")
+    parser.add_argument("--skip-deploy", action="store_true")
+    parser.add_argument("--push-feature-cache", action="store_true")
+    parser.add_argument("--hf-model", default="openai/whisper-small")
+    parser.add_argument("--language", default="korean")
+    parser.add_argument("--allow-hf-download", action="store_true")
     args = parser.parse_args()
 
     transcript_path, samples = load_samples(args.dataset_root, args.subset, args.limit)
     metadata = json.loads((args.model_dir / "metadata.json").read_text(encoding="utf-8"))
     tensor_spec = metadata["model_files"]["encoder.bin"]["inputs"]["input_features"]
-    record_bytes = prepare_features(samples, args.feature_cache, tensor_spec)
+    tokenizer = WhisperTokenizer.from_pretrained(
+        args.hf_model, local_files_only=not args.allow_hf_download
+    )
+    forced_decoder_ids = [
+        token_id
+        for _, token_id in tokenizer.get_decoder_prompt_ids(
+            language=args.language,
+            task="transcribe",
+            no_timestamps=True,
+        )
+    ]
+    decoder_start_token_id = tokenizer.convert_tokens_to_ids("<|startoftranscript|>")
+    end_token_id = tokenizer.eos_token_id
+    record_bytes = prepare_features(
+        samples,
+        args.feature_cache,
+        tensor_spec,
+        args.hf_model,
+        local_files_only=not args.allow_hf_download,
+    )
     expected_bytes = record_bytes * len(samples)
     if args.feature_cache.stat().st_size != expected_bytes:
         raise ValueError("Feature cache did not reach expected size")
@@ -317,15 +357,33 @@ def main():
     success = False
     try:
         if len(cached) < len(samples):
-            deploy(args.adb, args.qairt_dir, args.model_dir, args.runner, args.feature_cache)
-            run_device(args.adb, len(samples), len(cached) + 1, args.result_cache)
+            if not args.skip_deploy:
+                deploy(
+                    args.adb,
+                    args.qairt_dir,
+                    args.model_dir,
+                    args.runner,
+                    args.feature_cache,
+                )
+            elif args.push_feature_cache:
+                push(
+                    args.adb,
+                    args.feature_cache,
+                    destination=f"{REMOTE_ROOT}/input/features.raw",
+                )
+            run_device(
+                args.adb,
+                len(samples),
+                len(cached) + 1,
+                args.result_cache,
+                forced_decoder_ids,
+                decoder_start_token_id,
+                end_token_id,
+            )
         device_results = read_cached_results(args.result_cache)
         if len(device_results) != len(samples):
             raise ValueError(f"Expected {len(samples)} device results, got {len(device_results)}")
 
-        tokenizer = WhisperTokenizer.from_pretrained(
-            "openai/whisper-small", local_files_only=True
-        )
         scored, aggregate = score(samples, device_results, tokenizer)
         output = {
             "scope": "full_dataset" if args.limit is None else "validation_prefix",
@@ -334,8 +392,9 @@ def main():
             "transcript_sha256": sha256(transcript_path),
             "model": metadata["model_name"],
             "precision": metadata["precision"],
-            "language": "korean",
-            "forced_decoder_ids": [50264, 50359, 50363],
+            "language": args.language,
+            "hf_model": args.hf_model,
+            "forced_decoder_ids": forced_decoder_ids,
             "device": "Samsung SM-F966N / Qualcomm SM8750",
             "qairt_version": "2.47.0.260601",
             "predictions_saved": False,
