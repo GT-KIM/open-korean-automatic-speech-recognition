@@ -1,0 +1,277 @@
+[
+  {
+    "run_id": "galaxy-fold7-whisper-small-quantized-kspon-clean-20260718",
+    "model": "whisper_small_quantized",
+    "model_repo": "qualcomm/Whisper-Small-Quantized",
+    "precision": "w8a16",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "device": "Samsung Galaxy Z Fold7 (SM-F966N)",
+    "soc": "Qualcomm SM8750 (Snapdragon 8 Elite for Galaxy)",
+    "accelerator": "HTP v79",
+    "backend": "Qualcomm QNN HTP",
+    "runtime": "QAIRT 2.47.0",
+    "os_abi": "Android 16 / arm64-v8a",
+    "metrics": {
+      "macro": {
+        "wer": 0.47902755140989783,
+        "cer": 0.2341744740219107,
+        "ser": 0.8728813559322034,
+        "latency": 1.7125343139322033,
+        "rtfx": 1.75399493426053
+      },
+      "micro": {
+        "wer": 0.4087523730711191,
+        "cer": 0.19579698184390473,
+        "ser": 0.8728813559322034
+      },
+      "latency_percentiles": {
+        "p50": 1.6708275000000001,
+        "p90": 2.0425541999999997,
+        "p95": 2.20854705,
+        "p99": 2.5010731999999947
+      }
+    },
+    "performance": {
+      "audio_seconds": 9518.46275,
+      "encoder_qnn_seconds": 4115.478814,
+      "decoder_qnn_seconds": 1047.0174031,
+      "qnn_seconds": 5162.4962171,
+      "qnn_rtfx_all_samples": 1.8437713752644527
+    },
+    "performance_scope": "QNN graph execution only; feature extraction, USB transfer, tokenization, and scoring excluded",
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "valid_samples": 2950,
+    "outlier_count": 50,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "is_full_evaluation": true,
+    "source": "on-device benchmark artifact",
+    "report_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_small_quantized_20260718.md",
+    "result_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_small_quantized_kspon_clean_full_20260718.json"
+  },
+  {
+    "run_id": "galaxy-fold7-whisper-tiny-float-kspon-clean-20260718",
+    "model": "whisper_tiny",
+    "model_repo": "qualcomm/Whisper-Tiny",
+    "precision": "float",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "device": "Samsung Galaxy Z Fold7 (SM-F966N)",
+    "soc": "Qualcomm SM8750 (Snapdragon 8 Elite for Galaxy)",
+    "accelerator": "HTP v79",
+    "backend": "Qualcomm QNN HTP",
+    "runtime": "QAIRT 2.47.0",
+    "os_abi": "Android 16 / arm64-v8a",
+    "metrics": {
+      "macro": {
+        "wer": 0.6395107545126878,
+        "cer": 0.37169395169730907,
+        "ser": 0.9365954514128187,
+        "latency": 0.22804344583046177,
+        "rtfx": 12.56214262020463
+      },
+      "micro": {
+        "wer": 0.5651553894571204,
+        "cer": 0.31496531809115536,
+        "ser": 0.9365954514128187
+      },
+      "latency_percentiles": {
+        "p50": 0.1969745,
+        "p90": 0.36555060000000006,
+        "p95": 0.43704301500000003,
+        "p99": 0.5482609429999997
+      }
+    },
+    "performance": {
+      "audio_seconds": 9518.46275,
+      "encoder_qnn_seconds": 243.5738977,
+      "decoder_qnn_seconds": 479.3983743,
+      "qnn_seconds": 722.972272,
+      "qnn_rtfx_all_samples": 13.165736942674892
+    },
+    "performance_scope": "QNN graph execution only; feature extraction, USB transfer, tokenization, and scoring excluded",
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "valid_samples": 2902,
+    "outlier_count": 98,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "is_full_evaluation": true,
+    "source": "on-device benchmark artifact",
+    "report_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_qualcomm_whisper_models_20260718.md",
+    "result_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_tiny_float_kspon_clean_full_20260718.json"
+  },
+  {
+    "run_id": "galaxy-fold7-whisper-base-float-kspon-clean-20260718",
+    "model": "whisper_base",
+    "model_repo": "qualcomm/Whisper-Base",
+    "precision": "float",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "device": "Samsung Galaxy Z Fold7 (SM-F966N)",
+    "soc": "Qualcomm SM8750 (Snapdragon 8 Elite for Galaxy)",
+    "accelerator": "HTP v79",
+    "backend": "Qualcomm QNN HTP",
+    "runtime": "QAIRT 2.47.0",
+    "os_abi": "Android 16 / arm64-v8a",
+    "metrics": {
+      "macro": {
+        "wer": 0.562470133768297,
+        "cer": 0.30390735375368233,
+        "ser": 0.9196185286103542,
+        "latency": 0.34447635970708446,
+        "rtfx": 8.219051744589763
+      },
+      "micro": {
+        "wer": 0.4770485398964743,
+        "cer": 0.24677052233290964,
+        "ser": 0.9196185286103542
+      },
+      "latency_percentiles": {
+        "p50": 0.3015645,
+        "p90": 0.5393905,
+        "p95": 0.6337062499999999,
+        "p99": 0.7972768000000003
+      }
+    },
+    "performance": {
+      "audio_seconds": 9518.46275,
+      "encoder_qnn_seconds": 394.802188,
+      "decoder_qnn_seconds": 666.6510226,
+      "qnn_seconds": 1061.4532106000001,
+      "qnn_rtfx_all_samples": 8.967387968631765
+    },
+    "performance_scope": "QNN graph execution only; feature extraction, USB transfer, tokenization, and scoring excluded",
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "valid_samples": 2936,
+    "outlier_count": 64,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "is_full_evaluation": true,
+    "source": "on-device benchmark artifact",
+    "report_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_qualcomm_whisper_models_20260718.md",
+    "result_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_base_float_kspon_clean_full_20260718.json"
+  },
+  {
+    "run_id": "galaxy-fold7-whisper-small-float-kspon-clean-20260718",
+    "model": "whisper_small",
+    "model_repo": "qualcomm/Whisper-Small",
+    "precision": "float",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "device": "Samsung Galaxy Z Fold7 (SM-F966N)",
+    "soc": "Qualcomm SM8750 (Snapdragon 8 Elite for Galaxy)",
+    "accelerator": "HTP v79",
+    "backend": "Qualcomm QNN HTP",
+    "runtime": "QAIRT 2.47.0",
+    "os_abi": "Android 16 / arm64-v8a",
+    "metrics": {
+      "macro": {
+        "wer": 0.48008947770518495,
+        "cer": 0.2321437367880493,
+        "ser": 0.8745337402509326,
+        "latency": 0.8817831963377416,
+        "rtfx": 3.2101280847181592
+      },
+      "micro": {
+        "wer": 0.4062591258639151,
+        "cer": 0.19290775962402582,
+        "ser": 0.8745337402509326
+      },
+      "latency_percentiles": {
+        "p50": 0.777936,
+        "p90": 1.3597178000000003,
+        "p95": 1.5904371999999998,
+        "p99": 1.9503856
+      }
+    },
+    "performance": {
+      "audio_seconds": 9518.46275,
+      "encoder_qnn_seconds": 1118.260511,
+      "decoder_qnn_seconds": 1553.4745360000002,
+      "qnn_seconds": 2671.735047,
+      "qnn_rtfx_all_samples": 3.5626522026156584
+    },
+    "performance_scope": "QNN graph execution only; feature extraction, USB transfer, tokenization, and scoring excluded",
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "valid_samples": 2949,
+    "outlier_count": 51,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "is_full_evaluation": true,
+    "source": "on-device benchmark artifact",
+    "report_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_qualcomm_whisper_models_20260718.md",
+    "result_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_small_float_kspon_clean_full_20260718.json"
+  },
+  {
+    "run_id": "galaxy-fold7-whisper-large-v3-turbo-float-kspon-clean-20260718",
+    "model": "whisper_large_v3_turbo",
+    "model_repo": "qualcomm/Whisper-Large-V3-Turbo",
+    "precision": "float",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "device": "Samsung Galaxy Z Fold7 (SM-F966N)",
+    "soc": "Qualcomm SM8750 (Snapdragon 8 Elite for Galaxy)",
+    "accelerator": "HTP v79",
+    "backend": "Qualcomm QNN HTP",
+    "runtime": "QAIRT 2.47.0",
+    "os_abi": "Android 16 / arm64-v8a",
+    "metrics": {
+      "macro": {
+        "wer": 0.42107160506936575,
+        "cer": 0.19532447144126908,
+        "ser": 0.8309859154929577,
+        "latency": 2.739037220992622,
+        "rtfx": 1.0955142959338975
+      },
+      "micro": {
+        "wer": 0.35224460082504244,
+        "cer": 0.15638591747972258,
+        "ser": 0.8309859154929577
+      },
+      "latency_percentiles": {
+        "p50": 2.676162,
+        "p90": 3.1260788,
+        "p95": 3.3508455999999995,
+        "p99": 3.650743400000001
+      }
+    },
+    "performance": {
+      "audio_seconds": 9518.46275,
+      "encoder_qnn_seconds": 6988.910900000001,
+      "decoder_qnn_seconds": 1240.594029,
+      "qnn_seconds": 8229.504929,
+      "qnn_rtfx_all_samples": 1.1566264109591615
+    },
+    "performance_scope": "QNN graph execution only; feature extraction, USB transfer, tokenization, and scoring excluded",
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "valid_samples": 2982,
+    "outlier_count": 18,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "is_full_evaluation": true,
+    "source": "on-device benchmark artifact",
+    "report_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_qualcomm_whisper_models_20260718.md",
+    "result_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_large_v3_turbo_float_kspon_clean_full_20260718.json"
+  }
+]

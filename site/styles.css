@@ -548,6 +548,10 @@ th {
   min-width: 1340px;
 }
 
+.ondevice-table {
+  min-width: 1520px;
+}
+
 .overall-table th:nth-child(1),
 .overall-table tbody tr:not(.detail-row) td:nth-child(1) {
   width: 52px;
@@ -628,6 +632,51 @@ th {
   width: 170px;
 }
 
+.ondevice-table th:nth-child(1),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(1) {
+  width: 50px;
+}
+
+.ondevice-table th:nth-child(2),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(2) {
+  width: 220px;
+}
+
+.ondevice-table th:nth-child(3),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(3) {
+  width: 210px;
+}
+
+.ondevice-table th:nth-child(4),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(4) {
+  width: 90px;
+}
+
+.ondevice-table th:nth-child(5),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(5) {
+  width: 130px;
+}
+
+.ondevice-table th:nth-child(n + 6):nth-child(-n + 10),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(n + 6):nth-child(-n + 10) {
+  width: 94px;
+}
+
+.ondevice-table th:nth-child(11),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(11) {
+  width: 112px;
+}
+
+.ondevice-table th:nth-child(12),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(12) {
+  width: 126px;
+}
+
+.ondevice-table th:nth-child(13),
+.ondevice-table tbody tr:not(.detail-row) td:nth-child(13) {
+  width: 170px;
+}
+
 td.numeric,
 th.numeric {
   text-align: right;
@@ -672,6 +721,64 @@ tbody tr:last-child td {
   display: block;
   font-weight: 800;
   overflow-wrap: anywhere;
+}
+
+.device-cell strong,
+.backend-cell strong {
+  display: block;
+  line-height: 1.35;
+}
+
+.device-cell small,
+.backend-cell small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.precision-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid #d8c77f;
+  border-radius: 999px;
+  background: var(--gold-weak);
+  color: #735d05;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 9px;
+}
+
+.artifact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.artifact-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid #87bdb5;
+  border-radius: 7px;
+  background: var(--teal-weak);
+  color: #0d5d58;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 7px 10px;
+  text-decoration: none;
+}
+
+.artifact-link:hover {
+  border-color: var(--teal);
+}
+
+.artifact-link:focus {
+  outline: 3px solid rgba(20, 124, 116, 0.22);
+  outline-offset: 2px;
 }
 
 .model-name-link {

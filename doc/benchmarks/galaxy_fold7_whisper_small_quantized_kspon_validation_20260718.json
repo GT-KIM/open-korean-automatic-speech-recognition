@@ -1,0 +1,27 @@
+{
+  "scope": "validation_subset_not_leaderboard",
+  "dataset": "KsponSpeech",
+  "subset": "clean",
+  "indices": [2, 3, 8, 12, 16, 38, 41, 67, 76, 85],
+  "selection": "10 short utterances selected for pipeline smoke validation",
+  "model": "Whisper-Small-Quantized",
+  "precision": "w8a16",
+  "language": "korean",
+  "forced_decoder_ids": [50264, 50359, 50363],
+  "device": "Samsung SM-F966N / Qualcomm SM8750",
+  "predictions_saved": false,
+  "aggregate": {
+    "samples": 10,
+    "exact_match_samples": 5,
+    "wer_micro": 0.30434782608695654,
+    "cer_micro": 0.07894736842105263,
+    "audio_seconds": 10.056,
+    "wall_seconds": 83.67658600001596,
+    "wall_rtfx": 0.12017698714426615
+  },
+  "notes": [
+    "This is a deliberately selected smoke subset, not a full or representative leaderboard result.",
+    "Wall time includes adb transfers and restarting qnn-net-run for every decoder token.",
+    "Raw transcripts, references, predictions, and token IDs are omitted by the repository data policy."
+  ]
+}
