@@ -6,6 +6,9 @@ __pycache__
 .env.*
 !.env.example
 .cache/
+.benchmark-cache/
+native/qnn_whisper_runner/libs/
+native/qnn_whisper_runner/obj/
 .openkoasr_cache/
 .pytest_cache/
 .ruff_cache/

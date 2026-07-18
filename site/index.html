@@ -150,7 +150,7 @@
           <p>
             Whisper, Qwen3-ASR 등 공개 한국어 음성 인식 모델을 같은 데이터셋,
             정규화, 지표로 비교합니다. 기본 순위에는 전체 evaluation samples로
-            생성한 결과만 표시합니다.
+            생성한 결과만 표시하며, GPU/server와 on-device 성능은 별도 탭으로 제공합니다.
           </p>
           <div class="intro-actions">
             <a
@@ -238,7 +238,7 @@
       <section class="controls-band" aria-label="Leaderboard controls">
         <label class="control-field">
           <span>검색</span>
-          <input id="searchInput" type="search" placeholder="model, dataset, GPU, run id" />
+          <input id="searchInput" type="search" placeholder="model, dataset, GPU, device, SoC" />
         </label>
         <label class="control-field">
           <span>모델</span>
@@ -293,6 +293,7 @@
       >Submit a result</a>
       <a href="leaderboard.md">Markdown leaderboard</a>
       <a href="leaderboard_data.json">Leaderboard JSON</a>
+      <a href="ondevice_leaderboard_data.json">On-device JSON</a>
     </footer>
 
     <script src="app.js"></script>

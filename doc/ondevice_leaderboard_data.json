@@ -1,0 +1,57 @@
+[
+  {
+    "run_id": "galaxy-fold7-whisper-small-quantized-kspon-clean-20260718",
+    "model": "whisper_small_quantized",
+    "model_repo": "qualcomm/Whisper-Small-Quantized",
+    "precision": "w8a16",
+    "dataset": "KsponSpeech",
+    "subset": "clean",
+    "device": "Samsung Galaxy Z Fold7 (SM-F966N)",
+    "soc": "Qualcomm SM8750 (Snapdragon 8 Elite for Galaxy)",
+    "accelerator": "HTP v79",
+    "backend": "Qualcomm QNN HTP",
+    "runtime": "QAIRT 2.47.0",
+    "os_abi": "Android 16 / arm64-v8a",
+    "metrics": {
+      "macro": {
+        "wer": 0.47902755140989783,
+        "cer": 0.2341744740219107,
+        "ser": 0.8728813559322034,
+        "latency": 1.7125343139322033,
+        "rtfx": 1.75399493426053
+      },
+      "micro": {
+        "wer": 0.4087523730711191,
+        "cer": 0.19579698184390473,
+        "ser": 0.8728813559322034
+      },
+      "latency_percentiles": {
+        "p50": 1.6708275000000001,
+        "p90": 2.0425541999999997,
+        "p95": 2.20854705,
+        "p99": 2.5010731999999947
+      }
+    },
+    "performance": {
+      "audio_seconds": 9518.46275,
+      "encoder_qnn_seconds": 4115.478814,
+      "decoder_qnn_seconds": 1047.0174031,
+      "qnn_seconds": 5162.4962171,
+      "qnn_rtfx_all_samples": 1.8437713752644527
+    },
+    "performance_scope": "QNN graph execution only; feature extraction, USB transfer, tokenization, and scoring excluded",
+    "total_samples": 3000,
+    "dataset_total_samples": 3000,
+    "evaluated_samples": 3000,
+    "valid_samples": 2950,
+    "outlier_count": 50,
+    "outlier_policy": {
+      "metric": "cer",
+      "threshold": 1.0
+    },
+    "is_full_evaluation": true,
+    "source": "on-device benchmark artifact",
+    "report_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_small_quantized_20260718.md",
+    "result_url": "https://github.com/GT-KIM/open-korean-automatic-speech-recognition/blob/main/doc/benchmarks/galaxy_fold7_whisper_small_quantized_kspon_clean_full_20260718.json"
+  }
+]

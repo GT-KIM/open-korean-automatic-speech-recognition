@@ -1,0 +1,58 @@
+{
+  "run_id": "galaxy-fold7-whisper-small-quantized-20260718",
+  "timestamp_local": "2026-07-18T10:51:41+09:00",
+  "device": {
+    "manufacturer": "Samsung",
+    "model": "SM-F966N",
+    "product": "q7qksx",
+    "soc": "SM8750",
+    "soc_name": "Snapdragon 8 Elite for Galaxy",
+    "android": "16",
+    "abi": "arm64-v8a",
+    "battery_level_percent": 98,
+    "battery_temperature_c": 27.6
+  },
+  "model": {
+    "name": "Whisper-Small-Quantized",
+    "publisher": "Qualcomm",
+    "source_checkpoint": "openai/whisper-small",
+    "release": "v0.58.0",
+    "precision": "w8a16",
+    "target": "qualcomm-snapdragon-8-elite-for-galaxy",
+    "runtime": "qnn_context_binary",
+    "qairt_model_version": "2.45.0.260326154327",
+    "qairt_runtime_version": "2.47.0.260601114230",
+    "htp_version": 79,
+    "model_url": "https://huggingface.co/qualcomm/Whisper-Small-Quantized"
+  },
+  "method": {
+    "runner": "qnn-net-run",
+    "backend": "libQnnHtp.so",
+    "performance_profile": "burst",
+    "native_io": true,
+    "encoder_input_shape": [1, 80, 3000],
+    "encoder_input_audio_window_seconds": 30,
+    "input_kind": "fixed-size synthetic native tensor",
+    "note": "NPU graph performance only; audio preprocessing, tokenizer, autoregressive loop, WER and end-to-end latency were not measured."
+  },
+  "results": {
+    "encoder": {
+      "runs": 25,
+      "shared_buffer": false,
+      "qnn_execute_ms": {"mean": 1274.252, "min": 783.994, "max": 1570.912},
+      "net_run_ms": {"mean": 1274.281, "min": 784.020, "max": 1570.943},
+      "rtfx_for_30s_window": 23.543,
+      "initialization_ms": 270.007,
+      "hvx_threads": 6
+    },
+    "decoder": {
+      "runs": 100,
+      "shared_buffer": true,
+      "qnn_execute_ms_per_token": {"mean": 16.559, "min": 14.484, "max": 25.655},
+      "net_run_ms_per_token": {"mean": 16.577, "min": 14.496, "max": 25.674},
+      "tokens_per_second_from_qnn_execute": 60.390,
+      "initialization_ms": 68.143,
+      "hvx_threads": 6
+    }
+  }
+}

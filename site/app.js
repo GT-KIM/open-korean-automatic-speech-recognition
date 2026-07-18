@@ -1,4 +1,5 @@
 const OVERALL_TAB = "overall";
+const ON_DEVICE_TAB = "on_device";
 const ALL_SLICES = "__all_slices__";
 const AIHUB_DATASET = "AIHubLowQualityTelephone";
 
@@ -8,6 +9,7 @@ const HIGHER_IS_BETTER = new Set(["rtfx"]);
 
 const state = {
   rows: [],
+  onDeviceRows: [],
   search: "",
   activeTab: OVERALL_TAB,
   subsetByDataset: {},
@@ -57,6 +59,22 @@ const overallColumns = [
   "Datasets",
 ];
 
+const onDeviceColumns = [
+  "Rank",
+  "Model",
+  "Device / SoC",
+  "Precision",
+  "Dataset",
+  "CER",
+  "WER",
+  "QNN RTFx",
+  "Avg Latency",
+  "P95 Latency",
+  "Outliers",
+  "Samples",
+  "Backend",
+];
+
 const els = {
   body: document.getElementById("leaderboardBody"),
   head: document.getElementById("leaderboardHead"),
@@ -103,17 +121,26 @@ function wireControls() {
 
 async function loadLeaderboard() {
   try {
-    const response = await fetch("leaderboard_data.json", { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+    const [serverResponse, onDeviceResponse] = await Promise.all([
+      fetch("leaderboard_data.json", { cache: "no-store" }),
+      fetch("ondevice_leaderboard_data.json", { cache: "no-store" }),
+    ]);
+    if (!serverResponse.ok || !onDeviceResponse.ok) {
+      throw new Error(`HTTP ${serverResponse.status}/${onDeviceResponse.status}`);
     }
-    const data = await response.json();
-    state.rows = Array.isArray(data) ? data.map(normalizeRow) : [];
+    const [serverData, onDeviceData] = await Promise.all([
+      serverResponse.json(),
+      onDeviceResponse.json(),
+    ]);
+    state.rows = Array.isArray(serverData) ? serverData.map(normalizeRow) : [];
     state.rows = state.rows.filter((row) => row.is_full_evaluation !== false);
+    state.onDeviceRows = Array.isArray(onDeviceData) ? onDeviceData.map(normalizeRow) : [];
+    state.onDeviceRows = state.onDeviceRows.filter((row) => row.is_full_evaluation !== false);
     populateModelFilter();
     renderTabs();
     render();
-    els.status.textContent = `${state.rows.length} full run(s)`;
+    els.status.textContent =
+      `${state.rows.length} GPU/server + ${state.onDeviceRows.length} on-device run(s)`;
   } catch (error) {
     els.status.textContent = "data load failed";
     els.rowCount.innerHTML =
@@ -125,8 +152,15 @@ async function loadLeaderboard() {
 }
 
 function populateModelFilter() {
-  const models = uniqueSorted(state.rows.map((row) => row.model).filter(Boolean));
+  const sourceRows = state.activeTab === ON_DEVICE_TAB ? state.onDeviceRows : state.rows;
+  const models = uniqueSorted(
+    sourceRows.map((row) => row.model).filter(Boolean),
+  );
+  if (state.model !== "all" && !models.includes(state.model)) {
+    state.model = "all";
+  }
   fillSelect(els.model, "all", "전체 모델", models);
+  els.model.value = state.model;
 }
 
 function fillSelect(select, allValue, allLabel, values) {
@@ -141,9 +175,15 @@ function renderTabs() {
   const tabs = [
     {
       key: OVERALL_TAB,
-      label: "Overall",
+      label: "GPU / Server",
       note: "model average",
       count: buildOverallRows().length,
+    },
+    {
+      key: ON_DEVICE_TAB,
+      label: "On-device",
+      note: "mobile accelerator",
+      count: state.onDeviceRows.length,
     },
     ...datasets.map((dataset) => ({
       key: dataset,
@@ -177,6 +217,7 @@ function handleTabClick(event) {
   }
   state.activeTab = button.getAttribute("data-tab");
   state.expandedKey = null;
+  populateModelFilter();
   renderTabs();
   renderSubsetTabs();
   render();
@@ -184,7 +225,7 @@ function handleTabClick(event) {
 
 function handleSubsetClick(event) {
   const button = event.target.closest("[data-subset]");
-  if (!button || state.activeTab === OVERALL_TAB) {
+  if (!button || state.activeTab === OVERALL_TAB || state.activeTab === ON_DEVICE_TAB) {
     return;
   }
   state.subsetByDataset[state.activeTab] = button.getAttribute("data-subset");
@@ -194,7 +235,7 @@ function handleSubsetClick(event) {
 }
 
 function renderSubsetTabs() {
-  if (state.activeTab === OVERALL_TAB) {
+  if (state.activeTab === OVERALL_TAB || state.activeTab === ON_DEVICE_TAB) {
     els.subsetTabs.innerHTML = "";
     els.subsetTabs.hidden = true;
     return;
@@ -240,6 +281,8 @@ function render() {
   renderSubsetTabs();
   if (state.activeTab === OVERALL_TAB) {
     renderOverall();
+  } else if (state.activeTab === ON_DEVICE_TAB) {
+    renderOnDevice();
   } else {
     renderDataset();
   }
@@ -291,6 +334,19 @@ function renderDataset() {
     : `<tr><td colspan="${datasetColumns.length}" class="empty-state">조건에 맞는 결과가 없습니다.</td></tr>`;
 }
 
+function renderOnDevice() {
+  const rows = sortRows(filterOnDeviceRows(state.onDeviceRows));
+  els.table.className = "ondevice-table";
+  els.resultsTitle.textContent = "On-device Leaderboard";
+  els.rowCount.textContent =
+    `${rows.length} run(s), sorted by ${metricLabels[state.sortMetric]}. ` +
+    "Performance values are comparable only with matching device and runtime conditions.";
+  els.head.innerHTML = renderHeader(onDeviceColumns);
+  els.body.innerHTML = rows.length
+    ? rows.map((row, index) => renderOnDeviceRow(row, index + 1)).join("")
+    : `<tr><td colspan="${onDeviceColumns.length}" class="empty-state">조건에 맞는 온디바이스 결과가 없습니다.</td></tr>`;
+}
+
 function renderHeader(columns) {
   return `<tr>${columns
     .map((column) => {
@@ -311,8 +367,21 @@ function isNumericColumn(column) {
     column.includes("SER") ||
     column.includes("RTFx") ||
     column.includes("Latency") ||
+    column.includes("P95") ||
     column.includes("Outlier")
   );
+}
+
+function filterOnDeviceRows(rows) {
+  return rows.filter((row) => {
+    if (state.model !== "all" && row.model !== state.model) {
+      return false;
+    }
+    if (!state.search) {
+      return true;
+    }
+    return searchText(row).includes(state.search);
+  });
 }
 
 function filterDatasetRows(rows, dataset) {
@@ -482,6 +551,43 @@ function renderDatasetRow(row, rank) {
     ${detail}`;
 }
 
+function renderOnDeviceRow(row, rank) {
+  const expanded = state.expandedKey === row.run_id;
+  const detail = expanded ? renderOnDeviceDetailRow(row) : "";
+  const latency = (row.metrics && row.metrics.latency_percentiles) || {};
+  return `
+    <tr>
+      <td class="numeric">${rank}</td>
+      <td>
+        <span class="model-cell">
+          <button class="row-toggle" type="button" data-expand-key="${escapeAttr(row.run_id)}" aria-expanded="${expanded}" aria-label="${escapeAttr(row.model)} 상세 보기">${expanded ? "-" : "+"}</button>
+          ${renderModelIdentity(row.model, row.model_repo)}
+        </span>
+      </td>
+      <td class="device-cell">
+        <strong>${escapeHtml(row.device || "-")}</strong>
+        <small>${escapeHtml(row.soc || "-")}</small>
+      </td>
+      <td><span class="precision-pill">${escapeHtml(row.precision || "-")}</span></td>
+      <td>
+        <span class="dataset-name">${escapeHtml(displayDatasetName(row.dataset))}</span>
+        <span class="subset-name">${escapeHtml(displaySubsetName(row.subset || "default"))}</span>
+      </td>
+      ${renderMetricCell(row, "cer")}
+      ${renderMetricCell(row, "wer")}
+      <td class="numeric latency">${formatNumber(metricValue(row, "rtfx"))}</td>
+      <td class="numeric latency">${formatSeconds(metricValue(row, "latency"))}</td>
+      <td class="numeric latency">${formatSeconds(latency.p95)}</td>
+      <td class="numeric outlier-cell">${outlierPill(row)}</td>
+      <td class="numeric">${samplePill(row)}</td>
+      <td class="backend-cell">
+        <strong>${escapeHtml(row.backend || "-")}</strong>
+        <small>${escapeHtml(row.runtime || "-")}</small>
+      </td>
+    </tr>
+    ${detail}`;
+}
+
 function renderMetricCell(row, metric) {
   const value = metricValue(row, metric);
   const width = Number.isFinite(value) ? Math.max(3, Math.min(100, value * 100)) : 0;
@@ -608,6 +714,61 @@ function renderDatasetDetailRow(row) {
         </div>
       </td>
     </tr>`;
+}
+
+function renderOnDeviceDetailRow(row) {
+  const micro = (row.metrics && row.metrics.micro) || {};
+  const latency = (row.metrics && row.metrics.latency_percentiles) || {};
+  return `
+    <tr class="detail-row">
+      <td colspan="${onDeviceColumns.length}">
+        <div class="detail-panel">
+          <div class="detail-group">
+            <h3>Accuracy and device performance</h3>
+            <dl class="metric-list">
+              ${definition("micro WER", formatNumber(micro.wer))}
+              ${definition("micro CER", formatNumber(micro.cer))}
+              ${definition("p50 latency", formatSeconds(latency.p50))}
+              ${definition("p90 latency", formatSeconds(latency.p90))}
+              ${definition("p95 latency", formatSeconds(latency.p95))}
+              ${definition("p99 latency", formatSeconds(latency.p99))}
+              ${definition("performance scope", row.performance_scope || "-")}
+              ${definition("outlier policy", outlierPolicy(row))}
+            </dl>
+            ${renderArtifactLinks(row)}
+          </div>
+          <div class="detail-group">
+            <h3>Device and runtime metadata</h3>
+            <dl class="meta-list">
+              ${definition("run id", row.run_id || "-")}
+              ${definition("device", row.device || "-")}
+              ${definition("SoC", row.soc || "-")}
+              ${definition("accelerator", row.accelerator || "-")}
+              ${definition("backend", row.backend || "-")}
+              ${definition("runtime", row.runtime || "-")}
+              ${definition("precision", row.precision || "-")}
+              ${definition("OS / ABI", row.os_abi || "-")}
+              ${definition("samples", `${row.evaluated_samples || row.total_samples || 0} / ${row.dataset_total_samples || row.total_samples || 0}`)}
+              ${definition("outliers", `${row.outlier_count || 0} (${formatPercent(outlierRate(row))})`)}
+            </dl>
+          </div>
+        </div>
+      </td>
+    </tr>`;
+}
+
+function renderArtifactLinks(row) {
+  const links = [
+    [row.report_url, "benchmark report"],
+    [row.result_url, "result JSON"],
+  ]
+    .filter(([url]) => /^https:\/\//i.test(String(url || "")))
+    .map(
+      ([url, label]) =>
+        `<a class="artifact-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`,
+    )
+    .join("");
+  return links ? `<div class="artifact-links">${links}</div>` : "";
 }
 
 function renderCommand(command) {
@@ -782,7 +943,7 @@ function groupDatasetCoverage(rows) {
 }
 
 function activeDatasetSubset() {
-  if (state.activeTab === OVERALL_TAB) {
+  if (state.activeTab === OVERALL_TAB || state.activeTab === ON_DEVICE_TAB) {
     return ALL_SLICES;
   }
   return state.subsetByDataset[state.activeTab] || defaultSubsetForDataset(state.activeTab);
@@ -844,6 +1005,12 @@ function searchText(row) {
     row.subset,
     compactDatasetLabel(row),
     row.gpu,
+    row.device,
+    row.soc,
+    row.accelerator,
+    row.backend,
+    row.runtime,
+    row.precision,
     row.run_id,
     row.command,
     row.source,

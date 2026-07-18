@@ -13,6 +13,7 @@ class BuildPagesTest(unittest.TestCase):
         root = temp_root / f"pages-{uuid.uuid4().hex}"
         root.mkdir()
         data_path = root / "leaderboard_data.json"
+        ondevice_data_path = root / "ondevice_leaderboard_data.json"
         output_dir = root / "_site"
         data_path.write_text(
             json.dumps(
@@ -28,6 +29,21 @@ class BuildPagesTest(unittest.TestCase):
             ),
             encoding="utf-8",
         )
+        ondevice_data_path.write_text(
+            json.dumps(
+                [
+                    {
+                        "run_id": "device-run-1",
+                        "model": "mock-quantized",
+                        "dataset": "mock",
+                        "device": "Mock Phone",
+                        "metrics": {"macro": {"cer": 0.1, "rtfx": 2.0}},
+                        "is_full_evaluation": True,
+                    }
+                ]
+            ),
+            encoding="utf-8",
+        )
 
         subprocess.run(
             [
@@ -35,6 +51,8 @@ class BuildPagesTest(unittest.TestCase):
                 "scripts/build_pages.py",
                 "--data_path",
                 str(data_path),
+                "--ondevice_data_path",
+                str(ondevice_data_path),
                 "--output_dir",
                 str(output_dir),
             ],
@@ -53,6 +71,9 @@ class BuildPagesTest(unittest.TestCase):
         index = (output_dir / "index.html").read_text(encoding="utf-8")
         app = (output_dir / "app.js").read_text(encoding="utf-8")
         data = json.loads((output_dir / "leaderboard_data.json").read_text(encoding="utf-8"))
+        ondevice_data = json.loads(
+            (output_dir / "ondevice_leaderboard_data.json").read_text(encoding="utf-8")
+        )
         metadata = json.loads((output_dir / "metadata.json").read_text(encoding="utf-8"))
         self.assertIn("datasetTabs", index)
         self.assertIn("subsetTabs", index)
@@ -62,15 +83,18 @@ class BuildPagesTest(unittest.TestCase):
         self.assertIn("Korean ASR 분석 시리즈", index)
         self.assertIn("Outliers", app)
         self.assertIn("Overall Model Leaderboard", app)
+        self.assertIn("On-device Leaderboard", app)
         self.assertIn("AIHub", app)
         self.assertIn("All subsets", app)
         self.assertIn("model card", app)
         self.assertNotIn('"Best Run"', app)
         self.assertNotIn('"Run",', app)
         self.assertEqual(data[0]["model"], "mock")
+        self.assertEqual(ondevice_data[0]["device"], "Mock Phone")
         self.assertNotIn("rtf", data[0]["metrics"]["macro"])
         self.assertEqual(data[0]["metrics"]["macro"]["rtfx"], 4.0)
         self.assertEqual(metadata["row_count"], 1)
+        self.assertEqual(metadata["ondevice_row_count"], 1)
 
 
 if __name__ == "__main__":
