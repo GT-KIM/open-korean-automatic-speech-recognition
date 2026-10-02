@@ -1,7 +1,7 @@
 jiwer
 librosa
 numpy
-torch==2.13.0
+torch==2.14.0
 torchvision
 torchaudio
 torchcodec
