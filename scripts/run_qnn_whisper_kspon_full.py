@@ -281,6 +281,11 @@ def aggregate_scores(scored):
             "cer": char_errors / reference_chars,
             "ser": 1 - sum(item["exact_match"] for item in valid) / len(valid),
         },
+        "all_samples_micro_average": {
+            "wer": sum(item["word_errors"] for item in scored) / sum(item["reference_words"] for item in scored),
+            "cer": sum(item["char_errors"] for item in scored) / sum(item["reference_chars"] for item in scored),
+            "ser": 1 - sum(item["exact_match"] for item in scored) / len(scored),
+        },
         "latency_percentiles": {
             "p50": percentile(valid_latencies, 50),
             "p90": percentile(valid_latencies, 90),

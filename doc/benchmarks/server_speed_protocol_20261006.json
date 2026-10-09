@@ -1,0 +1,824 @@
+{
+  "id": "server-speed-v3-dual-env-20261006",
+  "status": "shared_environment_sealed_server_pilot_complete_token_limit_review_required_local_pilot_pending",
+  "date": "2026-10-06",
+  "updated_date": "2026-10-08",
+  "environment": {
+    "runtime": "shared_linux_amd64_container",
+    "base_image": "pytorch/pytorch@sha256:db80a41f8428644cebcb3d75b0b62df334ab6c0e75785951eb25f48bfbd42407",
+    "image_id": "sha256:0a9137a3340e739e366b75a795954e8bae5afa4e325d4300b019e178305360c9",
+    "python": "3.12.3",
+    "python_policy": "Read from the sealed image; identical on both hosts. Supersedes Windows Python 3.13.5.",
+    "cuda": "13.0",
+    "packages": {
+      "torch": "2.13.0+cu130",
+      "torchvision": "0.28.0+cu130",
+      "torchaudio": "2.11.0+cu130",
+      "torchcodec": "0.14.0+cpu",
+      "transformers": "4.57.6",
+      "qwen-asr": "0.0.6",
+      "accelerate": "1.12.0",
+      "huggingface-hub": "0.36.2",
+      "numpy": "2.4.4",
+      "soundfile": "0.14.0",
+      "librosa": "0.11.0",
+      "datasets": "5.0.0",
+      "jiwer": "4.0.0",
+      "kiwipiepy": "0.23.1",
+      "jamo": "0.4.1"
+    },
+    "constraints": "docker/benchmark-constraints.txt",
+    "device": "cuda:0",
+    "gpu_count_used": 1,
+    "hosts": [
+      {
+        "id": "local-wsl2",
+        "kind": "wsl2",
+        "gpu": "NVIDIA GeForce RTX 3090 Ti",
+        "driver_observed": "591.86",
+        "status": "preflight_passed",
+        "observed_at_utc": "2026-10-07T06:49:20.580355+00:00",
+        "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "container_os": "Ubuntu 24.04.4 LTS",
+        "report_artifact": "results/environments/local-wsl2/20261007T064919656880Z/environment.json",
+        "report_sha256": "f88f0bc481b977c7462ba2b9e76d0dcabd7e4b3db61c18c4ae977dc315234c9b",
+        "torch_threads": 12,
+        "torch_interop_threads": 12,
+        "shared_image_checks": {
+          "archive_sha256": "passed",
+          "image_id": "matched_both_hosts",
+          "python": "matched_both_hosts",
+          "package_inventory": "matched_both_hosts_172_packages",
+          "source_sha256": "matched_both_hosts_and_workspace",
+          "runtime_imports_and_audio": "passed",
+          "cuda_and_bf16": "passed"
+        }
+      },
+      {
+        "id": "linux-server",
+        "kind": "native-linux",
+        "gpu": "NVIDIA GeForce RTX 3090 Ti",
+        "driver_observed": "580.178.04",
+        "status": "preflight_passed",
+        "observed_at_utc": "2026-10-07T06:40:35.351942+00:00",
+        "host_os": "Ubuntu 22.04.5 LTS",
+        "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+        "container_os": "Ubuntu 24.04.4 LTS",
+        "docker_engine": "29.8.2",
+        "nvidia_container_toolkit": "1.20.1",
+        "report_artifact": "results/environments/linux-server/20261007T064033404649Z/environment.json",
+        "report_sha256": "86ab587e8a00b4d9faf6a19601eceb081f894119ff38f741f26eb8b1a2172941",
+        "host_observation_artifact": "results/environments/linux-server/post-reboot-20261007.txt",
+        "torch_threads": 8,
+        "torch_interop_threads": 8,
+        "shared_image_checks": {
+          "archive_sha256": "passed",
+          "image_id": "matched_both_hosts",
+          "python": "matched_both_hosts",
+          "package_inventory": "matched_both_hosts_172_packages",
+          "source_sha256": "matched_both_hosts_and_workspace",
+          "runtime_imports_and_audio": "passed",
+          "cuda_and_bf16": "passed"
+        },
+        "driver_resolution": {
+          "status": "updated_rebooted_and_verified",
+          "authorization_date": "2026-10-07",
+          "previous_driver": "570.211.01",
+          "installed_package": "nvidia-driver-580",
+          "installed_version": "580.178.04-0ubuntu0.22.04.1",
+          "package_source": "jammy-updates",
+          "apt_simulation": "passed",
+          "driver_changed": true,
+          "reboot_performed": true,
+          "reboot_verification": "boot_id_changed_and_580.178.04_kernel_module_loaded",
+          "installation_exit_code": 0,
+          "dpkg_audit": "passed",
+          "dkms_kernel": "6.8.0-138-generic",
+          "changed_packages": 41,
+          "package_change_scope": "NVIDIA driver stack only; no packages removed",
+          "installation_artifacts": "results/environments/linux-server/driver-update-20261007",
+          "previous_report_artifact": "results/environments/linux-server/20261006T121909189081Z/environment.json",
+          "previous_report_sha256": "2514d209b23d3f461e00395bd05fc82088a295ce035c0f01deb5cc3588fd86e3",
+          "compatibility_source": "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+        }
+      }
+    ],
+    "publication_policy": "Separate hardware/runtime cohorts. Do not pool repeats or speed rankings across hosts.",
+    "seal_gate": "Both preflight reports must pass and match image ID, Python, package inventory and code hash. Record each host GPU, driver, kernel and thread counts. Actual ASR pilot remains separate.",
+    "source_sha256": "70163d2a746a24dc19b4f7db6a9530ccecbf6526c77415fa5a012d1ac8e1fd17",
+    "package_inventory_sha256": "a36948693fbc98fb2ddfce5e22af7942204d4d3779e25167e24cda02d76fa5a9",
+    "package_inventory_hash_format": "UTF-8 JSON, sorted keys, separators comma/colon, no whitespace or trailing newline",
+    "parent_image_id": "sha256:f1379555b571ec99d12029fc3492530e65de91f0a82e5a10e26c303fd5231aa7",
+    "image_archive": {
+      "sha256": "125077e533273795a205c743163c5e515bee0d2f5f52508fc00a9238cb8170e3",
+      "artifact": "results/environment-image-20261007/openkoasr-speed-20261007.tar",
+      "bytes": 3761295360
+    },
+    "sealed_at_utc": "2026-10-07T06:49:20.580355+00:00"
+  },
+  "models": [
+    {
+      "repo": "openai/whisper-tiny",
+      "model_revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "processor_revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-tiny",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-tiny/resolve/169d4a4341b33bc18d8881c4b69c2e104e1cc0af/generation_config.json",
+      "generation_config_sha256": "a5d5325911f16e74001a72fa13d6e208eee51548f994646de1f4b4cc8b35b512",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-base",
+      "model_revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+      "processor_revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-base",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-base/resolve/e37978b90ca9030d5170a5c07aadb050351a65bb/generation_config.json",
+      "generation_config_sha256": "444b3f636d2fff89dd9ecf549e2a085b61f7ff0fa0246d4628bac6a3b8cc9ba4",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-small",
+      "model_revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+      "processor_revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-small",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/generation_config.json",
+      "generation_config_sha256": "71565b8ef50d0bf7a1193ed4bbed195b94e70c18894d81bba2f1233dcec3ab53",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-medium",
+      "model_revision": "abdf7c39ab9d0397620ccaea8974cc764cd0953e",
+      "processor_revision": "abdf7c39ab9d0397620ccaea8974cc764cd0953e",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-medium",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-medium/resolve/abdf7c39ab9d0397620ccaea8974cc764cd0953e/generation_config.json",
+      "generation_config_sha256": "503290bc2da3923915d96a96ab96ddaa76e7ea18fbd4c5c1822a2947c82c86db",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-large-v3",
+      "model_revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+      "processor_revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-large-v3",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-large-v3/resolve/06f233fe06e710322aca913c1bc4249a0d71fce1/generation_config.json",
+      "generation_config_sha256": "fbdfa70135de9b1d31553393f14e80aaeb1936ea36576b2ba864055943c09d23",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-large-v3-turbo",
+      "model_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "processor_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-large-v3-turbo",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-large-v3-turbo/resolve/41f01f3fe87f28c78e2fbf8b568835947dd65ed9/generation_config.json",
+      "generation_config_sha256": "cce11bfe3aaa6ae9e072ea2637caaec8795e68d9b67e655a5af16ee509681a4c",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "Qwen/Qwen3-ASR-0.6B",
+      "model_revision": "5eb144179a02acc5e5ba31e748d22b0cf3e303b0",
+      "processor_revision": "5eb144179a02acc5e5ba31e748d22b0cf3e303b0",
+      "revision_source": "https://huggingface.co/api/models/Qwen/Qwen3-ASR-0.6B",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "language": "Korean",
+      "generation_config_source": "https://huggingface.co/Qwen/Qwen3-ASR-0.6B/resolve/5eb144179a02acc5e5ba31e748d22b0cf3e303b0/generation_config.json",
+      "generation_config_sha256": "1da527824d81e07118facff437e03f2e24a23311e3bdeb2368973fe77e5f275c",
+      "generation_config": {
+        "eos_token_id": [
+          151643,
+          151645
+        ],
+        "pad_token_id": 151643,
+        "do_sample": false
+      },
+      "call_overrides": {
+        "max_new_tokens": 256
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "Qwen/Qwen3-ASR-1.7B",
+      "model_revision": "7278e1e70fe206f11671096ffdd38061171dd6e5",
+      "processor_revision": "7278e1e70fe206f11671096ffdd38061171dd6e5",
+      "revision_source": "https://huggingface.co/api/models/Qwen/Qwen3-ASR-1.7B",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "language": "Korean",
+      "generation_config_source": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B/resolve/7278e1e70fe206f11671096ffdd38061171dd6e5/generation_config.json",
+      "generation_config_sha256": "1da527824d81e07118facff437e03f2e24a23311e3bdeb2368973fe77e5f275c",
+      "generation_config": {
+        "eos_token_id": [
+          151643,
+          151645
+        ],
+        "pad_token_id": 151643,
+        "do_sample": false
+      },
+      "call_overrides": {
+        "max_new_tokens": 256
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    }
+  ],
+  "execution": {
+    "num_workers": 0,
+    "warmup_samples": 16,
+    "warmup_mode": "single_sample",
+    "repetitions": 3,
+    "shuffle": false,
+    "limit": null,
+    "save_predictions": true,
+    "concurrent_evaluations": 1,
+    "process_policy": "Load a model once per track, then reuse it for all three workload groups and repeats; measure warmed inference, not cold starts.",
+    "measurement_population": "korean-asr-speed-768-v1"
+  },
+  "tracks": [
+    {
+      "id": "latency-b1",
+      "batch_size": 1,
+      "qwen_backend_batch_size": 1,
+      "primary_metric": "all_sample_request_latency_p50_p95_ms"
+    },
+    {
+      "id": "throughput-b4",
+      "batch_size": 4,
+      "qwen_backend_batch_size": 4,
+      "primary_metric": "sum_audio_duration_over_sum_processing_time"
+    }
+  ],
+  "timing": {
+    "scope": "asr_transcribe_call",
+    "includes": [
+      "feature_extraction",
+      "host_device_transfer",
+      "model_inference",
+      "text_decoding"
+    ],
+    "excludes": [
+      "model_loading",
+      "file_reading",
+      "warmup",
+      "metric_scoring"
+    ],
+    "cuda_synchronize": "before_and_after_call",
+    "sample_population": "all_curated_samples_without_cer_filtering",
+    "repetition_summary": "median_of_3_with_min_max",
+    "batch_latency_is_request_latency": false,
+    "reporting": "Per-group latency p50/p95 and throughput; median and min/max across repeats. Overall uses equal mean of the three group throughputs."
+  },
+  "quality": {
+    "evaluation_protocol": "v1/kspon/cer>1.0",
+    "preserve_existing_macro_rtfx": true,
+    "repeat_policy": "Full corpus once at batch 4; curated CER is diagnostic only.",
+    "full_evaluation": {
+      "batch_size": 4,
+      "qwen_backend_batch_size": 4,
+      "repetitions": 1,
+      "limit": null,
+      "samples_per_model": 45916
+    }
+  },
+  "input_contract": {
+    "dataset_id": "korean-asr-speed-768-v1",
+    "report": "doc/benchmarks/speed_curated_set_20261006.json",
+    "groups": {
+      "KsponSpeech/clean": 256,
+      "KsponSpeech/other": 256,
+      "AIHubLowQualityTelephone/curated": 256
+    },
+    "telephone_domains": {
+      "D01": 56,
+      "D02": 96,
+      "D03": 12,
+      "D04": 92
+    },
+    "selection_manifest_sha256": "fc543c7aa62eba596bdb31dc1a5ccd70ad4d7bee08ed06af004722048652a24c",
+    "manifest_sha256": "feab69a04d1de01f00190bcacb1c81a4e4049b82e9b6ebc1510e8019956cbfe1",
+    "manifest_gate": "Bind private selection records to original audio/reference files, verify IDs/order/duration/reference length, then seal content hashes before inference. Missing samples must not be substituted.",
+    "sample_order": "Fixed hash shuffle within clean, other, telephone; identical order and batch-4 boundaries for every model and repeat.",
+    "pilot": {
+      "samples": 192,
+      "batch_4_batches": 48,
+      "repetitions": 1,
+      "selection_sha256": "61b5737f48bd7a5d57af9bee85b314e18e6458bf1a4b3091b445606dac4b9c36",
+      "nested": true,
+      "use": "Loader/timing/feasibility diagnostic only; not formal p95 or leaderboard results.",
+      "manifest_sha256": "f5a2173091f13876eb4d82d666e163942d43d019cecec23fc39524009b5fc7b9"
+    },
+    "content_seal_artifact": "results/speed-inputs-20261007/speed-768-v1/seal.json",
+    "content_status": "768_original_inputs_verified_and_sealed",
+    "audio_representation": "Original loader output as lossless little-endian float32 NPY; file reading and resampling excluded from timing"
+  },
+  "gates": [
+    "Before pilot, seal both host environments with the same immutable image ID; environment preflight does not establish ASR model or input validity.",
+    "Before pilot: verify original audio/reference content, seal content manifest and final code hash, and check recorded inference settings against this contract.",
+    "Pilot checks bfloat16 and batch 4 on the nested diagnostic set; it does not guarantee full-corpus feasibility. No per-model fallback.",
+    "Any dtype, batch, revision, package, input or timing change requires a new contract ID.",
+    "No full evaluation, API request or deployment is authorized by this contract record.",
+    "Keep tracks and repetitions in separate result roots; current public generator deduplicates model/dataset/subset/protocol.",
+    "Do not publish both tracks through that generator until track identity and repetition aggregation are supported.",
+    "Curated speed results cannot be published as full-corpus accuracy results.",
+    "Timing runner must implement the declared model-reuse/warmup policy; current EvaluationRunner.run loads a new model on each call.",
+    "Per-telephone-domain p95 and whole-corpus speed claims are outside this set; report the three curated workload groups."
+  ],
+  "code_at_definition": {
+    "commit": "87549676aa28801e0366af991795a7d2c14ad69b",
+    "dirty": true,
+    "source_sha256": "6db62558c6595723e2b55d1a9848b2db12fea5637ae4fdf00e76390ba313b21d"
+  },
+  "supersedes": {
+    "id": "server-speed-v2-curated-20261006",
+    "sha256": "fa9065416c7875bd56ce8d023c1989e7f8e786a822e4beb2778b488759ff3ada",
+    "reason": "Use one shared Linux container on local WSL2 and a native Linux server; keep hardware cohorts separate. Python comes from the sealed image instead of the previous Windows-only environment.",
+    "previous_environment": {
+      "gpu": "NVIDIA GeForce RTX 3090 Ti",
+      "device": "cuda:0",
+      "gpu_count_used": 1,
+      "driver": "591.86",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "python": "3.13.5",
+      "cuda": "13.0",
+      "packages": {
+        "torch": "2.13.0+cu130",
+        "torchvision": "0.28.0+cu130",
+        "torchaudio": "2.11.0+cu130",
+        "torchcodec": "0.14.0",
+        "transformers": "4.57.6",
+        "qwen-asr": "0.0.6",
+        "accelerate": "1.12.0",
+        "huggingface-hub": "0.36.2",
+        "numpy": "2.4.4",
+        "soundfile": "0.14.0",
+        "librosa": "0.11.0",
+        "datasets": "5.0.0",
+        "jiwer": "4.0.0",
+        "kiwipiepy": "0.23.1",
+        "jamo": "0.4.1"
+      }
+    },
+    "earlier_supersedes": {
+      "id": "server-speed-v1-20261006",
+      "sha256": "c337c3b7a2a23542a3578dbfba5872c71d6c9e982f7dd50043a0c790e1c1f74c",
+      "reason": "Reduce full-corpus repeats: one complete accuracy evaluation plus a fixed curated speed workload.",
+      "previous_design": "45,916 samples per model, batch 1 and 4, three full repetitions of each."
+    }
+  },
+  "runtime_history": [
+    {
+      "image_id": "sha256:f1379555b571ec99d12029fc3492530e65de91f0a82e5a10e26c303fd5231aa7",
+      "source_sha256": "2175ee67d2b1425251dfa66eabb4b78bf449087c75694b22a18624cef0a6974b",
+      "image_archive": {
+        "artifact": "results/environment-image-20261006/openkoasr-benchmark-20261006.tar",
+        "bytes": 3761246208,
+        "sha256": "0c4e679a28e281eb12956e5cdebf09c5224a46c0ab4b2c1d00eab9dfb0469097"
+      },
+      "hosts": [
+        {
+          "id": "local-wsl2",
+          "kind": "wsl2",
+          "gpu": "NVIDIA GeForce RTX 3090 Ti",
+          "driver_observed": "591.86",
+          "status": "preflight_passed",
+          "observed_at_utc": "2026-10-06T06:18:23.303917+00:00",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "container_os": "Ubuntu 24.04.4 LTS",
+          "report_artifact": "results/environments/local-wsl2/20261006T061822746223Z/environment.json",
+          "report_sha256": "5db3182b16f4770f25a1f711a198e6f638b399bbcd540e7782c9785f4972b2de",
+          "torch_threads": 12,
+          "torch_interop_threads": 12
+        },
+        {
+          "id": "linux-server",
+          "kind": "native-linux",
+          "gpu": "NVIDIA GeForce RTX 3090 Ti",
+          "driver_observed": "580.178.04",
+          "status": "preflight_passed",
+          "observed_at_utc": "2026-10-06T15:31:46.483324+00:00",
+          "host_os": "Ubuntu 22.04.5 LTS",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+          "container_os": "Ubuntu 24.04.4 LTS",
+          "docker_engine": "29.8.2",
+          "nvidia_container_toolkit": "1.20.1",
+          "report_artifact": "results/environments/linux-server/20261006T153004369878Z/environment.json",
+          "report_sha256": "d6ba10d87dca299da6a8cf8e2902ce28abd1cb68368f4bcef0483ae2802e59f3",
+          "host_observation_artifact": "results/environments/linux-server/post-reboot-20261007.txt",
+          "torch_threads": 8,
+          "torch_interop_threads": 8,
+          "shared_image_checks": {
+            "archive_sha256": "passed",
+            "image_id": "matched_local",
+            "python": "matched_local",
+            "package_inventory": "matched_local_172_packages",
+            "source_sha256": "matched_local",
+            "runtime_imports_and_audio": "passed",
+            "cuda_and_bf16": "passed"
+          },
+          "driver_resolution": {
+            "status": "updated_rebooted_and_verified",
+            "authorization_date": "2026-10-07",
+            "previous_driver": "570.211.01",
+            "installed_package": "nvidia-driver-580",
+            "installed_version": "580.178.04-0ubuntu0.22.04.1",
+            "package_source": "jammy-updates",
+            "apt_simulation": "passed",
+            "driver_changed": true,
+            "reboot_performed": true,
+            "reboot_verification": "boot_id_changed_and_580.178.04_kernel_module_loaded",
+            "installation_exit_code": 0,
+            "dpkg_audit": "passed",
+            "dkms_kernel": "6.8.0-138-generic",
+            "changed_packages": 41,
+            "package_change_scope": "NVIDIA driver stack only; no packages removed",
+            "installation_artifacts": "results/environments/linux-server/driver-update-20261007",
+            "previous_report_artifact": "results/environments/linux-server/20261006T121909189081Z/environment.json",
+            "previous_report_sha256": "2514d209b23d3f461e00395bd05fc82088a295ce035c0f01deb5cc3588fd86e3",
+            "compatibility_source": "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+          }
+        }
+      ],
+      "reason": "Added the fixed-input timing harness; package inventory unchanged"
+    },
+    {
+      "image_id": "sha256:6e8f093858041cec4d3eaeab39f8a255dc25b812ed813f3156952e590d9497e3",
+      "source_sha256": "cf0613f7471525f822000caaab549a1ca0f8092fa25da47144f4b36010346fbf",
+      "server_report_artifact": "results/environments/linux-server/20261007T062413170303Z/environment.json",
+      "reason": "Corrected EOS observation before Whisper postprocessing; decoder settings unchanged"
+    },
+    {
+      "image_id": "sha256:4cb1598c9c9fd3a992c5593c9e693be9a3016d962a36ef960d876e9c06add030",
+      "source_sha256": "fa572167c87c78ba040a6be38f21ebff21a99ee0d4ea70d41483498e80cf5b72",
+      "server_report_artifact": "results/environments/linux-server/20261007T063204653373Z/environment.json",
+      "reason": "Pilot records truncation failures across all fixed inputs; formal runs still fail immediately. No decoding changes."
+    }
+  ],
+  "pilot_validation": {
+    "status": "server_diagnostics_complete_token_limit_gate_failed_local_pending",
+    "models": 8,
+    "tracks": [
+      "latency-b1",
+      "throughput-b4"
+    ],
+    "samples_per_model_track": 192,
+    "repetitions": 1,
+    "model_snapshots_artifact": "results/environments/linux-server/model-snapshots-20261007.json",
+    "initial_instrumentation_failure": "Whisper removes EOS in postprocessing; audit now observes GenerationMixin output before postprocessing",
+    "token_limit_diagnostic": "results/environments/linux-server/token-limit-diagnostic.json",
+    "local_status": "not_started_other_gpu_compute_active",
+    "server_status": "completed_16_pairs_10_passed_6_failed_eos_gate",
+    "server_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z",
+    "server_started_at_utc": "2026-10-07T06:41:42.822498+00:00",
+    "server_completed_at_utc": "2026-10-07T06:54:12.688400+00:00",
+    "server_execution_protocol_sha256": "545a50f8f32b1a2cd65e037ac3f5682a5e18b9f01d07a995127bff1d7614f2cb",
+    "matrix_sha256": "53c37791af2e966c63161d8377eab53c443fa23a32458f99abb07732ffa06aa6",
+    "server_runs": [
+      {
+        "model": "openai/whisper-tiny",
+        "track": "latency-b1",
+        "status": "failed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 3,
+        "warmup_sequences_without_eos": 1,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-tiny/latency-b1/run/summary.json",
+        "summary_sha256": "3fb64f95a0714ebcbe6ddcbb5e93c37972da1a2fec6ec78274da43e6720c90a0",
+        "metadata_sha256": "8a4bf8384c1f3e7737152a41037eb0d90de4f684c61b7f363542eb44c740440f",
+        "requests_sha256": "621793d10180493d2a5cd84c620704633ff61d4a6cc968f91e244043a797933f",
+        "warmup_sha256": "dfc91a1a6d61422476c8cb808a0e1482fe15367780f488be511b882b747379fb"
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "track": "throughput-b4",
+        "status": "failed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 3,
+        "warmup_sequences_without_eos": 1,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-tiny/throughput-b4/run/summary.json",
+        "summary_sha256": "38a782436d9ec5f167eae686eff434c0e1ae8eafe41426ba5d6bedad76a08ce4",
+        "metadata_sha256": "3e61838cca8bd9273fd793354ed74f861cdd214ebfa39535330ee269c8dcad3b",
+        "requests_sha256": "f9a281bbe585d987d3c9460479fe8bb48b671b0c92c796482caa441335267324",
+        "warmup_sha256": "dfc91a1a6d61422476c8cb808a0e1482fe15367780f488be511b882b747379fb"
+      },
+      {
+        "model": "openai/whisper-base",
+        "track": "latency-b1",
+        "status": "failed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 3,
+        "warmup_sequences_without_eos": 1,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-base/latency-b1/run/summary.json",
+        "summary_sha256": "94051c7b71d7f9b085ba911c6ae1fcb2b8588b612f5f05175fc63ee51dc8fdd5",
+        "metadata_sha256": "fb1b9d41cc60b778c5e70cc15c7c948bd951d899460872706aa1d462f993545a",
+        "requests_sha256": "c0f8e360be7f645bba3060b2bfc418b2591b1f434723da1be653f86b761dbb26",
+        "warmup_sha256": "1d565b12f8ddbe2c455e5212a467850c91e0977272ac653661298988c6bd8c70"
+      },
+      {
+        "model": "openai/whisper-base",
+        "track": "throughput-b4",
+        "status": "failed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 3,
+        "warmup_sequences_without_eos": 1,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-base/throughput-b4/run/summary.json",
+        "summary_sha256": "9ceca0f90dcb5759a37e5689810fab1f884053ff3ad6a7ca9039ac30b76342d0",
+        "metadata_sha256": "c3ab9aab9358c3872ee633bb37bbe85d978ccee0ea772b0d4f530109a091097b",
+        "requests_sha256": "dab73419c335f8daf875422d308af464ffab40a36b286bf6892f60f6f6b9e508",
+        "warmup_sha256": "1d565b12f8ddbe2c455e5212a467850c91e0977272ac653661298988c6bd8c70"
+      },
+      {
+        "model": "openai/whisper-small",
+        "track": "latency-b1",
+        "status": "failed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 1,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-small/latency-b1/run/summary.json",
+        "summary_sha256": "508776f8e3056b19bd250fb2659c227faa1fed0d91d2604e31f3ba1311608240",
+        "metadata_sha256": "76c8b6f0ed84aac98f7337acfb7825ed19adf9578b31682af4f642f1a83879d3",
+        "requests_sha256": "612743de0bce9eed0aae948a997c351db2afc423fa7ec0402a2d751f99072422",
+        "warmup_sha256": "6e4c1a6f5ef9259f7898624068f904dd7f6e626dc8301ea4e0a7b7dd31774ac5"
+      },
+      {
+        "model": "openai/whisper-small",
+        "track": "throughput-b4",
+        "status": "failed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 1,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-small/throughput-b4/run/summary.json",
+        "summary_sha256": "921b2e96fb4d722aa2cbf5cee56ea571fd42a100972d66d05d3a504465fdb6ca",
+        "metadata_sha256": "a3862a37ea5aa6a1cb7c3e1d6aad14f65c4d9ded9f09fa164f2cb439e310a9a6",
+        "requests_sha256": "1168d2fb842cbd2dc80b7aeaedce776598d961936ca2aecd639e4f9fbfb3cc7b",
+        "warmup_sha256": "6e4c1a6f5ef9259f7898624068f904dd7f6e626dc8301ea4e0a7b7dd31774ac5"
+      },
+      {
+        "model": "openai/whisper-medium",
+        "track": "latency-b1",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-medium/latency-b1/run/summary.json",
+        "summary_sha256": "aed750a32a99119c99661e6020eaed143054dfe583b967e18ca8a67787c3b420",
+        "metadata_sha256": "a5dac6fc4aa8791da75acbd734df57f157a64632782b7f521a07a8a6a7d5cff5",
+        "requests_sha256": "764706091570ecb709d9be8b3a60b9d53591fb507a04526ef7bafa09a955dc95",
+        "warmup_sha256": "fba626faf8ada2b8561a8f6dc96c9893a04d6bed25cacea1f0e9b19219c8082c"
+      },
+      {
+        "model": "openai/whisper-medium",
+        "track": "throughput-b4",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-medium/throughput-b4/run/summary.json",
+        "summary_sha256": "6331818c7c4e6caa0ae7d609e9230c9b9b8c319cec8a3ebbad30252d044114dc",
+        "metadata_sha256": "652f8b01c0132bfa21a75d0a96302ceeb9bcbd209c6319d1aaad68ef58a41c6b",
+        "requests_sha256": "5809839be9f85fa0657a7ce42da45a45ee775724fba0e1c8c0e7f4864f9eaf1c",
+        "warmup_sha256": "fba626faf8ada2b8561a8f6dc96c9893a04d6bed25cacea1f0e9b19219c8082c"
+      },
+      {
+        "model": "openai/whisper-large-v3",
+        "track": "latency-b1",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-large-v3/latency-b1/run/summary.json",
+        "summary_sha256": "3426629c793b9539f8ad591bb9ac64f25bba805517a6a39dcf935af4ccb11788",
+        "metadata_sha256": "bfdfce72f5e5aa93d6da50aafac5120ebebc64f930c561ecc4b3d2419974a760",
+        "requests_sha256": "e97e260d2785cb9d4d197c79ace8864077112867dc95632fdfc2faf2d6bc415c",
+        "warmup_sha256": "dc86f4791d848451c7d894ba9fb9b0ec41db3b1fd6e78049773a78e7595cae4f"
+      },
+      {
+        "model": "openai/whisper-large-v3",
+        "track": "throughput-b4",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-large-v3/throughput-b4/run/summary.json",
+        "summary_sha256": "cf03241381d8be1d17b5d80b6fb612fa14af273b70010817f87dd3c5086090a9",
+        "metadata_sha256": "ee6f784d3dcba96a7e10c8e247272d9cba0c9287f430c45944ed63da5001612d",
+        "requests_sha256": "0580cdf11f0c4fac6c9bf0ddaee1feacf9b6254335ad7bc76228743798e27505",
+        "warmup_sha256": "dc86f4791d848451c7d894ba9fb9b0ec41db3b1fd6e78049773a78e7595cae4f"
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "track": "latency-b1",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-large-v3-turbo/latency-b1/run/summary.json",
+        "summary_sha256": "57c6fc6b1f5331ebf3e4b66ee3c93b1def41df2b4f615415eb6905868ce7e4a2",
+        "metadata_sha256": "9b669f05c4adafafe2bb3db29d599ee92cdda8e2f8770f4963d2b7b2ee21c5dd",
+        "requests_sha256": "9e3875f1f78feb7fc7656dee3fafdffb1e4f5fd561f395695ae491495a226545",
+        "warmup_sha256": "81784aaab3e7306de5626dbfdbfe1797b85bd95d009a22cf4e94995823b5267d"
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "track": "throughput-b4",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/openai--whisper-large-v3-turbo/throughput-b4/run/summary.json",
+        "summary_sha256": "b6da421aadbdf75f0c3f656b27805714a4dbc4041eed1de8c03be038d8237c2d",
+        "metadata_sha256": "98021f10ff06d5aa4910896d5e4f650e55a90519d29b7faba7c6e1f1f620682b",
+        "requests_sha256": "398df97eed755a1e279523e6174edf62044e7dc8c3b1cf0fe62a7c4c7837ed19",
+        "warmup_sha256": "81784aaab3e7306de5626dbfdbfe1797b85bd95d009a22cf4e94995823b5267d"
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "track": "latency-b1",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/Qwen--Qwen3-ASR-0.6B/latency-b1/run/summary.json",
+        "summary_sha256": "01ce4539240e9ec4d6bb9a0f2d5b0eca770a488ead59901a0735284b46a50c29",
+        "metadata_sha256": "8b119d2e8a195b14b7291cf48f90d5d07bb738dc8169ac51c7f6f86e739a386f",
+        "requests_sha256": "b6929d43ffd1eab159b29fcf20f46b765f241abeb8e85bcadb2f9c38de05933a",
+        "warmup_sha256": "4c6af2ab35983154d3e3ba90832923942aa8badb609f9cb159fc57d9c44cdac3"
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "track": "throughput-b4",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/Qwen--Qwen3-ASR-0.6B/throughput-b4/run/summary.json",
+        "summary_sha256": "7f444fe3d17f5802ab6bc4cbb7b5b186536b8a9337af3a5d98113e67c98b6784",
+        "metadata_sha256": "a6909ed15b2158df468e6fa6ec0ec1e89cf369784952a89152ee55ece17b892b",
+        "requests_sha256": "a4383d7f54e8eb6ea1840b26ffaf052c7e2ce14920777d45927b0bc7dbdc11cf",
+        "warmup_sha256": "4c6af2ab35983154d3e3ba90832923942aa8badb609f9cb159fc57d9c44cdac3"
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "track": "latency-b1",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/Qwen--Qwen3-ASR-1.7B/latency-b1/run/summary.json",
+        "summary_sha256": "72777cc01ef5985dacafa7b3d4c82a5a77f5f845af0f42de806882dc3da8fe42",
+        "metadata_sha256": "1e5d0e10b3ec415541c600b7abc686bd5aef090c5795a02e35e76a10b407b6da",
+        "requests_sha256": "8c7f845ce6c2ce9cb47653509081b705224b8ebd2c927f3817b3e933d38e8352",
+        "warmup_sha256": "c3ed91495a31cc31a72ba1b3ace6e1aff8f0a44f7dd7ea7b95943d2376d7ac36"
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "track": "throughput-b4",
+        "status": "passed",
+        "samples_measured": 192,
+        "warmup_samples_excluded": 48,
+        "measured_sequences_without_eos": 0,
+        "warmup_sequences_without_eos": 0,
+        "summary_artifact": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z/Qwen--Qwen3-ASR-1.7B/throughput-b4/run/summary.json",
+        "summary_sha256": "7ded6ef0bc573f3d63f1e7c627631f3f5eb1b28324e7b409eec4f46d04ad04e6",
+        "metadata_sha256": "38c0be5c228a35aad65bda97b58449769f30b5b99d8499ad82b11895d6704b29",
+        "requests_sha256": "7be48396bb516c8805355fd77971c0ac8679febac4f50fc5fce8d023a2a88fdf",
+        "warmup_sha256": "c3ed91495a31cc31a72ba1b3ace6e1aff8f0a44f7dd7ea7b95943d2376d7ac36"
+      }
+    ],
+    "model_loading_dtype_batch_and_sample_coverage": "verified_for_all_16_pairs",
+    "local_gpu_observed_at_utc": "2026-10-07T06:53:35+00:00",
+    "local_blocker": "Existing ComfyUI compute workload; no process stopped",
+    "formal_measurement_status": "not_started",
+    "publication_status": "not_published",
+    "execution_sequence_note": "Server diagnostic pilot began after server preflight, while the identical image transfer/local preflight was pending. Both reports subsequently matched; strict both-host preflight-before-pilot ordering was not met. This is diagnostic evidence only.",
+    "token_limit_review": {
+      "status": "higher_budget_diagnostic_complete_retain_budget_recommended_policy_not_applied",
+      "current_budgets": {
+        "whisper": 128,
+        "qwen3_asr": 256
+      },
+      "current_gate": "All measured and warmup generations must reach EOS; formal execution stops on any failure.",
+      "observations": "Both tracks: tiny 3/192, base 3/192, small 1/192 measured sequences ended without EOS; each failed batch-1 generation reached 128 new tokens. Medium, large-v3, large-v3-turbo and both Qwen models passed both tracks.",
+      "interpretation": "For these seven failures, the higher budgets extended bad output without restoring EOS or improving CER; a merely too-small 128-token budget is not supported as the remedy.",
+      "recommended_change_for_review": "Keep 128/256 budgets; retain capped outputs in all timing and quality denominators and report capped-generation rate separately. Revise the EOS gate and contract ID explicitly before any formal run.",
+      "alternatives": "Higher-budget diagnostic completed: 128, 256 and 440 on all 192 pilot inputs for tiny/base/small, batch 1. No capped output recovered; all seven became worse at larger budgets. No further budget sweep is justified by this evidence.",
+      "diagnostic_followup": {
+        "study_id": "server-token-budget-diagnostic-v1-20261008",
+        "artifact": "doc/benchmarks/server_token_budget_diagnostic_20261008.json",
+        "sha256": "0f818bc7ed5a0080e8b55be134626c5ef44d319c1f573dbb11bac38d76063ad4",
+        "completed_at_utc": "2026-10-08T06:32:50.788176+00:00"
+      }
+    }
+  }
+}

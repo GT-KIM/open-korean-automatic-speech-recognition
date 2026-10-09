@@ -1,0 +1,32 @@
+{
+  "audit_date": "2026-10-03",
+  "scope": "Local speechrecognition_google API cache and affected saved evaluations",
+  "cache_entries_checked": 45917,
+  "failed_responses": 1,
+  "empty_transcripts_without_recorded_error": 6444,
+  "invalid_prediction_types": 0,
+  "evidence": "The affected sample's empty transcript, duration and processing time match the failed cached request.",
+  "affected_runs": [
+    {
+      "run_id": "20260612T052922881353Z",
+      "model": "google_speech_recognition",
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D02",
+      "total_samples": 15211,
+      "failed_sample_count": 1
+    },
+    {
+      "run_id": "aggregate-aihub-all-google-speech-recognition-20260612T053009Z",
+      "model": "google_speech_recognition",
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "all",
+      "total_samples": 39916,
+      "failed_sample_count": 1
+    }
+  ],
+  "action": "Preserved sample data and metrics; marked affected local runs as not full evaluations and excluded them from the public leaderboard.",
+  "public_rows_before": 64,
+  "public_rows_after": 62,
+  "recovery": "Resolve the request failure, remove the reported invalid cache entry, rerun the full D02 evaluation, then regenerate AIHub all and the public leaderboard.",
+  "external_api_requests_during_audit": 0
+}

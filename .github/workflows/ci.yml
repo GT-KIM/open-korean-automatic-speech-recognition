@@ -37,5 +37,7 @@ jobs:
           done < <(find openkoasr scripts tests -name "*.py" -type f)
       - name: Check JavaScript syntax
         run: node --check site/app.js
+      - name: Test leaderboard aggregation, chart and workspace controls
+        run: node --test tests/test_site_overall.js tests/test_site_tradeoff.js tests/test_site_workspace.js
       - name: Build Pages static site
         run: python scripts/build_pages.py --output_dir _site

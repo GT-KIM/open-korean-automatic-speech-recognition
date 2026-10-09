@@ -1,72 +1,126 @@
 # OpenKoASR Leaderboard
 
-This table includes only full evaluation runs generated from `results/**/leaderboard_row.json` or curated in `doc/submitted_results.json`.
+These tables include only full evaluation runs generated from `results/**/leaderboard_row.json` or curated in `doc/submitted_results.json`.
 
-[Live leaderboard](https://gt-kim.github.io/open-korean-automatic-speech-recognition/) | [Leaderboard JSON](https://gt-kim.github.io/open-korean-automatic-speech-recognition/leaderboard_data.json) | [Submit a result](https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new?template=result_submission.md)
+[Live leaderboard](https://gt-kim.github.io/open-korean-automatic-speech-recognition/) | [Evaluation method](https://gt-kim.github.io/open-korean-automatic-speech-recognition/#evaluation-method) | [Leaderboard JSON](https://gt-kim.github.io/open-korean-automatic-speech-recognition/leaderboard_data.json) | [Submit a result](https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new?template=result_submission.md)
 
-| Model | Dataset | Subset | WER | CER | MER | JER | SER | RTFx | Latency(s) | GPU | Outliers | Run |
-| :-- | :-- | :-- | --: | --: | --: | --: | --: | --: | --: | :-- | --: | :-- |
-| [whisper_large_v3](https://huggingface.co/openai/whisper-large-v3) | AIHubLowQualityTelephone | D03 | 0.2377 | 0.0905 | 0.1121 | 0.0745 | 0.7602 | 12.8935 | 1.0160 | NVIDIA GeForce RTX 3090 Ti | 1 / 1936 | 20260613T122228281671Z |
-| [whisper_large_v3](https://huggingface.co/openai/whisper-large-v3) | AIHubLowQualityTelephone | D01 | 0.2533 | 0.0933 | 0.1292 | 0.0711 | 0.7399 | 22.2962 | 0.2343 | NVIDIA GeForce RTX 3090 Ti | 32 / 8664 | 20260613T103157818700Z |
-| [whisper_large_v3_turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | AIHubLowQualityTelephone | D03 | 0.2438 | 0.0934 | 0.1168 | 0.0773 | 0.7590 | 86.6186 | 0.0764 | NVIDIA GeForce RTX 3090 Ti | 2 / 1936 | 20260613T135536202882Z |
-| [whisper_large_v3_turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | AIHubLowQualityTelephone | D01 | 0.2583 | 0.0964 | 0.1360 | 0.0734 | 0.7517 | 75.6181 | 0.0665 | NVIDIA GeForce RTX 3090 Ti | 28 / 8664 | 20260613T133405845599Z |
-| [whisper_large_v3](https://huggingface.co/openai/whisper-large-v3) | AIHubLowQualityTelephone | D04 | 0.2703 | 0.0964 | 0.1355 | 0.0736 | 0.7528 | 22.5356 | 0.2128 | NVIDIA GeForce RTX 3090 Ti | 51 / 14105 | 20260613T131335399592Z |
-| [whisper_large_v3_turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | AIHubLowQualityTelephone | D04 | 0.2739 | 0.0990 | 0.1387 | 0.0760 | 0.7589 | 69.7698 | 0.0662 | NVIDIA GeForce RTX 3090 Ti | 50 / 14105 | 20260613T141216255385Z |
-| [whisper_large_v3](https://huggingface.co/openai/whisper-large-v3) | AIHubLowQualityTelephone | all | 0.2837 | 0.1062 | 0.1516 | 0.0821 | 0.7643 | 21.5925 | 0.2864 | NVIDIA GeForce RTX 3090 Ti | 145 / 39916 | aggregate-aihub-all-whisper-large-v3-20260613T141229Z |
-| [whisper_large_v3_turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | AIHubLowQualityTelephone | all | 0.2882 | 0.1087 | 0.1564 | 0.0841 | 0.7724 | 75.6244 | 0.0673 | NVIDIA GeForce RTX 3090 Ti | 136 / 39916 | aggregate-aihub-all-whisper-large-v3-turbo-20260613T141230Z |
-| [whisper_large_v3](https://huggingface.co/openai/whisper-large-v3) | AIHubLowQualityTelephone | D02 | 0.3194 | 0.1246 | 0.1844 | 0.0972 | 0.7894 | 21.4278 | 0.2913 | NVIDIA GeForce RTX 3090 Ti | 61 / 15211 | 20260613T114723504497Z |
-| [whisper_large_v3_turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | AIHubLowQualityTelephone | D02 | 0.3241 | 0.1266 | 0.1894 | 0.0986 | 0.7984 | 79.6547 | 0.0675 | NVIDIA GeForce RTX 3090 Ti | 56 / 15211 | 20260613T135224406259Z |
-| [qwen3_asr_1_7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | KsponSpeech | other | 0.3999 | 0.1431 | 0.2220 | 0.0952 | 0.9085 | 39.4907 | 0.1244 | NVIDIA GeForce RTX 3090 Ti | 6 / 3000 | 20260503T151705877082Z |
-| [qwen3_asr_0_6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | KsponSpeech | other | 0.4295 | 0.1626 | 0.2517 | 0.1107 | 0.9105 | 17.5404 | 0.2739 | NVIDIA GeForce RTX 3090 Ti | 6 / 3000 | 20260503T125648560195Z |
-| [qwen3_asr_1_7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | KsponSpeech | clean | 0.3983 | 0.1628 | 0.2474 | 0.1098 | 0.8265 | 35.5186 | 0.0922 | NVIDIA GeForce RTX 3090 Ti | 8 / 3000 | 20260503T150932121213Z |
-| [whisper_large_v3](https://huggingface.co/openai/whisper-large-v3) | KsponSpeech | other | 0.3960 | 0.1656 | 0.2186 | 0.1222 | 0.8805 | 20.4031 | 0.2235 | NVIDIA GeForce RTX 3090 Ti | 5 / 3000 | 20260613T095716065626Z |
-| [qwen3_asr_1_7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | AIHubLowQualityTelephone | D03 | 0.3983 | 0.1664 | 0.2222 | 0.1326 | 0.9075 | 54.8461 | 0.1244 | NVIDIA GeForce RTX 3090 Ti | 1 / 1936 | 20260503T161924528431Z |
-| [qwen3_asr_1_7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | AIHubLowQualityTelephone | D01 | 0.4031 | 0.1673 | 0.2429 | 0.1262 | 0.9098 | 51.1186 | 0.1073 | NVIDIA GeForce RTX 3090 Ti | 29 / 8664 | 20260503T153438672098Z |
-| [qwen3_asr_1_7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | AIHubLowQualityTelephone | D04 | 0.3936 | 0.1680 | 0.2319 | 0.1309 | 0.8727 | 40.4525 | 0.1454 | NVIDIA GeForce RTX 3090 Ti | 55 / 14105 | 20260503T165637340335Z |
-| [whisper_large_v3_turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | KsponSpeech | other | 0.4071 | 0.1703 | 0.2276 | 0.1243 | 0.8800 | 68.9714 | 0.0658 | NVIDIA GeForce RTX 3090 Ti | 9 / 3000 | 20260613T132341172620Z |
-| [whisper_large_v3](https://huggingface.co/openai/whisper-large-v3) | KsponSpeech | clean | 0.3948 | 0.1804 | 0.2284 | 0.1318 | 0.8020 | 15.9264 | 0.1996 | NVIDIA GeForce RTX 3090 Ti | 20 / 3000 | 20260613T094423596588Z |
-| [qwen3_asr_0_6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | KsponSpeech | clean | 0.4397 | 0.1856 | 0.2838 | 0.1279 | 0.8588 | 15.1105 | 0.2253 | NVIDIA GeForce RTX 3090 Ti | 12 / 3000 | 20260503T124153468914Z |
-| [whisper_medium](https://huggingface.co/openai/whisper-medium) | KsponSpeech | other | 0.4380 | 0.1908 | 0.2554 | 0.1401 | 0.9056 | 37.3104 | 0.1244 | NVIDIA GeForce RTX 3090 Ti | 13 / 3000 | 20260503T104945732451Z |
-| [whisper_large_v3_turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | KsponSpeech | clean | 0.4166 | 0.1948 | 0.2553 | 0.1421 | 0.8254 | 49.4932 | 0.0639 | NVIDIA GeForce RTX 3090 Ti | 21 / 3000 | 20260613T131836637511Z |
-| [qwen3_asr_0_6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | AIHubLowQualityTelephone | D01 | 0.4562 | 0.1973 | 0.2889 | 0.1503 | 0.9238 | 53.9637 | 0.1050 | NVIDIA GeForce RTX 3090 Ti | 45 / 8664 | 20260503T134506305691Z |
-| [qwen3_asr_1_7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | AIHubLowQualityTelephone | all | 0.4445 | 0.1993 | 0.2843 | 0.1555 | 0.9049 | 46.4847 | 0.1338 | NVIDIA GeForce RTX 3090 Ti | 181 / 39916 | aggregate-aihub-all-qwen3-asr-1-7b-20260503T165809Z |
-| [qwen3_asr_0_6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | AIHubLowQualityTelephone | D03 | 0.4593 | 0.2006 | 0.2800 | 0.1619 | 0.9271 | 45.9698 | 0.1557 | NVIDIA GeForce RTX 3090 Ti | 2 / 1936 | 20260503T143033863265Z |
-| [whisper_medium](https://huggingface.co/openai/whisper-medium) | KsponSpeech | clean | 0.4472 | 0.2101 | 0.2682 | 0.1511 | 0.8551 | 27.3881 | 0.1236 | NVIDIA GeForce RTX 3090 Ti | 33 / 3000 | 20260503T104238810452Z |
-| [qwen3_asr_0_6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | AIHubLowQualityTelephone | D04 | 0.4775 | 0.2109 | 0.2961 | 0.1636 | 0.9234 | 46.1146 | 0.1277 | NVIDIA GeForce RTX 3090 Ti | 60 / 14105 | 20260503T150347041511Z |
-| [whisper_small](https://huggingface.co/openai/whisper-small) | KsponSpeech | other | 0.4781 | 0.2144 | 0.2976 | 0.1587 | 0.9264 | 62.0116 | 0.0784 | NVIDIA GeForce RTX 3090 Ti | 11 / 3000 | 20260503T093806989032Z |
-| [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | KsponSpeech | clean | 0.2952 | 0.2312 | 0.1835 | 0.1604 |  | 5.7471 | 0.3959 | RTX3090ti | 23 / 3000 | readme-legacy-whisper-large-v3-kspon-clean |
-| [whisper_small](https://huggingface.co/openai/whisper-small) | KsponSpeech | clean | 0.4794 | 0.2321 | 0.3040 | 0.1713 | 0.8739 | 61.0019 | 0.0544 | NVIDIA GeForce RTX 3090 Ti | 51 / 3000 | 20260503T093331782326Z |
-| [qwen3_asr_0_6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | AIHubLowQualityTelephone | all | 0.5212 | 0.2437 | 0.3496 | 0.1905 | 0.9383 | 48.8321 | 0.1298 | NVIDIA GeForce RTX 3090 Ti | 248 / 39916 | aggregate-aihub-all-qwen3-asr-0-6b-20260503T165808Z |
-| [qwen3_asr_1_7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | AIHubLowQualityTelephone | D02 | 0.5213 | 0.2510 | 0.3646 | 0.1982 | 0.9318 | 48.3740 | 0.1394 | NVIDIA GeForce RTX 3090 Ti | 96 / 15211 | 20260503T161427307493Z |
-| [whisper_medium](https://huggingface.co/openai/whisper-medium) | AIHubLowQualityTelephone | D03 | 0.5221 | 0.2522 | 0.3256 | 0.2056 | 0.9704 | 44.5108 | 0.1525 | NVIDIA GeForce RTX 3090 Ti | 10 / 1936 | 20260503T115558830261Z |
-| [whisper_base](https://huggingface.co/openai/whisper-base) | KsponSpeech | other | 0.5663 | 0.2780 | 0.4011 | 0.2078 | 0.9540 | 110.3830 | 0.0446 | NVIDIA GeForce RTX 3090 Ti | 21 / 3000 | 20260503T084613049499Z |
-| [whisper_medium](https://huggingface.co/openai/whisper-medium) | AIHubLowQualityTelephone | D01 | 0.5193 | 0.2789 | 0.3378 | 0.2290 | 0.9499 | 41.2991 | 0.1335 | NVIDIA GeForce RTX 3090 Ti | 67 / 8664 | 20260503T111038213036Z |
-| [whisper_medium](https://huggingface.co/openai/whisper-medium) | AIHubLowQualityTelephone | D04 | 0.5361 | 0.2818 | 0.3437 | 0.2308 | 0.9484 | 40.3986 | 0.1253 | NVIDIA GeForce RTX 3090 Ti | 121 / 14105 | 20260503T122808569314Z |
-| [whisper_small](https://huggingface.co/openai/whisper-small) | AIHubLowQualityTelephone | D01 | 0.5546 | 0.2960 | 0.3764 | 0.2411 | 0.9623 | 80.4292 | 0.0685 | NVIDIA GeForce RTX 3090 Ti | 86 / 8664 | 20260503T094920732351Z |
-| [whisper_medium](https://huggingface.co/openai/whisper-medium) | AIHubLowQualityTelephone | all | 0.5637 | 0.3017 | 0.3776 | 0.2483 | 0.9565 | 41.0360 | 0.1355 | NVIDIA GeForce RTX 3090 Ti | 420 / 39916 | aggregate-aihub-all-whisper-medium-20260503T165811Z |
-| [whisper_base](https://huggingface.co/openai/whisper-base) | KsponSpeech | clean | 0.5633 | 0.3040 | 0.4049 | 0.2296 | 0.9206 | 95.2757 | 0.0355 | NVIDIA GeForce RTX 3090 Ti | 54 / 3000 | 20260503T084323817330Z |
-| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | AIHubLowQualityTelephone | D01 | 0.5708 | 0.3048 | 0.3602 | 0.2566 | 0.9817 | 4.1431 | 1.2439 |  | 16 / 8664 | 20260611T112044282099Z |
-| [whisper_small](https://huggingface.co/openai/whisper-small) | AIHubLowQualityTelephone | D04 | 0.5736 | 0.3056 | 0.3853 | 0.2493 | 0.9626 | 76.7501 | 0.0673 | NVIDIA GeForce RTX 3090 Ti | 139 / 14105 | 20260503T103445151160Z |
-| [qwen3_asr_0_6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | AIHubLowQualityTelephone | D02 | 0.6070 | 0.3063 | 0.4431 | 0.2422 | 0.9620 | 48.7971 | 0.1425 | NVIDIA GeForce RTX 3090 Ti | 141 / 15211 | 20260503T142438159660Z |
-| [whisper_small](https://huggingface.co/openai/whisper-small) | AIHubLowQualityTelephone | D03 | 0.5933 | 0.3098 | 0.4146 | 0.2566 | 0.9708 | 60.9250 | 0.1207 | NVIDIA GeForce RTX 3090 Ti | 21 / 1936 | 20260503T101656776514Z |
-| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | KsponSpeech | other | 0.5407 | 0.3140 | 0.3799 | 0.2706 | 0.9683 | 3.7406 | 1.1156 |  | 0 / 3000 | 20260611T233041686594Z |
-| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | AIHubLowQualityTelephone | D04 | 0.6173 | 0.3224 | 0.3847 | 0.2679 | 0.9943 | 4.1752 | 1.1330 |  | 19 / 14105 | 20260611T163019846455Z |
-| [whisper_small](https://huggingface.co/openai/whisper-small) | AIHubLowQualityTelephone | all | 0.6126 | 0.3358 | 0.4341 | 0.2762 | 0.9689 | 77.1224 | 0.0750 | NVIDIA GeForce RTX 3090 Ti | 594 / 39916 | aggregate-aihub-all-whisper-small-20260503T165812Z |
-| [whisper_medium](https://huggingface.co/openai/whisper-medium) | AIHubLowQualityTelephone | D02 | 0.6203 | 0.3396 | 0.4388 | 0.2813 | 0.9660 | 41.0333 | 0.1438 | NVIDIA GeForce RTX 3090 Ti | 222 / 15211 | 20260503T115020175977Z |
-| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | KsponSpeech | other | 0.6570 | 0.3499 | 0.4984 | 0.2682 | 0.9712 | 115.7445 | 0.0466 | NVIDIA GeForce RTX 3090 Ti | 46 / 3000 | 20260503T075923023494Z |
-| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | AIHubLowQualityTelephone | all | 0.6352 | 0.3710 | 0.4299 | 0.3229 | 0.9912 | 4.2988 | 1.2256 |  | 53 / 39916 | aggregate-aihub-all-google-speech-recognition-20260612T053009Z |
-| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | KsponSpeech | clean | 0.6417 | 0.3720 | 0.5002 | 0.2887 | 0.9378 | 115.3422 | 0.0303 | NVIDIA GeForce RTX 3090 Ti | 91 / 3000 | 20260503T075532897072Z |
-| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | KsponSpeech | clean | 0.5725 | 0.3816 | 0.4410 | 0.3385 | 0.9537 | 3.0396 | 1.1211 |  | 1 / 3000 | 20260610T021005900995Z |
-| [whisper_base](https://huggingface.co/openai/whisper-base) | AIHubLowQualityTelephone | D01 | 0.6856 | 0.3884 | 0.5116 | 0.3190 | 0.9864 | 114.3294 | 0.0536 | NVIDIA GeForce RTX 3090 Ti | 189 / 8664 | 20260503T085510938250Z |
-| [whisper_small](https://huggingface.co/openai/whisper-small) | AIHubLowQualityTelephone | D02 | 0.6851 | 0.3904 | 0.5157 | 0.3242 | 0.9785 | 77.6507 | 0.0801 | NVIDIA GeForce RTX 3090 Ti | 348 / 15211 | 20260503T101219688008Z |
-| [whisper_base](https://huggingface.co/openai/whisper-base) | AIHubLowQualityTelephone | D04 | 0.7111 | 0.4019 | 0.5201 | 0.3303 | 0.9868 | 111.5490 | 0.0492 | NVIDIA GeForce RTX 3090 Ti | 262 / 14105 | 20260503T092947492745Z |
-| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | AIHubLowQualityTelephone | D02 | 0.6749 | 0.4305 | 0.4894 | 0.3861 | 0.9930 | 4.4826 | 1.2577 |  | 18 / 15211 | 20260612T052922881353Z |
-| [whisper_base](https://huggingface.co/openai/whisper-base) | AIHubLowQualityTelephone | all | 0.7466 | 0.4344 | 0.5744 | 0.3601 | 0.9893 | 111.2057 | 0.0563 | NVIDIA GeForce RTX 3090 Ti | 1168 / 39916 | aggregate-aihub-all-whisper-base-20260503T165810Z |
-| [whisper_base](https://huggingface.co/openai/whisper-base) | AIHubLowQualityTelephone | D03 | 0.7853 | 0.4628 | 0.6263 | 0.3877 | 0.9978 | 102.3938 | 0.0784 | NVIDIA GeForce RTX 3090 Ti | 77 / 1936 | 20260503T091632517286Z |
-| [whisper_base](https://huggingface.co/openai/whisper-base) | AIHubLowQualityTelephone | D02 | 0.8110 | 0.4884 | 0.6558 | 0.4087 | 0.9922 | 110.1870 | 0.0619 | NVIDIA GeForce RTX 3090 Ti | 640 / 15211 | 20260503T091313872634Z |
-| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | AIHubLowQualityTelephone | D01 | 0.7837 | 0.4925 | 0.6404 | 0.4161 | 0.9947 | 142.8907 | 0.0453 | NVIDIA GeForce RTX 3090 Ti | 399 / 8664 | 20260503T080725775028Z |
-| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | AIHubLowQualityTelephone | D04 | 0.8077 | 0.5046 | 0.6445 | 0.4250 | 0.9926 | 131.2828 | 0.0476 | NVIDIA GeForce RTX 3090 Ti | 706 / 14105 | 20260503T084105537832Z |
-| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | AIHubLowQualityTelephone | all | 0.8429 | 0.5404 | 0.6998 | 0.4590 | 0.9950 | 131.5249 | 0.0522 | NVIDIA GeForce RTX 3090 Ti | 2332 / 39916 | aggregate-aihub-all-whisper-tiny-20260503T165814Z |
-| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | AIHubLowQualityTelephone | D03 | 0.7409 | 0.5533 | 0.6024 | 0.5233 | 0.9964 | 4.4503 | 1.5660 |  | 0 / 1936 | 20260611T064319962916Z |
-| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | AIHubLowQualityTelephone | D02 | 0.9032 | 0.5939 | 0.7760 | 0.5078 | 0.9970 | 125.1099 | 0.0598 | NVIDIA GeForce RTX 3090 Ti | 1091 / 15211 | 20260503T082519170241Z |
-| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | AIHubLowQualityTelephone | D03 | 0.9035 | 0.6069 | 0.7863 | 0.5266 | 0.9983 | 131.4612 | 0.0590 | NVIDIA GeForce RTX 3090 Ti | 136 / 1936 | 20260503T082751480346Z |
+Error rates are shown in %, RTFx in ×, and latency in ms. JSON retains ratios and seconds.
+
+RTFx is the mean of per-sample audio duration / processing time after outlier exclusion, not total audio duration / total processing time.
+
+## Standard results
+
+Kspon normalization · CER > 100% excluded.
+
+### AIHubLowQualityTelephone · D01
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 9.39% | 0.37% (32 / 8664) | 9.05% | 25.47% | 13.02% | 7.14% | 74.27% | 33.69× | 152.3 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T163854554748Z |
+| [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 9.61% | 0.35% (30 / 8664) | 9.28% | 25.89% | 13.66% | 7.31% | 75.40% | 80.70× | 61.8 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T182125441958Z |
+| [Qwen/Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | 16.71% | 0.33% (29 / 8664) | 14.56% | 40.23% | 24.26% | 12.60% | 90.92% | 26.99× | 200.1 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T222751453628Z |
+| [Qwen/Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | 19.79% | 0.50% (43 / 8664) | 17.58% | 45.73% | 28.99% | 15.08% | 92.40% | 28.40× | 191.1 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T194632367840Z |
+| [openai/whisper-medium](https://huggingface.co/openai/whisper-medium) | 27.89% | 0.87% (75 / 8664) | 28.38% | 51.84% | 33.77% | 22.87% | 95.04% | 51.64× | 101.8 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T145929950532Z |
+| [openai/whisper-small](https://huggingface.co/openai/whisper-small) | 29.58% | 1.02% (88 / 8664) | 29.37% | 55.43% | 37.65% | 24.08% | 96.18% | 102.35× | 52.3 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T135922924753Z |
+| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | 30.48% | 0.18% (16 / 8664) | 28.53% | 57.08% | 36.02% | 25.66% | 98.17% | 4.14× | 1,243.9 ms |  | 20260611T112044282099Z |
+| [openai/whisper-base](https://huggingface.co/openai/whisper-base) | 38.91% | 2.19% (190 / 8664) | 43.92% | 68.59% | 51.16% | 31.98% | 98.62% | 174.56× | 32.4 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T132225280646Z |
+| [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) | 49.60% | 4.27% (370 / 8664) | 64.34% | 78.77% | 64.50% | 41.99% | 99.47% | 219.78× | 27.8 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T125219542222Z |
+
+### AIHubLowQualityTelephone · D02
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 12.48% | 0.41% (62 / 15211) | 11.68% | 31.98% | 18.46% | 9.73% | 78.90% | 34.41× | 159.4 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T172057416308Z |
+| [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 12.70% | 0.38% (58 / 15211) | 11.92% | 32.49% | 18.99% | 9.89% | 80.00% | 84.79× | 62.8 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T183852745255Z |
+| [Qwen/Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | 25.07% | 0.59% (90 / 15211) | 21.20% | 52.07% | 36.39% | 19.81% | 93.10% | 27.08× | 215.4 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T232411775431Z |
+| [Qwen/Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | 30.67% | 0.87% (132 / 15211) | 25.86% | 60.74% | 44.38% | 24.23% | 96.27% | 27.84× | 210.7 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T204140880955Z |
+| [openai/whisper-medium](https://huggingface.co/openai/whisper-medium) | 33.88% | 1.48% (225 / 15211) | 33.72% | 62.00% | 43.85% | 28.05% | 96.59% | 50.60× | 112.7 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T152956012783Z |
+| [openai/whisper-small](https://huggingface.co/openai/whisper-small) | 39.03% | 2.35% (357 / 15211) | 39.82% | 68.56% | 51.56% | 32.42% | 97.85% | 99.82× | 58.9 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T141607815618Z |
+| [openai/whisper-base](https://huggingface.co/openai/whisper-base) | 48.85% | 4.26% (648 / 15211) | 59.20% | 81.07% | 65.62% | 40.86% | 99.24% | 168.33× | 37.3 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T133354302307Z |
+| [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) | 59.48% | 6.94% (1056 / 15211) | 81.85% | 90.46% | 77.85% | 50.90% | 99.73% | 214.03× | 31.7 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T130229382034Z |
+
+### AIHubLowQualityTelephone · D03
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 9.00% | 0.10% (2 / 1936) | 8.05% | 23.74% | 11.16% | 7.39% | 76.16% | 33.22× | 200.9 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T172806179213Z |
+| [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 9.33% | 0.10% (2 / 1936) | 8.38% | 24.35% | 11.62% | 7.72% | 75.85% | 93.21× | 69.9 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T184143488436Z |
+| [Qwen/Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | 16.55% | 0.05% (1 / 1936) | 13.81% | 39.67% | 22.14% | 13.20% | 90.80% | 24.85× | 276.8 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T233350350771Z |
+| [Qwen/Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | 20.10% | 0.15% (3 / 1936) | 17.20% | 46.10% | 27.99% | 16.19% | 92.91% | 25.51× | 270.7 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T205106763347Z |
+| [openai/whisper-medium](https://huggingface.co/openai/whisper-medium) | 25.18% | 0.57% (11 / 1936) | 23.76% | 52.15% | 32.54% | 20.55% | 96.99% | 48.52× | 139.4 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T153504145221Z |
+| [openai/whisper-small](https://huggingface.co/openai/whisper-small) | 30.92% | 1.08% (21 / 1936) | 29.63% | 59.14% | 41.31% | 25.62% | 96.87% | 94.41× | 72.9 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T141905939595Z |
+| [openai/whisper-base](https://huggingface.co/openai/whisper-base) | 46.35% | 4.08% (79 / 1936) | 54.20% | 78.48% | 62.77% | 38.78% | 99.78% | 155.68× | 47.6 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T133606680588Z |
+| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | 55.33% | 0.00% (0 / 1936) | 58.35% | 74.09% | 60.24% | 52.33% | 99.64% | 4.45× | 1,566 ms |  | 20260611T064319962916Z |
+| [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) | 61.03% | 6.51% (126 / 1936) | 75.79% | 90.36% | 78.54% | 53.02% | 99.83% | 202.40× | 38.9 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T130425831103Z |
+
+### AIHubLowQualityTelephone · D04
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 9.62% | 0.37% (52 / 14105) | 9.03% | 26.99% | 13.51% | 7.34% | 75.19% | 31.84× | 148.6 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T180421289678Z |
+| [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 9.84% | 0.37% (52 / 14105) | 9.47% | 27.23% | 13.80% | 7.55% | 75.76% | 74.45× | 61.5 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T185727806725Z |
+| [Qwen/Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | 16.78% | 0.38% (54 / 14105) | 14.61% | 39.34% | 23.18% | 13.09% | 87.22% | 25.43× | 198 ms | NVIDIA GeForce RTX 3090 Ti | 20261009T002146998623Z |
+| [Qwen/Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | 21.10% | 0.41% (58 / 14105) | 18.26% | 47.79% | 29.66% | 16.37% | 92.28% | 27.08× | 186.6 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T213621171051Z |
+| [openai/whisper-medium](https://huggingface.co/openai/whisper-medium) | 28.02% | 0.96% (135 / 14105) | 28.58% | 53.36% | 34.23% | 22.95% | 94.72% | 48.10× | 101.6 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T160026149064Z |
+| [openai/whisper-small](https://huggingface.co/openai/whisper-small) | 30.51% | 1.08% (153 / 14105) | 29.62% | 57.25% | 38.50% | 24.88% | 96.22% | 97.09× | 50.9 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T143224451403Z |
+| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | 32.24% | 0.13% (19 / 14105) | 29.84% | 61.73% | 38.47% | 26.79% | 99.43% | 4.18× | 1,133 ms |  | 20260611T163019846455Z |
+| [openai/whisper-base](https://huggingface.co/openai/whisper-base) | 40.15% | 1.87% (264 / 14105) | 43.52% | 71.06% | 51.96% | 32.98% | 98.67% | 165.40× | 31.2 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T134453184449Z |
+| [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) | 50.58% | 4.89% (690 / 14105) | 67.65% | 80.82% | 64.60% | 42.62% | 99.25% | 203.51× | 28.2 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T131246943166Z |
+
+### AIHubLowQualityTelephone · all
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 10.63% | 0.37% (148 / 39916) | 10.00% | 28.40% | 15.17% | 8.21% | 76.45% | 33.29× | 156 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-openai-whisper-large-v3-20261009T002230Z |
+| [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 10.85% | 0.36% (142 / 39916) | 10.31% | 28.80% | 15.64% | 8.40% | 77.30% | 80.66× | 62.5 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-openai-whisper-large-v3-turbo-20261009T002232Z |
+| [Qwen/Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | 19.91% | 0.44% (174 / 39916) | 17.11% | 44.39% | 28.39% | 15.55% | 90.43% | 26.36× | 208.9 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-Qwen-Qwen3-ASR-1.7B-20261009T002235Z |
+| [Qwen/Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | 24.40% | 0.59% (236 / 39916) | 21.00% | 52.18% | 35.02% | 19.07% | 93.85% | 27.58× | 200.8 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-Qwen-Qwen3-ASR-0.6B-20261009T002233Z |
+| [openai/whisper-medium](https://huggingface.co/openai/whisper-medium) | 30.08% | 1.12% (446 / 39916) | 30.22% | 56.25% | 37.70% | 24.75% | 95.61% | 49.84× | 107.7 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-openai-whisper-medium-20261009T002229Z |
+| [openai/whisper-small](https://huggingface.co/openai/whisper-small) | 33.55% | 1.55% (619 / 39916) | 33.54% | 61.22% | 43.39% | 27.59% | 96.86% | 99.14× | 55.3 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-openai-whisper-small-20261009T002227Z |
+| [openai/whisper-base](https://huggingface.co/openai/whisper-base) | 43.45% | 2.96% (1181 / 39916) | 50.42% | 74.64% | 57.44% | 36.00% | 98.93% | 168.04× | 34.6 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-openai-whisper-base-20261009T002226Z |
+| [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) | 54.21% | 5.62% (2242 / 39916) | 73.01% | 84.45% | 70.23% | 46.09% | 99.51% | 210.99× | 29.9 ms | NVIDIA GeForce RTX 3090 Ti | aggregate-aihub-all-openai-whisper-tiny-20261009T002224Z |
+
+### KsponSpeech · clean
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [Qwen/Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | 16.26% | 0.27% (8 / 3000) | 12.01% | 39.85% | 24.87% | 10.98% | 82.79% | 18.99× | 173.4 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T214611129760Z |
+| [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 18.00% | 0.60% (18 / 3000) | 15.01% | 39.41% | 22.82% | 13.15% | 79.91% | 24.96× | 124.7 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T160746007949Z |
+| [Qwen/Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | 18.58% | 0.40% (12 / 3000) | 13.99% | 43.92% | 28.35% | 12.80% | 85.68% | 19.84× | 166.5 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T190639451672Z |
+| [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 19.53% | 0.63% (19 / 3000) | 16.44% | 41.44% | 25.52% | 14.27% | 82.42% | 54.56× | 56.7 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T180757701105Z |
+| [openai/whisper-medium](https://huggingface.co/openai/whisper-medium) | 21.01% | 1.13% (34 / 3000) | 18.04% | 44.69% | 26.78% | 15.09% | 85.50% | 35.70× | 88.9 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T143753003298Z |
+| [openai/whisper-small](https://huggingface.co/openai/whisper-small) | 23.22% | 1.63% (49 / 3000) | 20.86% | 47.90% | 30.36% | 17.12% | 87.22% | 74.18× | 43.6 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T134741121713Z |
+| [openai/whisper-base](https://huggingface.co/openai/whisper-base) | 30.40% | 1.77% (53 / 3000) | 27.73% | 56.23% | 40.48% | 22.94% | 92.06% | 128.76× | 25.3 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T131433549498Z |
+| [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) | 37.27% | 3.10% (93 / 3000) | 38.44% | 64.12% | 50.20% | 28.94% | 93.81% | 165.12× | 20.5 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T124521558407Z |
+| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | 38.16% | 0.03% (1 / 3000) | 27.14% | 57.25% | 44.10% | 33.85% | 95.37% | 2.58× | 1,122 ms |  | 20260610T021005900995Z |
+
+### KsponSpeech · other
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [Qwen/Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) | 14.26% | 0.20% (6 / 3000) | 11.66% | 39.89% | 22.04% | 9.49% | 90.85% | 21.05× | 221.6 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T215752178738Z |
+| [Qwen/Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B) | 16.32% | 0.17% (5 / 3000) | 13.60% | 42.96% | 25.33% | 11.10% | 90.95% | 22.03× | 212.3 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T191751866755Z |
+| [openai/whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 16.46% | 0.17% (5 / 3000) | 15.21% | 39.50% | 21.76% | 12.14% | 88.05% | 29.77× | 151.5 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T161553648588Z |
+| [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 17.13% | 0.27% (8 / 3000) | 15.73% | 40.74% | 22.92% | 12.55% | 88.00% | 72.24× | 62 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T181133199462Z |
+| [openai/whisper-medium](https://huggingface.co/openai/whisper-medium) | 19.08% | 0.43% (13 / 3000) | 17.87% | 43.78% | 25.58% | 14.03% | 90.49% | 42.59× | 106.8 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T144344972239Z |
+| [openai/whisper-small](https://huggingface.co/openai/whisper-small) | 21.35% | 0.43% (13 / 3000) | 19.21% | 47.74% | 29.72% | 15.77% | 92.67% | 85.87× | 53.1 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T135049881299Z |
+| [openai/whisper-base](https://huggingface.co/openai/whisper-base) | 27.72% | 0.80% (24 / 3000) | 26.67% | 56.47% | 39.97% | 20.69% | 95.26% | 145.03× | 32.2 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T131639934999Z |
+| [google_speech_recognition](https://pypi.org/project/SpeechRecognition/) | 31.40% | 0.00% (0 / 3000) | 25.80% | 54.07% | 37.99% | 27.06% | 96.83% | 3.74× | 1,115.6 ms |  | 20260611T233041686594Z |
+| [openai/whisper-tiny](https://huggingface.co/openai/whisper-tiny) | 35.03% | 1.60% (48 / 3000) | 35.06% | 65.64% | 49.92% | 26.89% | 97.15% | 188.69× | 25.4 ms | NVIDIA GeForce RTX 3090 Ti | 20261008T124707819833Z |
+
+## Reference results
+
+Different or unverified evaluation protocols; excluded from standard rankings.
+
+### KsponSpeech · clean · Unverified protocol
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 23.12% | 0.77% (23 / 3000) | N/A | 29.52% | 18.35% | 16.04% |  | 5.75× | 395.9 ms | RTX3090ti | readme-legacy-whisper-large-v3-kspon-clean |
+
+### KsponSpeech · clean · v1/punctuation_agnostic/cer>1.0
+
+| Model | Main CER | Outlier rate | All-sample CER | WER | MER | JER | SER | RTFx | Latency | GPU | Run |
+| :-- | --: | --: | --: | --: | --: | --: | --: | --: | --: | :-- | :-- |
+| [whisper_base](https://huggingface.co/openai/whisper-base) | 26.85% | 1.70% (51 / 3000) | 31.92% | 46.29% | 36.83% | 20.98% | 82.84% | 27.68× | 118.5 ms | NVIDIA GeForce RTX 3090 Ti | 20260503T025048555494Z |
+| [whisper_tiny](https://huggingface.co/openai/whisper-tiny) | 34.65% | 3.13% (94 / 3000) | 56.08% | 56.17% | 47.44% | 27.28% | 88.33% | 37.46× | 80.6 ms | NVIDIA GeForce RTX 3090 Ti | 20260503T023237400589Z |

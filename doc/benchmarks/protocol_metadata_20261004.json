@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-04",
+  "scope": "Server/API leaderboard protocol and reproducibility metadata; no inference or score recalculation.",
+  "before_rows": 62,
+  "after_rows": 64,
+  "existing_rows_and_scores_preserved": 62,
+  "before_sha256": "fa0a4fb571202d0ac6b8df67bb439673164859b7ab5d364771977ed0944de8ed",
+  "after_sha256": "aeecb04101e0d80c0e2b0ae022b3a58b110b6c2f4fa2fd0c3cbb46b826607acd",
+  "metadata_status_counts": {
+    "recovered": 55,
+    "aggregate": 8,
+    "legacy": 1
+  },
+  "standard_protocol": "v1/kspon/cer>1.0",
+  "standard_protocol_rows": 61,
+  "added_reference_rows": [
+    {
+      "run_id": "20260503T025048555494Z",
+      "model": "whisper_base",
+      "dataset": "KsponSpeech",
+      "subset": "clean",
+      "evaluation_protocol": "v1/punctuation_agnostic/cer>1.0"
+    },
+    {
+      "run_id": "20260503T023237400589Z",
+      "model": "whisper_tiny",
+      "dataset": "KsponSpeech",
+      "subset": "clean",
+      "evaluation_protocol": "v1/punctuation_agnostic/cer>1.0"
+    }
+  ],
+  "legacy_unknown_runs": [
+    "readme-legacy-whisper-large-v3-kspon-clean"
+  ],
+  "evidence": "Recovered rows include the matching summary SHA-256. Aggregates retain all four source records.",
+  "limitations": [
+    "Historical model revisions and code hashes remain null because source artifacts did not record them.",
+    "Matching protocol IDs establish normalization/outlier rules, not identical implementation, model weights, packages or hardware."
+  ]
+}

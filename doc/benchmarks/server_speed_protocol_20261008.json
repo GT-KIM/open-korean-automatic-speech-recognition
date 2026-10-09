@@ -1,0 +1,558 @@
+{
+  "id": "server-speed-v4-retain-capped-20261008",
+  "status": "formal_server_speed_measurement_completed_and_verified",
+  "date": "2026-10-08",
+  "updated_date": "2026-10-08",
+  "environment": {
+    "runtime": "shared_linux_amd64_container",
+    "base_image": "pytorch/pytorch@sha256:db80a41f8428644cebcb3d75b0b62df334ab6c0e75785951eb25f48bfbd42407",
+    "image_id": "sha256:f9995a10077eb8bbd739388ff97c54f68e7656e6524183d1f76553c6f03c7e14",
+    "python": "3.12.3",
+    "python_policy": "Read from the sealed image; identical on both hosts. Supersedes Windows Python 3.13.5.",
+    "cuda": "13.0",
+    "packages": {
+      "torch": "2.13.0+cu130",
+      "torchvision": "0.28.0+cu130",
+      "torchaudio": "2.11.0+cu130",
+      "torchcodec": "0.14.0+cpu",
+      "transformers": "4.57.6",
+      "qwen-asr": "0.0.6",
+      "accelerate": "1.12.0",
+      "huggingface-hub": "0.36.2",
+      "numpy": "2.4.4",
+      "soundfile": "0.14.0",
+      "librosa": "0.11.0",
+      "datasets": "5.0.0",
+      "jiwer": "4.0.0",
+      "kiwipiepy": "0.23.1",
+      "jamo": "0.4.1"
+    },
+    "constraints": "docker/benchmark-constraints.txt",
+    "device": "cuda:0",
+    "gpu_count_used": 1,
+    "hosts": [
+      {
+        "id": "linux-server",
+        "kind": "native-linux",
+        "gpu": "NVIDIA GeForce RTX 3090 Ti",
+        "driver_observed": "580.178.04",
+        "status": "preflight_passed",
+        "observed_at_utc": "2026-10-08T06:48:02.153733+00:00",
+        "host_os": "Ubuntu 22.04.5 LTS",
+        "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+        "container_os": "Ubuntu 24.04.4 LTS",
+        "docker_engine": "29.8.2",
+        "nvidia_container_toolkit": "1.20.1",
+        "report_artifact": "results/environments/speed-v4-20261008/build-2/environment.json",
+        "report_sha256": "ccde9d9353e14d9871d396b55dafa3a1e9c84e79a02ed5d47611b2fe4ebf80ad",
+        "host_observation_artifact": "results/environments/linux-server/post-reboot-20261007.txt",
+        "torch_threads": 8,
+        "torch_interop_threads": 8,
+        "driver_resolution": {
+          "status": "updated_rebooted_and_verified",
+          "authorization_date": "2026-10-07",
+          "previous_driver": "570.211.01",
+          "installed_package": "nvidia-driver-580",
+          "installed_version": "580.178.04-0ubuntu0.22.04.1",
+          "package_source": "jammy-updates",
+          "apt_simulation": "passed",
+          "driver_changed": true,
+          "reboot_performed": true,
+          "reboot_verification": "boot_id_changed_and_580.178.04_kernel_module_loaded",
+          "installation_exit_code": 0,
+          "dpkg_audit": "passed",
+          "dkms_kernel": "6.8.0-138-generic",
+          "changed_packages": 41,
+          "package_change_scope": "NVIDIA driver stack only; no packages removed",
+          "installation_artifacts": "results/environments/linux-server/driver-update-20261007",
+          "previous_report_artifact": "results/environments/linux-server/20261006T121909189081Z/environment.json",
+          "previous_report_sha256": "2514d209b23d3f461e00395bd05fc82088a295ce035c0f01deb5cc3588fd86e3",
+          "compatibility_source": "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+        }
+      }
+    ],
+    "publication_policy": "Separate hardware/runtime cohorts. Do not pool repeats or speed rankings across hosts.",
+    "seal_gate": "The executing server must pass preflight for the final immutable image, source hash, package inventory, GPU and thread settings. A later local cohort requires its own preflight with this same image.",
+    "source_sha256": "f173ed8efcdbf0b6e07bc5b40fa7930d9a090fb270233b464b2ba3c5907a2524",
+    "package_inventory_sha256": "a36948693fbc98fb2ddfce5e22af7942204d4d3779e25167e24cda02d76fa5a9",
+    "package_inventory_hash_format": "UTF-8 JSON, sorted keys, separators comma/colon, no whitespace or trailing newline",
+    "parent_image_id": "sha256:f1379555b571ec99d12029fc3492530e65de91f0a82e5a10e26c303fd5231aa7",
+    "previous_image_id": "sha256:0a9137a3340e739e366b75a795954e8bae5afa4e325d4300b019e178305360c9",
+    "sealed_at_utc": "2026-10-08T06:48:02.153733+00:00"
+  },
+  "models": [
+    {
+      "repo": "openai/whisper-tiny",
+      "model_revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "processor_revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-tiny",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-tiny/resolve/169d4a4341b33bc18d8881c4b69c2e104e1cc0af/generation_config.json",
+      "generation_config_sha256": "a5d5325911f16e74001a72fa13d6e208eee51548f994646de1f4b4cc8b35b512",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-base",
+      "model_revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+      "processor_revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-base",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-base/resolve/e37978b90ca9030d5170a5c07aadb050351a65bb/generation_config.json",
+      "generation_config_sha256": "444b3f636d2fff89dd9ecf549e2a085b61f7ff0fa0246d4628bac6a3b8cc9ba4",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-small",
+      "model_revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+      "processor_revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-small",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/generation_config.json",
+      "generation_config_sha256": "71565b8ef50d0bf7a1193ed4bbed195b94e70c18894d81bba2f1233dcec3ab53",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-medium",
+      "model_revision": "abdf7c39ab9d0397620ccaea8974cc764cd0953e",
+      "processor_revision": "abdf7c39ab9d0397620ccaea8974cc764cd0953e",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-medium",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-medium/resolve/abdf7c39ab9d0397620ccaea8974cc764cd0953e/generation_config.json",
+      "generation_config_sha256": "503290bc2da3923915d96a96ab96ddaa76e7ea18fbd4c5c1822a2947c82c86db",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-large-v3",
+      "model_revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+      "processor_revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-large-v3",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-large-v3/resolve/06f233fe06e710322aca913c1bc4249a0d71fce1/generation_config.json",
+      "generation_config_sha256": "fbdfa70135de9b1d31553393f14e80aaeb1936ea36576b2ba864055943c09d23",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "openai/whisper-large-v3-turbo",
+      "model_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "processor_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "revision_source": "https://huggingface.co/api/models/openai/whisper-large-v3-turbo",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "language": "ko",
+      "generation_config_source": "https://huggingface.co/openai/whisper-large-v3-turbo/resolve/41f01f3fe87f28c78e2fbf8b568835947dd65ed9/generation_config.json",
+      "generation_config_sha256": "cce11bfe3aaa6ae9e072ea2637caaec8795e68d9b67e655a5af16ee509681a4c",
+      "generation_config": {
+        "decoder_start_token_id": 50258,
+        "eos_token_id": 50257,
+        "max_length": 448,
+        "pad_token_id": 50257
+      },
+      "call_overrides": {
+        "max_new_tokens": 128,
+        "language": "ko",
+        "task": "transcribe",
+        "num_beams": 1,
+        "temperature": 0.0,
+        "condition_on_prev_tokens": false
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "Qwen/Qwen3-ASR-0.6B",
+      "model_revision": "5eb144179a02acc5e5ba31e748d22b0cf3e303b0",
+      "processor_revision": "5eb144179a02acc5e5ba31e748d22b0cf3e303b0",
+      "revision_source": "https://huggingface.co/api/models/Qwen/Qwen3-ASR-0.6B",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "language": "Korean",
+      "generation_config_source": "https://huggingface.co/Qwen/Qwen3-ASR-0.6B/resolve/5eb144179a02acc5e5ba31e748d22b0cf3e303b0/generation_config.json",
+      "generation_config_sha256": "1da527824d81e07118facff437e03f2e24a23311e3bdeb2368973fe77e5f275c",
+      "generation_config": {
+        "eos_token_id": [
+          151643,
+          151645
+        ],
+        "pad_token_id": 151643,
+        "do_sample": false
+      },
+      "call_overrides": {
+        "max_new_tokens": 256
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    },
+    {
+      "repo": "Qwen/Qwen3-ASR-1.7B",
+      "model_revision": "7278e1e70fe206f11671096ffdd38061171dd6e5",
+      "processor_revision": "7278e1e70fe206f11671096ffdd38061171dd6e5",
+      "revision_source": "https://huggingface.co/api/models/Qwen/Qwen3-ASR-1.7B",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "language": "Korean",
+      "generation_config_source": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B/resolve/7278e1e70fe206f11671096ffdd38061171dd6e5/generation_config.json",
+      "generation_config_sha256": "1da527824d81e07118facff437e03f2e24a23311e3bdeb2368973fe77e5f275c",
+      "generation_config": {
+        "eos_token_id": [
+          151643,
+          151645
+        ],
+        "pad_token_id": 151643,
+        "do_sample": false
+      },
+      "call_overrides": {
+        "max_new_tokens": 256
+      },
+      "decoding_policy": "Pinned generation config plus listed call overrides; no tuning on evaluation data."
+    }
+  ],
+  "execution": {
+    "num_workers": 0,
+    "warmup_samples": 16,
+    "warmup_mode": "single_sample",
+    "repetitions": 3,
+    "shuffle": false,
+    "limit": null,
+    "save_predictions": true,
+    "concurrent_evaluations": 1,
+    "process_policy": "Load a model once per track, then reuse it for all three workload groups and repeats; measure warmed inference, not cold starts.",
+    "measurement_population": "korean-asr-speed-768-v1"
+  },
+  "tracks": [
+    {
+      "id": "latency-b1",
+      "batch_size": 1,
+      "qwen_backend_batch_size": 1,
+      "primary_metric": "all_sample_request_latency_p50_p95_ms"
+    },
+    {
+      "id": "throughput-b4",
+      "batch_size": 4,
+      "qwen_backend_batch_size": 4,
+      "primary_metric": "sum_audio_duration_over_sum_processing_time"
+    }
+  ],
+  "timing": {
+    "scope": "asr_transcribe_call",
+    "includes": [
+      "feature_extraction",
+      "host_device_transfer",
+      "model_inference",
+      "text_decoding"
+    ],
+    "excludes": [
+      "model_loading",
+      "file_reading",
+      "warmup",
+      "metric_scoring"
+    ],
+    "cuda_synchronize": "before_and_after_call",
+    "sample_population": "all_curated_samples_without_cer_filtering",
+    "repetition_summary": "median_of_3_with_min_max",
+    "batch_latency_is_request_latency": false,
+    "reporting": "Per-group latency p50/p95 and throughput; median and min/max across repeats. Overall uses equal mean of the three group throughputs."
+  },
+  "quality": {
+    "evaluation_protocol": "v1/kspon/cer>1.0",
+    "preserve_existing_macro_rtfx": true,
+    "repeat_policy": "Full corpus once at batch 4; curated CER is diagnostic only.",
+    "full_evaluation": {
+      "batch_size": 4,
+      "qwen_backend_batch_size": 4,
+      "repetitions": 1,
+      "limit": null,
+      "samples_per_model": 45916
+    },
+    "curated_diagnostic_policy": "All inputs including capped outputs, kspon normalization, no CER exclusion; never substitute for full-corpus accuracy."
+  },
+  "input_contract": {
+    "dataset_id": "korean-asr-speed-768-v1",
+    "report": "doc/benchmarks/speed_curated_set_20261006.json",
+    "groups": {
+      "KsponSpeech/clean": 256,
+      "KsponSpeech/other": 256,
+      "AIHubLowQualityTelephone/curated": 256
+    },
+    "telephone_domains": {
+      "D01": 56,
+      "D02": 96,
+      "D03": 12,
+      "D04": 92
+    },
+    "selection_manifest_sha256": "fc543c7aa62eba596bdb31dc1a5ccd70ad4d7bee08ed06af004722048652a24c",
+    "manifest_sha256": "feab69a04d1de01f00190bcacb1c81a4e4049b82e9b6ebc1510e8019956cbfe1",
+    "manifest_gate": "Bind private selection records to original audio/reference files, verify IDs/order/duration/reference length, then seal content hashes before inference. Missing samples must not be substituted.",
+    "sample_order": "Fixed hash shuffle within clean, other, telephone; identical order and batch-4 boundaries for every model and repeat.",
+    "pilot": {
+      "samples": 192,
+      "batch_4_batches": 48,
+      "repetitions": 1,
+      "selection_sha256": "61b5737f48bd7a5d57af9bee85b314e18e6458bf1a4b3091b445606dac4b9c36",
+      "nested": true,
+      "use": "Loader/timing/feasibility diagnostic only; not formal p95 or leaderboard results.",
+      "manifest_sha256": "f5a2173091f13876eb4d82d666e163942d43d019cecec23fc39524009b5fc7b9"
+    },
+    "content_seal_artifact": "results/speed-inputs-20261007/speed-768-v1/seal.json",
+    "content_status": "768_original_inputs_verified_and_sealed",
+    "audio_representation": "Original loader output as lossless little-endian float32 NPY; file reading and resampling excluded from timing"
+  },
+  "gates": [
+    "Verify the executing host preflight, immutable image ID, package inventory, source hash, original input manifest and model revisions.",
+    "Before formal timing, verify the changed termination accounting on both batch tracks and compare raw pilot outputs to the previous immutable image.",
+    "Retain exact-budget terminations and report their rate; any other generation or runtime failure stops the matrix.",
+    "768 fixed inputs, three repeats per track, model loaded once per track, 16 single-sample warmups per group per repeat.",
+    "No per-model fallback, sample removal, replacement, length sorting, dtype, batch, decoder or checkpoint changes.",
+    "Separate native-server results from any later local WSL cohort.",
+    "Only this curated speed run is authorized here; full-corpus accuracy, API requests and publication are separate.",
+    "Preserve all raw artifacts privately. Curated CER and this descriptive workload timing do not establish full-corpus quality or whole-corpus speed.",
+    "Do not publish with the current generator before track identity and repetition aggregation are supported."
+  ],
+  "code_at_definition": {
+    "commit": "87549676aa28801e0366af991795a7d2c14ad69b",
+    "dirty": true,
+    "source_sha256": "6db62558c6595723e2b55d1a9848b2db12fea5637ae4fdf00e76390ba313b21d"
+  },
+  "supersedes": {
+    "id": "server-speed-v3-dual-env-20261006",
+    "artifact": "doc/benchmarks/server_speed_protocol_20261006.json",
+    "sha256": "bdea5f806ed807cf17caac14f7fde141f4807209f1898349e545fde9dbd5cc62",
+    "reason": "Retain exact-budget terminations in speed measurement and report their rate. Decoder budgets and inputs are unchanged; this run targets the native Linux server cohort."
+  },
+  "runtime_history": [
+    {
+      "image_id": "sha256:f1379555b571ec99d12029fc3492530e65de91f0a82e5a10e26c303fd5231aa7",
+      "source_sha256": "2175ee67d2b1425251dfa66eabb4b78bf449087c75694b22a18624cef0a6974b",
+      "image_archive": {
+        "artifact": "results/environment-image-20261006/openkoasr-benchmark-20261006.tar",
+        "bytes": 3761246208,
+        "sha256": "0c4e679a28e281eb12956e5cdebf09c5224a46c0ab4b2c1d00eab9dfb0469097"
+      },
+      "hosts": [
+        {
+          "id": "local-wsl2",
+          "kind": "wsl2",
+          "gpu": "NVIDIA GeForce RTX 3090 Ti",
+          "driver_observed": "591.86",
+          "status": "preflight_passed",
+          "observed_at_utc": "2026-10-06T06:18:23.303917+00:00",
+          "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "container_os": "Ubuntu 24.04.4 LTS",
+          "report_artifact": "results/environments/local-wsl2/20261006T061822746223Z/environment.json",
+          "report_sha256": "5db3182b16f4770f25a1f711a198e6f638b399bbcd540e7782c9785f4972b2de",
+          "torch_threads": 12,
+          "torch_interop_threads": 12
+        },
+        {
+          "id": "linux-server",
+          "kind": "native-linux",
+          "gpu": "NVIDIA GeForce RTX 3090 Ti",
+          "driver_observed": "580.178.04",
+          "status": "preflight_passed",
+          "observed_at_utc": "2026-10-06T15:31:46.483324+00:00",
+          "host_os": "Ubuntu 22.04.5 LTS",
+          "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+          "container_os": "Ubuntu 24.04.4 LTS",
+          "docker_engine": "29.8.2",
+          "nvidia_container_toolkit": "1.20.1",
+          "report_artifact": "results/environments/linux-server/20261006T153004369878Z/environment.json",
+          "report_sha256": "d6ba10d87dca299da6a8cf8e2902ce28abd1cb68368f4bcef0483ae2802e59f3",
+          "host_observation_artifact": "results/environments/linux-server/post-reboot-20261007.txt",
+          "torch_threads": 8,
+          "torch_interop_threads": 8,
+          "shared_image_checks": {
+            "archive_sha256": "passed",
+            "image_id": "matched_local",
+            "python": "matched_local",
+            "package_inventory": "matched_local_172_packages",
+            "source_sha256": "matched_local",
+            "runtime_imports_and_audio": "passed",
+            "cuda_and_bf16": "passed"
+          },
+          "driver_resolution": {
+            "status": "updated_rebooted_and_verified",
+            "authorization_date": "2026-10-07",
+            "previous_driver": "570.211.01",
+            "installed_package": "nvidia-driver-580",
+            "installed_version": "580.178.04-0ubuntu0.22.04.1",
+            "package_source": "jammy-updates",
+            "apt_simulation": "passed",
+            "driver_changed": true,
+            "reboot_performed": true,
+            "reboot_verification": "boot_id_changed_and_580.178.04_kernel_module_loaded",
+            "installation_exit_code": 0,
+            "dpkg_audit": "passed",
+            "dkms_kernel": "6.8.0-138-generic",
+            "changed_packages": 41,
+            "package_change_scope": "NVIDIA driver stack only; no packages removed",
+            "installation_artifacts": "results/environments/linux-server/driver-update-20261007",
+            "previous_report_artifact": "results/environments/linux-server/20261006T121909189081Z/environment.json",
+            "previous_report_sha256": "2514d209b23d3f461e00395bd05fc82088a295ce035c0f01deb5cc3588fd86e3",
+            "compatibility_source": "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+          }
+        }
+      ],
+      "reason": "Added the fixed-input timing harness; package inventory unchanged"
+    },
+    {
+      "image_id": "sha256:6e8f093858041cec4d3eaeab39f8a255dc25b812ed813f3156952e590d9497e3",
+      "source_sha256": "cf0613f7471525f822000caaab549a1ca0f8092fa25da47144f4b36010346fbf",
+      "server_report_artifact": "results/environments/linux-server/20261007T062413170303Z/environment.json",
+      "reason": "Corrected EOS observation before Whisper postprocessing; decoder settings unchanged"
+    },
+    {
+      "image_id": "sha256:4cb1598c9c9fd3a992c5593c9e693be9a3016d962a36ef960d876e9c06add030",
+      "source_sha256": "fa572167c87c78ba040a6be38f21ebff21a99ee0d4ea70d41483498e80cf5b72",
+      "server_report_artifact": "results/environments/linux-server/20261007T063204653373Z/environment.json",
+      "reason": "Pilot records truncation failures across all fixed inputs; formal runs still fail immediately. No decoding changes."
+    }
+  ],
+  "pilot_validation": {
+    "status": "changed_policy_integration_passed",
+    "prior_full_matrix": "results/speed-pilot-20261007/linux-server/20261007T064139954644Z",
+    "budget_diagnostic": "doc/benchmarks/server_token_budget_diagnostic_20261008.json",
+    "integration_models": [
+      "openai/whisper-tiny"
+    ],
+    "tracks": [
+      "latency-b1",
+      "throughput-b4"
+    ],
+    "samples_per_track": 192,
+    "purpose": "Check new accounting in both tracks and reproduce prior raw outputs; model loaders and decoding are unchanged.",
+    "validation_artifact": "results/speed-formal-20261008/integration-validation.json",
+    "validation_sha256": "147133fab629fb7619267651e2ef0c55ca36fdcd27fc961f3802f4f21b4db3be"
+  },
+  "termination": {
+    "policy": "retain_budget_terminated",
+    "accepted_reasons": [
+      "eos",
+      "token_limit"
+    ],
+    "token_limit_definition": "No EOS and generated token count exactly equals the pinned max_new_tokens.",
+    "capped_output_treatment": "Keep in all speed and curated diagnostic quality denominators; do not rerun, replace or filter the output.",
+    "reporting": "Measured and warmup counts/rates separately; measured counts/rates per workload group and repetition.",
+    "failure_policy": "Stop on unexplained early stop, audit/output count mismatch, missing output, runtime error, OOM or environment/input mismatch.",
+    "evidence": "doc/benchmarks/server_token_budget_diagnostic_20261008.json"
+  },
+  "authorization": {
+    "date": "2026-10-08",
+    "user_request": "다음 실험 진행",
+    "scope": "Server fixed-workload timing: 8 models, batch 1/4, 768 inputs, 3 repeats. Includes bounded verification of the accepted retain-and-report termination policy."
+  },
+  "formal_validation": {
+    "status": "completed_and_verified",
+    "expected_model_track_pairs": 16,
+    "samples_per_repeat": 768,
+    "repetitions": 3,
+    "total_measured_generations": 36864,
+    "total_warmup_generations": 2304,
+    "official_leaderboard_eligible": false,
+    "environment": "linux-server",
+    "server_unit": "openkoasr-formal-speed-20261008",
+    "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z",
+    "started_at_utc": "2026-10-08T06:51:26.475427+00:00",
+    "executed_protocol_sha256": "b80f88e5659936a938af5cd1bd292e0ff4ab9700d448cab7026ac5f728611386",
+    "integration_artifact": "results/speed-formal-20261008/integration-validation.json",
+    "integration_sha256": "147133fab629fb7619267651e2ef0c55ca36fdcd27fc961f3802f4f21b4db3be",
+    "postprocessing": {
+      "unit": "openkoasr-formal-speed-validation-20261008",
+      "trigger": "Run after launcher.exit is 0; require all 16 pairs before writing a final report.",
+      "validator_sha256": "75ca62458b205e05349f51cc38d4979782005b788e0c75950a671e5ca075b4d0",
+      "validation_log": "results/speed-formal-20261008/validation.log",
+      "validation_exit": "results/speed-formal-20261008/validation.exit",
+      "expected_result_artifact": "doc/benchmarks/server_speed_results_20261008.json",
+      "completed_run_check": "First four real completed pairs passed input/order/repetition/termination checks and independent timing-summary recomputation locally.",
+      "status": "completed_and_verified_locally_after_server_guard_failure",
+      "original_server_validation_exit": 1,
+      "recovery": "Revalidated all 16 server runs locally, checked the actual public leaderboard hash, and confirmed the recomputed report matches the server report except for validation time. Moved the final guard before completion-state writes.",
+      "final_validator_sha256": "5bc82c1f924f4353788cd64c8303e8124014e395e88538a62bdf8c2eaa954a97",
+      "recovery_artifact": "results/speed-formal-20261008/local-validation.json",
+      "recovery_sha256": "588a7ed01fd80b223648e7cbb0d7136c7bf5544b2c054253fba9747d02912169",
+      "final_validation_log": "results/speed-formal-20261008/local-validation.log"
+    },
+    "completed_at_utc": "2026-10-08T08:33:28.762688+00:00",
+    "validated_at_utc": "2026-10-08T12:27:13.068560+00:00",
+    "measured_generations": 36864,
+    "warmup_generations": 2304,
+    "results_artifact": "doc/benchmarks/server_speed_results_20261008.json",
+    "results_sha256": "e546229e7c8de4a97e060a31c1507038bc2657af2c798bdb157975dbbcbf7bd1"
+  }
+}

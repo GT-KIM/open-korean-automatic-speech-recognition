@@ -48049,6 +48049,11 @@
       "decoder_qnn_seconds": 1047.0174031,
       "qnn_seconds": 5162.4962171,
       "qnn_rtfx": 1.8437713752644527
+    },
+    "all_samples_micro_average": {
+      "wer": 0.44278100775193796,
+      "cer": 0.22525231780307475,
+      "ser": 0.875
     }
   }
 }

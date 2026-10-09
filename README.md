@@ -29,7 +29,7 @@ OpenKoASR은 한국어 자동 음성 인식(ASR) 모델을 동일한 평가 파�
 
 - 공개 사이트: https://gt-kim.github.io/open-korean-automatic-speech-recognition/
 
-- `Overall`: 모델별 평균 성능 리더보드
+- `Overall`: KsponSpeech clean·other와 AIHub all을 완료한 모델의 동일 가중 평균 리더보드
 - 데이터셋 탭: `KsponSpeech`, `AIHubLowQualityTelephone` 등 데이터셋별 전체 평가 결과
 
 Markdown 표는 `leaderboard.md`에서 확인할 수 있습니다. README에는 결과 표를 직접 복사하지 않고, 재현 가능한 결과 아티팩트와 GitHub Pages 데이터 파일을 기준으로 공개합니다.
@@ -217,3 +217,7 @@ Issue와 PR 모두 환영합니다. 결과 제출 전에는 `doc/result_submissi
 ## 참고
 
 - https://huggingface.co/spaces/hf-audio/open_asr_leaderboard
+
+### 2026-10 서버 재측정
+
+고정 BF16 환경에서 8개 모델의 전체 정확도 48개 조합을 검증했습니다. Accuracy vs. Speed에서는 별도의 고정 표본으로 측정한 batch 1·4 처리량을 비교합니다. [정확도 검증 보고서](doc/benchmarks/server_accuracy_results_20261008.json)와 [속도 검증 보고서](doc/benchmarks/server_speed_results_20261008.json)를 참고하세요.
