@@ -166,7 +166,6 @@ def _create_commercial_api_config(model_name: str):
             "cache_dir": ".openkoasr_cache/api_asr",
             "min_interval_seconds": 1.0,
             "timeout_seconds": 120,
-            "empty_on_error": True,
             "evaluation": {"metrics": metrics},
         }
         return ConfigParser(config)

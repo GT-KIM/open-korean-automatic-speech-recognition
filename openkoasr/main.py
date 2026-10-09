@@ -12,6 +12,10 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_name", dest="dataset_name", default="KsponSpeech")
     parser.add_argument("--model_name", dest="model_name", default="whisper_tiny")
+    parser.add_argument("--model_revision", help="Immutable model commit (40-character SHA).")
+    parser.add_argument("--processor_revision", help="Processor commit; defaults to model_revision.")
+    parser.add_argument("--dtype", choices=("float16", "bfloat16", "float32"))
+    parser.add_argument("--max_inference_batch_size", type=int)
     parser.add_argument(
         "--outlier_metric",
         dest="outlier_metric",
@@ -64,6 +68,9 @@ def main():
     runner = EvaluationRunner.from_names(
         dataset_name=args.dataset_name,
         model_name=args.model_name,
+        model_overrides={key: getattr(args, key) for key in (
+            "model_revision", "processor_revision", "dtype", "max_inference_batch_size")
+            if getattr(args, key) is not None},
         manifest_path=args.manifest_path,
         dataset_rootpath=args.dataset_rootpath,
         dataset_subset=args.dataset_subset,

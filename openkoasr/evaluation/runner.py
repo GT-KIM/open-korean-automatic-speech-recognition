@@ -1,6 +1,9 @@
+import math
 import platform
 import sys
 import time
+from collections.abc import Sequence
+from copy import deepcopy
 from typing import Optional
 
 from openkoasr.configs import get_dataset_config, get_model_config
@@ -22,6 +25,8 @@ from openkoasr.evaluation.results import (
     SampleResult,
     utc_run_id,
 )
+from openkoasr.evaluation.provenance import capture_reproducibility
+from openkoasr.protocol import evaluation_protocol_id
 from openkoasr.metrics import Evaluator
 from openkoasr.model import ModelFactory
 from openkoasr.normalization import normalize_text
@@ -68,6 +73,7 @@ class EvaluationRunner:
         manifest_path=None,
         dataset_rootpath=None,
         dataset_subset=None,
+        model_overrides=None,
         **kwargs,
     ):
         dataset_overrides = {}
@@ -77,13 +83,27 @@ class EvaluationRunner:
             dataset_overrides["rootpath"] = dataset_rootpath
         if dataset_subset is not None:
             dataset_overrides["subset"] = dataset_subset
+        model_config = deepcopy(get_model_config(model_name))
+        for key, value in (model_overrides or {}).items():
+            if key not in {"model_revision", "processor_revision", "dtype", "max_inference_batch_size"}:
+                raise ValueError(f"Unsupported model override: {key}")
+            setattr(model_config, key, value)
+        if model_overrides:
+            from openkoasr.model.revisions import pinned_revisions
+            pinned_revisions(model_config)
+            if getattr(model_config, "family", None) not in {"whisper", "qwen3_asr", "hf_ctc"}:
+                raise ValueError("Model overrides require a local Transformers model")
+            inner_batch = getattr(model_config, "max_inference_batch_size", None)
+            if inner_batch is not None and (type(inner_batch) is not int or inner_batch < 1):
+                raise ValueError("max_inference_batch_size must be a positive integer")
         return cls(
             dataset_config=get_dataset_config(dataset_name, **dataset_overrides),
-            model_config=get_model_config(model_name),
+            model_config=model_config,
             **kwargs,
         )
 
     def run(self):
+        protocol = evaluation_protocol_id(self.normalization_preset, self.outlier_policy.to_dict())
         logger.info("Loading dataset and model.")
         eval_dataset = DatasetFactory.load_dataset(self.dataset_config)
         dataset_total_samples = _safe_len(eval_dataset)
@@ -93,6 +113,7 @@ class EvaluationRunner:
             num_workers=self.num_workers,
         )
         model = ModelFactory.load_model(self.model_config)
+        environment = _environment_metadata()
         evaluator = Evaluator(self.model_config.evaluation.metrics)
 
         model_metrics = self._model_metrics(model, evaluator, eval_dataloader)
@@ -143,6 +164,12 @@ class EvaluationRunner:
                 break
 
         aggregate = AggregateResult.from_samples(samples)
+        # Capture after inference so call-time overrides and backend defaults are available.
+        reproducibility = capture_reproducibility(model, self.model_config, {
+            "batch_size": self.batch_size, "num_workers": self.num_workers,
+            "warmup_samples": self.warmup_samples, "warmup_mode": "single_sample",
+            "limit": self.limit,
+        }, environment)
         is_full_evaluation = (
             self.limit is None
             and dataset_total_samples is not None
@@ -167,7 +194,9 @@ class EvaluationRunner:
             warmup_samples=self.warmup_samples,
             log_interval=self.log_interval,
             command=self.command,
-            environment=_environment_metadata(),
+            environment=environment,
+            evaluation_protocol=protocol,
+            reproducibility=reproducibility,
         )
         return EvaluationRunResult(
             metadata=metadata,
@@ -187,9 +216,11 @@ class EvaluationRunner:
         prediction = model.transcribe(sample, sampling_rate=sample_rate)
         _synchronize_model_device(self.model_config)
         processing_time = time.perf_counter() - start_time
+        _validate_prediction(prediction, index)
         model_processing_time = getattr(model, "last_processing_time", None)
-        if isinstance(model_processing_time, (int, float)) and model_processing_time >= 0:
-            processing_time = float(model_processing_time)
+        if model_processing_time is not None:
+            processing_time = model_processing_time
+        processing_time = _validate_processing_time(processing_time)
 
         normalized_reference = normalize_text(reference, preset=self.normalization_preset)
         normalized_prediction = normalize_text(prediction, preset=self.normalization_preset)
@@ -228,8 +259,18 @@ class EvaluationRunner:
         start_time = time.perf_counter()
         predictions = model.transcribe_batch(batch_samples, sampling_rates=sample_rates)
         _synchronize_model_device(self.model_config)
-        batch_processing_time = time.perf_counter() - start_time
+        batch_processing_time = _validate_processing_time(time.perf_counter() - start_time)
         per_sample_time = batch_processing_time / max(1, len(batch_samples))
+
+        if not isinstance(predictions, Sequence) or isinstance(predictions, (str, bytes, bytearray)):
+            raise ValueError("Batch predictions must be a sequence of strings.")
+        if len(predictions) != len(batch_samples):
+            raise ValueError(
+                f"Batch prediction count mismatch: expected {len(batch_samples)}, "
+                f"got {len(predictions)} (start index {start_index})."
+            )
+        for offset, prediction in enumerate(predictions):
+            _validate_prediction(prediction, start_index + offset)
 
         results = []
         for offset, (sample, sample_rate, reference, prediction, audio_duration) in enumerate(
@@ -294,8 +335,9 @@ class EvaluationRunner:
                     return
                 sample_rate = get_sample_rate(sample)
                 _synchronize_model_device(self.model_config)
-                model.transcribe(sample, sampling_rate=sample_rate)
+                prediction = model.transcribe(sample, sampling_rate=sample_rate)
                 _synchronize_model_device(self.model_config)
+                _validate_prediction(prediction, warmup_count)
                 warmup_count += 1
 
     def _log_sample(self, sample, total):
@@ -311,6 +353,25 @@ class EvaluationRunner:
             if metric in sample.metrics:
                 logger.info(f"  - {metric.upper()}:          {sample.metrics[metric]:.4f}")
         logger.info("-" * 30)
+
+
+def _validate_prediction(prediction, index):
+    if not isinstance(prediction, str):
+        raise ValueError(
+            f"Prediction for sample index {index} must be a string, "
+            f"got {type(prediction).__name__}."
+        )
+
+
+def _validate_processing_time(value):
+    if (
+        not isinstance(value, (int, float))
+        or isinstance(value, bool)
+        or not math.isfinite(value)
+        or value <= 0
+    ):
+        raise ValueError("Processing time must be a finite positive number.")
+    return float(value)
 
 
 def _synchronize_model_device(model_config):

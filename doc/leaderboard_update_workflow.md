@@ -130,3 +130,14 @@ python scripts/build_pages.py --output_dir _site
 Accuracy vs. Speed의 curated 처리량은 고정 256개/그룹을 3회 반복한 결과입니다.
 Main CER와 전체 샘플 micro CER를 구분하고, 속도 반복 범위·B1 p95·상한 종료 비율을 함께 표시합니다.
 원본 오디오·전사·샘플별 예측과 호스트 접속 정보는 배포하지 않습니다.
+
+## 2026-10-09 재현성 공개와 제외 기준 민감도
+
+측정 당시 소스·정확도 harness 해시를 보존하고 Docker 실행기·입력 봉인·검증 코드와
+172개 패키지 inventory를 공개 코드로 정리했습니다. [재현 절차](../docker/README.md)를 참고하세요.
+
+[민감도 보고서](benchmarks/outlier_rank_sensitivity_20261009.md)는 48개 보존 출력의 해시와
+56개 기존 filtered CER를 대조한 CPU 재집계입니다. 정규화 후 빈 정답 4개 때문에 전체 샘플 macro CER는
+정의할 수 없습니다. 공통 45,912개 보조 분석에서 Overall 순위는 유지되지만 clean 구간의 2·3위는 바뀝니다.
+공식 순위·제외 정책·사이트 데이터는 변경하지 않았습니다. 새 평가 프로토콜에서는 빈 정답 처리와
+CER 초과 출력의 보존 여부를 측정 전에 명시해야 합니다.

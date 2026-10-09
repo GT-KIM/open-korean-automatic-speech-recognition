@@ -1,6 +1,7 @@
 import hashlib
 import io
 import json
+import math
 import os
 import time
 import wave
@@ -63,12 +64,24 @@ class CommercialApiASRInferenceModel(BaseASRInferenceModel):
         cache_path = self._cache_path(sample, wav_bytes)
         cached = _read_json(cache_path)
         if cached is not None:
-            cached_latency = cached.get("request_latency")
-            if isinstance(cached_latency, (int, float)) and cached_latency > 0:
-                self.last_processing_time = cached_latency
-            else:
-                self.last_processing_time = None
-            return str(cached.get("prediction", ""))
+            response = cached.get("response") if isinstance(cached, dict) else None
+            cached_latency = cached.get("request_latency") if isinstance(cached, dict) else None
+            if (
+                not isinstance(response, dict)
+                or response.get("error") is not None
+                or not isinstance(cached.get("prediction"), str)
+                or not isinstance(cached_latency, (int, float))
+                or isinstance(cached_latency, bool)
+                or not math.isfinite(cached_latency)
+                or cached_latency <= 0
+            ):
+                raise RuntimeError(
+                    "Invalid API cache (failed response, invalid transcript or latency): "
+                    f"{cache_path}. "
+                    "Remove this entry and rerun the evaluation to request a fresh transcript."
+                )
+            self.last_processing_time = float(cached_latency)
+            return cached["prediction"]
 
         _assert_budget(self.cache_dir, duration)
         self._throttle()
@@ -207,8 +220,6 @@ class CommercialApiASRInferenceModel(BaseASRInferenceModel):
                 errors.append(error)
                 if attempt < len(retry_delays):
                     time.sleep(retry_delays[attempt])
-        if bool(getattr(self.model_config, "empty_on_error", False)):
-            return {"text": "", "error": str(errors[-1])}
         raise RuntimeError(
             f"SpeechRecognition Google request failed after retries: {errors[-1]}"
         ) from errors[-1]

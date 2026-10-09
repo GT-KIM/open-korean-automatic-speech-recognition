@@ -1,0 +1,1960 @@
+{
+  "id": "outlier-rank-sensitivity-20261009",
+  "status": "verified",
+  "analyzed_at_utc": "2026-10-09T04:01:33.852153+00:00",
+  "analysis_source_sha256": "390bd7b3878b7d1857b4c965795a72869a390effe6df14d7b181597ed35110cf",
+  "verified_report_sha256": "388875d9f4ccf3219655d1c86c2e81a6d0d24bdec7040dd6b491b86d3f3e71af",
+  "protocol_sha256": "a1713ea0b7d8f6e5354ec5447e1fd563e9ea59023b4cb2043d8b72ac0402ea43",
+  "input_inventory_sha256": "83b29a2264edaa4d9ad6b8e11d4458656d87d4fa23b8d2e0edf21f7dcb275526",
+  "sample_artifact_sha256": [
+    {
+      "model": "openai/whisper-tiny",
+      "dataset": "kspon-clean",
+      "sha256": "0e08bd17e23369c781b83c58b86c1c06a8761f82372157bcea4b2a91ca14aec2"
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "dataset": "kspon-other",
+      "sha256": "ef0a27511a24b59e701398ffb6e2498513a9afd707b52f0cb7157278102eb454"
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "dataset": "telephone-D01",
+      "sha256": "c344c6c8e4445e46ea130b888843b29b8b2598f8cdb0f4ffce84a35f9260d81a"
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "dataset": "telephone-D02",
+      "sha256": "ddc716a396b1e9954e56ebd6243556f04a5368b4d26658c2e694a7fd5aceaa0c"
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "dataset": "telephone-D03",
+      "sha256": "c4d9f92addda0d4dc76a72461a83324d3e1f33235cfdf7c528f3b5b005f3cf59"
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "dataset": "telephone-D04",
+      "sha256": "3c6ff89d96d3a2a76debe6dfc6080edc3a58d0481765dc72908f52599a762f50"
+    },
+    {
+      "model": "openai/whisper-base",
+      "dataset": "kspon-clean",
+      "sha256": "d91e46f79e2e4cf8a50489dbad0a3d244f6de6a9ee15384d021ce11021601516"
+    },
+    {
+      "model": "openai/whisper-base",
+      "dataset": "kspon-other",
+      "sha256": "a74c3fe8a8c8c64d3c44776b24b0c02ffc4108421687a3e170aa0dd508160480"
+    },
+    {
+      "model": "openai/whisper-base",
+      "dataset": "telephone-D01",
+      "sha256": "d6d6385cf942eff7d331ea248b92378c2aefad91a1117683f1246a4ffe242319"
+    },
+    {
+      "model": "openai/whisper-base",
+      "dataset": "telephone-D02",
+      "sha256": "ec3c63084f87404a33c86d1273bc4ca56099a21ac3e95bd0b65c73b358252359"
+    },
+    {
+      "model": "openai/whisper-base",
+      "dataset": "telephone-D03",
+      "sha256": "7c3a2733f90c19a10e74c07bb9443dd5e8e50129eac4663a0c52e7f8d52c0193"
+    },
+    {
+      "model": "openai/whisper-base",
+      "dataset": "telephone-D04",
+      "sha256": "0f1403102832cb92f0e3edd9984e66f257c3dd196ac03c1a411880338241cd7d"
+    },
+    {
+      "model": "openai/whisper-small",
+      "dataset": "kspon-clean",
+      "sha256": "44992f3d9a583a4813837349b31a47f884182d765d8f26c3bff2f3e75b0ad916"
+    },
+    {
+      "model": "openai/whisper-small",
+      "dataset": "kspon-other",
+      "sha256": "8c8b265bbc2b087c0f3edfd8c0bdee228932b796ef42bb329ee900060f31d3ad"
+    },
+    {
+      "model": "openai/whisper-small",
+      "dataset": "telephone-D01",
+      "sha256": "c5dcab2c7ddede4b566e80245830ee238035a68012bfcc5559b0556b6f28d344"
+    },
+    {
+      "model": "openai/whisper-small",
+      "dataset": "telephone-D02",
+      "sha256": "30d81714a8f18eddf7d22cebf1ae7c7c1f6756dd8b7182680318feeff199a8ae"
+    },
+    {
+      "model": "openai/whisper-small",
+      "dataset": "telephone-D03",
+      "sha256": "96e190e2038c50de571bbee3ab2dbade28d2cf3693a104a797918c84f2ea2587"
+    },
+    {
+      "model": "openai/whisper-small",
+      "dataset": "telephone-D04",
+      "sha256": "d4640594b35ab0e53c6a52b475839041a62914f8f8b4b823aac8684b7cf15054"
+    },
+    {
+      "model": "openai/whisper-medium",
+      "dataset": "kspon-clean",
+      "sha256": "398c5e0f1ba46c605414e8374a4ff5350460b56e812b1df83afedec273047256"
+    },
+    {
+      "model": "openai/whisper-medium",
+      "dataset": "kspon-other",
+      "sha256": "240a007ea24d6badca40e8516b98649d8f3adaa2033811a2688cfce1b76948de"
+    },
+    {
+      "model": "openai/whisper-medium",
+      "dataset": "telephone-D01",
+      "sha256": "23fbe16464e98cc4c8c39c13f751357bdc48117df2381b8b67fdb7f154bb9c32"
+    },
+    {
+      "model": "openai/whisper-medium",
+      "dataset": "telephone-D02",
+      "sha256": "cefcb92a021a8081fb518a0e066b7c7791ee77a10253e4a82d92d276d95ef7c2"
+    },
+    {
+      "model": "openai/whisper-medium",
+      "dataset": "telephone-D03",
+      "sha256": "b6e06236d026dfa0f93bfd15fe2c0d60f5be75c0c2a6f61858e697f1874669d2"
+    },
+    {
+      "model": "openai/whisper-medium",
+      "dataset": "telephone-D04",
+      "sha256": "04e8bfc076decda2b1612a5f9a132cca8fbc32084b1e4f89d3879d627d3ee587"
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "dataset": "kspon-clean",
+      "sha256": "a4551cdc8701efb5171003db79e5e4da30fbf268367c79a6bc316193b4bd4c7d"
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "dataset": "kspon-other",
+      "sha256": "e4611c9a727d75afffce61c039e83ed59e90d16fcf882cd5daf022c1cd5ba387"
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "dataset": "telephone-D01",
+      "sha256": "4aba5ef1e2250babf26d34bc5e59aee4beb631e88738062db8ae36c439704ee9"
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "dataset": "telephone-D02",
+      "sha256": "81d01beba40f196d63d9b174b5698f5b48a0adc6d2c5befea2751d9ec9a5fd53"
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "dataset": "telephone-D03",
+      "sha256": "97c2643a80cfbb847962a586f2a48dc973495ed1fc214b7b848f6186e23a583c"
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "dataset": "telephone-D04",
+      "sha256": "c85eb9a2402f097bdce954d47fb72ac22d05bbc963251532540ab83f860ac366"
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "dataset": "kspon-clean",
+      "sha256": "05accadeb737aea31442833013b4cf2cc11a9d590471dd29b5d6cd98df0ebead"
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "dataset": "kspon-other",
+      "sha256": "53391b13f81443bcdec380f703e5879442653a04cf8778fd77fbdc4080f01af6"
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "dataset": "telephone-D01",
+      "sha256": "5694bba93182e9ade4e7b8b8ef8466eb838976a42596c85a88c859e77e123410"
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "dataset": "telephone-D02",
+      "sha256": "ebe3c37553fcc17a65a70fb1dcdee032a17526684fbb36694727db075d520df2"
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "dataset": "telephone-D03",
+      "sha256": "e831ed69d4b48601214c283d9a040ff55ef515749661ed54edb9c26847056227"
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "dataset": "telephone-D04",
+      "sha256": "965bb96009665d71ec85345860eeb61a77531abde1e937a97a5a8727713da8cb"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "dataset": "kspon-clean",
+      "sha256": "0a106b7683bc3cbcb99e584e7bd171f6a8615d935b01ce6b7e70ce410648f48f"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "dataset": "kspon-other",
+      "sha256": "26d2f1cd8f4ca352a4d8de0854b1a78672bacb3d78b0863ae0078584dc39e3f5"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "dataset": "telephone-D01",
+      "sha256": "c0aee9935abed1b40a0ac3b495c7a46979f06f867f77d9e6d9c2a029357a7352"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "dataset": "telephone-D02",
+      "sha256": "2ed7599cd32e5a349dfe11e000174d42bc071487bcfbe333434bb32f7516bef4"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "dataset": "telephone-D03",
+      "sha256": "f09cafeb0068d0f69a957b862fb52770d45f2d3cf3dd321a4f04ad58a0ae3227"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "dataset": "telephone-D04",
+      "sha256": "6f1b9eaa746881d138916bac8f04dd3a991ead14bc77b7819b34f1127ba0e06a"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "dataset": "kspon-clean",
+      "sha256": "5a1cf87402243176baee4a3bbd5b44b7f90e50b8d3f34ddce932bcc07065ea40"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "dataset": "kspon-other",
+      "sha256": "6415c12c8a6c015a1c0c3c345449c9d0c1c5299bce56335b35cd96a1c181042e"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "dataset": "telephone-D01",
+      "sha256": "94673754381336694800fe13a0f4c591761222d117985b07c17686059c42bbc4"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "dataset": "telephone-D02",
+      "sha256": "dcda9d06896302a4adcfea75be3cc129922dae832a0dea2697c52dd9a13adf5c"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "dataset": "telephone-D03",
+      "sha256": "378a15f2f4f9bdac6f77337788ef687efd1c826807e33f2e3f5b012da5191af4"
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "dataset": "telephone-D04",
+      "sha256": "e648c79bc512f3e3ff94bc10ecfb871734725409dd716a27219add9c055b0192"
+    }
+  ],
+  "model_dataset_pairs": 48,
+  "outputs": 367328,
+  "method": {
+    "metric": "utterance macro CER",
+    "excluded": "CER > 1.0",
+    "all_sample_policy": "retain every sample without clipping; undefined macro is null, unranked",
+    "aihub_all": "pool D01-D04 utterances before macro averaging",
+    "overall": "equal mean of kspon-clean, kspon-other, aihub-all",
+    "ranking": "ascending unrounded CER; competition ranks for exact ties",
+    "new_inference": false,
+    "official_ranking_changed": false,
+    "validation": "48 sample hashes, sealed input identity/order/reference, CER edit counts, normalized population equality, 56 published filtered scores and outlier counts",
+    "limitation": "Descriptive sensitivity on these saved outputs; no uncertainty estimates or independent edit-distance recomputation."
+  },
+  "overall": [
+    {
+      "model": "openai/whisper-large-v3",
+      "filtered_macro_cer": 0.15030771759571174,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 171,
+      "filtered_rank": 1,
+      "all_sample_rank": null,
+      "rank_change": null
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "filtered_macro_cer": 0.15837986948940308,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 169,
+      "filtered_rank": 2,
+      "all_sample_rank": null,
+      "rank_change": null
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "filtered_macro_cer": 0.16807589725704122,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 188,
+      "filtered_rank": 3,
+      "all_sample_rank": null,
+      "rank_change": null
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "filtered_macro_cer": 0.19766973453118228,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 253,
+      "filtered_rank": 4,
+      "all_sample_rank": null,
+      "rank_change": null
+    },
+    {
+      "model": "openai/whisper-medium",
+      "filtered_macro_cer": 0.23390932291265443,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 493,
+      "filtered_rank": 5,
+      "all_sample_rank": null,
+      "rank_change": null
+    },
+    {
+      "model": "openai/whisper-small",
+      "filtered_macro_cer": 0.2604076193015333,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 681,
+      "filtered_rank": 6,
+      "all_sample_rank": null,
+      "rank_change": null
+    },
+    {
+      "model": "openai/whisper-base",
+      "filtered_macro_cer": 0.3385610739032705,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 1258,
+      "filtered_rank": 7,
+      "all_sample_rank": null,
+      "rank_change": null
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "filtered_macro_cer": 0.4217102325875917,
+      "all_sample_macro_cer": null,
+      "delta_pp": null,
+      "samples": 45916,
+      "undefined_cer_samples": 4,
+      "outliers": 2383,
+      "filtered_rank": 8,
+      "all_sample_rank": null,
+      "rank_change": null
+    }
+  ],
+  "datasets": {
+    "kspon-clean": [
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "samples": 3000,
+        "retained": 2992,
+        "outliers": 8,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.162601927579095,
+        "all_sample_macro_cer": 0.16645721132777297,
+        "delta_pp": 0.3855283748677968,
+        "filtered_rank": 1,
+        "all_sample_rank": 1,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-large-v3",
+        "samples": 3000,
+        "retained": 2982,
+        "outliers": 18,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.18003966589407355,
+        "all_sample_macro_cer": 0.1975344278987091,
+        "delta_pp": 1.7494762004635538,
+        "filtered_rank": 2,
+        "all_sample_rank": 3,
+        "rank_change": -1
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "samples": 3000,
+        "retained": 2988,
+        "outliers": 12,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.18578352628921418,
+        "all_sample_macro_cer": 0.19107372551739066,
+        "delta_pp": 0.5290199228176473,
+        "filtered_rank": 3,
+        "all_sample_rank": 2,
+        "rank_change": 1
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "samples": 3000,
+        "retained": 2981,
+        "outliers": 19,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.1952852842307795,
+        "all_sample_macro_cer": 0.22162562028779412,
+        "delta_pp": 2.6340336057014606,
+        "filtered_rank": 4,
+        "all_sample_rank": 4,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-medium",
+        "samples": 3000,
+        "retained": 2966,
+        "outliers": 34,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.2100840253791141,
+        "all_sample_macro_cer": 0.2515692106576217,
+        "delta_pp": 4.1485185278507615,
+        "filtered_rank": 5,
+        "all_sample_rank": 5,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-small",
+        "samples": 3000,
+        "retained": 2951,
+        "outliers": 49,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.23218183288072025,
+        "all_sample_macro_cer": 0.28786892919625645,
+        "delta_pp": 5.56870963155362,
+        "filtered_rank": 6,
+        "all_sample_rank": 6,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-base",
+        "samples": 3000,
+        "retained": 2947,
+        "outliers": 53,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.3040102680157657,
+        "all_sample_macro_cer": 0.38032673381980103,
+        "delta_pp": 7.631646580403534,
+        "filtered_rank": 7,
+        "all_sample_rank": 7,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "samples": 3000,
+        "retained": 2907,
+        "outliers": 93,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.3727123984089892,
+        "all_sample_macro_cer": 0.5679703020327073,
+        "delta_pp": 19.525790362371808,
+        "filtered_rank": 8,
+        "all_sample_rank": 8,
+        "rank_change": 0
+      }
+    ],
+    "kspon-other": [
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "samples": 3000,
+        "retained": 2994,
+        "outliers": 6,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.1425510708452173,
+        "all_sample_macro_cer": 0.14569374648130462,
+        "delta_pp": 0.3142675636087333,
+        "filtered_rank": 1,
+        "all_sample_rank": 1,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "samples": 3000,
+        "retained": 2995,
+        "outliers": 5,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.16318649798199428,
+        "all_sample_macro_cer": 0.1651534093742465,
+        "delta_pp": 0.19669113922522186,
+        "filtered_rank": 2,
+        "all_sample_rank": 2,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-large-v3",
+        "samples": 3000,
+        "retained": 2995,
+        "outliers": 5,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.1645906907715988,
+        "all_sample_macro_cer": 0.1682554755177487,
+        "delta_pp": 0.3664784746149896,
+        "filtered_rank": 3,
+        "all_sample_rank": 3,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "samples": 3000,
+        "retained": 2992,
+        "outliers": 8,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.17132503916828884,
+        "all_sample_macro_cer": 0.17746341049241152,
+        "delta_pp": 0.6138371324122677,
+        "filtered_rank": 4,
+        "all_sample_rank": 4,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-medium",
+        "samples": 3000,
+        "retained": 2987,
+        "outliers": 13,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.19083543221740126,
+        "all_sample_macro_cer": 0.21082966622615398,
+        "delta_pp": 1.999423400875272,
+        "filtered_rank": 5,
+        "all_sample_rank": 5,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-small",
+        "samples": 3000,
+        "retained": 2987,
+        "outliers": 13,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.21353892858874943,
+        "all_sample_macro_cer": 0.222895074713013,
+        "delta_pp": 0.9356146124263581,
+        "filtered_rank": 6,
+        "all_sample_rank": 6,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-base",
+        "samples": 3000,
+        "retained": 2976,
+        "outliers": 24,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.2772041303696824,
+        "all_sample_macro_cer": 0.3385688546770917,
+        "delta_pp": 6.13647243074093,
+        "filtered_rank": 7,
+        "all_sample_rank": 7,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "samples": 3000,
+        "retained": 2952,
+        "outliers": 48,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.3503207798293544,
+        "all_sample_macro_cer": 0.4051459110089902,
+        "delta_pp": 5.482513117963583,
+        "filtered_rank": 8,
+        "all_sample_rank": 8,
+        "rank_change": 0
+      }
+    ],
+    "telephone-D01": [
+      {
+        "model": "openai/whisper-large-v3",
+        "samples": 8664,
+        "retained": 8632,
+        "outliers": 32,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.09387249909123431,
+        "all_sample_macro_cer": 0.09962462038217224,
+        "delta_pp": 0.5752121290937926,
+        "filtered_rank": 1,
+        "all_sample_rank": 1,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "samples": 8664,
+        "retained": 8634,
+        "outliers": 30,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.0961427725261959,
+        "all_sample_macro_cer": 0.10281715428169275,
+        "delta_pp": 0.6674381755496852,
+        "filtered_rank": 2,
+        "all_sample_rank": 2,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "samples": 8664,
+        "retained": 8635,
+        "outliers": 29,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.1670846204476437,
+        "all_sample_macro_cer": 0.17219752467476093,
+        "delta_pp": 0.5112904227117243,
+        "filtered_rank": 3,
+        "all_sample_rank": 3,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "samples": 8664,
+        "retained": 8621,
+        "outliers": 43,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.1979195906511764,
+        "all_sample_macro_cer": 0.20467093348461582,
+        "delta_pp": 0.6751342833439422,
+        "filtered_rank": 4,
+        "all_sample_rank": 4,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-medium",
+        "samples": 8664,
+        "retained": 8589,
+        "outliers": 75,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.2788919207009003,
+        "all_sample_macro_cer": 0.303685832184793,
+        "delta_pp": 2.4793911483892703,
+        "filtered_rank": 5,
+        "all_sample_rank": 5,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-small",
+        "samples": 8664,
+        "retained": 8576,
+        "outliers": 88,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.29583969529381665,
+        "all_sample_macro_cer": 0.3325126526798305,
+        "delta_pp": 3.667295738601384,
+        "filtered_rank": 6,
+        "all_sample_rank": 6,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-base",
+        "samples": 8664,
+        "retained": 8474,
+        "outliers": 190,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.38912506554576853,
+        "all_sample_macro_cer": 0.49806932451534813,
+        "delta_pp": 10.89442589695796,
+        "filtered_rank": 7,
+        "all_sample_rank": 7,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "samples": 8664,
+        "retained": 8294,
+        "outliers": 370,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.49602773428960006,
+        "all_sample_macro_cer": 0.7435523609003554,
+        "delta_pp": 24.75246266107553,
+        "filtered_rank": 8,
+        "all_sample_rank": 8,
+        "rank_change": 0
+      }
+    ],
+    "telephone-D02": [
+      {
+        "model": "openai/whisper-large-v3",
+        "samples": 15211,
+        "retained": 15149,
+        "outliers": 62,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.1248253665630092,
+        "all_sample_macro_cer": 0.13250043903985237,
+        "delta_pp": 0.7675072476843168,
+        "filtered_rank": 1,
+        "all_sample_rank": 1,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "samples": 15211,
+        "retained": 15153,
+        "outliers": 58,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.12696254568641707,
+        "all_sample_macro_cer": 0.13509832211856976,
+        "delta_pp": 0.8135776432152686,
+        "filtered_rank": 2,
+        "all_sample_rank": 2,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "samples": 15211,
+        "retained": 15121,
+        "outliers": 90,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.25066926268524126,
+        "all_sample_macro_cer": 0.25895630623721605,
+        "delta_pp": 0.8287043551974793,
+        "filtered_rank": 3,
+        "all_sample_rank": 3,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "samples": 15211,
+        "retained": 15079,
+        "outliers": 132,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.3067205918740185,
+        "all_sample_macro_cer": 0.31762764434176316,
+        "delta_pp": 1.090705246774465,
+        "filtered_rank": 4,
+        "all_sample_rank": 4,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-medium",
+        "samples": 15211,
+        "retained": 14986,
+        "outliers": 225,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.3388411727652729,
+        "all_sample_macro_cer": 0.39939280358312856,
+        "delta_pp": 6.0551630817855635,
+        "filtered_rank": 5,
+        "all_sample_rank": 5,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-small",
+        "samples": 15211,
+        "retained": 14854,
+        "outliers": 357,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.3903462054414007,
+        "all_sample_macro_cer": 0.48216639776880016,
+        "delta_pp": 9.182019232739947,
+        "filtered_rank": 6,
+        "all_sample_rank": 6,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-base",
+        "samples": 15211,
+        "retained": 14563,
+        "outliers": 648,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.4884797411869392,
+        "all_sample_macro_cer": 0.7007238117780594,
+        "delta_pp": 21.22440705911202,
+        "filtered_rank": 7,
+        "all_sample_rank": 7,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "samples": 15211,
+        "retained": 14155,
+        "outliers": 1056,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.5947811193730522,
+        "all_sample_macro_cer": 1.0001171344008264,
+        "delta_pp": 40.533601502777415,
+        "filtered_rank": 8,
+        "all_sample_rank": 8,
+        "rank_change": 0
+      }
+    ],
+    "telephone-D03": [
+      {
+        "model": "openai/whisper-large-v3",
+        "samples": 1936,
+        "retained": 1934,
+        "outliers": 2,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.08998115708198702,
+        "all_sample_macro_cer": 0.09120166060920457,
+        "delta_pp": 0.12205035272175452,
+        "filtered_rank": 1,
+        "all_sample_rank": 1,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "samples": 1936,
+        "retained": 1934,
+        "outliers": 2,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.0933290177647991,
+        "all_sample_macro_cer": 0.09454237326592757,
+        "delta_pp": 0.12133555011284713,
+        "filtered_rank": 2,
+        "all_sample_rank": 2,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "samples": 1936,
+        "retained": 1935,
+        "outliers": 1,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.16550017648823137,
+        "all_sample_macro_cer": 0.16618948424830976,
+        "delta_pp": 0.06893077600783892,
+        "filtered_rank": 3,
+        "all_sample_rank": 3,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "samples": 1936,
+        "retained": 1933,
+        "outliers": 3,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.20103342603045804,
+        "all_sample_macro_cer": 0.20263880352685254,
+        "delta_pp": 0.16053774963945,
+        "filtered_rank": 4,
+        "all_sample_rank": 4,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-medium",
+        "samples": 1936,
+        "retained": 1925,
+        "outliers": 11,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.2517669884469015,
+        "all_sample_macro_cer": 0.26555016168733964,
+        "delta_pp": 1.3783173240438151,
+        "filtered_rank": 5,
+        "all_sample_rank": 5,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-small",
+        "samples": 1936,
+        "retained": 1915,
+        "outliers": 21,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.30918024777948244,
+        "all_sample_macro_cer": 0.36984906861433553,
+        "delta_pp": 6.066882083485309,
+        "filtered_rank": 6,
+        "all_sample_rank": 6,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-base",
+        "samples": 1936,
+        "retained": 1857,
+        "outliers": 79,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.46346552083055453,
+        "all_sample_macro_cer": 0.6609413808757771,
+        "delta_pp": 19.74758600452226,
+        "filtered_rank": 7,
+        "all_sample_rank": 7,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "samples": 1936,
+        "retained": 1810,
+        "outliers": 126,
+        "undefined_cer_samples": 0,
+        "filtered_macro_cer": 0.6102587143824154,
+        "all_sample_macro_cer": 0.9222240885860408,
+        "delta_pp": 31.196537420362535,
+        "filtered_rank": 8,
+        "all_sample_rank": 8,
+        "rank_change": 0
+      }
+    ],
+    "telephone-D04": [
+      {
+        "model": "openai/whisper-large-v3",
+        "samples": 14105,
+        "retained": 14053,
+        "outliers": 52,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.096188818625433,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 1,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "samples": 14105,
+        "retained": 14053,
+        "outliers": 52,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.09835517762793969,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 2,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "samples": 14105,
+        "retained": 14051,
+        "outliers": 54,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.16783417570673353,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 3,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "samples": 14105,
+        "retained": 14047,
+        "outliers": 58,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.21097547000223496,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 4,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-medium",
+        "samples": 14105,
+        "retained": 13970,
+        "outliers": 135,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.28024223049622415,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 5,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-small",
+        "samples": 14105,
+        "retained": 13952,
+        "outliers": 153,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.30510478402001623,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 6,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-base",
+        "samples": 14105,
+        "retained": 13841,
+        "outliers": 264,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.4015113158692756,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 7,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "samples": 14105,
+        "retained": 13415,
+        "outliers": 690,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.5057944766759421,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 8,
+        "all_sample_rank": null,
+        "rank_change": null
+      }
+    ],
+    "aihub-all": [
+      {
+        "model": "openai/whisper-large-v3",
+        "samples": 39916,
+        "retained": 39768,
+        "outliers": 148,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.10629279612146282,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 1,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "samples": 39916,
+        "retained": 39774,
+        "outliers": 142,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.10852928506914092,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 2,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "samples": 39916,
+        "retained": 39742,
+        "outliers": 174,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.19907469334681135,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 3,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "samples": 39916,
+        "retained": 39680,
+        "outliers": 236,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.24403917932233837,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 4,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-medium",
+        "samples": 39916,
+        "retained": 39470,
+        "outliers": 446,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.3008085111414479,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 5,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-small",
+        "samples": 39916,
+        "retained": 39297,
+        "outliers": 619,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.33550209643513024,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 6,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-base",
+        "samples": 39916,
+        "retained": 38735,
+        "outliers": 1181,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.43446882332436354,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 7,
+        "all_sample_rank": null,
+        "rank_change": null
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "samples": 39916,
+        "retained": 37674,
+        "outliers": 2242,
+        "undefined_cer_samples": 4,
+        "filtered_macro_cer": 0.5420975195244315,
+        "all_sample_macro_cer": null,
+        "delta_pp": null,
+        "filtered_rank": 8,
+        "all_sample_rank": null,
+        "rank_change": null
+      }
+    ]
+  },
+  "common_nonempty_reference": {
+    "policy": "Exclude normalized empty references equally for every model and both variants; then compare CER > 1.0 exclusion versus retention with unchanged macro aggregation.",
+    "excluded_by_dataset": {
+      "kspon-clean": 0,
+      "kspon-other": 0,
+      "telephone-D01": 0,
+      "telephone-D02": 0,
+      "telephone-D03": 0,
+      "telephone-D04": 4
+    },
+    "overall": [
+      {
+        "model": "openai/whisper-large-v3",
+        "filtered_macro_cer": 0.15030771759571174,
+        "all_sample_macro_cer": 0.15969990399063586,
+        "delta_pp": 0.9392186394924118,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 167,
+        "filtered_rank": 1,
+        "all_sample_rank": 1,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-large-v3-turbo",
+        "filtered_macro_cer": 0.15837986948940308,
+        "all_sample_macro_cer": 0.17229303862333323,
+        "delta_pp": 1.3913169133930148,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 165,
+        "filtered_rank": 2,
+        "all_sample_rank": 2,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-1.7B",
+        "filtered_macro_cer": 0.16807589725704122,
+        "all_sample_macro_cer": 0.17260594817895344,
+        "delta_pp": 0.4530050921912221,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 184,
+        "filtered_rank": 3,
+        "all_sample_rank": 3,
+        "rank_change": 0
+      },
+      {
+        "model": "Qwen/Qwen3-ASR-0.6B",
+        "filtered_macro_cer": 0.19766973453118228,
+        "all_sample_macro_cer": 0.20275880476398225,
+        "delta_pp": 0.5089070232799975,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 249,
+        "filtered_rank": 4,
+        "all_sample_rank": 4,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-medium",
+        "filtered_macro_cer": 0.23390932291265443,
+        "all_sample_macro_cer": 0.2683348485357075,
+        "delta_pp": 3.4425525623053064,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 489,
+        "filtered_rank": 5,
+        "all_sample_rank": 5,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-small",
+        "filtered_macro_cer": 0.2604076193015333,
+        "all_sample_macro_cer": 0.3022204592466046,
+        "delta_pp": 4.181283994507135,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 677,
+        "filtered_rank": 6,
+        "all_sample_rank": 6,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-base",
+        "filtered_macro_cer": 0.3385610739032705,
+        "all_sample_macro_cer": 0.4343881275486787,
+        "delta_pp": 9.582705364540821,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 1254,
+        "filtered_rank": 7,
+        "all_sample_rank": 7,
+        "rank_change": 0
+      },
+      {
+        "model": "openai/whisper-tiny",
+        "filtered_macro_cer": 0.4217102325875917,
+        "all_sample_macro_cer": 0.6136545757519273,
+        "delta_pp": 19.194434316433558,
+        "samples": 45912,
+        "undefined_cer_samples": 0,
+        "outliers": 2379,
+        "filtered_rank": 8,
+        "all_sample_rank": 8,
+        "rank_change": 0
+      }
+    ],
+    "datasets": {
+      "kspon-clean": [
+        {
+          "model": "Qwen/Qwen3-ASR-1.7B",
+          "samples": 3000,
+          "retained": 2992,
+          "outliers": 8,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.162601927579095,
+          "all_sample_macro_cer": 0.16645721132777297,
+          "delta_pp": 0.3855283748677968,
+          "filtered_rank": 1,
+          "all_sample_rank": 1,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3",
+          "samples": 3000,
+          "retained": 2982,
+          "outliers": 18,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.18003966589407355,
+          "all_sample_macro_cer": 0.1975344278987091,
+          "delta_pp": 1.7494762004635538,
+          "filtered_rank": 2,
+          "all_sample_rank": 3,
+          "rank_change": -1
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-0.6B",
+          "samples": 3000,
+          "retained": 2988,
+          "outliers": 12,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.18578352628921418,
+          "all_sample_macro_cer": 0.19107372551739066,
+          "delta_pp": 0.5290199228176473,
+          "filtered_rank": 3,
+          "all_sample_rank": 2,
+          "rank_change": 1
+        },
+        {
+          "model": "openai/whisper-large-v3-turbo",
+          "samples": 3000,
+          "retained": 2981,
+          "outliers": 19,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.1952852842307795,
+          "all_sample_macro_cer": 0.22162562028779412,
+          "delta_pp": 2.6340336057014606,
+          "filtered_rank": 4,
+          "all_sample_rank": 4,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-medium",
+          "samples": 3000,
+          "retained": 2966,
+          "outliers": 34,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.2100840253791141,
+          "all_sample_macro_cer": 0.2515692106576217,
+          "delta_pp": 4.1485185278507615,
+          "filtered_rank": 5,
+          "all_sample_rank": 5,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-small",
+          "samples": 3000,
+          "retained": 2951,
+          "outliers": 49,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.23218183288072025,
+          "all_sample_macro_cer": 0.28786892919625645,
+          "delta_pp": 5.56870963155362,
+          "filtered_rank": 6,
+          "all_sample_rank": 6,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-base",
+          "samples": 3000,
+          "retained": 2947,
+          "outliers": 53,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.3040102680157657,
+          "all_sample_macro_cer": 0.38032673381980103,
+          "delta_pp": 7.631646580403534,
+          "filtered_rank": 7,
+          "all_sample_rank": 7,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-tiny",
+          "samples": 3000,
+          "retained": 2907,
+          "outliers": 93,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.3727123984089892,
+          "all_sample_macro_cer": 0.5679703020327073,
+          "delta_pp": 19.525790362371808,
+          "filtered_rank": 8,
+          "all_sample_rank": 8,
+          "rank_change": 0
+        }
+      ],
+      "kspon-other": [
+        {
+          "model": "Qwen/Qwen3-ASR-1.7B",
+          "samples": 3000,
+          "retained": 2994,
+          "outliers": 6,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.1425510708452173,
+          "all_sample_macro_cer": 0.14569374648130462,
+          "delta_pp": 0.3142675636087333,
+          "filtered_rank": 1,
+          "all_sample_rank": 1,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-0.6B",
+          "samples": 3000,
+          "retained": 2995,
+          "outliers": 5,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.16318649798199428,
+          "all_sample_macro_cer": 0.1651534093742465,
+          "delta_pp": 0.19669113922522186,
+          "filtered_rank": 2,
+          "all_sample_rank": 2,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3",
+          "samples": 3000,
+          "retained": 2995,
+          "outliers": 5,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.1645906907715988,
+          "all_sample_macro_cer": 0.1682554755177487,
+          "delta_pp": 0.3664784746149896,
+          "filtered_rank": 3,
+          "all_sample_rank": 3,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3-turbo",
+          "samples": 3000,
+          "retained": 2992,
+          "outliers": 8,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.17132503916828884,
+          "all_sample_macro_cer": 0.17746341049241152,
+          "delta_pp": 0.6138371324122677,
+          "filtered_rank": 4,
+          "all_sample_rank": 4,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-medium",
+          "samples": 3000,
+          "retained": 2987,
+          "outliers": 13,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.19083543221740126,
+          "all_sample_macro_cer": 0.21082966622615398,
+          "delta_pp": 1.999423400875272,
+          "filtered_rank": 5,
+          "all_sample_rank": 5,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-small",
+          "samples": 3000,
+          "retained": 2987,
+          "outliers": 13,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.21353892858874943,
+          "all_sample_macro_cer": 0.222895074713013,
+          "delta_pp": 0.9356146124263581,
+          "filtered_rank": 6,
+          "all_sample_rank": 6,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-base",
+          "samples": 3000,
+          "retained": 2976,
+          "outliers": 24,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.2772041303696824,
+          "all_sample_macro_cer": 0.3385688546770917,
+          "delta_pp": 6.13647243074093,
+          "filtered_rank": 7,
+          "all_sample_rank": 7,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-tiny",
+          "samples": 3000,
+          "retained": 2952,
+          "outliers": 48,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.3503207798293544,
+          "all_sample_macro_cer": 0.4051459110089902,
+          "delta_pp": 5.482513117963583,
+          "filtered_rank": 8,
+          "all_sample_rank": 8,
+          "rank_change": 0
+        }
+      ],
+      "telephone-D01": [
+        {
+          "model": "openai/whisper-large-v3",
+          "samples": 8664,
+          "retained": 8632,
+          "outliers": 32,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.09387249909123431,
+          "all_sample_macro_cer": 0.09962462038217224,
+          "delta_pp": 0.5752121290937926,
+          "filtered_rank": 1,
+          "all_sample_rank": 1,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3-turbo",
+          "samples": 8664,
+          "retained": 8634,
+          "outliers": 30,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.0961427725261959,
+          "all_sample_macro_cer": 0.10281715428169275,
+          "delta_pp": 0.6674381755496852,
+          "filtered_rank": 2,
+          "all_sample_rank": 2,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-1.7B",
+          "samples": 8664,
+          "retained": 8635,
+          "outliers": 29,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.1670846204476437,
+          "all_sample_macro_cer": 0.17219752467476093,
+          "delta_pp": 0.5112904227117243,
+          "filtered_rank": 3,
+          "all_sample_rank": 3,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-0.6B",
+          "samples": 8664,
+          "retained": 8621,
+          "outliers": 43,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.1979195906511764,
+          "all_sample_macro_cer": 0.20467093348461582,
+          "delta_pp": 0.6751342833439422,
+          "filtered_rank": 4,
+          "all_sample_rank": 4,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-medium",
+          "samples": 8664,
+          "retained": 8589,
+          "outliers": 75,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.2788919207009003,
+          "all_sample_macro_cer": 0.303685832184793,
+          "delta_pp": 2.4793911483892703,
+          "filtered_rank": 5,
+          "all_sample_rank": 5,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-small",
+          "samples": 8664,
+          "retained": 8576,
+          "outliers": 88,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.29583969529381665,
+          "all_sample_macro_cer": 0.3325126526798305,
+          "delta_pp": 3.667295738601384,
+          "filtered_rank": 6,
+          "all_sample_rank": 6,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-base",
+          "samples": 8664,
+          "retained": 8474,
+          "outliers": 190,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.38912506554576853,
+          "all_sample_macro_cer": 0.49806932451534813,
+          "delta_pp": 10.89442589695796,
+          "filtered_rank": 7,
+          "all_sample_rank": 7,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-tiny",
+          "samples": 8664,
+          "retained": 8294,
+          "outliers": 370,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.49602773428960006,
+          "all_sample_macro_cer": 0.7435523609003554,
+          "delta_pp": 24.75246266107553,
+          "filtered_rank": 8,
+          "all_sample_rank": 8,
+          "rank_change": 0
+        }
+      ],
+      "telephone-D02": [
+        {
+          "model": "openai/whisper-large-v3",
+          "samples": 15211,
+          "retained": 15149,
+          "outliers": 62,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.1248253665630092,
+          "all_sample_macro_cer": 0.13250043903985237,
+          "delta_pp": 0.7675072476843168,
+          "filtered_rank": 1,
+          "all_sample_rank": 1,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3-turbo",
+          "samples": 15211,
+          "retained": 15153,
+          "outliers": 58,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.12696254568641707,
+          "all_sample_macro_cer": 0.13509832211856976,
+          "delta_pp": 0.8135776432152686,
+          "filtered_rank": 2,
+          "all_sample_rank": 2,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-1.7B",
+          "samples": 15211,
+          "retained": 15121,
+          "outliers": 90,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.25066926268524126,
+          "all_sample_macro_cer": 0.25895630623721605,
+          "delta_pp": 0.8287043551974793,
+          "filtered_rank": 3,
+          "all_sample_rank": 3,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-0.6B",
+          "samples": 15211,
+          "retained": 15079,
+          "outliers": 132,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.3067205918740185,
+          "all_sample_macro_cer": 0.31762764434176316,
+          "delta_pp": 1.090705246774465,
+          "filtered_rank": 4,
+          "all_sample_rank": 4,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-medium",
+          "samples": 15211,
+          "retained": 14986,
+          "outliers": 225,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.3388411727652729,
+          "all_sample_macro_cer": 0.39939280358312856,
+          "delta_pp": 6.0551630817855635,
+          "filtered_rank": 5,
+          "all_sample_rank": 5,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-small",
+          "samples": 15211,
+          "retained": 14854,
+          "outliers": 357,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.3903462054414007,
+          "all_sample_macro_cer": 0.48216639776880016,
+          "delta_pp": 9.182019232739947,
+          "filtered_rank": 6,
+          "all_sample_rank": 6,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-base",
+          "samples": 15211,
+          "retained": 14563,
+          "outliers": 648,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.4884797411869392,
+          "all_sample_macro_cer": 0.7007238117780594,
+          "delta_pp": 21.22440705911202,
+          "filtered_rank": 7,
+          "all_sample_rank": 7,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-tiny",
+          "samples": 15211,
+          "retained": 14155,
+          "outliers": 1056,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.5947811193730522,
+          "all_sample_macro_cer": 1.0001171344008264,
+          "delta_pp": 40.533601502777415,
+          "filtered_rank": 8,
+          "all_sample_rank": 8,
+          "rank_change": 0
+        }
+      ],
+      "telephone-D03": [
+        {
+          "model": "openai/whisper-large-v3",
+          "samples": 1936,
+          "retained": 1934,
+          "outliers": 2,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.08998115708198702,
+          "all_sample_macro_cer": 0.09120166060920457,
+          "delta_pp": 0.12205035272175452,
+          "filtered_rank": 1,
+          "all_sample_rank": 1,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3-turbo",
+          "samples": 1936,
+          "retained": 1934,
+          "outliers": 2,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.0933290177647991,
+          "all_sample_macro_cer": 0.09454237326592757,
+          "delta_pp": 0.12133555011284713,
+          "filtered_rank": 2,
+          "all_sample_rank": 2,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-1.7B",
+          "samples": 1936,
+          "retained": 1935,
+          "outliers": 1,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.16550017648823137,
+          "all_sample_macro_cer": 0.16618948424830976,
+          "delta_pp": 0.06893077600783892,
+          "filtered_rank": 3,
+          "all_sample_rank": 3,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-0.6B",
+          "samples": 1936,
+          "retained": 1933,
+          "outliers": 3,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.20103342603045804,
+          "all_sample_macro_cer": 0.20263880352685254,
+          "delta_pp": 0.16053774963945,
+          "filtered_rank": 4,
+          "all_sample_rank": 4,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-medium",
+          "samples": 1936,
+          "retained": 1925,
+          "outliers": 11,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.2517669884469015,
+          "all_sample_macro_cer": 0.26555016168733964,
+          "delta_pp": 1.3783173240438151,
+          "filtered_rank": 5,
+          "all_sample_rank": 5,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-small",
+          "samples": 1936,
+          "retained": 1915,
+          "outliers": 21,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.30918024777948244,
+          "all_sample_macro_cer": 0.36984906861433553,
+          "delta_pp": 6.066882083485309,
+          "filtered_rank": 6,
+          "all_sample_rank": 6,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-base",
+          "samples": 1936,
+          "retained": 1857,
+          "outliers": 79,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.46346552083055453,
+          "all_sample_macro_cer": 0.6609413808757771,
+          "delta_pp": 19.74758600452226,
+          "filtered_rank": 7,
+          "all_sample_rank": 7,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-tiny",
+          "samples": 1936,
+          "retained": 1810,
+          "outliers": 126,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.6102587143824154,
+          "all_sample_macro_cer": 0.9222240885860408,
+          "delta_pp": 31.196537420362535,
+          "filtered_rank": 8,
+          "all_sample_rank": 8,
+          "rank_change": 0
+        }
+      ],
+      "telephone-D04": [
+        {
+          "model": "openai/whisper-large-v3",
+          "samples": 14101,
+          "retained": 14053,
+          "outliers": 48,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.096188818625433,
+          "all_sample_macro_cer": 0.10405239166721203,
+          "delta_pp": 0.7863573041779024,
+          "filtered_rank": 1,
+          "all_sample_rank": 1,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3-turbo",
+          "samples": 14101,
+          "retained": 14053,
+          "outliers": 48,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.09835517762793969,
+          "all_sample_macro_cer": 0.11151091688666584,
+          "delta_pp": 1.3155739258726151,
+          "filtered_rank": 2,
+          "all_sample_rank": 2,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-1.7B",
+          "samples": 14101,
+          "retained": 14051,
+          "outliers": 50,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.16783417570673353,
+          "all_sample_macro_cer": 0.1741670954980579,
+          "delta_pp": 0.633291979132436,
+          "filtered_rank": 3,
+          "all_sample_rank": 3,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-0.6B",
+          "samples": 14101,
+          "retained": 14047,
+          "outliers": 54,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.21097547000223496,
+          "all_sample_macro_cer": 0.2172029678748955,
+          "delta_pp": 0.6227497872660526,
+          "filtered_rank": 4,
+          "all_sample_rank": 4,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-medium",
+          "samples": 14101,
+          "retained": 13970,
+          "outliers": 131,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.28024223049622415,
+          "all_sample_macro_cer": 0.31584102912612705,
+          "delta_pp": 3.5598798629902895,
+          "filtered_rank": 5,
+          "all_sample_rank": 5,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-small",
+          "samples": 14101,
+          "retained": 13952,
+          "outliers": 149,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.30510478402001623,
+          "all_sample_macro_cer": 0.3453588744208255,
+          "delta_pp": 4.0254090400809295,
+          "filtered_rank": 6,
+          "all_sample_rank": 6,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-base",
+          "samples": 14101,
+          "retained": 13841,
+          "outliers": 260,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.4015113158692756,
+          "all_sample_macro_cer": 0.5010829778134935,
+          "delta_pp": 9.957166194421795,
+          "filtered_rank": 7,
+          "all_sample_rank": 7,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-tiny",
+          "samples": 14101,
+          "retained": 13415,
+          "outliers": 686,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.5057944766759421,
+          "all_sample_macro_cer": 0.7940702620805831,
+          "delta_pp": 28.827578540464096,
+          "filtered_rank": 8,
+          "all_sample_rank": 8,
+          "rank_change": 0
+        }
+      ],
+      "aihub-all": [
+        {
+          "model": "openai/whisper-large-v3",
+          "samples": 39912,
+          "retained": 39768,
+          "outliers": 144,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.10629279612146282,
+          "all_sample_macro_cer": 0.11330980855544977,
+          "delta_pp": 0.7017012433986947,
+          "filtered_rank": 1,
+          "all_sample_rank": 1,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-large-v3-turbo",
+          "samples": 39912,
+          "retained": 39774,
+          "outliers": 138,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.10852928506914092,
+          "all_sample_macro_cer": 0.11779008508979406,
+          "delta_pp": 0.9260800020653146,
+          "filtered_rank": 2,
+          "all_sample_rank": 2,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-1.7B",
+          "samples": 39912,
+          "retained": 39742,
+          "outliers": 170,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.19907469334681135,
+          "all_sample_macro_cer": 0.20566688672778274,
+          "delta_pp": 0.659219338097139,
+          "filtered_rank": 3,
+          "all_sample_rank": 3,
+          "rank_change": 0
+        },
+        {
+          "model": "Qwen/Qwen3-ASR-0.6B",
+          "samples": 39912,
+          "retained": 39680,
+          "outliers": 232,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.24403917932233837,
+          "all_sample_macro_cer": 0.25204927940030963,
+          "delta_pp": 0.8010100077971261,
+          "filtered_rank": 4,
+          "all_sample_rank": 4,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-medium",
+          "samples": 39912,
+          "retained": 39470,
+          "outliers": 442,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.3008085111414479,
+          "all_sample_macro_cer": 0.34260566872334686,
+          "delta_pp": 4.179715758189895,
+          "filtered_rank": 5,
+          "all_sample_rank": 5,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-small",
+          "samples": 39912,
+          "retained": 39297,
+          "outliers": 615,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.33550209643513024,
+          "all_sample_macro_cer": 0.3958973738305443,
+          "delta_pp": 6.0395277395414055,
+          "filtered_rank": 6,
+          "all_sample_rank": 6,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-base",
+          "samples": 39912,
+          "retained": 38735,
+          "outliers": 1177,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.43446882332436354,
+          "all_sample_macro_cer": 0.5842687941491435,
+          "delta_pp": 14.979997082477992,
+          "filtered_rank": 7,
+          "all_sample_rank": 7,
+          "rank_change": 0
+        },
+        {
+          "model": "openai/whisper-tiny",
+          "samples": 39912,
+          "retained": 37674,
+          "outliers": 2238,
+          "undefined_cer_samples": 0,
+          "filtered_macro_cer": 0.5420975195244315,
+          "all_sample_macro_cer": 0.8678475142140841,
+          "delta_pp": 32.57499946896526,
+          "filtered_rank": 8,
+          "all_sample_rank": 8,
+          "rank_change": 0
+        }
+      ]
+    }
+  }
+}

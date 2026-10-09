@@ -3,6 +3,7 @@ from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 
 from openkoasr.dataset.sample import get_sample_audio
 from openkoasr.model.base import BaseASRInferenceModel
+from openkoasr.model.revisions import pinned_revisions, verify_loaded_revision, verify_processor_revision
 
 class WhisperASRInferenceModel(BaseASRInferenceModel):
     supports_batch_transcribe = True
@@ -14,16 +15,23 @@ class WhisperASRInferenceModel(BaseASRInferenceModel):
         self.processor = self.initialize_processor()
 
     def initialize_model(self):
+        revision, _ = pinned_revisions(self.model_config)
         model = AutoModelForSpeechSeq2Seq.from_pretrained(self.model_config.repo_name,
+                                                  **({"revision": revision} if revision else {}),
                                                   dtype=self.TORCH_DTYPE[self.model_config.dtype],
                                                   low_cpu_mem_usage=True,
                                                   use_safetensors=True,
                                                   device_map='cpu')
+        verify_loaded_revision(model, revision)
         model.to(self.model_config.device)
         return model
 
     def initialize_processor(self):
-        processor = AutoProcessor.from_pretrained(self.model_config.repo_name)
+        _, revision = pinned_revisions(self.model_config)
+        processor = AutoProcessor.from_pretrained(
+            self.model_config.repo_name, **({"revision": revision} if revision else {}))
+        self.processor_revision = revision
+        self.processor_revision_source = verify_processor_revision(processor, revision)
         return processor
 
     def extract_input_features(self, sample, sample_rate):
@@ -51,10 +59,11 @@ class WhisperASRInferenceModel(BaseASRInferenceModel):
             dtype=self.TORCH_DTYPE[self.model_config.dtype],
         )
 
+        self.generation_overrides = self._generation_kwargs()
         predicted_ids = self.model.generate(
             input_features,
             attention_mask=torch.ones_like(input_features),
-            **self._generation_kwargs(),
+            **self.generation_overrides,
         )
         return self.processor.batch_decode(predicted_ids, skip_special_tokens=True)
 
