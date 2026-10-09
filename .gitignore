@@ -2,6 +2,7 @@
 .idea
 __pycache__
 .venv
+*.egg-info/
 .env
 .env.*
 !.env.example
@@ -34,3 +35,6 @@ datasets/
 *.tar.gz
 *.wav
 *.zip
+
+# Local server credentials
+/ssh.env

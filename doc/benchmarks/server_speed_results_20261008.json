@@ -1,0 +1,4224 @@
+{
+  "id": "server-speed-results-v4-20261008",
+  "status": "completed_and_verified",
+  "validated_at_utc": "2026-10-08T12:27:13.068560+00:00",
+  "started_at_utc": "2026-10-08T06:51:26.475427+00:00",
+  "completed_at_utc": "2026-10-08T08:33:28.762688+00:00",
+  "protocol_id": "server-speed-v4-retain-capped-20261008",
+  "executed_protocol_sha256": "b80f88e5659936a938af5cd1bd292e0ff4ab9700d448cab7026ac5f728611386",
+  "executed_protocol_artifact": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/protocol.json",
+  "matrix_sha256": "3909060ada52be366db839bca851f3f3695cb164829235e23aee4880ae3b494c",
+  "image_id": "sha256:f9995a10077eb8bbd739388ff97c54f68e7656e6524183d1f76553c6f03c7e14",
+  "source_sha256": "f173ed8efcdbf0b6e07bc5b40fa7930d9a090fb270233b464b2ba3c5907a2524",
+  "environment_id": "linux-server",
+  "gpu": "NVIDIA GeForce RTX 3090 Ti",
+  "driver": "580.178.04",
+  "input_manifest_sha256": "feab69a04d1de01f00190bcacb1c81a4e4049b82e9b6ebc1510e8019956cbfe1",
+  "unique_inputs": 768,
+  "model_track_pairs": 16,
+  "total_measured_generations": 36864,
+  "total_warmup_generations": 2304,
+  "rows": [
+    {
+      "model": "openai/whisper-tiny",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 84.40061056157059,
+        "min": 84.3990509654663,
+        "max": 84.6349117126991
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 83.7850861727612,
+            "min": 83.64746320234522,
+            "max": 83.89379244093307
+          },
+          "request_latency_p50_ms": {
+            "median": 31.50150249894068,
+            "min": 31.47171549971972,
+            "max": 31.526442497124663
+          },
+          "request_latency_p95_ms": {
+            "median": 83.8728929984427,
+            "min": 83.64106574936159,
+            "max": 84.33457225146412
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 84.11694384337645,
+            "min": 83.97677617687093,
+            "max": 84.32701010196112
+          },
+          "request_latency_p50_ms": {
+            "median": 44.53443999955198,
+            "min": 44.383107000612654,
+            "max": 44.59915650113544
+          },
+          "request_latency_p95_ms": {
+            "median": 106.83833199891524,
+            "min": 106.83607949977159,
+            "max": 106.93495025043376
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 85.43996933507962,
+            "min": 85.43274585067725,
+            "max": 85.68393259520312
+          },
+          "request_latency_p50_ms": {
+            "median": 43.30127250068472,
+            "min": 43.28444900056638,
+            "max": 43.343157498384244
+          },
+          "request_latency_p95_ms": {
+            "median": 164.88793474854901,
+            "min": 164.54597399933846,
+            "max": 164.97723150132515
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 9.700986620984622,
+              "throughput_rtfx": 83.7850861727612,
+              "request_latency_p50_ms": 31.526442497124663,
+              "request_latency_p95_ms": 83.8728929984427
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 13.959776183011854,
+              "throughput_rtfx": 83.97677617687093,
+              "request_latency_p50_ms": 44.53443999955198,
+              "request_latency_p95_ms": 106.93495025043376
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 15.468392723982106,
+              "throughput_rtfx": 85.43996933507962,
+              "request_latency_p50_ms": 43.343157498384244,
+              "request_latency_p95_ms": 164.88793474854901
+            }
+          },
+          "overall_throughput_rtfx": 84.40061056157059
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 9.716947399036144,
+              "throughput_rtfx": 83.64746320234522,
+              "request_latency_p50_ms": 31.50150249894068,
+              "request_latency_p95_ms": 84.33457225146412
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 13.9365144100193,
+              "throughput_rtfx": 84.11694384337645,
+              "request_latency_p50_ms": 44.59915650113544,
+              "request_latency_p95_ms": 106.83607949977159
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 15.469700602974626,
+              "throughput_rtfx": 85.43274585067725,
+              "request_latency_p50_ms": 43.30127250068472,
+              "request_latency_p95_ms": 164.97723150132515
+            }
+          },
+          "overall_throughput_rtfx": 84.3990509654663
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 9.68841646504734,
+              "throughput_rtfx": 83.89379244093307,
+              "request_latency_p50_ms": 31.47171549971972,
+              "request_latency_p95_ms": 83.64106574936159
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 13.90179728396106,
+              "throughput_rtfx": 84.32701010196112,
+              "request_latency_p50_ms": 44.383107000612654,
+              "request_latency_p95_ms": 106.83833199891524
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 15.424350400018739,
+              "throughput_rtfx": 85.68393259520312,
+              "request_latency_p50_ms": 43.28444900056638,
+              "request_latency_p95_ms": 164.54597399933846
+            }
+          },
+          "overall_throughput_rtfx": 84.6349117126991
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2265,
+          "token_limit": 39,
+          "token_limit_rate": 0.016927083333333332
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 138,
+          "token_limit": 6,
+          "token_limit_rate": 0.041666666666666664
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 755,
+              "token_limit": 13,
+              "token_limit_rate": 0.016927083333333332
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 253,
+                "token_limit": 3,
+                "token_limit_rate": 0.01171875
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 246,
+                "token_limit": 10,
+                "token_limit_rate": 0.0390625
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 755,
+              "token_limit": 13,
+              "token_limit_rate": 0.016927083333333332
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 253,
+                "token_limit": 3,
+                "token_limit_rate": 0.01171875
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 246,
+                "token_limit": 10,
+                "token_limit_rate": 0.0390625
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 755,
+              "token_limit": 13,
+              "token_limit_rate": 0.016927083333333332
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 253,
+                "token_limit": 3,
+                "token_limit_rate": 0.01171875
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 246,
+                "token_limit": 10,
+                "token_limit_rate": 0.0390625
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 13,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-tiny/latency-b1/run",
+      "sha256": {
+        "metadata.json": "5009e03090d58fc8a54b8bede3d4186e93c5c1eee9d40705fe1bb2116407cd97",
+        "summary.json": "baa552b31cd508a1eae7c7d66b6bd30f4a33c3658674344b69b343f6b4f8fff3",
+        "requests.jsonl": "57927f305292e3e117329f9519db7e3c4291367ffb95ddad2a755901bcd754cd",
+        "warmup.jsonl": "7805b3a2de483b5c8e9680d54fc8c8a1039ae53b5e44a83c52e90f27a8422b22"
+      }
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 157.96056280325607,
+        "min": 157.57789396764608,
+        "max": 158.42784502478946
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 164.32585856073825,
+            "min": 164.08043301591778,
+            "max": 165.1516997594162
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 159.97734722578238,
+            "min": 159.13905718600796,
+            "max": 160.23362888872404
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 149.57848262324762,
+            "min": 149.51419170101244,
+            "max": 149.89820642622814
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 4.92152367298695,
+              "throughput_rtfx": 165.1516997594162
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 7.316173315990454,
+              "throughput_rtfx": 160.23362888872404
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 8.81677660800051,
+              "throughput_rtfx": 149.89820642622814
+            }
+          },
+          "overall_throughput_rtfx": 158.42784502478946
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 4.946257437015447,
+              "throughput_rtfx": 164.32585856073825
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 7.327893732013763,
+              "throughput_rtfx": 159.97734722578238
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 8.835622455997509,
+              "throughput_rtfx": 149.57848262324762
+            }
+          },
+          "overall_throughput_rtfx": 157.96056280325607
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 4.953655869016075,
+              "throughput_rtfx": 164.08043301591778
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 7.366494566005713,
+              "throughput_rtfx": 159.13905718600796
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 8.839421763004793,
+              "throughput_rtfx": 149.51419170101244
+            }
+          },
+          "overall_throughput_rtfx": 157.57789396764608
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2262,
+          "token_limit": 42,
+          "token_limit_rate": 0.018229166666666668
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 138,
+          "token_limit": 6,
+          "token_limit_rate": 0.041666666666666664
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 754,
+              "token_limit": 14,
+              "token_limit_rate": 0.018229166666666668
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 252,
+                "token_limit": 4,
+                "token_limit_rate": 0.015625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 246,
+                "token_limit": 10,
+                "token_limit_rate": 0.0390625
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 754,
+              "token_limit": 14,
+              "token_limit_rate": 0.018229166666666668
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 252,
+                "token_limit": 4,
+                "token_limit_rate": 0.015625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 246,
+                "token_limit": 10,
+                "token_limit_rate": 0.0390625
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 754,
+              "token_limit": 14,
+              "token_limit_rate": 0.018229166666666668
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 252,
+                "token_limit": 4,
+                "token_limit_rate": 0.015625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 246,
+                "token_limit": 10,
+                "token_limit_rate": 0.0390625
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 14,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-tiny/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "9ff83bc1f0710d79596e567a6ff00243866301429078b94cfc9f81116834b9a5",
+        "summary.json": "488768d92308afef869af2daad8532da37912dcdcb9e1df085a683f76f884ada",
+        "requests.jsonl": "325cb5f6e581b61c86e7eeb4fda1e2d12a25433d631752965c688384d03f738b",
+        "warmup.jsonl": "7805b3a2de483b5c8e9680d54fc8c8a1039ae53b5e44a83c52e90f27a8422b22"
+      }
+    },
+    {
+      "model": "openai/whisper-base",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 67.68451128508657,
+        "min": 67.66045980845774,
+        "max": 67.73219732955225
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 65.15766345189526,
+            "min": 65.1287351844737,
+            "max": 65.25572217837136
+          },
+          "request_latency_p50_ms": {
+            "median": 39.26568850147305,
+            "min": 39.20855550131819,
+            "max": 39.28525450101006
+          },
+          "request_latency_p95_ms": {
+            "median": 112.10175449923554,
+            "min": 112.04120050024358,
+            "max": 112.16263774986146
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 69.27188949857837,
+            "min": 69.24649511777625,
+            "max": 69.34486974348607
+          },
+          "request_latency_p50_ms": {
+            "median": 57.47545000122045,
+            "min": 57.33188249905652,
+            "max": 57.48616350138036
+          },
+          "request_latency_p95_ms": {
+            "median": 134.76132675168628,
+            "min": 134.0534885002853,
+            "max": 137.1466952496121
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 68.66898031170702,
+            "min": 68.47884622999189,
+            "max": 68.67830355300975
+          },
+          "request_latency_p50_ms": {
+            "median": 55.97371950170782,
+            "min": 55.96011499983433,
+            "max": 55.975986000703415
+          },
+          "request_latency_p95_ms": {
+            "median": 202.55490524959896,
+            "min": 202.4919384994064,
+            "max": 202.7322087515131
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 12.474326993018622,
+              "throughput_rtfx": 65.15766345189526,
+              "request_latency_p50_ms": 39.20855550131819,
+              "request_latency_p95_ms": 112.16263774986146
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 16.905316923031933,
+              "throughput_rtfx": 69.34486974348607,
+              "request_latency_p50_ms": 57.47545000122045,
+              "request_latency_p95_ms": 134.0534885002853
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 19.29966803998468,
+              "throughput_rtfx": 68.47884622999189,
+              "request_latency_p50_ms": 55.97371950170782,
+              "request_latency_p95_ms": 202.55490524959896
+            }
+          },
+          "overall_throughput_rtfx": 67.66045980845774
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 12.45558202203756,
+              "throughput_rtfx": 65.25572217837136,
+              "request_latency_p50_ms": 39.28525450101006,
+              "request_latency_p95_ms": 112.10175449923554
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 16.923127237983863,
+              "throughput_rtfx": 69.27188949857837,
+              "request_latency_p50_ms": 57.48616350138036,
+              "request_latency_p95_ms": 134.76132675168628
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 19.246230160995765,
+              "throughput_rtfx": 68.66898031170702,
+              "request_latency_p50_ms": 55.96011499983433,
+              "request_latency_p95_ms": 202.7322087515131
+            }
+          },
+          "overall_throughput_rtfx": 67.73219732955225
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 12.479867721947812,
+              "throughput_rtfx": 65.1287351844737,
+              "request_latency_p50_ms": 39.26568850147305,
+              "request_latency_p95_ms": 112.04120050024358
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 16.929333362015313,
+              "throughput_rtfx": 69.24649511777625,
+              "request_latency_p50_ms": 57.33188249905652,
+              "request_latency_p95_ms": 137.1466952496121
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 19.24361743996633,
+              "throughput_rtfx": 68.67830355300975,
+              "request_latency_p50_ms": 55.975986000703415,
+              "request_latency_p95_ms": 202.4919384994064
+            }
+          },
+          "overall_throughput_rtfx": 67.68451128508657
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2274,
+          "token_limit": 30,
+          "token_limit_rate": 0.013020833333333334
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 758,
+              "token_limit": 10,
+              "token_limit_rate": 0.013020833333333334
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 248,
+                "token_limit": 8,
+                "token_limit_rate": 0.03125
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 758,
+              "token_limit": 10,
+              "token_limit_rate": 0.013020833333333334
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 248,
+                "token_limit": 8,
+                "token_limit_rate": 0.03125
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 758,
+              "token_limit": 10,
+              "token_limit_rate": 0.013020833333333334
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 248,
+                "token_limit": 8,
+                "token_limit_rate": 0.03125
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 10,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-base/latency-b1/run",
+      "sha256": {
+        "metadata.json": "47f5b9a3575511a83169de0a1b1e866b7a58cbc0e115b3ab2c4d7e6a5efd6785",
+        "summary.json": "ed742e247a0a5e9526fbfbe27c213f68e52f6080662edc8620fe48c0b93ed479",
+        "requests.jsonl": "1ca042b3cfa2019e55a390a4fbe617195b3a6a042f69448b22352549fdea5081",
+        "warmup.jsonl": "cf4eb6e4f3f9176d366e19a23a449b8735ffeeb76e80d5b716b10d89871c736c"
+      }
+    },
+    {
+      "model": "openai/whisper-base",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 124.56291576100155,
+        "min": 124.41137772138124,
+        "max": 124.60209054382874
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 118.48537863944978,
+            "min": 118.33719484453894,
+            "max": 119.02714020050509
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 134.91153585598596,
+            "min": 134.38821184821418,
+            "max": 135.02175382989856
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 120.32979860856715,
+            "min": 119.83721866870798,
+            "max": 120.39091958276693
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 6.828677884983335,
+              "throughput_rtfx": 119.02714020050509
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 8.723213024994038,
+              "throughput_rtfx": 134.38821184821418
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 10.977729919999547,
+              "throughput_rtfx": 120.39091958276693
+            }
+          },
+          "overall_throughput_rtfx": 124.60209054382874
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 6.86849135698867,
+              "throughput_rtfx": 118.33719484453894
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 8.682282423000288,
+              "throughput_rtfx": 135.02175382989856
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 10.983306008009095,
+              "throughput_rtfx": 120.32979860856715
+            }
+          },
+          "overall_throughput_rtfx": 124.56291576100155
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 6.859901275020093,
+              "throughput_rtfx": 118.48537863944978
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 8.689375541995105,
+              "throughput_rtfx": 134.91153585598596
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 11.02845188399806,
+              "throughput_rtfx": 119.83721866870798
+            }
+          },
+          "overall_throughput_rtfx": 124.41137772138124
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2277,
+          "token_limit": 27,
+          "token_limit_rate": 0.01171875
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 759,
+              "token_limit": 9,
+              "token_limit_rate": 0.01171875
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 249,
+                "token_limit": 7,
+                "token_limit_rate": 0.02734375
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 759,
+              "token_limit": 9,
+              "token_limit_rate": 0.01171875
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 249,
+                "token_limit": 7,
+                "token_limit_rate": 0.02734375
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 759,
+              "token_limit": 9,
+              "token_limit_rate": 0.01171875
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 249,
+                "token_limit": 7,
+                "token_limit_rate": 0.02734375
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 9,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-base/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "28e3c3b38600f7553f76fd98bab75b5642201a5d5e1171849a3a2f4b550cb9f2",
+        "summary.json": "bc6bdddf3c859af83939f5d36c7d8e6acc8390de1727ad0426942021c22f041c",
+        "requests.jsonl": "4d1c20a2fa9b08f7334a2d0bc25ad49d20c249de5e3e675049cef233639eb9ab",
+        "warmup.jsonl": "cf4eb6e4f3f9176d366e19a23a449b8735ffeeb76e80d5b716b10d89871c736c"
+      }
+    },
+    {
+      "model": "openai/whisper-small",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 41.6891244815533,
+        "min": 41.68375360744582,
+        "max": 41.76619160631884
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 38.89783005295545,
+            "min": 38.80583358572443,
+            "max": 38.93431987177114
+          },
+          "request_latency_p50_ms": {
+            "median": 66.1480050002865,
+            "min": 66.12467300146818,
+            "max": 66.19159450019652
+          },
+          "request_latency_p95_ms": {
+            "median": 191.13042549997772,
+            "min": 190.77733699941746,
+            "max": 191.5413084998363
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 41.355404548310545,
+            "min": 41.245114598463964,
+            "max": 41.459035352759095
+          },
+          "request_latency_p50_ms": {
+            "median": 93.04410599906987,
+            "min": 92.8755534987431,
+            "max": 93.09813149957336
+          },
+          "request_latency_p95_ms": {
+            "median": 229.1604907495639,
+            "min": 228.8515614991411,
+            "max": 229.83883024880924
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 44.9052195944263,
+            "min": 44.890022688302494,
+            "max": 44.92442879324049
+          },
+          "request_latency_p50_ms": {
+            "median": 93.09094749914948,
+            "min": 93.03403249941766,
+            "max": 93.12117750050675
+          },
+          "request_latency_p95_ms": {
+            "median": 258.54505924962723,
+            "min": 257.97923049867677,
+            "max": 258.80504849919816
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 20.876131975001044,
+              "throughput_rtfx": 38.93431987177114,
+              "request_latency_p50_ms": 66.12467300146818,
+              "request_latency_p95_ms": 190.77733699941746
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 28.276031750989205,
+              "throughput_rtfx": 41.459035352759095,
+              "request_latency_p50_ms": 93.04410599906987,
+              "request_latency_p95_ms": 228.8515614991411
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 29.431300234951777,
+              "throughput_rtfx": 44.9052195944263,
+              "request_latency_p50_ms": 93.03403249941766,
+              "request_latency_p95_ms": 258.54505924962723
+            }
+          },
+          "overall_throughput_rtfx": 41.76619160631884
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 20.94525293998595,
+              "throughput_rtfx": 38.80583358572443,
+              "request_latency_p50_ms": 66.19159450019652,
+              "request_latency_p95_ms": 191.5413084998363
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 28.346887494004477,
+              "throughput_rtfx": 41.355404548310545,
+              "request_latency_p50_ms": 93.09813149957336,
+              "request_latency_p95_ms": 229.83883024880924
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 29.441263801018067,
+              "throughput_rtfx": 44.890022688302494,
+              "request_latency_p50_ms": 93.09094749914948,
+              "request_latency_p95_ms": 258.80504849919816
+            }
+          },
+          "overall_throughput_rtfx": 41.68375360744582
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 20.895715747985378,
+              "throughput_rtfx": 38.89783005295545,
+              "request_latency_p50_ms": 66.1480050002865,
+              "request_latency_p95_ms": 191.13042549997772
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 28.422687424019387,
+              "throughput_rtfx": 41.245114598463964,
+              "request_latency_p50_ms": 92.8755534987431,
+              "request_latency_p95_ms": 229.1604907495639
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 29.41871572997843,
+              "throughput_rtfx": 44.92442879324049,
+              "request_latency_p50_ms": 93.12117750050675,
+              "request_latency_p95_ms": 257.97923049867677
+            }
+          },
+          "overall_throughput_rtfx": 41.6891244815533
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2295,
+          "token_limit": 9,
+          "token_limit_rate": 0.00390625
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 254,
+                "token_limit": 2,
+                "token_limit_rate": 0.0078125
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 254,
+                "token_limit": 2,
+                "token_limit_rate": 0.0078125
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 254,
+                "token_limit": 2,
+                "token_limit_rate": 0.0078125
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 3,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-small/latency-b1/run",
+      "sha256": {
+        "metadata.json": "415664251efeac20849828f988afaac6d4a8644ac27056106aa1a1fe447ee473",
+        "summary.json": "460ae5c884dd9489e52bf33d07d3cd06dc7d013ab69ce2756ee12c88d34e5b08",
+        "requests.jsonl": "1d5ed0f05b999f79436369e08089a5227fab15f96b88177a261c5209ca6accd2",
+        "warmup.jsonl": "38ebeaa6e393ad902aba0d8398630a909045b0a9d179b988b4c58fbe50834028"
+      }
+    },
+    {
+      "model": "openai/whisper-small",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 77.9053081344686,
+        "min": 77.65795879560802,
+        "max": 77.90653867650751
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 69.53622496352013,
+            "min": 69.34932834115817,
+            "max": 69.56483322397348
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 81.2842855292276,
+            "min": 80.7848812988821,
+            "max": 81.31404496055252
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 82.86565447933312,
+            "min": 82.83966674678379,
+            "max": 82.87049727632142
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 11.720344225996087,
+              "throughput_rtfx": 69.34932834115817
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 14.511341493005602,
+              "throughput_rtfx": 80.7848812988821
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 15.953939120008727,
+              "throughput_rtfx": 82.83966674678379
+            }
+          },
+          "overall_throughput_rtfx": 77.65795879560802
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 11.684035773982032,
+              "throughput_rtfx": 69.56483322397348
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 14.422184956998535,
+              "throughput_rtfx": 81.2842855292276
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 15.948003733985388,
+              "throughput_rtfx": 82.87049727632142
+            }
+          },
+          "overall_throughput_rtfx": 77.90653867650751
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 11.688842763989669,
+              "throughput_rtfx": 69.53622496352013
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 14.416906704969733,
+              "throughput_rtfx": 81.31404496055252
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 15.948935759985034,
+              "throughput_rtfx": 82.86565447933312
+            }
+          },
+          "overall_throughput_rtfx": 77.9053081344686
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2295,
+          "token_limit": 9,
+          "token_limit_rate": 0.00390625
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 254,
+                "token_limit": 2,
+                "token_limit_rate": 0.0078125
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 254,
+                "token_limit": 2,
+                "token_limit_rate": 0.0078125
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 254,
+                "token_limit": 2,
+                "token_limit_rate": 0.0078125
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 3,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-small/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "b229a7f389b87bb69cc22612deeb1d1af14f963977465d77a68316855d9f7448",
+        "summary.json": "de854513d8acaa8035060a19b372975c9b3a0da81b120c20b2df06b7267668a1",
+        "requests.jsonl": "63853f3d8c18f66cad78e6b3999d12e2bd1013b66c518a6e06d7be5761c90279",
+        "warmup.jsonl": "38ebeaa6e393ad902aba0d8398630a909045b0a9d179b988b4c58fbe50834028"
+      }
+    },
+    {
+      "model": "openai/whisper-medium",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "abdf7c39ab9d0397620ccaea8974cc764cd0953e",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 21.875239384925106,
+        "min": 21.845148286821228,
+        "max": 21.88671479376481
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 20.32913210992298,
+            "min": 20.31843550904085,
+            "max": 20.36810015311562
+          },
+          "request_latency_p50_ms": {
+            "median": 132.47277099981147,
+            "min": 132.22776600014186,
+            "max": 132.63413199820207
+          },
+          "request_latency_p95_ms": {
+            "median": 333.99908000137657,
+            "min": 333.666930749132,
+            "max": 334.31967399792484
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 21.445572273415763,
+            "min": 21.433324786371028,
+            "max": 21.502175622187405
+          },
+          "request_latency_p50_ms": {
+            "median": 190.26751100136607,
+            "min": 190.2367514994694,
+            "max": 191.10921300125483
+          },
+          "request_latency_p95_ms": {
+            "median": 441.47266049822065,
+            "min": 441.45432125060324,
+            "max": 442.682403750041
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 23.81204572824393,
+            "min": 23.783684565051814,
+            "max": 23.828836649184048
+          },
+          "request_latency_p50_ms": {
+            "median": 180.48276900117344,
+            "min": 180.47486999785178,
+            "max": 180.4979110002023
+          },
+          "request_latency_p95_ms": {
+            "median": 470.74635774788476,
+            "min": 470.4953257487432,
+            "max": 471.0825537513301
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 39.90544007000426,
+              "throughput_rtfx": 20.36810015311562,
+              "request_latency_p50_ms": 132.22776600014186,
+              "request_latency_p95_ms": 333.666930749132
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 54.66382454401537,
+              "throughput_rtfx": 21.445572273415763,
+              "request_latency_p50_ms": 190.2367514994694,
+              "request_latency_p95_ms": 442.682403750041
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 55.502119182998285,
+              "throughput_rtfx": 23.81204572824393,
+              "request_latency_p50_ms": 180.47486999785178,
+              "request_latency_p95_ms": 470.74635774788476
+            }
+          },
+          "overall_throughput_rtfx": 21.875239384925106
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 39.98193309999988,
+              "throughput_rtfx": 20.32913210992298,
+              "request_latency_p50_ms": 132.47277099981147,
+              "request_latency_p95_ms": 333.99908000137657
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 54.51992489496479,
+              "throughput_rtfx": 21.502175622187405,
+              "request_latency_p50_ms": 190.26751100136607,
+              "request_latency_p95_ms": 441.45432125060324
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 55.463009774975944,
+              "throughput_rtfx": 23.828836649184048,
+              "request_latency_p50_ms": 180.48276900117344,
+              "request_latency_p95_ms": 470.4953257487432
+            }
+          },
+          "overall_throughput_rtfx": 21.88671479376481
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 40.00298151097013,
+              "throughput_rtfx": 20.31843550904085,
+              "request_latency_p50_ms": 132.63413199820207,
+              "request_latency_p95_ms": 334.31967399792484
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 54.6950606909777,
+              "throughput_rtfx": 21.433324786371028,
+              "request_latency_p50_ms": 191.10921300125483,
+              "request_latency_p95_ms": 441.47266049822065
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 55.568303405016195,
+              "throughput_rtfx": 23.783684565051814,
+              "request_latency_p50_ms": 180.4979110002023,
+              "request_latency_p95_ms": 471.0825537513301
+            }
+          },
+          "overall_throughput_rtfx": 21.845148286821228
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2301,
+          "token_limit": 3,
+          "token_limit_rate": 0.0013020833333333333
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 1,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-medium/latency-b1/run",
+      "sha256": {
+        "metadata.json": "751f2ca268505eb9c1a712e0f6c00a5ff660dafa57f902b5856a09d8b975255f",
+        "summary.json": "6100e0d149401b7f09222b29ccb59ef6d818258fd05dd3ed98dfc0ba3053deaf",
+        "requests.jsonl": "238d93a06701d7a0bc4ecfa623ef43b93c1ea10a5f9c264c37e2091125fdceb6",
+        "warmup.jsonl": "f43ada12fac8f7dbc385f9ccf3026779c64c44e336181558fd24404afa60ecd7"
+      }
+    },
+    {
+      "model": "openai/whisper-medium",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "abdf7c39ab9d0397620ccaea8974cc764cd0953e",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 41.35986047571591,
+        "min": 41.32220136282066,
+        "max": 41.371759450816704
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 37.800873477425206,
+            "min": 37.79330274553298,
+            "max": 37.84980118990038
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 42.674600884265374,
+            "min": 42.51197137660378,
+            "max": 42.69660233080752
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 43.59087627828434,
+            "min": 43.58967635080723,
+            "max": 43.653759234432975
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 21.502095724994433,
+              "throughput_rtfx": 37.800873477425206
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 27.575691317979363,
+              "throughput_rtfx": 42.51197137660378
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 30.275032968009327,
+              "throughput_rtfx": 43.653759234432975
+            }
+          },
+          "overall_throughput_rtfx": 41.32220136282066
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 21.47430037801314,
+              "throughput_rtfx": 37.84980118990038
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 27.470602553010394,
+              "throughput_rtfx": 42.674600884265374
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 30.318706867987203,
+              "throughput_rtfx": 43.59087627828434
+            }
+          },
+          "overall_throughput_rtfx": 41.371759450816704
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 21.5064030120011,
+              "throughput_rtfx": 37.79330274553298
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 27.456447023985675,
+              "throughput_rtfx": 42.69660233080752
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 30.319541474997095,
+              "throughput_rtfx": 43.58967635080723
+            }
+          },
+          "overall_throughput_rtfx": 41.35986047571591
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2295,
+          "token_limit": 9,
+          "token_limit_rate": 0.00390625
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 253,
+                "token_limit": 3,
+                "token_limit_rate": 0.01171875
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 253,
+                "token_limit": 3,
+                "token_limit_rate": 0.01171875
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 765,
+              "token_limit": 3,
+              "token_limit_rate": 0.00390625
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 253,
+                "token_limit": 3,
+                "token_limit_rate": 0.01171875
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 3,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-medium/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "f550b8a76fe7774fd2b70b75b2ddb3eeda238831c9e418120876ce38bf5dc61f",
+        "summary.json": "8d4918fd221da002aae205aa412ad171a5dfd13e9e792d47e4caaac8c9fc163c",
+        "requests.jsonl": "14a35c567ef4c9810ffee30f8b9b06d2c77eca795c06f0b4bbfab02cae3461fc",
+        "warmup.jsonl": "f43ada12fac8f7dbc385f9ccf3026779c64c44e336181558fd24404afa60ecd7"
+      }
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 15.786989951590249,
+        "min": 15.756346270626674,
+        "max": 15.795572274648508
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 14.78493728886822,
+            "min": 14.778599690391875,
+            "max": 14.807904070117202
+          },
+          "request_latency_p50_ms": {
+            "median": 181.3975240002037,
+            "min": 181.3703304997034,
+            "max": 182.47042000075453
+          },
+          "request_latency_p95_ms": {
+            "median": 451.68880824894586,
+            "min": 447.82069024859084,
+            "max": 452.0340807512184
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 15.8294097456742,
+            "min": 15.78352707987302,
+            "max": 15.831267505068237
+          },
+          "request_latency_p50_ms": {
+            "median": 251.862897999672,
+            "min": 251.297346998399,
+            "max": 252.03956549921713
+          },
+          "request_latency_p95_ms": {
+            "median": 573.8720220006144,
+            "min": 573.7373489992024,
+            "max": 576.3634202503454
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 16.752960418704667,
+            "min": 16.6776076618898,
+            "max": 16.77051203000907
+          },
+          "request_latency_p50_ms": {
+            "median": 258.0176785013464,
+            "min": 257.1635434997006,
+            "max": 258.62767699982214
+          },
+          "request_latency_p95_ms": {
+            "median": 661.6164745009883,
+            "min": 661.1891154998375,
+            "max": 666.3192167507077
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 54.97473436102882,
+              "throughput_rtfx": 14.78493728886822,
+              "request_latency_p50_ms": 182.47042000075453,
+              "request_latency_p95_ms": 452.0340807512184
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 74.04947201003961,
+              "throughput_rtfx": 15.831267505068237,
+              "request_latency_p50_ms": 251.297346998399,
+              "request_latency_p95_ms": 573.7373489992024
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 78.80612098396887,
+              "throughput_rtfx": 16.77051203000907,
+              "request_latency_p50_ms": 257.1635434997006,
+              "request_latency_p95_ms": 661.1891154998375
+            }
+          },
+          "overall_throughput_rtfx": 15.795572274648508
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 54.99830951699914,
+              "throughput_rtfx": 14.778599690391875,
+              "request_latency_p50_ms": 181.3975240002037,
+              "request_latency_p95_ms": 451.68880824894586
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 74.05816254900856,
+              "throughput_rtfx": 15.8294097456742,
+              "request_latency_p50_ms": 251.862897999672,
+              "request_latency_p95_ms": 573.8720220006144
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 78.88868396802354,
+              "throughput_rtfx": 16.752960418704667,
+              "request_latency_p50_ms": 258.0176785013464,
+              "request_latency_p95_ms": 661.6164745009883
+            }
+          },
+          "overall_throughput_rtfx": 15.786989951590249
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 54.88946957998269,
+              "throughput_rtfx": 14.807904070117202,
+              "request_latency_p50_ms": 181.3703304997034,
+              "request_latency_p95_ms": 447.82069024859084
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 74.27344940503826,
+              "throughput_rtfx": 15.78352707987302,
+              "request_latency_p50_ms": 252.03956549921713,
+              "request_latency_p95_ms": 576.3634202503454
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 79.2451187720435,
+              "throughput_rtfx": 16.6776076618898,
+              "request_latency_p50_ms": 258.62767699982214,
+              "request_latency_p95_ms": 666.3192167507077
+            }
+          },
+          "overall_throughput_rtfx": 15.756346270626674
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": true,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2304,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 0,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-large-v3/latency-b1/run",
+      "sha256": {
+        "metadata.json": "4c5c70110c591a76ab131a5462d655454033c55b85a073e555aa7bb89a563dfa",
+        "summary.json": "fb908348cbf7c0715365fdc875eb8c3ec1fc8438db1793a9b516a57b04465382",
+        "requests.jsonl": "4652a38468dcb8706c5bdae4c10d8256e2387b05feabc555c91f9e2fd130ae06",
+        "warmup.jsonl": "044f6ca9a2106ea0d1a6d6d7bd3f45a9a75b404c0ab18c156dd51b182969207b"
+      }
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 29.142944508510283,
+        "min": 29.142679378493625,
+        "max": 29.226851952416098
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 26.247772915549476,
+            "min": 26.237064771061394,
+            "max": 26.347049342287917
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 29.96587884309294,
+            "min": 29.96038044613534,
+            "max": 30.037836953364135
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 31.22509452132654,
+            "min": 31.220680163846033,
+            "max": 31.295669561596245
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 30.849678438011324,
+              "throughput_rtfx": 26.347049342287917
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 39.027344139994966,
+              "throughput_rtfx": 30.037836953364135
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 42.23009184701368,
+              "throughput_rtfx": 31.295669561596245
+            }
+          },
+          "overall_throughput_rtfx": 29.226851952416098
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 30.97899887400854,
+              "throughput_rtfx": 26.237064771061394
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 39.12106186300662,
+              "throughput_rtfx": 29.96587884309294
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 42.32554041100957,
+              "throughput_rtfx": 31.22509452132654
+            }
+          },
+          "overall_throughput_rtfx": 29.142679378493625
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 30.966360560003523,
+              "throughput_rtfx": 26.247772915549476
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 39.12824144899059,
+              "throughput_rtfx": 29.96038044613534
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 42.331524907982384,
+              "throughput_rtfx": 31.220680163846033
+            }
+          },
+          "overall_throughput_rtfx": 29.142944508510283
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": true,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2304,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 0,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-large-v3/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "147231fcca77181eb237fb91657487af70c4cbfd163985fd854b1cf51d2e00dd",
+        "summary.json": "ac14ec00a1d6460b062e89e50ae237803098d546cf946fe33a42cf83110aa68c",
+        "requests.jsonl": "42f6374e9470e0a6841e25c1648de23f35ae95fda7e10fd94ef9b37d5519ebde",
+        "warmup.jsonl": "044f6ca9a2106ea0d1a6d6d7bd3f45a9a75b404c0ab18c156dd51b182969207b"
+      }
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 47.90119914778952,
+        "min": 47.90013657677017,
+        "max": 47.9140499334506
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 40.329029573700694,
+            "min": 40.275592235429805,
+            "max": 40.35120592529287
+          },
+          "request_latency_p50_ms": {
+            "median": 72.66500550031196,
+            "min": 72.59534349941532,
+            "max": 72.773572501319
+          },
+          "request_latency_p95_ms": {
+            "median": 126.22089400065306,
+            "min": 126.07049275084137,
+            "max": 126.73372049994214
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 49.53953019423688,
+            "min": 49.50258306981534,
+            "max": 49.545543792640686
+          },
+          "request_latency_p50_ms": {
+            "median": 84.31709900105488,
+            "min": 84.24120149720693,
+            "max": 84.43074899878411
+          },
+          "request_latency_p95_ms": {
+            "median": 149.40492499772517,
+            "min": 149.35393775249395,
+            "max": 149.41109050141677
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 53.87198479985253,
+            "min": 53.85141368082205,
+            "max": 53.87927370224002
+          },
+          "request_latency_p50_ms": {
+            "median": 86.80289750009251,
+            "min": 86.77943899965612,
+            "max": 86.8187449996185
+          },
+          "request_latency_p95_ms": {
+            "median": 161.78924575069686,
+            "min": 161.5123757510446,
+            "max": 161.7972177491538
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 20.180907464968186,
+              "throughput_rtfx": 40.275592235429805,
+              "request_latency_p50_ms": 72.773572501319,
+              "request_latency_p95_ms": 126.73372049994214
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 23.66099774595932,
+              "throughput_rtfx": 49.545543792640686,
+              "request_latency_p50_ms": 84.24120149720693,
+              "request_latency_p95_ms": 149.41109050141677
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 24.529265322020365,
+              "throughput_rtfx": 53.87927370224002,
+              "request_latency_p50_ms": 86.77943899965612,
+              "request_latency_p95_ms": 161.78924575069686
+            }
+          },
+          "overall_throughput_rtfx": 47.90013657677017
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 20.154167074975703,
+              "throughput_rtfx": 40.329029573700694,
+              "request_latency_p50_ms": 72.66500550031196,
+              "request_latency_p95_ms": 126.07049275084137
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 23.68153189797522,
+              "throughput_rtfx": 49.50258306981534,
+              "request_latency_p50_ms": 84.43074899878411,
+              "request_latency_p95_ms": 149.40492499772517
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 24.532584142019914,
+              "throughput_rtfx": 53.87198479985253,
+              "request_latency_p50_ms": 86.80289750009251,
+              "request_latency_p95_ms": 161.7972177491538
+            }
+          },
+          "overall_throughput_rtfx": 47.90119914778952
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 20.143090679986926,
+              "throughput_rtfx": 40.35120592529287,
+              "request_latency_p50_ms": 72.59534349941532,
+              "request_latency_p95_ms": 126.22089400065306
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 23.6638699520081,
+              "throughput_rtfx": 49.53953019423688,
+              "request_latency_p50_ms": 84.31709900105488,
+              "request_latency_p95_ms": 149.35393775249395
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 24.541955534041335,
+              "throughput_rtfx": 53.85141368082205,
+              "request_latency_p50_ms": 86.8187449996185,
+              "request_latency_p95_ms": 161.5123757510446
+            }
+          },
+          "overall_throughput_rtfx": 47.9140499334506
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": true,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2304,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 0,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-large-v3-turbo/latency-b1/run",
+      "sha256": {
+        "metadata.json": "b1136566be0d4b37f9f3be813442e59d1a4f288f77d3ca05fe0bea06b4fbe84a",
+        "summary.json": "e15195ebd3b6694bff5a140c0cef3dd6a708ceff9a80f7a7898024c794f24c35",
+        "requests.jsonl": "64167ad7a6fae39571df3c7b4c2d35c5fdbb723cc7aceeefe45d50c53bee3670",
+        "warmup.jsonl": "9c4d56ac69575f0f9ed56ad9a945a6493080d90913510125cd8148b3a5ad2571"
+      }
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "dtype": "bfloat16",
+      "max_new_tokens": 128,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 70.25050607107093,
+        "min": 70.23435800357309,
+        "max": 70.62973018908365
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 56.527492402637826,
+            "min": 56.511990484628434,
+            "max": 57.048452898865406
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 73.78162236967765,
+            "min": 73.7179459838301,
+            "max": 74.07481923099661
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 80.4579053589067,
+            "min": 80.45763562425132,
+            "max": 80.7659184373889
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 14.247502933005308,
+              "throughput_rtfx": 57.048452898865406
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 15.825850297984289,
+              "throughput_rtfx": 74.07481923099661
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 16.363572971989925,
+              "throughput_rtfx": 80.7659184373889
+            }
+          },
+          "overall_throughput_rtfx": 70.62973018908365
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 14.378808707991993,
+              "throughput_rtfx": 56.527492402637826
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 15.902464241979033,
+              "throughput_rtfx": 73.7179459838301
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 16.42627191000429,
+              "throughput_rtfx": 80.45763562425132
+            }
+          },
+          "overall_throughput_rtfx": 70.23435800357309
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 14.382752987989079,
+              "throughput_rtfx": 56.511990484628434
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 15.88873980198332,
+              "throughput_rtfx": 73.78162236967765
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 16.426216841024143,
+              "throughput_rtfx": 80.4579053589067
+            }
+          },
+          "overall_throughput_rtfx": 70.25050607107093
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": true,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2304,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 0,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/openai--whisper-large-v3-turbo/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "cb754b6d365a0104d7af4f9fb709081e3c8fc59520c30453ba648621c2f47901",
+        "summary.json": "25e7883be5d6dab36ae47969caeb96a8b368ac307c6d901ea45a14603387edca",
+        "requests.jsonl": "90b0e660f4111b93a6c69cd26d92c8297df7ef4db00e1d505dbb952f3485f1be",
+        "warmup.jsonl": "9c4d56ac69575f0f9ed56ad9a945a6493080d90913510125cd8148b3a5ad2571"
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "5eb144179a02acc5e5ba31e748d22b0cf3e303b0",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 12.211894373074147,
+        "min": 12.175405796870065,
+        "max": 12.225152166118145
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 11.312967625662084,
+            "min": 11.277222034496333,
+            "max": 11.350388362782482
+          },
+          "request_latency_p50_ms": {
+            "median": 228.6426209993806,
+            "min": 227.50579599960474,
+            "max": 228.71483100061596
+          },
+          "request_latency_p95_ms": {
+            "median": 698.2977362513338,
+            "min": 696.8578697487828,
+            "max": 700.4518479989201
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 11.737690155066764,
+            "min": 11.662095034096145,
+            "max": 11.752175469113691
+          },
+          "request_latency_p50_ms": {
+            "median": 320.7864334999613,
+            "min": 320.29200049873907,
+            "max": 322.9037370019796
+          },
+          "request_latency_p95_ms": {
+            "median": 872.4700415004918,
+            "min": 871.6431384973475,
+            "max": 878.683550248752
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 13.587377980505192,
+            "min": 13.551154730851962,
+            "max": 13.606285615612418
+          },
+          "request_latency_p50_ms": {
+            "median": 313.25795549855684,
+            "min": 312.4531100002059,
+            "max": 314.1236095016211
+          },
+          "request_latency_p95_ms": {
+            "median": 865.9398467507344,
+            "min": 861.5322735004156,
+            "max": 865.9402947505441
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 72.0743102790475,
+              "throughput_rtfx": 11.277222034496333,
+              "request_latency_p50_ms": 228.6426209993806,
+              "request_latency_p95_ms": 700.4518479989201
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 99.75148882697977,
+              "throughput_rtfx": 11.752175469113691,
+              "request_latency_p50_ms": 320.29200049873907,
+              "request_latency_p95_ms": 872.4700415004918
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 97.13297496000814,
+              "throughput_rtfx": 13.606285615612418,
+              "request_latency_p50_ms": 312.4531100002059,
+              "request_latency_p95_ms": 861.5322735004156
+            }
+          },
+          "overall_throughput_rtfx": 12.211894373074147
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 71.84657703397534,
+              "throughput_rtfx": 11.312967625662084,
+              "request_latency_p50_ms": 228.71483100061596,
+              "request_latency_p95_ms": 698.2977362513338
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 100.52198996600418,
+              "throughput_rtfx": 11.662095034096145,
+              "request_latency_p50_ms": 322.9037370019796,
+              "request_latency_p95_ms": 878.683550248752
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 97.52814621702055,
+              "throughput_rtfx": 13.551154730851962,
+              "request_latency_p50_ms": 314.1236095016211,
+              "request_latency_p95_ms": 865.9398467507344
+            }
+          },
+          "overall_throughput_rtfx": 12.175405796870065
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 71.60970832197563,
+              "throughput_rtfx": 11.350388362782482,
+              "request_latency_p50_ms": 227.50579599960474,
+              "request_latency_p95_ms": 696.8578697487828
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 99.87459069993929,
+              "throughput_rtfx": 11.737690155066764,
+              "request_latency_p50_ms": 320.7864334999613,
+              "request_latency_p95_ms": 871.6431384973475
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 97.2681412040074,
+              "throughput_rtfx": 13.587377980505192,
+              "request_latency_p50_ms": 313.25795549855684,
+              "request_latency_p95_ms": 865.9402947505441
+            }
+          },
+          "overall_throughput_rtfx": 12.225152166118145
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": true,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2304,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 0,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/Qwen--Qwen3-ASR-0.6B/latency-b1/run",
+      "sha256": {
+        "metadata.json": "9e5419f4751863eca1834fa25653089f5ead918d512e89007f61cce1a4db0c3c",
+        "summary.json": "c11a03efd26621baeca155d188129cd983028c1df18fad4799d9ce714bd36323",
+        "requests.jsonl": "31e0f9defaf1236a7e80cb012bdb12326618820131e2c002686a5448c5fed104",
+        "warmup.jsonl": "69c14f1f3eed245e2d08c7740c1f2df526fb9a88250160863213a460a9882c74"
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-0.6B",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "5eb144179a02acc5e5ba31e748d22b0cf3e303b0",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 21.537623525378574,
+        "min": 21.51787368364822,
+        "max": 21.55571208051644
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 19.733914040612177,
+            "min": 19.65118856647489,
+            "max": 19.775609560322
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 21.18952205662401,
+            "min": 21.17312407406554,
+            "max": 21.198054153983424
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 23.69347252724389,
+            "min": 23.68943447889954,
+            "max": 23.729308410404222
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 41.36126409099961,
+              "throughput_rtfx": 19.65118856647489
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 55.36721911698987,
+              "throughput_rtfx": 21.17312407406554
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 55.69563921300505,
+              "throughput_rtfx": 23.729308410404222
+            }
+          },
+          "overall_throughput_rtfx": 21.51787368364822
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 41.187875771996914,
+              "throughput_rtfx": 19.733914040612177
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 55.32437196399769,
+              "throughput_rtfx": 21.18952205662401
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 55.789385819960444,
+              "throughput_rtfx": 23.68943447889954
+            }
+          },
+          "overall_throughput_rtfx": 21.537623525378574
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 41.10103395400802,
+              "throughput_rtfx": 19.775609560322
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 55.30210421599986,
+              "throughput_rtfx": 21.198054153983424
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 55.779877705994295,
+              "throughput_rtfx": 23.69347252724389
+            }
+          },
+          "overall_throughput_rtfx": 21.55571208051644
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": true,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2304,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 768,
+              "token_limit": 0,
+              "token_limit_rate": 0.0
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 0,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/Qwen--Qwen3-ASR-0.6B/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "3fb17de615338108a0281a10f593f36914ba50aa988aba18512833cfcd9415d4",
+        "summary.json": "c3364377db96e5f8d1ff38a910ce8b29a199b5b92e44c4db7e6e8579f6e927db",
+        "requests.jsonl": "063c34bd77eee7525cd4ac59edc308264db2026d6df30aaf7a916f0088bbdefb",
+        "warmup.jsonl": "69c14f1f3eed245e2d08c7740c1f2df526fb9a88250160863213a460a9882c74"
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "track": "latency-b1",
+      "batch_size": 1,
+      "model_revision": "7278e1e70fe206f11671096ffdd38061171dd6e5",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 11.629712876336503,
+        "min": 11.617687289868796,
+        "max": 11.632256999429563
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 10.89679988153737,
+            "min": 10.88891417625889,
+            "max": 10.91306043405112
+          },
+          "request_latency_p50_ms": {
+            "median": 232.96506800033967,
+            "min": 232.81305999807955,
+            "max": 232.96524600118573
+          },
+          "request_latency_p95_ms": {
+            "median": 698.8817797500815,
+            "min": 697.9417237525922,
+            "max": 699.463121250119
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 11.29673619748521,
+            "min": 11.295121163433864,
+            "max": 11.302825928610163
+          },
+          "request_latency_p50_ms": {
+            "median": 334.5334220011864,
+            "min": 334.35017200281436,
+            "max": 334.70305549963086
+          },
+          "request_latency_p95_ms": {
+            "median": 921.5649207517345,
+            "min": 918.7311630012118,
+            "max": 922.377894501551
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 12.688589400803707,
+            "min": 12.667411495862288,
+            "max": 12.689512818861976
+          },
+          "request_latency_p50_ms": {
+            "median": 335.6555624995963,
+            "min": 335.5640525005583,
+            "max": 336.07268950072466
+          },
+          "request_latency_p95_ms": {
+            "median": 957.5345639987063,
+            "min": 957.1772947492718,
+            "max": 957.8165202492528
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 74.6445409379885,
+              "throughput_rtfx": 10.88891417625889,
+              "request_latency_p50_ms": 232.96506800033967,
+              "request_latency_p95_ms": 698.8817797500815
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 103.77307033698526,
+              "throughput_rtfx": 11.29673619748521,
+              "request_latency_p50_ms": 334.5334220011864,
+              "request_latency_p95_ms": 918.7311630012118
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 104.33220713100673,
+              "throughput_rtfx": 12.667411495862288,
+              "request_latency_p50_ms": 336.07268950072466,
+              "request_latency_p95_ms": 957.5345639987063
+            }
+          },
+          "overall_throughput_rtfx": 11.617687289868796
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 74.59052279900425,
+              "throughput_rtfx": 10.89679988153737,
+              "request_latency_p50_ms": 232.81305999807955,
+              "request_latency_p95_ms": 697.9417237525922
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 103.71715953199237,
+              "throughput_rtfx": 11.302825928610163,
+              "request_latency_p50_ms": 334.35017200281436,
+              "request_latency_p95_ms": 921.5649207517345
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 104.1504917379898,
+              "throughput_rtfx": 12.689512818861976,
+              "request_latency_p50_ms": 335.6555624995963,
+              "request_latency_p95_ms": 957.1772947492718
+            }
+          },
+          "overall_throughput_rtfx": 11.629712876336503
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 812.798,
+              "processing_seconds": 74.47938228802377,
+              "throughput_rtfx": 10.91306043405112,
+              "request_latency_p50_ms": 232.96524600118573,
+              "request_latency_p95_ms": 699.463121250119
+            },
+            "other": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 103.78790834002939,
+              "throughput_rtfx": 11.295121163433864,
+              "request_latency_p50_ms": 334.70305549963086,
+              "request_latency_p95_ms": 922.377894501551
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 256,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 104.15807133898488,
+              "throughput_rtfx": 12.688589400803707,
+              "request_latency_p50_ms": 335.5640525005583,
+              "request_latency_p95_ms": 957.8165202492528
+            }
+          },
+          "overall_throughput_rtfx": 11.632256999429563
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2301,
+          "token_limit": 3,
+          "token_limit_rate": 0.0013020833333333333
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 1,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/Qwen--Qwen3-ASR-1.7B/latency-b1/run",
+      "sha256": {
+        "metadata.json": "f1aa2a57a206f04ae408d7c2bc245eb307688830928fd6204c5f340fce0edf28",
+        "summary.json": "ec83018d332aad3e74186e38ae5cb293284b1564d5a526fd664b109fdcb53174",
+        "requests.jsonl": "9e9bb9bf6f833e3a7ebf772256ca7a14f84c08e4be6fee2ec3570a7bb5b3a4c2",
+        "warmup.jsonl": "ba8a5031a51b9788a5cd9bd28e048398f738d9b8efc4b28512d902bfed9e4d1d"
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-ASR-1.7B",
+      "track": "throughput-b4",
+      "batch_size": 4,
+      "model_revision": "7278e1e70fe206f11671096ffdd38061171dd6e5",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "samples_per_repeat": 768,
+      "repetitions": 3,
+      "measured_generations": 2304,
+      "warmup_generations": 144,
+      "overall_throughput_rtfx": {
+        "median": 20.08477184231191,
+        "min": 20.083229319971526,
+        "max": 20.113342315466866
+      },
+      "groups": {
+        "clean": {
+          "throughput_rtfx": {
+            "median": 18.956195089661794,
+            "min": 18.885295876734233,
+            "max": 18.97952918708732
+          }
+        },
+        "other": {
+          "throughput_rtfx": {
+            "median": 20.25448896659518,
+            "min": 20.216316489601052,
+            "max": 20.255916061378173
+          }
+        },
+        "telephone": {
+          "throughput_rtfx": {
+            "median": 21.1060087927181,
+            "min": 21.081803947672885,
+            "max": 21.10847602180217
+          }
+        }
+      },
+      "repeat_metrics": [
+        {
+          "repeat": 1,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 43.03866909500357,
+              "throughput_rtfx": 18.885295876734233
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 57.87430183101969,
+              "throughput_rtfx": 20.255916061378173
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 62.61082034699939,
+              "throughput_rtfx": 21.10847602180217
+            }
+          },
+          "overall_throughput_rtfx": 20.083229319971526
+        },
+        {
+          "repeat": 2,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 42.8776975630135,
+              "throughput_rtfx": 18.956195089661794
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 57.987665587002994,
+              "throughput_rtfx": 20.216316489601052
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 62.690033703016525,
+              "throughput_rtfx": 21.081803947672885
+            }
+          },
+          "overall_throughput_rtfx": 20.08477184231191
+        },
+        {
+          "repeat": 3,
+          "groups": {
+            "clean": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 812.798,
+              "processing_seconds": 42.82498222100185,
+              "throughput_rtfx": 18.97952918708732
+            },
+            "other": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1172.297,
+              "processing_seconds": 57.878379550005775,
+              "throughput_rtfx": 20.25448896659518
+            },
+            "telephone": {
+              "samples": 256,
+              "requests": 64,
+              "audio_seconds": 1321.619,
+              "processing_seconds": 62.61813936398903,
+              "throughput_rtfx": 21.1060087927181
+            }
+          },
+          "overall_throughput_rtfx": 20.113342315466866
+        }
+      ],
+      "termination": {
+        "policy": "retain_budget_terminated",
+        "all_generations_reached_eos": false,
+        "contract_passed": true,
+        "measured": {
+          "sequences": 2304,
+          "eos": 2301,
+          "token_limit": 3,
+          "token_limit_rate": 0.0013020833333333333
+        },
+        "warmup": {
+          "sequences": 144,
+          "eos": 144,
+          "token_limit": 0,
+          "token_limit_rate": 0.0
+        },
+        "repeats": [
+          {
+            "repeat": 1,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          },
+          {
+            "repeat": 2,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          },
+          {
+            "repeat": 3,
+            "overall": {
+              "sequences": 768,
+              "eos": 767,
+              "token_limit": 1,
+              "token_limit_rate": 0.0013020833333333333
+            },
+            "groups": {
+              "clean": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "other": {
+                "sequences": 256,
+                "eos": 256,
+                "token_limit": 0,
+                "token_limit_rate": 0.0
+              },
+              "telephone": {
+                "sequences": 256,
+                "eos": 255,
+                "token_limit": 1,
+                "token_limit_rate": 0.00390625
+              }
+            }
+          }
+        ]
+      },
+      "unique_inputs_reaching_token_limit": 1,
+      "inputs_with_identical_raw_prediction_across_repeats": 768,
+      "artifact_root": "results/speed-formal-20261008/formal/linux-server/20261008T065124549797Z/Qwen--Qwen3-ASR-1.7B/throughput-b4/run",
+      "sha256": {
+        "metadata.json": "567f1b23b8110d9d53807ffb69507a156cea4e652a2e42bf128fa9c162fe405f",
+        "summary.json": "6442aba85847c7f36faec2864d05aac785f6c71ff9b54b35115cc87fd83449d4",
+        "requests.jsonl": "85642169230290d3160d07b6b57e2bd0d2ee28b61d00929dba699306ad585e30",
+        "warmup.jsonl": "ba8a5031a51b9788a5cd9bd28e048398f738d9b8efc4b28512d902bfed9e4d1d"
+      }
+    }
+  ],
+  "interpretation": "Descriptive warmed timing for the fixed 768-input workload; group throughput arithmetic mean, then median of three repeats. Batch-1 request p50/p95 per group; no batch-4 request latency claim.",
+  "limitations": [
+    "Capped outputs remain included and rates are reported; execution completion does not imply every transcription is complete or correct.",
+    "Same inputs repeated three times; no sampling confidence interval or population-wide speed claim.",
+    "No full-corpus accuracy result; prior curated-budget diagnostics informed the termination policy.",
+    "Native Linux server cohort only; no pooling with WSL or past unverified server runs."
+  ],
+  "official_leaderboard_eligible": false,
+  "published": false
+}

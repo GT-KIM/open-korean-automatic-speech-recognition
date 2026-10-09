@@ -14,9 +14,8 @@
     />
     <meta name="author" content="GT-KIM" />
     <meta name="application-name" content="OpenKoASR" />
-    <meta name="theme-color" content="#147c74" />
+    <meta name="theme-color" content="#13243b" />
     <meta name="robots" content="index, follow" />
-    <link rel="preload" as="image" href="leaderboard-card.png" />
     <link
       rel="canonical"
       href="https://gt-kim.github.io/open-korean-automatic-speech-recognition/"
@@ -112,190 +111,213 @@
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#leaderboardViews">리더보드로 건너뛰기</a>
     <header class="topbar">
       <div class="topbar-inner">
         <a class="brand" href="./" aria-label="OpenKoASR leaderboard home">
-          <span class="brand-mark" aria-hidden="true">OK</span>
-          <span>
-            <span class="eyebrow">Open-source Korean ASR benchmark</span>
-            <span class="brand-title">OpenKoASR Leaderboard</span>
-          </span>
+          <svg class="brand-mark" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <path d="M4 12v4M9 7v14M14 3v22M19 9v10M24 12v4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-title">OpenKoASR</span>
         </a>
-        <nav class="topbar-actions" aria-label="OpenKoASR links">
-          <a
-            class="topbar-link"
-            href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition"
-            target="_blank"
-            rel="noopener noreferrer"
-          >GitHub</a>
-          <a
-            class="topbar-link"
-            href="https://gt-kim.github.io/korean_asr/series/"
-          >Analysis series</a>
-          <a
-            class="topbar-link"
-            href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new?template=result_submission.md"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Submit result</a>
-          <span class="status-pill" id="dataStatus">full evaluation only</span>
+        <nav class="topbar-actions" aria-label="프로젝트 링크">
+          <a class="topbar-link" href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition" title="GitHub repository" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a class="submit-link" href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new?template=result_submission.md" target="_blank" rel="noopener noreferrer">결과 제출 ↗</a>
         </nav>
       </div>
     </header>
 
     <main class="page-shell">
-      <section class="intro-band" aria-labelledby="pageTitle">
-        <div class="intro-copy">
-          <h1 id="pageTitle">한국어 ASR 공개 리더보드</h1>
-          <p>
-            Whisper, Qwen3-ASR 등 공개 한국어 음성 인식 모델을 같은 데이터셋,
-            정규화, 지표로 비교합니다. 기본 순위에는 전체 evaluation samples로
-            생성한 결과만 표시하며, GPU/server와 on-device 성능은 별도 탭으로 제공합니다.
-          </p>
-          <div class="intro-actions">
-            <a
-              class="primary-action"
-              href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >GitHub repository</a>
-            <a class="secondary-action" href="leaderboard.md">Markdown table</a>
-            <a class="secondary-action" href="leaderboard_data.json">JSON data</a>
+      <div class="page-heading">
+        <h1>Korean ASR <span>Leaderboard</span></h1>
+        <div class="page-actions">
+          <a class="method-link" href="#evaluation-method">지표·평가 방법</a>
+          <button class="share-button" id="shareButton" type="button"><svg class="ui-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m8 12 4-4M7 6l2-2a4 4 0 0 1 6 6l-2 2M13 14l-2 2a4 4 0 0 1-6-6l2-2"/></svg>링크 복사</button>
+          <details class="download-menu">
+            <summary><svg class="ui-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4"/></svg>데이터 내보내기</summary>
+            <nav aria-label="원본 데이터">
+              <a href="leaderboard_data.json" download>서버·API JSON</a>
+              <a href="ondevice_leaderboard_data.json" download>On-device JSON</a>
+              <a href="leaderboard.md" download>Markdown</a>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <div class="share-feedback" id="shareFeedback" hidden>
+        <span id="shareStatus" role="status"></span>
+        <input id="shareUrl" type="text" readonly aria-label="현재 화면 공유 링크" hidden />
+      </div>
+      <p class="data-status" id="dataStatus" role="status" hidden></p>
+
+      <div class="leaderboard-workspace" id="leaderboardViews">
+        <div class="workspace-navigation">
+          <nav class="tab-bar" id="datasetTabs" aria-label="평가 대상"></nav>
+          <div class="view-switch" role="group" aria-label="보기 방식">
+            <button id="tableView" type="button" aria-pressed="true" aria-controls="tableSection">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12M2 8h12M2 13h12M5 3v10"/></svg>순위표
+            </button>
+            <button id="chartView" type="button" aria-pressed="false" aria-controls="tradeoffSection">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2v12h12M5 9l3-4 3 2 3-4"/></svg>Accuracy vs. Speed
+            </button>
           </div>
         </div>
-        <figure class="intro-visual">
-          <img
-            src="leaderboard-card.png"
-            alt="OpenKoASR Korean ASR leaderboard preview"
-            width="1200"
-            height="630"
-          />
-        </figure>
-      </section>
-
-      <section class="summary-grid" aria-label="Leaderboard summary">
-        <article class="summary-card">
-          <span class="summary-label">Full Runs</span>
-          <strong id="summaryRuns">-</strong>
-          <span class="summary-note">published evaluations</span>
-        </article>
-        <article class="summary-card">
-          <span class="summary-label">Models</span>
-          <strong id="summaryModels">-</strong>
-          <span class="summary-note">unique systems</span>
-        </article>
-        <article class="summary-card">
-          <span class="summary-label">Datasets</span>
-          <strong id="summaryDatasets">-</strong>
-          <span class="summary-note">dataset/subset slices</span>
-        </article>
-        <article class="summary-card highlight">
-          <span class="summary-label">Best CER</span>
-          <strong id="summaryBestCer">-</strong>
-          <span class="summary-note" id="summaryBestCerLabel">waiting for data</span>
-        </article>
-      </section>
-
-      <section class="insight-band" aria-labelledby="insightsTitle">
-        <div class="insight-copy">
-          <span class="eyebrow">Korean ASR analysis</span>
-          <h2 id="insightsTitle">Korean ASR 분석 시리즈</h2>
-          <p>
-            리더보드의 WER, RTFx, outlier 수치를 한국어 ASR 평가 관점에서 해석합니다.
-          </p>
-        </div>
-        <div class="insight-links">
-          <a
-            class="insight-link"
-            href="https://gt-kim.github.io/korean_asr/series/wer-trap-korean-asr-metrics/"
-          >
-            <span>01</span>
-            <strong>WER의 한계와 극복 방법</strong>
-            <small>CER, JER, MER을 함께 읽는 이유</small>
-          </a>
-          <a
-            class="insight-link"
-            href="https://gt-kim.github.io/korean_asr/series/rtfx-ondevice-korean-asr/"
-          >
-            <span>02</span>
-            <strong>RTFx와 배포 가능한 ASR</strong>
-            <small>정확도와 처리 속도의 파레토 비교</small>
-          </a>
-          <a
-            class="insight-link"
-            href="https://gt-kim.github.io/korean_asr/series/wer-over-1-transformer-repetition-outliers/"
-          >
-            <span>03</span>
-            <strong>반복 환각과 outlier 처리</strong>
-            <small>평균 성능과 안정성 지표를 분리해서 보기</small>
-          </a>
-        </div>
-      </section>
-
-      <nav class="tab-bar" id="datasetTabs" aria-label="Leaderboard views"></nav>
-      <nav class="subset-bar" id="subsetTabs" aria-label="Dataset subsets"></nav>
-
-      <section class="controls-band" aria-label="Leaderboard controls">
-        <label class="control-field">
-          <span>검색</span>
-          <input id="searchInput" type="search" placeholder="model, dataset, GPU, device, SoC" />
-        </label>
-        <label class="control-field">
-          <span>모델</span>
-          <select id="modelFilter"></select>
-        </label>
-        <label class="control-field">
-          <span>정렬</span>
-          <select id="sortMetric">
-            <option value="cer">CER 낮은순</option>
-            <option value="wer">WER 낮은순</option>
-            <option value="mer">MER 낮은순</option>
-            <option value="jer">JER 낮은순</option>
-            <option value="ser">SER 낮은순</option>
-            <option value="rtfx">RTFx 높은순</option>
-            <option value="latency">Latency 낮은순</option>
-            <option value="outlier_rate">Outlier 낮은순</option>
-          </select>
-        </label>
-      </section>
-
-      <section class="table-section" aria-labelledby="resultsTitle">
-        <div class="section-head">
-          <div>
-            <h2 id="resultsTitle">Results</h2>
-            <p id="rowCount">Loading leaderboard data...</p>
+        <nav class="subset-bar" id="subsetTabs" aria-label="Dataset subsets" hidden></nav>
+        <section class="controls-band" aria-label="검색 및 필터">
+          <label class="control-field search-field">
+            <span>검색</span>
+            <svg class="search-icon ui-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>
+            <input id="searchInput" type="search" placeholder="모델, 데이터셋, GPU, 기기 검색" autocomplete="off" maxlength="200" />
+          </label>
+          <label class="control-field">
+            <span>모델</span>
+            <select id="modelFilter"><option value="all">모든 모델</option></select>
+          </label>
+          <label class="control-field" id="sortControl">
+            <span>정렬</span>
+            <select id="sortMetric">
+              <option value="cer">Main CER 낮은순</option>
+              <option value="all_samples_cer">All-sample CER 낮은순</option>
+              <option value="wer">WER 낮은순</option>
+              <option value="mer">MER 낮은순</option>
+              <option value="jer">JER 낮은순</option>
+              <option value="ser">SER 낮은순</option>
+              <option value="rtfx">RTFx 높은순</option>
+              <option value="latency">Latency 낮은순</option>
+              <option value="outlier_rate">Outlier rate 낮은순</option>
+            </select>
+          </label>
+          <button class="reset-filters" id="resetFilters" type="button" disabled><svg class="ui-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg>초기화</button>
+        </section>
+        <details class="execution-filters" id="executionFilters">
+          <summary>실행 조건 <span id="executionFilterCount"></span></summary>
+          <div class="execution-fields">
+            <label class="control-field"><span>GPU / 기기</span><select id="hardwareFilter"></select></label>
+            <label class="control-field" id="batchControl"><span>Batch size</span><select id="batchFilter"></select></label>
+            <label class="control-field"><span>정밀도</span><select id="precisionFilter"></select></label>
           </div>
-          <div class="legend">
-            <span><i class="legend-dot macro"></i>macro average</span>
-            <span><i class="legend-dot micro"></i>micro details</span>
+          <p class="detail-note" id="executionScope" hidden>Overall: 세 구간 모두 선택 조건을 충족하는 대표 결과</p>
+        </details>
+        <section class="table-section" id="tableSection" aria-labelledby="resultsTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="resultsTitle">Results</h2>
+              <p id="rowCount">Loading leaderboard data...</p>
+            </div>
+            <div class="comparison-actions">
+              <button class="comparison-clear" id="comparisonClear" type="button" hidden>선택 해제</button>
+              <button class="comparison-toggle" id="comparisonToggle" type="button" aria-controls="comparisonSection" aria-expanded="false" disabled>선택 비교 (0/4)</button>
+            </div>
           </div>
-        </div>
+          <section class="comparison-section" id="comparisonSection" aria-labelledby="comparisonTitle" hidden>
+            <h3 id="comparisonTitle">선택 결과 비교</h3>
+            <div class="comparison-scroll" id="comparisonContent" tabindex="0" role="region" aria-label="선택한 결과의 구간별 비교 표"></div>
+          </section>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="리더보드 표 — 좁은 화면에서는 가로로 스크롤">
+            <table id="leaderboardTable">
+              <thead id="leaderboardHead"></thead>
+              <tbody id="leaderboardBody"></tbody>
+            </table>
+          </div>
+          <p id="overallCoverage" class="overall-coverage" hidden></p>
+          <details id="referenceResults" class="reference-results" hidden>
+            <summary id="referenceSummary">참고 결과</summary>
+            <p>평가 규약이 다르거나 확인되지 않은 과거 결과입니다. 순위에는 반영하지 않습니다.</p>
+            <div class="table-wrap" tabindex="0" role="region" aria-label="참고 결과 표 — 좁은 화면에서는 가로로 스크롤">
+              <table id="referenceTable" class="dataset-table">
+                <thead id="referenceHead"></thead>
+                <tbody id="referenceBody"></tbody>
+              </table>
+            </div>
+          </details>
+        </section>
 
-        <div class="table-wrap">
-          <table id="leaderboardTable">
-            <thead id="leaderboardHead"></thead>
-            <tbody id="leaderboardBody"></tbody>
-          </table>
+        <section class="tradeoff-section" aria-labelledby="tradeoffTitle" hidden id="tradeoffSection">
+          <div class="section-head">
+            <div>
+              <h2 id="tradeoffTitle">정확도–속도</h2>
+            </div>
+          </div>
+          <div class="tradeoff-controls">
+            <label class="control-field">
+              <span>평가 구간</span>
+              <select id="tradeoffSlice"></select>
+            </label>
+            <label class="control-field">
+              <span>실행 조건</span>
+              <select id="tradeoffCondition"></select>
+            </label>
+            <label class="control-field">
+              <span>정확도 지표</span>
+              <select id="tradeoffMetric">
+                <option value="cer">Main CER · outlier 제외</option>
+                <option value="all_samples_cer">All-sample CER · 전체 corpus</option>
+              </select>
+            </label>
+            <label class="control-field">
+              <span>속도 지표</span>
+              <select id="tradeoffSpeed"><option value="rtfx">RTFx · 전체 평가 · outlier 제외</option></select>
+            </label>
+          </div>
+          <p class="tradeoff-status" id="tradeoffStatus" role="status" hidden></p>
+          <div class="tradeoff-layout">
+            <div class="tradeoff-plot" id="tradeoffPlot" tabindex="0" role="region" aria-label="정확도–속도 그래프 — 좁은 화면에서는 가로로 스크롤"></div>
+            <aside class="tradeoff-detail" id="tradeoffDetail" aria-live="polite" aria-atomic="true"></aside>
+          </div>
+          <div class="tradeoff-models" id="tradeoffModels" role="group" aria-label="그래프 모델 선택"></div>
+          <p class="tradeoff-note" id="tradeoffNote" hidden></p>
+          <details class="method-details">
+            <summary>집계·비교 기준</summary>
+            <p>Curated 처리량은 고정 입력의 음성 길이 합 / 처리 시간 합이며, 3회 중앙값입니다. 정확도는 전체 데이터 평가값입니다. 기존 RTFx는 outlier를 제외한 샘플별 배속 평균입니다. 단건 p95는 batch 1에서 측정합니다.</p>
+            <p>모델·정밀도·실행 조건별 최신 전체 평가 결과를 사용합니다.</p>
+            <p>파레토 경계는 선택한 실행 조건 안의 비지배점입니다. 미기록 조건·모델 구현·디코딩 설정의 동일성이나 통계적 유의성을 보장하지 않습니다.</p>
+          </details>
+        </section>
+
+      </div>
+      <details class="support-section method-section" id="evaluation-method">
+        <summary id="methodTitle">지표·평가 방법</summary>
+        <div class="method-content">
+          <dl class="method-grid">
+            <div>
+              <dt>Main CER</dt>
+              <dd>Outlier를 제외한 샘플별 CER 평균입니다. 기본 순위 기준입니다.</dd>
+            </div>
+            <div>
+              <dt>Outlier rate</dt>
+              <dd>전체 평가 샘플 중 메인 점수에서 제외된 비율입니다. 기본 기준은 CER &gt; 100%이며, 정확히 100%인 샘플은 제외하지 않습니다. 모든 종류의 실패율을 뜻하지는 않습니다.</dd>
+            </div>
+            <div>
+              <dt>All-sample CER</dt>
+              <dd>Outlier를 포함한 전체 편집 오류 수를 정답 글자 수로 나눈 corpus CER입니다. Main CER와 가중 방식도 달라 두 값의 차이가 outlier의 영향만을 나타내지는 않습니다.</dd>
+            </div>
+            <div>
+              <dt>RTFx</dt>
+              <dd>샘플별 ‘오디오 길이 / 처리 시간’의 outlier 제외 평균입니다. ‘총 오디오 길이 / 총 처리 시간’과는 다를 수 있습니다.</dd>
+            </div>
+          </dl>
+          <details class="method-details">
+            <summary>집계 방식·보조 지표·단위</summary>
+            <div>
+              <p><strong>수치 정밀도:</strong> 반올림은 화면에만 적용하며, 정렬은 원본 값으로 계산합니다. JSON 원본은 비율과 초 단위를 유지합니다.</p>
+              <p><strong>Overall 참가 조건:</strong> KsponSpeech clean 3,000개, other 3,000개, AIHub all 39,916개를 모두 완료하고 Main CER가 있는 모델만 포함합니다. 세 구간의 가중치는 각각 1/3이며, D01–D04는 별도로 더하지 않습니다.</p>
+              <p><strong>평가 규약:</strong> Overall과 서버 데이터셋 순위는 Kspon 정규화와 CER 100% 초과 제외 기준을 적용합니다. 다른 규약·미확인 결과는 순위에서 제외합니다.</p>
+              <p><strong>모델·대표 결과:</strong> 같은 모델의 별칭을 묶고, 구간별로 표준 규약을 충족하는 실행 아티팩트 중 최신 결과를 선택합니다. 정렬 지표를 바꿔도 기여하는 실행은 고정됩니다. 전체 CER와 보조 지표의 평균은 세 구간 모두에 해당 통계가 있을 때만 제공합니다.</p>
+              <p><strong>보조 지표:</strong> Macro는 샘플별 평균이고 corpus는 편집 카운터 합산 값입니다. 전체 CER 외의 품질 지표는 outlier를 제외합니다. 재현 명령·코드 버전·전체 실행 설정은 원본 JSON에 제공합니다.</p>
+              <p><strong>지연·기기 조건:</strong> 배치 실행의 지연은 배치 시간을 샘플 수로 나눈 값입니다. 온디바이스 QNN RTFx는 QNN 그래프 실행 범위이며, 기기·정밀도·런타임을 맞춰 비교해야 합니다.</p>
+              <p><strong>순위 제한:</strong> Outlier 비율에 따른 참가 제한은 없습니다.</p>
+            </div>
+          </details>
         </div>
-      </section>
+      </details>
+      <details class="support-section reading-section">
+        <summary>Korean ASR 분석 시리즈</summary>
+        <nav class="reading-links" aria-label="ASR 분석 글">
+          <a href="https://gt-kim.github.io/korean_asr/series/wer-trap-korean-asr-metrics/">WER의 한계와 극복 방법 ↗</a>
+          <a href="https://gt-kim.github.io/korean_asr/series/rtfx-ondevice-korean-asr/">RTFx와 배포 가능한 ASR ↗</a>
+          <a href="https://gt-kim.github.io/korean_asr/series/wer-over-1-transformer-repetition-outliers/">반복 환각과 outlier 처리 ↗</a>
+        </nav>
+      </details>
     </main>
-
-    <footer class="site-footer">
-      <a
-        href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition"
-        target="_blank"
-        rel="noopener noreferrer"
-      >GitHub repository</a>
-      <a
-        href="https://github.com/GT-KIM/open-korean-automatic-speech-recognition/issues/new?template=result_submission.md"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Submit a result</a>
-      <a href="leaderboard.md">Markdown leaderboard</a>
-      <a href="leaderboard_data.json">Leaderboard JSON</a>
-      <a href="ondevice_leaderboard_data.json">On-device JSON</a>
-    </footer>
-
     <script src="app.js"></script>
   </body>
 </html>

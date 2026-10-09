@@ -1,0 +1,2 @@
+# Benchmark evidence is bound by byte-level SHA-256 hashes.
+doc/benchmarks/*.json -text

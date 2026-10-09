@@ -30,7 +30,11 @@
       "threshold": 1.0
     },
     "source": "README legacy table",
-    "_artifact": "README.md#리더보드"
+    "_artifact": "README.md#리더보드",
+    "normalization_preset": null,
+    "evaluation_protocol": null,
+    "metadata_status": "legacy",
+    "reproducibility": {}
   },
   {
     "run_id": "readme-legacy-whisper-base-kspon-clean",
@@ -63,7 +67,11 @@
       "threshold": 1.0
     },
     "source": "README legacy table",
-    "_artifact": "README.md#리더보드"
+    "_artifact": "README.md#리더보드",
+    "normalization_preset": null,
+    "evaluation_protocol": null,
+    "metadata_status": "legacy",
+    "reproducibility": {}
   },
   {
     "run_id": "readme-legacy-whisper-small-kspon-clean",
@@ -96,7 +104,11 @@
       "threshold": 1.0
     },
     "source": "README legacy table",
-    "_artifact": "README.md#리더보드"
+    "_artifact": "README.md#리더보드",
+    "normalization_preset": null,
+    "evaluation_protocol": null,
+    "metadata_status": "legacy",
+    "reproducibility": {}
   },
   {
     "run_id": "readme-legacy-whisper-medium-kspon-clean",
@@ -129,7 +141,11 @@
       "threshold": 1.0
     },
     "source": "README legacy table",
-    "_artifact": "README.md#리더보드"
+    "_artifact": "README.md#리더보드",
+    "normalization_preset": null,
+    "evaluation_protocol": null,
+    "metadata_status": "legacy",
+    "reproducibility": {}
   },
   {
     "run_id": "readme-legacy-whisper-large-v3-kspon-clean",
@@ -162,7 +178,11 @@
       "threshold": 1.0
     },
     "source": "README legacy table",
-    "_artifact": "README.md#리더보드"
+    "_artifact": "README.md#리더보드",
+    "normalization_preset": null,
+    "evaluation_protocol": null,
+    "metadata_status": "legacy",
+    "reproducibility": {}
   },
   {
     "run_id": "readme-legacy-qwen3-asr-0-6b-kspon-clean",
@@ -192,7 +212,11 @@
       "threshold": 1.0
     },
     "source": "README legacy table",
-    "_artifact": "README.md#리더보드"
+    "_artifact": "README.md#리더보드",
+    "normalization_preset": null,
+    "evaluation_protocol": null,
+    "metadata_status": "legacy",
+    "reproducibility": {}
   },
   {
     "run_id": "readme-legacy-qwen3-asr-1-7b-kspon-clean",
@@ -222,6 +246,10 @@
       "threshold": 1.0
     },
     "source": "README legacy table",
-    "_artifact": "README.md#리더보드"
+    "_artifact": "README.md#리더보드",
+    "normalization_preset": null,
+    "evaluation_protocol": null,
+    "metadata_status": "legacy",
+    "reproducibility": {}
   }
 ]

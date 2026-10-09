@@ -1,0 +1,49 @@
+{
+  "audit_date": "2026-10-03",
+  "cache_entries_checked": 45917,
+  "cache_entries_without_valid_request_latency": 7937,
+  "corrected_run": "20260610T021005900995Z",
+  "timing_source_run": "20260610T011147371184Z",
+  "corrected_sample_index": 0,
+  "matching_evidence": [
+    "sample identity",
+    "reference and prediction",
+    "audio duration",
+    "sample rate",
+    "model",
+    "dataset subset",
+    "normalization",
+    "outlier policy",
+    "batch size",
+    "warmup count"
+  ],
+  "sample_processing_time_before": 0.011593800038099289,
+  "sample_processing_time_after": 2.6117271999828517,
+  "correction_method": "Reused the earlier saved inference measurement for the same sample; did not rerun inference or estimate time.",
+  "aggregate_before": {
+    "rtfx": 3.0396163624606922,
+    "latency": 1.121117944348055
+  },
+  "aggregate_after": {
+    "rtfx": 2.580516221839183,
+    "latency": 1.1219849444814145
+  },
+  "latency_percentiles_before": {
+    "p50": 0.9934472000459209,
+    "p90": 1.905796500016004,
+    "p95": 2.3446989999734793,
+    "p99": 3.009722843987401
+  },
+  "latency_percentiles_after": {
+    "p50": 0.9936578000197187,
+    "p90": 1.9076083800289803,
+    "p95": 2.34628684000927,
+    "p99": 3.009722843987401
+  },
+  "obsolete_run_excluded": "20260611T055107500919Z",
+  "obsolete_run_replacement": "20260611T233041686594Z",
+  "recognition_metrics_changed": false,
+  "public_row_count": 62,
+  "external_api_requests": 0,
+  "legacy_cache_action": "Preserved; cache reuse now requires finite positive request_latency. Removing invalid entries and reevaluating makes new API requests."
+}

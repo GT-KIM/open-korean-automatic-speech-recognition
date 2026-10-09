@@ -1,0 +1,1389 @@
+{
+  "date": "2026-10-03",
+  "raw_runs": 74,
+  "aggregate_runs": 9,
+  "raw_samples": 425063,
+  "method": "Sum stored edit counts over all samples, including outliers; aggregate only recorded source_run_ids.",
+  "preserved": [
+    "main scores",
+    "filtered micro scores",
+    "timing",
+    "outlier policy and counts",
+    "run IDs",
+    "evaluation eligibility",
+    "sample artifacts"
+  ],
+  "sample_sha256": {
+    "results\\full\\20260503T023237400589Z\\samples.jsonl": "e7a18a241fbbca87e1abdb6c4c70dd26a277a69d563536cd9c84ed8e5b4b455e",
+    "results\\full\\20260503T024311660383Z\\samples.jsonl": "cb1da56d87be1687c249381d3a5ae2eccdfee1094767f825e17ccbda6047081c",
+    "results\\full\\20260503T025048555494Z\\samples.jsonl": "0c61b925b3adaf5a4dee15b87a796d4f93dfbb9fd5294e6f67ea0f9636ee4734",
+    "results\\full-20260503\\20260503T075532897072Z\\samples.jsonl": "5cc0bf42434e84e79da0884854fb9ca55671914c08c3c14ac93e765d69dc6c0b",
+    "results\\full-20260503\\20260503T075923023494Z\\samples.jsonl": "c2f7a2f8d03212b158ea99294e0a08f06ae23b06599781c4724ab36890d347b9",
+    "results\\full-20260503\\20260503T080725775028Z\\samples.jsonl": "821b88f7e5a3e1a0e3d6307a8ba1d21eaab6d7228c685b1c8e9ea2d05d1f60b7",
+    "results\\full-20260503\\20260503T082519170241Z\\samples.jsonl": "793ed62262aaf6cb5f838cf79488135f91d3b2dd597f882ab01de12e33669427",
+    "results\\full-20260503\\20260503T082751480346Z\\samples.jsonl": "6a51f19888310f3ced08835901674184bf27e941410ee0c4ddd50b019373001f",
+    "results\\full-20260503\\20260503T084105537832Z\\samples.jsonl": "90f1c336d0061f9b41106262de32dd5b4cf58339a389686f9453b5b1bdc354c1",
+    "results\\full-20260503\\20260503T084323817330Z\\samples.jsonl": "921b4df4f9d6dc7d56c5cc64f5dd79902a80eb6c755232f2e8eb36c30f8fe8b0",
+    "results\\full-20260503\\20260503T084613049499Z\\samples.jsonl": "22762b452b3bb7ae39a086607c35513ebce45c0a3afff5d7f461f4228b430121",
+    "results\\full-20260503\\20260503T085510938250Z\\samples.jsonl": "a05721a9e39af2ca9ed37b8cc295d2186a317550ce77c2d31227bb2e9e04083b",
+    "results\\full-20260503\\20260503T091313872634Z\\samples.jsonl": "914bb62ab289516474f9b50d3a17092c8a7d29b05eb8439b3eebbca220b7c897",
+    "results\\full-20260503\\20260503T091632517286Z\\samples.jsonl": "3772ac6eb802eb95c486d2b2de811dddc5761958e78ab89698a048f6d30e11ca",
+    "results\\full-20260503\\20260503T092947492745Z\\samples.jsonl": "c4b48d8bdc271f5710df9aca7c3f085370ec9457e63ec5b54136317ff596269e",
+    "results\\full-20260503\\20260503T093331782326Z\\samples.jsonl": "bcdb15942a2155c658b5f8bde3efc3a1a8d54387aa4ee93fee783d6dc7e46bce",
+    "results\\full-20260503\\20260503T093806989032Z\\samples.jsonl": "f2e864c7398f855dff30fc1bcc01dba9a25f211a9e981867cef7865af19e7948",
+    "results\\full-20260503\\20260503T094920732351Z\\samples.jsonl": "b381b37895ef9f69cd86d27f5ddcda4dfffa61fed421c123b6d44dfa529d33f9",
+    "results\\full-20260503\\20260503T101219688008Z\\samples.jsonl": "1c9c453112e7b4b40ec1ba85117b1ce39aaab4d1318576b4d7cfd9a1b7d92725",
+    "results\\full-20260503\\20260503T101656776514Z\\samples.jsonl": "8be227b2570fd528b5c1dc030eb3518d504b6d2ed9ac686cd459a4183d6b757d",
+    "results\\full-20260503\\20260503T103445151160Z\\samples.jsonl": "3b0ba01828ce17ffff158c37f83c5c7b0b6f0e6fef1ef68dc28869b1b7dd8f29",
+    "results\\full-20260503\\20260503T104238810452Z\\samples.jsonl": "ea1c4920acca3b5df76a78517de608300335e423aa6eff071dd6c5ab55e40690",
+    "results\\full-20260503\\20260503T104945732451Z\\samples.jsonl": "1337d10cadf7fb82bfbef9dc5a2d8722b50dfdf6798d9a841d4c703c2ee097be",
+    "results\\full-20260503\\20260503T111038213036Z\\samples.jsonl": "26ee3cb647451c120528d92da8eb712f509fa529ba1c967eaf93e118fbce5d08",
+    "results\\full-20260503\\20260503T115020175977Z\\samples.jsonl": "067235d1f40d82bda01108cd50bb49f2c0e5f74e6a11cb2fb5774d60e6a5487e",
+    "results\\full-20260503\\20260503T115558830261Z\\samples.jsonl": "ed0ec5a21348ed69dc44e043d64fcb266f4d51255efbe389a35b370cd2f06719",
+    "results\\full-20260503\\20260503T122808569314Z\\samples.jsonl": "8384dfe392cdad9540c98ae662e8ddb28e64d368967cfcdae5915a91915522b7",
+    "results\\full-20260503\\20260503T124153468914Z\\samples.jsonl": "503587e9007f562ceab0c362110598b5a85ced18bd3bf4dc13f90605d95e0ed5",
+    "results\\full-20260503\\20260503T125648560195Z\\samples.jsonl": "0740a6f1cd6c58af8848913c303b92472f91f2d260770ccf11fe39ee82c27771",
+    "results\\full-20260503\\20260503T134506305691Z\\samples.jsonl": "c4c616beaae6353c94a366ea055db45a4a6e975fbdc7c29f0dedcb3a77a283a2",
+    "results\\full-20260503\\20260503T142438159660Z\\samples.jsonl": "8dd070d3b6460e32cde298b96dfc231b50a23cc2a5da0119663db9e225ab0f64",
+    "results\\full-20260503\\20260503T143033863265Z\\samples.jsonl": "73ea025be9d2cdc3a1a8746589c7ae347998fca18b51a06052633687e3404ac9",
+    "results\\full-20260503\\20260503T150347041511Z\\samples.jsonl": "a4adf41462bdf6f38ec61def6a0e1d3d49cf1c5493ae33ed1d337caa57811760",
+    "results\\full-20260503\\20260503T150932121213Z\\samples.jsonl": "241348cd96186f169601449c1ff1a7601982fda21078e83c949b1e2fe8cfa5ba",
+    "results\\full-20260503\\20260503T151705877082Z\\samples.jsonl": "20f8fcdc3dc77337aabf4dddd49b82c30ea16ad490092cfa4b15bb4e287e9a45",
+    "results\\full-20260503\\20260503T153438672098Z\\samples.jsonl": "7f1b57cfcc30216270c5a2bfe76159682b669fa785beef7104d3de6bebbc8f0a",
+    "results\\full-20260503\\20260503T161427307493Z\\samples.jsonl": "c45a973722abd949f943943ad93289bf6a45586f348fb98dbfa666c4c5ff3298",
+    "results\\full-20260503\\20260503T161924528431Z\\samples.jsonl": "846098670893fad1e672eb7e5e42647e450bef49b8bcae5e1646168ebc66899f",
+    "results\\full-20260503\\20260503T165637340335Z\\samples.jsonl": "c414c5cd2461ef8b6bada905791b0d0f4592fffbd3046fa84eae6571a2279195",
+    "results\\full-whisper-large-v3-20260613\\20260613T094423596588Z\\samples.jsonl": "3d4b518f85289c2ff9d552945e626d5c4a1becd4901e588cc20dfd2132bf1055",
+    "results\\full-whisper-large-v3-20260613\\20260613T095716065626Z\\samples.jsonl": "59aa1d89a3bcfb8a49c38fd4838cecab63f1ae0e3685791e4046f5f5dede39e2",
+    "results\\full-whisper-large-v3-20260613\\20260613T103157818700Z\\samples.jsonl": "1b8d52b1c4b7e5f9426d4e5d75ea80c8bd7618dcab78f66621c37a65eb3ee316",
+    "results\\full-whisper-large-v3-20260613\\20260613T114723504497Z\\samples.jsonl": "2671621f58bf9626a645f3fa6b6689e1474bd8b61c8629d1927d06ee47a79f68",
+    "results\\full-whisper-large-v3-20260613\\20260613T122228281671Z\\samples.jsonl": "418dc05ce87cd0b6dde35592722be9818c3e0accf080b0becb4eff8bbd34293f",
+    "results\\full-whisper-large-v3-20260613\\20260613T131335399592Z\\samples.jsonl": "421452068afbc0b512ebc42a121f2df71cc146f0729d3c090c863bf079d2de73",
+    "results\\full-whisper-large-v3-20260613\\20260613T131836637511Z\\samples.jsonl": "67374f432559e733e4d3a45843c4d3185f86943a7719565bad5180f6b15bd1a4",
+    "results\\full-whisper-large-v3-20260613\\20260613T132341172620Z\\samples.jsonl": "56fce60ff10a6fb9896861b165bf205404b7759db1ccfed5288cb3bf6203842c",
+    "results\\full-whisper-large-v3-20260613\\20260613T133405845599Z\\samples.jsonl": "098dbcc0dd52f13495163209b349799ae7fb6f905032e351b3034eb0cdab33b8",
+    "results\\full-whisper-large-v3-20260613\\20260613T135224406259Z\\samples.jsonl": "85569611ae8695a732f6f9d47640f6e4583166e96a3dd1b5a309d5c2738184ff",
+    "results\\full-whisper-large-v3-20260613\\20260613T135536202882Z\\samples.jsonl": "bb9a823eb22fda8a021c0924bf1d94abb656a7105c531f4eb27b9baa4452d44a",
+    "results\\full-whisper-large-v3-20260613\\20260613T141216255385Z\\samples.jsonl": "38f7392ec3d42a0101073c967a8fd74b2666f9768e59479d068975b1a3f5f275",
+    "results\\google_speech_recognition_full\\20260610T021005900995Z\\samples.jsonl": "a23aafd1ddb0454b0cc09a09ca2318053ca183f56adfb7ec132d4a81009d43c4",
+    "results\\google_speech_recognition_full\\20260611T055107500919Z\\samples.jsonl": "030f718a51c6bf8569bd13944b885d5021a1c6954a385bb42fd327cacd696ff9",
+    "results\\google_speech_recognition_full\\20260611T064319962916Z\\samples.jsonl": "0b3efe77a4ec63dda00c28e2573792b68bcc5b530b43f5eaa03d27af7b31ffa5",
+    "results\\google_speech_recognition_full\\20260611T112044282099Z\\samples.jsonl": "16c7910960fc9b01a13d5ae17c7f110d90169be0103feaee86a7aa6d87f96182",
+    "results\\google_speech_recognition_full\\20260611T163019846455Z\\samples.jsonl": "ba7fbc6a2deb7f953d3e70074e8b02ca6476821af370b41bac7955801df92586",
+    "results\\google_speech_recognition_full\\20260611T233041686594Z\\samples.jsonl": "3b2b930571913dcb3ba2f7fb34e4c411cea539097317a74ec9b361736e976352",
+    "results\\google_speech_recognition_full\\20260612T052922881353Z\\samples.jsonl": "48b3a115fcd231cced7af509f3e5e0c7ff97c109846c349949b62875c75a1aa4",
+    "results\\google_speech_recognition_smoke\\20260610T011147371184Z\\samples.jsonl": "5c34c57a4a880c606788cdf73669a593cd1f3946b0a77bcb05d7fbb9a00538db",
+    "results\\smoke-wsl\\20260503T073404626310Z\\samples.jsonl": "ca2b50db3cd2cefddcbf2de1cfba055d0e824a6cfc0365665864dce2e744b359",
+    "results\\smoke-wsl\\20260503T073524883351Z\\samples.jsonl": "0fe8ad9c243dd8d66a0af652fe73c045838c5e987fdf68eed63eca04e8261855",
+    "results\\smoke-wsl\\20260503T073634165965Z\\samples.jsonl": "b2f7805c6fe9b3c1091d725cdfee868230d8228f6bd66e8d0fea764547e6e09f",
+    "results\\smoke-wsl\\20260503T073910521446Z\\samples.jsonl": "7a39e1f8cc1f227aa55e2ce84a28f12299a9f95d005227baca660cae977ff332",
+    "results\\smoke-wsl\\20260503T074007811679Z\\samples.jsonl": "aab057a183d1ad9f239b052a035d67f0df242f302ea6cb0ea50cbf1b53287c4b",
+    "results\\smoke-wsl\\20260503T074955436975Z\\samples.jsonl": "850c7802adf910b8ea04ebbe1c7948a8f4d177b5686cc0d7ec8cbabf158a008c",
+    "results\\smoke-wsl\\20260503T075044021264Z\\samples.jsonl": "3c919c0adb9db860debafaace561e432add32a1487ff1a72b38ffff3bba6c55b",
+    "results\\smoke-wsl\\20260503T075306139798Z\\samples.jsonl": "8be4a357fdd4efd495da5ff4987e67aa0adc54bd4c6d7a7f698327d1a54cd587",
+    "results\\smoke-wsl\\20260503T132736837992Z\\samples.jsonl": "464c8e37fd089d3eb8f44b1cec173af937acfb96293b56c152d690da994efdd3",
+    "results\\wsl-gpu\\20260503T020311188031Z\\samples.jsonl": "86335c2dea786a5808d7390ce7639f9b5a1f43c7034eebb98322ed6d50e8a1a0",
+    "results\\wsl-gpu\\20260503T020410389247Z\\samples.jsonl": "5a00080a222d446ae1333b0e02aa2105f1d1430063ba6c55220e97b5d3f8bfe2",
+    "results\\wsl-gpu\\20260503T020733815515Z\\samples.jsonl": "330888f9ebc3be132d8c4f5563d9a21fb59e47442ad8ba0732ce0e84a3a2deb8",
+    "results\\wsl-gpu\\20260503T020914540277Z\\samples.jsonl": "96d115ecc4ff962ab855b805595d31c617f539907433ec2e03f2b86030e7f7e7",
+    "results\\wsl-gpu\\20260503T021115575323Z\\samples.jsonl": "6c6fc93bcc7c560a84684b9e697d967a409ea0d8da77657c5110727ef769dbc3",
+    "results\\wsl-smoke\\20260503T020054666215Z\\samples.jsonl": "7d7043370e3a50b8c846d4f223489d02404cbab0c7030d232117560bf0b92804"
+  },
+  "runs": [
+    {
+      "run_id": "20260503T023237400589Z",
+      "artifact": "results/full/20260503T023237400589Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 94,
+      "main_cer": 0.34645232119856334,
+      "filtered_micro_cer": 0.29557124020786474,
+      "all_samples_micro": {
+        "wer": 0.8296913610155531,
+        "cer": 0.5608388831184701,
+        "mer": 0.6380733064670888,
+        "jer": 0.467111686306564,
+        "ser": 0.887
+      }
+    },
+    {
+      "run_id": "20260503T024311660383Z",
+      "artifact": "results/full/20260503T024311660383Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 143,
+      "main_cer": 0.6058991436367895,
+      "filtered_micro_cer": 0.5747643367126559,
+      "all_samples_micro": {
+        "wer": 1.7251014943422303,
+        "cer": 1.424790172082337,
+        "mer": 1.6087237695961465,
+        "jer": 1.2523603416435827,
+        "ser": 0.9984504132231405
+      }
+    },
+    {
+      "run_id": "20260503T025048555494Z",
+      "artifact": "results/full/20260503T025048555494Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 51,
+      "main_cer": 0.26853587747239704,
+      "filtered_micro_cer": 0.22387119571062053,
+      "all_samples_micro": {
+        "wer": 0.5212946363680411,
+        "cer": 0.3192246593755728,
+        "mer": 0.3955094991364421,
+        "jer": 0.2584292623118316,
+        "ser": 0.8313333333333334
+      }
+    },
+    {
+      "run_id": "20260503T075532897072Z",
+      "artifact": "results/full-20260503/20260503T075532897072Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 91,
+      "main_cer": 0.3719800501097657,
+      "filtered_micro_cer": 0.31492714837942315,
+      "all_samples_micro": {
+        "wer": 0.6339631782945736,
+        "cer": 0.38333235535735244,
+        "mer": 0.5040955370129373,
+        "jer": 0.30158200387157064,
+        "ser": 0.9396666666666667
+      }
+    },
+    {
+      "run_id": "20260503T075923023494Z",
+      "artifact": "results/full-20260503/20260503T075923023494Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 46,
+      "main_cer": 0.3499087605788264,
+      "filtered_micro_cer": 0.31475544681838313,
+      "all_samples_micro": {
+        "wer": 0.6410851001177856,
+        "cer": 0.3503732706865048,
+        "mer": 0.48512082338902146,
+        "jer": 0.2747999017152775,
+        "ser": 0.9716666666666667
+      }
+    },
+    {
+      "run_id": "20260503T080725775028Z",
+      "artifact": "results/full-20260503/20260503T080725775028Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 399,
+      "main_cer": 0.4924913896220663,
+      "filtered_micro_cer": 0.4694393858845442,
+      "all_samples_micro": {
+        "wer": 0.9349478614698224,
+        "cer": 0.6557193028048784,
+        "mer": 0.7988368026320902,
+        "jer": 0.5569125656221691,
+        "ser": 0.9949215143120961
+      }
+    },
+    {
+      "run_id": "20260503T082519170241Z",
+      "artifact": "results/full-20260503/20260503T082519170241Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 1091,
+      "main_cer": 0.593878819008287,
+      "filtered_micro_cer": 0.5629744629617895,
+      "all_samples_micro": {
+        "wer": 1.1463702479826516,
+        "cer": 0.8267651709177044,
+        "mer": 1.0155984634784574,
+        "jer": 0.7003507614644291,
+        "ser": 0.9971730984156203
+      }
+    },
+    {
+      "run_id": "20260503T082751480346Z",
+      "artifact": "results/full-20260503/20260503T082751480346Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 136,
+      "main_cer": 0.6069215592523537,
+      "filtered_micro_cer": 0.5759574441201369,
+      "all_samples_micro": {
+        "wer": 1.0437937289453225,
+        "cer": 0.7747807942983073,
+        "mer": 0.9711883683072051,
+        "jer": 0.6708910433979686,
+        "ser": 0.9984504132231405
+      }
+    },
+    {
+      "run_id": "20260503T084105537832Z",
+      "artifact": "results/full-20260503/20260503T084105537832Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 706,
+      "main_cer": 0.5045967520105248,
+      "filtered_micro_cer": 0.47453606125069847,
+      "all_samples_micro": {
+        "wer": 0.9872114352957464,
+        "cer": 0.6811809015268585,
+        "mer": 0.818580247168805,
+        "jer": 0.5751993898426894,
+        "ser": 0.9929812123360511
+      }
+    },
+    {
+      "run_id": "20260503T084323817330Z",
+      "artifact": "results/full-20260503/20260503T084323817330Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 54,
+      "main_cer": 0.3040061226956894,
+      "filtered_micro_cer": 0.24650517396631386,
+      "all_samples_micro": {
+        "wer": 0.5109011627906976,
+        "cer": 0.28513378711418846,
+        "mer": 0.3732169741509097,
+        "jer": 0.21838031877415096,
+        "ser": 0.922
+      }
+    },
+    {
+      "run_id": "20260503T084613049499Z",
+      "artifact": "results/full-20260503/20260503T084613049499Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 21,
+      "main_cer": 0.27800915439121693,
+      "filtered_micro_cer": 0.24516953770065802,
+      "all_samples_micro": {
+        "wer": 0.5262073027090695,
+        "cer": 0.26332550247977027,
+        "mer": 0.3670383353221957,
+        "jer": 0.2014889089873014,
+        "ser": 0.9543333333333334
+      }
+    },
+    {
+      "run_id": "20260503T085510938250Z",
+      "artifact": "results/full-20260503/20260503T085510938250Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 189,
+      "main_cer": 0.3884358282314927,
+      "filtered_micro_cer": 0.3584026499815974,
+      "all_samples_micro": {
+        "wer": 0.7153511009930525,
+        "cer": 0.43866696985775283,
+        "mer": 0.5568904547868551,
+        "jer": 0.36424987903328493,
+        "ser": 0.9867266851338874
+      }
+    },
+    {
+      "run_id": "20260503T091313872634Z",
+      "artifact": "results/full-20260503/20260503T091313872634Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 640,
+      "main_cer": 0.48837755866551913,
+      "filtered_micro_cer": 0.4451699306678754,
+      "all_samples_micro": {
+        "wer": 0.9120332807175417,
+        "cer": 0.5915512237314834,
+        "mer": 0.7606510536251849,
+        "jer": 0.4924120183201765,
+        "ser": 0.9925711656038393
+      }
+    },
+    {
+      "run_id": "20260503T091632517286Z",
+      "artifact": "results/full-20260503/20260503T091632517286Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 77,
+      "main_cer": 0.4627808377112795,
+      "filtered_micro_cer": 0.42268531502639956,
+      "all_samples_micro": {
+        "wer": 0.8309579338343267,
+        "cer": 0.5461035307356872,
+        "mer": 0.7286979015676918,
+        "jer": 0.4572483841181902,
+        "ser": 0.9979338842975206
+      }
+    },
+    {
+      "run_id": "20260503T092947492745Z",
+      "artifact": "results/full-20260503/20260503T092947492745Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 262,
+      "main_cer": 0.40193278831259904,
+      "filtered_micro_cer": 0.36750892063838986,
+      "all_samples_micro": {
+        "wer": 0.7194476170698785,
+        "cer": 0.4332224406825626,
+        "mer": 0.5459916728341719,
+        "jer": 0.361492029760637,
+        "ser": 0.987025877348458
+      }
+    },
+    {
+      "run_id": "20260503T093331782326Z",
+      "artifact": "results/full-20260503/20260503T093331782326Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 51,
+      "main_cer": 0.23210689896699077,
+      "filtered_micro_cer": 0.192463503380817,
+      "all_samples_micro": {
+        "wer": 0.4241279069767442,
+        "cer": 0.2107880530454172,
+        "mer": 0.2687999183444334,
+        "jer": 0.1602177573074042,
+        "ser": 0.876
+      }
+    },
+    {
+      "run_id": "20260503T093806989032Z",
+      "artifact": "results/full-20260503/20260503T093806989032Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 11,
+      "main_cer": 0.21435280096346018,
+      "filtered_micro_cer": 0.19168050811160905,
+      "all_samples_micro": {
+        "wer": 0.4321628386336867,
+        "cer": 0.19269120334116419,
+        "mer": 0.26178400954653935,
+        "jer": 0.1446824305602752,
+        "ser": 0.9266666666666666
+      }
+    },
+    {
+      "run_id": "20260503T094920732351Z",
+      "artifact": "results/full-20260503/20260503T094920732351Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 86,
+      "main_cer": 0.2959788976691734,
+      "filtered_micro_cer": 0.27023502014510287,
+      "all_samples_micro": {
+        "wer": 0.5361698787141344,
+        "cer": 0.29207768910641646,
+        "mer": 0.36277379826686185,
+        "jer": 0.23924305760198494,
+        "ser": 0.9627192982456141
+      }
+    },
+    {
+      "run_id": "20260503T101219688008Z",
+      "artifact": "results/full-20260503/20260503T101219688008Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 348,
+      "main_cer": 0.39044171780869436,
+      "filtered_micro_cer": 0.3430957708411795,
+      "all_samples_micro": {
+        "wer": 0.6822104533317598,
+        "cer": 0.3965556576130838,
+        "mer": 0.5142609316801877,
+        "jer": 0.3270218653162877,
+        "ser": 0.9790283347577411
+      }
+    },
+    {
+      "run_id": "20260503T101656776514Z",
+      "artifact": "results/full-20260503/20260503T101656776514Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 21,
+      "main_cer": 0.3097974848759322,
+      "filtered_micro_cer": 0.27558220347967444,
+      "all_samples_micro": {
+        "wer": 0.5592122311479658,
+        "cer": 0.2942162516997234,
+        "mer": 0.3926365319001851,
+        "jer": 0.24089912280701756,
+        "ser": 0.9710743801652892
+      }
+    },
+    {
+      "run_id": "20260503T103445151160Z",
+      "artifact": "results/full-20260503/20260503T103445151160Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 139,
+      "main_cer": 0.30563488483200374,
+      "filtered_micro_cer": 0.2748643803786777,
+      "all_samples_micro": {
+        "wer": 0.5470269615477797,
+        "cer": 0.2943136150146935,
+        "mer": 0.36789617090949683,
+        "jer": 0.23972471529760042,
+        "ser": 0.9629209500177243
+      }
+    },
+    {
+      "run_id": "20260503T104238810452Z",
+      "artifact": "results/full-20260503/20260503T104238810452Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 33,
+      "main_cer": 0.21007105548897784,
+      "filtered_micro_cer": 0.16932719327928908,
+      "all_samples_micro": {
+        "wer": 0.3796996124031008,
+        "cer": 0.1804072291984509,
+        "mer": 0.22480798183163642,
+        "jer": 0.13306484510008976,
+        "ser": 0.8566666666666667
+      }
+    },
+    {
+      "run_id": "20260503T104945732451Z",
+      "artifact": "results/full-20260503/20260503T104945732451Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 13,
+      "main_cer": 0.19081040789134823,
+      "filtered_micro_cer": 0.17481157814411005,
+      "all_samples_micro": {
+        "wer": 0.4027532391048292,
+        "cer": 0.1783450796136779,
+        "mer": 0.228333830548926,
+        "jer": 0.1355963216419822,
+        "ser": 0.906
+      }
+    },
+    {
+      "run_id": "20260503T111038213036Z",
+      "artifact": "results/full-20260503/20260503T111038213036Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 67,
+      "main_cer": 0.27893888422901847,
+      "filtered_micro_cer": 0.267169671631391,
+      "all_samples_micro": {
+        "wer": 0.50529235519619,
+        "cer": 0.2830902390517338,
+        "mer": 0.332858382663437,
+        "jer": 0.23822439052785144,
+        "ser": 0.9502539242843951
+      }
+    },
+    {
+      "run_id": "20260503T115020175977Z",
+      "artifact": "results/full-20260503/20260503T115020175977Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 222,
+      "main_cer": 0.33964540109120694,
+      "filtered_micro_cer": 0.3029029870155853,
+      "all_samples_micro": {
+        "wer": 0.6056175962942747,
+        "cer": 0.335840245361287,
+        "mer": 0.42624623705291087,
+        "jer": 0.2770383566351389,
+        "ser": 0.9665373742686214
+      }
+    },
+    {
+      "run_id": "20260503T115558830261Z",
+      "artifact": "results/full-20260503/20260503T115558830261Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 10,
+      "main_cer": 0.25219482185284936,
+      "filtered_micro_cer": 0.22815156724677954,
+      "all_samples_micro": {
+        "wer": 0.4799170769629438,
+        "cer": 0.2366014910676607,
+        "mer": 0.2997569297326227,
+        "jer": 0.19348453370267774,
+        "ser": 0.9705578512396694
+      }
+    },
+    {
+      "run_id": "20260503T122808569314Z",
+      "artifact": "results/full-20260503/20260503T122808569314Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 121,
+      "main_cer": 0.2817992288752241,
+      "filtered_micro_cer": 0.26479067833050196,
+      "all_samples_micro": {
+        "wer": 0.5141470252310248,
+        "cer": 0.28248870227544237,
+        "mer": 0.3345957768782638,
+        "jer": 0.23712250383430564,
+        "ser": 0.9488124778447359
+      }
+    },
+    {
+      "run_id": "20260503T124153468914Z",
+      "artifact": "results/full-20260503/20260503T124153468914Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 12,
+      "main_cer": 0.18563393940599263,
+      "filtered_micro_cer": 0.13885993628796664,
+      "all_samples_micro": {
+        "wer": 0.35261627906976745,
+        "cer": 0.13981633611078512,
+        "mer": 0.21424379290106918,
+        "jer": 0.09608467021189804,
+        "ser": 0.8593333333333333
+      }
+    },
+    {
+      "run_id": "20260503T125648560195Z",
+      "artifact": "results/full-20260503/20260503T125648560195Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 6,
+      "main_cer": 0.1626094687906506,
+      "filtered_micro_cer": 0.13523421588594706,
+      "all_samples_micro": {
+        "wer": 0.36925795053003535,
+        "cer": 0.1355886191594884,
+        "mer": 0.21017303102625298,
+        "jer": 0.09287906274015716,
+        "ser": 0.9106666666666666
+      }
+    },
+    {
+      "run_id": "20260503T134506305691Z",
+      "artifact": "results/full-20260503/20260503T134506305691Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 45,
+      "main_cer": 0.19726116950830064,
+      "filtered_micro_cer": 0.17124103931292042,
+      "all_samples_micro": {
+        "wer": 0.4096505344689982,
+        "cer": 0.17586165823867636,
+        "mer": 0.2569332003471458,
+        "jer": 0.13445677759223484,
+        "ser": 0.9241689750692521
+      }
+    },
+    {
+      "run_id": "20260503T142438159660Z",
+      "artifact": "results/full-20260503/20260503T142438159660Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 141,
+      "main_cer": 0.306277790224942,
+      "filtered_micro_cer": 0.2533163051837566,
+      "all_samples_micro": {
+        "wer": 0.5338191688671869,
+        "cer": 0.25858754585149374,
+        "mer": 0.3838862041066235,
+        "jer": 0.2025440081212339,
+        "ser": 0.9623956347380186
+      }
+    },
+    {
+      "run_id": "20260503T143033863265Z",
+      "artifact": "results/full-20260503/20260503T143033863265Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 2,
+      "main_cer": 0.20058768367908963,
+      "filtered_micro_cer": 0.17072570148798705,
+      "all_samples_micro": {
+        "wer": 0.40101062451412284,
+        "cer": 0.17107422516059456,
+        "mer": 0.2437169680886649,
+        "jer": 0.13486842105263158,
+        "ser": 0.9271694214876033
+      }
+    },
+    {
+      "run_id": "20260503T150347041511Z",
+      "artifact": "results/full-20260503/20260503T150347041511Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 60,
+      "main_cer": 0.2108843017567575,
+      "filtered_micro_cer": 0.17992364803147762,
+      "all_samples_micro": {
+        "wer": 0.42139099435849514,
+        "cer": 0.1825333554651062,
+        "mer": 0.26085859943190043,
+        "jer": 0.1407359725096051,
+        "ser": 0.9237149946827367
+      }
+    },
+    {
+      "run_id": "20260503T150932121213Z",
+      "artifact": "results/full-20260503/20260503T150932121213Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 8,
+      "main_cer": 0.16277498607045496,
+      "filtered_micro_cer": 0.11983622675843447,
+      "all_samples_micro": {
+        "wer": 0.31603682170542635,
+        "cer": 0.12037906349020068,
+        "mer": 0.17834086095588048,
+        "jer": 0.08214108240808728,
+        "ser": 0.827
+      }
+    },
+    {
+      "run_id": "20260503T151705877082Z",
+      "artifact": "results/full-20260503/20260503T151705877082Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 6,
+      "main_cer": 0.14308872592429706,
+      "filtered_micro_cer": 0.11681896506709832,
+      "all_samples_micro": {
+        "wer": 0.3377502944640754,
+        "cer": 0.11713912816496998,
+        "mer": 0.1784755369928401,
+        "jer": 0.07950606699044861,
+        "ser": 0.9086666666666666
+      }
+    },
+    {
+      "run_id": "20260503T153438672098Z",
+      "artifact": "results/full-20260503/20260503T153438672098Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 29,
+      "main_cer": 0.1673136353172343,
+      "filtered_micro_cer": 0.1418359886788902,
+      "all_samples_micro": {
+        "wer": 0.3532336355667203,
+        "cer": 0.14562556622740053,
+        "mer": 0.20903226642141942,
+        "jer": 0.11078186336036439,
+        "ser": 0.9100877192982456
+      }
+    },
+    {
+      "run_id": "20260503T161427307493Z",
+      "artifact": "results/full-20260503/20260503T161427307493Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 96,
+      "main_cer": 0.25097814111975375,
+      "filtered_micro_cer": 0.20814799335263853,
+      "all_samples_micro": {
+        "wer": 0.4603611311903462,
+        "cer": 0.21239979130006964,
+        "mer": 0.3135473384210565,
+        "jer": 0.1661515186825905,
+        "ser": 0.9322201038721978
+      }
+    },
+    {
+      "run_id": "20260503T161924528431Z",
+      "artifact": "results/full-20260503/20260503T161924528431Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 1,
+      "main_cer": 0.166426724215775,
+      "filtered_micro_cer": 0.13834302598255324,
+      "all_samples_micro": {
+        "wer": 0.3400708300941522,
+        "cer": 0.13866225910817273,
+        "mer": 0.187610106371117,
+        "jer": 0.1087084487534626,
+        "ser": 0.9075413223140496
+      }
+    },
+    {
+      "run_id": "20260503T165637340335Z",
+      "artifact": "results/full-20260503/20260503T165637340335Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 55,
+      "main_cer": 0.16800411024623293,
+      "filtered_micro_cer": 0.14358580441492624,
+      "all_samples_micro": {
+        "wer": 0.34743709549025714,
+        "cer": 0.14619126995074122,
+        "mer": 0.20435046866149284,
+        "jer": 0.11329198192849213,
+        "ser": 0.8731655441332861
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-qwen3-asr-0-6b-20260503T165808Z",
+      "artifact": "results/full-20260503/aggregated/aggregate-aihub-all-qwen3-asr-0-6b-20260503T165808Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 248,
+      "main_cer": 0.24366257227718455,
+      "filtered_micro_cer": 0.2060083674744271,
+      "all_samples_micro": {
+        "wer": 0.4609458530896898,
+        "cer": 0.2099723762242355,
+        "mer": 0.306117485918741,
+        "jer": 0.16329769951682982,
+        "ser": 0.9387213147609981
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-qwen3-asr-1-7b-20260503T165809Z",
+      "artifact": "results/full-20260503/aggregated/aggregate-aihub-all-qwen3-asr-1-7b-20260503T165809Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 181,
+      "main_cer": 0.199340161175448,
+      "filtered_micro_cer": 0.16799156033823712,
+      "all_samples_micro": {
+        "wer": 0.39186442031072244,
+        "cer": 0.17136167828925764,
+        "mer": 0.24618792715481697,
+        "jer": 0.1332267903052314,
+        "ser": 0.9053512375989579
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-whisper-base-20260503T165810Z",
+      "artifact": "results/full-20260503/aggregated/aggregate-aihub-all-whisper-base-20260503T165810Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 1168,
+      "main_cer": 0.43440714920754764,
+      "filtered_micro_cer": 0.3990514195373289,
+      "all_samples_micro": {
+        "wer": 0.8003598199189692,
+        "cer": 0.5034968222999208,
+        "mer": 0.6421151937832814,
+        "jer": 0.4199853965919947,
+        "ser": 0.989603166649965
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-whisper-medium-20260503T165811Z",
+      "artifact": "results/full-20260503/aggregated/aggregate-aihub-all-whisper-medium-20260503T165811Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 420,
+      "main_cer": 0.3016859972694237,
+      "filtered_micro_cer": 0.2776950421070559,
+      "all_samples_micro": {
+        "wer": 0.5453153556429287,
+        "cer": 0.30037282438619195,
+        "mer": 0.36718472655103496,
+        "jer": 0.2501130580165218,
+        "ser": 0.956934562581421
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-whisper-small-20260503T165812Z",
+      "artifact": "results/full-20260503/aggregated/aggregate-aihub-all-whisper-small-20260503T165812Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 594,
+      "main_cer": 0.33578661362846685,
+      "filtered_micro_cer": 0.30033829467665485,
+      "all_samples_micro": {
+        "wer": 0.5977201901172123,
+        "cer": 0.33365116773233916,
+        "mer": 0.4244713413185369,
+        "jer": 0.2740169193020021,
+        "ser": 0.9694107626014631
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-whisper-tiny-20260503T165814Z",
+      "artifact": "results/full-20260503/aggregated/aggregate-aihub-all-whisper-tiny-20260503T165814Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 2332,
+      "main_cer": 0.540377845531777,
+      "filtered_micro_cer": 0.5141373830586347,
+      "all_samples_micro": {
+        "wer": 1.0410799159469792,
+        "cer": 0.7386041300442366,
+        "mer": 0.8994395449272526,
+        "jer": 0.6269298954897518,
+        "ser": 0.9952650566188996
+      }
+    },
+    {
+      "run_id": "20260613T094423596588Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T094423596588Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 20,
+      "main_cer": 0.18040260383153056,
+      "filtered_micro_cer": 0.14722646609472323,
+      "all_samples_micro": {
+        "wer": 0.33488372093023255,
+        "cer": 0.15008508391033917,
+        "mer": 0.18599607032585674,
+        "jer": 0.11196404334379102,
+        "ser": 0.8033333333333333
+      }
+    },
+    {
+      "run_id": "20260613T095716065626Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T095716065626Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 5,
+      "main_cer": 0.16557144730207263,
+      "filtered_micro_cer": 0.15084621813623067,
+      "all_samples_micro": {
+        "wer": 0.363920789163722,
+        "cer": 0.15280605586008875,
+        "mer": 0.19447344868735084,
+        "jer": 0.11588187012824065,
+        "ser": 0.8806666666666667
+      }
+    },
+    {
+      "run_id": "20260613T103157818700Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T103157818700Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 32,
+      "main_cer": 0.09329807087786235,
+      "filtered_micro_cer": 0.08624284235444009,
+      "all_samples_micro": {
+        "wer": 0.24029516819091729,
+        "cer": 0.0901488162914677,
+        "mer": 0.12095050582246344,
+        "jer": 0.0704444662730246,
+        "ser": 0.740881809787627
+      }
+    },
+    {
+      "run_id": "20260613T114723504497Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T114723504497Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 61,
+      "main_cer": 0.12464827339388408,
+      "filtered_micro_cer": 0.11256339954787747,
+      "all_samples_micro": {
+        "wer": 0.30433563957691,
+        "cer": 0.11667159320177832,
+        "mer": 0.1705043260224647,
+        "jer": 0.09104294260428537,
+        "ser": 0.7902176056800999
+      }
+    },
+    {
+      "run_id": "20260613T122228281671Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T122228281671Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 1,
+      "main_cer": 0.09046511328882603,
+      "filtered_micro_cer": 0.08006988087421443,
+      "all_samples_micro": {
+        "wer": 0.21585903083700442,
+        "cer": 0.08037933136399869,
+        "mer": 0.1025578128135941,
+        "jer": 0.06567405355493998,
+        "ser": 0.7603305785123967
+      }
+    },
+    {
+      "run_id": "20260613T131335399592Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T131335399592Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 51,
+      "main_cer": 0.09638002078530791,
+      "filtered_micro_cer": 0.086923230028919,
+      "all_samples_micro": {
+        "wer": 0.24755996262070398,
+        "cer": 0.09027425474761597,
+        "mer": 0.12447335017510203,
+        "jer": 0.07017998926751376,
+        "ser": 0.7537043601559731
+      }
+    },
+    {
+      "run_id": "20260613T131836637511Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T131836637511Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 21,
+      "main_cer": 0.19483608102312822,
+      "filtered_micro_cer": 0.15539031272043263,
+      "all_samples_micro": {
+        "wer": 0.35828488372093026,
+        "cer": 0.16400657199859173,
+        "mer": 0.20745617392635687,
+        "jer": 0.12116829465471078,
+        "ser": 0.8266666666666667
+      }
+    },
+    {
+      "run_id": "20260613T132341172620Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T132341172620Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 9,
+      "main_cer": 0.17028355455186175,
+      "filtered_micro_cer": 0.15482907054496825,
+      "all_samples_micro": {
+        "wer": 0.37338044758539457,
+        "cer": 0.15712868702688593,
+        "mer": 0.20140960620525059,
+        "jer": 0.11753388993156665,
+        "ser": 0.8803333333333333
+      }
+    },
+    {
+      "run_id": "20260613T133405845599Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T133405845599Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 28,
+      "main_cer": 0.09637457158999532,
+      "filtered_micro_cer": 0.08856079215944489,
+      "all_samples_micro": {
+        "wer": 0.24394551948816579,
+        "cer": 0.0919932287324086,
+        "mer": 0.12464864444761078,
+        "jer": 0.07191789543382485,
+        "ser": 0.752539242843952
+      }
+    },
+    {
+      "run_id": "20260613T135224406259Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T135224406259Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 56,
+      "main_cer": 0.1265798421052799,
+      "filtered_micro_cer": 0.11498883921916275,
+      "all_samples_micro": {
+        "wer": 0.31078230339150575,
+        "cer": 0.11902442701751532,
+        "mer": 0.17601845575211564,
+        "jer": 0.09284316262020394,
+        "ser": 0.7990927618171061
+      }
+    },
+    {
+      "run_id": "20260613T135536202882Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T135536202882Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 2,
+      "main_cer": 0.09344856346466457,
+      "filtered_micro_cer": 0.08348870205555751,
+      "all_samples_micro": {
+        "wer": 0.22561976332383174,
+        "cer": 0.08388427814507432,
+        "mer": 0.10773141850456036,
+        "jer": 0.06848453370267775,
+        "ser": 0.7592975206611571
+      }
+    },
+    {
+      "run_id": "20260613T141216255385Z",
+      "artifact": "results/full-whisper-large-v3-20260613/20260613T141216255385Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 50,
+      "main_cer": 0.09896721962814455,
+      "filtered_micro_cer": 0.08897533055741605,
+      "all_samples_micro": {
+        "wer": 0.25429169695081855,
+        "cer": 0.09426264959403004,
+        "mer": 0.12895530040230052,
+        "jer": 0.07380309576304765,
+        "ser": 0.7597305919886566
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-whisper-large-v3-20260613T141229Z",
+      "artifact": "results/full-whisper-large-v3-20260613/aggregated/aggregate-aihub-all-whisper-large-v3-20260613T141229Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 145,
+      "main_cer": 0.10619157416372757,
+      "filtered_micro_cer": 0.0963097968228111,
+      "all_samples_micro": {
+        "wer": 0.2658305082812754,
+        "cer": 0.09987675546197385,
+        "mer": 0.13999217319599155,
+        "jer": 0.07813444374097234,
+        "ser": 0.7651568293416174
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-whisper-large-v3-turbo-20260613T141230Z",
+      "artifact": "results/full-whisper-large-v3-20260613/aggregated/aggregate-aihub-all-whisper-large-v3-turbo-20260613T141230Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 136,
+      "main_cer": 0.10865565864683067,
+      "filtered_micro_cer": 0.09865559371944663,
+      "all_samples_micro": {
+        "wer": 0.27198052068394296,
+        "cer": 0.10273726505302606,
+        "mer": 0.14474416134397405,
+        "jer": 0.0805275859619403,
+        "ser": 0.7731486120853793
+      }
+    },
+    {
+      "run_id": "20260610T021005900995Z",
+      "artifact": "results/google_speech_recognition_full/20260610T021005900995Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 1,
+      "main_cer": 0.3815876966574331,
+      "filtered_micro_cer": 0.271316237310017,
+      "all_samples_micro": {
+        "wer": 0.46075581395348836,
+        "cer": 0.27137366506278604,
+        "mer": 0.3274898568475848,
+        "jer": 0.2302620356154833,
+        "ser": 0.9536666666666667
+      }
+    },
+    {
+      "run_id": "20260611T055107500919Z",
+      "artifact": "results/google_speech_recognition_full/20260611T055107500919Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 0,
+      "main_cer": 0.31209829697109515,
+      "filtered_micro_cer": 0.2556930305403289,
+      "all_samples_micro": {
+        "wer": 0.47544905771495877,
+        "cer": 0.2556930305403289,
+        "mer": 0.3136746718377088,
+        "jer": 0.21484099309392987,
+        "ser": 0.9683333333333334
+      }
+    },
+    {
+      "run_id": "20260611T064319962916Z",
+      "artifact": "results/google_speech_recognition_full/20260611T064319962916Z/leaderboard_row.json",
+      "total_samples": 1936,
+      "outlier_count": 0,
+      "main_cer": 0.5532816753264272,
+      "filtered_micro_cer": 0.5834505556337037,
+      "all_samples_micro": {
+        "wer": 0.7219055022890213,
+        "cer": 0.5834505556337037,
+        "mer": 0.6240884864973352,
+        "jer": 0.5606994459833795,
+        "ser": 0.9963842975206612
+      }
+    },
+    {
+      "run_id": "20260611T112044282099Z",
+      "artifact": "results/google_speech_recognition_full/20260611T112044282099Z/leaderboard_row.json",
+      "total_samples": 8664,
+      "outlier_count": 16,
+      "main_cer": 0.30479185344721155,
+      "filtered_micro_cer": 0.28356051517035025,
+      "all_samples_micro": {
+        "wer": 0.5150135416257802,
+        "cer": 0.28532085918578753,
+        "mer": 0.3380072796984495,
+        "jer": 0.24372337367982566,
+        "ser": 0.9817636195752539
+      }
+    },
+    {
+      "run_id": "20260611T163019846455Z",
+      "artifact": "results/google_speech_recognition_full/20260611T163019846455Z/leaderboard_row.json",
+      "total_samples": 14105,
+      "outlier_count": 19,
+      "main_cer": 0.32241140391535555,
+      "filtered_micro_cer": 0.29740143977128364,
+      "all_samples_micro": {
+        "wer": 0.5439120202125082,
+        "cer": 0.2983534428544376,
+        "mer": 0.3558023476488367,
+        "jer": 0.25188859631692484,
+        "ser": 0.9943282523927686
+      }
+    },
+    {
+      "run_id": "20260611T233041686594Z",
+      "artifact": "results/google_speech_recognition_full/20260611T233041686594Z/leaderboard_row.json",
+      "total_samples": 3000,
+      "outlier_count": 0,
+      "main_cer": 0.31403110633803977,
+      "filtered_micro_cer": 0.25796919864265205,
+      "all_samples_micro": {
+        "wer": 0.47703180212014135,
+        "cer": 0.25796919864265205,
+        "mer": 0.3156697494033413,
+        "jer": 0.2171883250296684,
+        "ser": 0.9683333333333334
+      }
+    },
+    {
+      "run_id": "20260612T052922881353Z",
+      "artifact": "results/google_speech_recognition_full/20260612T052922881353Z/leaderboard_row.json",
+      "total_samples": 15211,
+      "outlier_count": 18,
+      "main_cer": 0.43054106308086626,
+      "filtered_micro_cer": 0.4118302219804524,
+      "all_samples_micro": {
+        "wer": 0.6251567409680322,
+        "cer": 0.41283702955722684,
+        "mer": 0.46906183260078865,
+        "jer": 0.37246285503241977,
+        "ser": 0.9929656169877062
+      }
+    },
+    {
+      "run_id": "aggregate-aihub-all-google-speech-recognition-20260612T053009Z",
+      "artifact": "results/google_speech_recognition_full/aggregated/aggregate-aihub-all-google-speech-recognition-20260612T053009Z/leaderboard_row.json",
+      "total_samples": 39916,
+      "outlier_count": 53,
+      "main_cer": 0.37101298645319086,
+      "filtered_micro_cer": 0.35788080924623056,
+      "all_samples_micro": {
+        "wer": 0.5807698777695727,
+        "cer": 0.3589468194023219,
+        "mer": 0.4122112118967421,
+        "jer": 0.3183150881309074,
+        "ser": 0.9911814811103317
+      }
+    },
+    {
+      "run_id": "20260610T011147371184Z",
+      "artifact": "results/google_speech_recognition_smoke/20260610T011147371184Z/leaderboard_row.json",
+      "total_samples": 1,
+      "outlier_count": 0,
+      "main_cer": 0.028985507246376812,
+      "filtered_micro_cer": 0.028985507246376812,
+      "all_samples_micro": {
+        "wer": 0.1,
+        "cer": 0.028985507246376812,
+        "mer": 0.10526315789473684,
+        "jer": 0.027586206896551724,
+        "ser": 1.0
+      }
+    },
+    {
+      "run_id": "20260503T073404626310Z",
+      "artifact": "results/smoke-wsl/20260503T073404626310Z/leaderboard_row.json",
+      "total_samples": 2,
+      "outlier_count": 0,
+      "main_cer": 0.9027777777777778,
+      "filtered_micro_cer": 0.8292682926829268,
+      "all_samples_micro": {
+        "wer": 1.0,
+        "cer": 0.8292682926829268,
+        "mer": 0.8235294117647058,
+        "jer": 0.8048780487804879,
+        "ser": 1.0
+      }
+    },
+    {
+      "run_id": "20260503T073524883351Z",
+      "artifact": "results/smoke-wsl/20260503T073524883351Z/leaderboard_row.json",
+      "total_samples": 2,
+      "outlier_count": 0,
+      "main_cer": 0.7083333333333334,
+      "filtered_micro_cer": 0.4878048780487805,
+      "all_samples_micro": {
+        "wer": 0.6666666666666666,
+        "cer": 0.4878048780487805,
+        "mer": 0.5294117647058824,
+        "jer": 0.4024390243902439,
+        "ser": 1.0
+      }
+    },
+    {
+      "run_id": "20260503T073634165965Z",
+      "artifact": "results/smoke-wsl/20260503T073634165965Z/leaderboard_row.json",
+      "total_samples": 2,
+      "outlier_count": 1,
+      "main_cer": 0.4166666666666667,
+      "filtered_micro_cer": 0.4166666666666667,
+      "all_samples_micro": {
+        "wer": 0.8888888888888888,
+        "cer": 0.5121951219512195,
+        "mer": 0.5882352941176471,
+        "jer": 0.4146341463414634,
+        "ser": 1.0
+      }
+    },
+    {
+      "run_id": "20260503T073910521446Z",
+      "artifact": "results/smoke-wsl/20260503T073910521446Z/leaderboard_row.json",
+      "total_samples": 2,
+      "outlier_count": 0,
+      "main_cer": 0.09722222222222222,
+      "filtered_micro_cer": 0.17073170731707318,
+      "all_samples_micro": {
+        "wer": 0.3333333333333333,
+        "cer": 0.17073170731707318,
+        "mer": 0.11764705882352941,
+        "jer": 0.14634146341463414,
+        "ser": 0.5
+      }
+    },
+    {
+      "run_id": "20260503T074007811679Z",
+      "artifact": "results/smoke-wsl/20260503T074007811679Z/leaderboard_row.json",
+      "total_samples": 4,
+      "outlier_count": 0,
+      "main_cer": 0.3573232323232323,
+      "filtered_micro_cer": 0.34951456310679613,
+      "all_samples_micro": {
+        "wer": 0.6,
+        "cer": 0.34951456310679613,
+        "mer": 0.42,
+        "jer": 0.30288461538461536,
+        "ser": 0.75
+      }
+    },
+    {
+      "run_id": "20260503T074955436975Z",
+      "artifact": "results/smoke-wsl/20260503T074955436975Z/leaderboard_row.json",
+      "total_samples": 20,
+      "outlier_count": 2,
+      "main_cer": 0.2933758363674161,
+      "filtered_micro_cer": 0.275,
+      "all_samples_micro": {
+        "wer": 0.8315789473684211,
+        "cer": 0.6916802610114192,
+        "mer": 0.7570621468926554,
+        "jer": 0.5226171243941842,
+        "ser": 0.95
+      }
+    },
+    {
+      "run_id": "20260503T075044021264Z",
+      "artifact": "results/smoke-wsl/20260503T075044021264Z/leaderboard_row.json",
+      "total_samples": 24,
+      "outlier_count": 2,
+      "main_cer": 0.30721208096695024,
+      "filtered_micro_cer": 0.29957805907172996,
+      "all_samples_micro": {
+        "wer": 0.8018018018018018,
+        "cer": 0.6519337016574586,
+        "mer": 0.7244655581947743,
+        "jer": 0.5,
+        "ser": 0.9583333333333334
+      }
+    },
+    {
+      "run_id": "20260503T075306139798Z",
+      "artifact": "results/smoke-wsl/20260503T075306139798Z/leaderboard_row.json",
+      "total_samples": 600,
+      "outlier_count": 14,
+      "main_cer": 0.3628563638096993,
+      "filtered_micro_cer": 0.3102471496352949,
+      "all_samples_micro": {
+        "wer": 0.6347095871238628,
+        "cer": 0.3917627213944335,
+        "mer": 0.5120933087783917,
+        "jer": 0.31242229405704947,
+        "ser": 0.93
+      }
+    },
+    {
+      "run_id": "20260503T132736837992Z",
+      "artifact": "results/smoke-wsl/20260503T132736837992Z/leaderboard_row.json",
+      "total_samples": 64,
+      "outlier_count": 0,
+      "main_cer": 0.2307037011951128,
+      "filtered_micro_cer": 0.19930434782608697,
+      "all_samples_micro": {
+        "wer": 0.3997524752475248,
+        "cer": 0.19930434782608697,
+        "mer": 0.2702702702702703,
+        "jer": 0.16094158674803835,
+        "ser": 0.9375
+      }
+    },
+    {
+      "run_id": "20260503T020311188031Z",
+      "artifact": "results/wsl-gpu/20260503T020311188031Z/leaderboard_row.json",
+      "total_samples": 10,
+      "outlier_count": 0,
+      "main_cer": 0.202523150529364,
+      "filtered_micro_cer": 0.23659305993690852,
+      "all_samples_micro": {
+        "wer": 0.4,
+        "cer": 0.23659305993690852,
+        "mer": 0.35294117647058826,
+        "jer": 0.2012288786482335,
+        "ser": 0.9
+      }
+    },
+    {
+      "run_id": "20260503T020410389247Z",
+      "artifact": "results/wsl-gpu/20260503T020410389247Z/leaderboard_row.json",
+      "total_samples": 10,
+      "outlier_count": 0,
+      "main_cer": 0.26299957198726726,
+      "filtered_micro_cer": 0.19873817034700317,
+      "all_samples_micro": {
+        "wer": 0.36,
+        "cer": 0.19873817034700317,
+        "mer": 0.2647058823529412,
+        "jer": 0.17050691244239632,
+        "ser": 1.0
+      }
+    },
+    {
+      "run_id": "20260503T020733815515Z",
+      "artifact": "results/wsl-gpu/20260503T020733815515Z/leaderboard_row.json",
+      "total_samples": 100,
+      "outlier_count": 4,
+      "main_cer": 0.2520872170172023,
+      "filtered_micro_cer": 0.26790450928381965,
+      "all_samples_micro": {
+        "wer": 1.4312925170068027,
+        "cer": 1.3785066896849374,
+        "mer": 1.1977186311787071,
+        "jer": 1.2088404868673928,
+        "ser": 0.78
+      }
+    },
+    {
+      "run_id": "20260503T020914540277Z",
+      "artifact": "results/wsl-gpu/20260503T020914540277Z/leaderboard_row.json",
+      "total_samples": 10,
+      "outlier_count": 0,
+      "main_cer": 0.09769330807753457,
+      "filtered_micro_cer": 0.09779179810725552,
+      "all_samples_micro": {
+        "wer": 0.25,
+        "cer": 0.09779179810725552,
+        "mer": 0.1411764705882353,
+        "jer": 0.07526881720430108,
+        "ser": 0.7
+      }
+    },
+    {
+      "run_id": "20260503T021115575323Z",
+      "artifact": "results/wsl-gpu/20260503T021115575323Z/leaderboard_row.json",
+      "total_samples": 30,
+      "outlier_count": 0,
+      "main_cer": 0.0805254998444938,
+      "filtered_micro_cer": 0.09232613908872901,
+      "all_samples_micro": {
+        "wer": 0.24436090225563908,
+        "cer": 0.09232613908872901,
+        "mer": 0.14072494669509594,
+        "jer": 0.06390532544378698,
+        "ser": 0.6333333333333333
+      }
+    },
+    {
+      "run_id": "20260503T020054666215Z",
+      "artifact": "results/wsl-smoke/20260503T020054666215Z/leaderboard_row.json",
+      "total_samples": 2,
+      "outlier_count": 0,
+      "main_cer": 0.0,
+      "filtered_micro_cer": 0.0,
+      "all_samples_micro": {
+        "wer": 0.0,
+        "cer": 0.0,
+        "ser": 0.0
+      }
+    }
+  ],
+  "ondevice_runs": [
+    {
+      "run_id": "galaxy-fold7-whisper-small-quantized-kspon-clean-20260718",
+      "artifact": "doc/benchmarks/galaxy_fold7_whisper_small_quantized_kspon_clean_full_20260718.json",
+      "total_samples": 3000,
+      "all_samples_micro": {
+        "wer": 0.44278100775193796,
+        "cer": 0.22525231780307475,
+        "ser": 0.875
+      }
+    },
+    {
+      "run_id": "galaxy-fold7-whisper-tiny-float-kspon-clean-20260718",
+      "artifact": "doc/benchmarks/galaxy_fold7_whisper_tiny_float_kspon_clean_full_20260718.json",
+      "total_samples": 3000,
+      "all_samples_micro": {
+        "wer": 0.6871124031007751,
+        "cer": 0.43573230841450533,
+        "ser": 0.9386666666666666
+      }
+    },
+    {
+      "run_id": "galaxy-fold7-whisper-base-float-kspon-clean-20260718",
+      "artifact": "doc/benchmarks/galaxy_fold7_whisper_base_float_kspon_clean_full_20260718.json",
+      "total_samples": 3000,
+      "all_samples_micro": {
+        "wer": 0.5318313953488372,
+        "cer": 0.3076956929937801,
+        "ser": 0.9213333333333333
+      }
+    },
+    {
+      "run_id": "galaxy-fold7-whisper-small-float-kspon-clean-20260718",
+      "artifact": "doc/benchmarks/galaxy_fold7_whisper_small_float_kspon_clean_full_20260718.json",
+      "total_samples": 3000,
+      "all_samples_micro": {
+        "wer": 0.4311531007751938,
+        "cer": 0.21806419434338692,
+        "ser": 0.8766666666666667
+      }
+    },
+    {
+      "run_id": "galaxy-fold7-whisper-large-v3-turbo-float-kspon-clean-20260718",
+      "artifact": "doc/benchmarks/galaxy_fold7_whisper_large_v3_turbo_float_kspon_clean_full_20260718.json",
+      "total_samples": 3000,
+      "all_samples_micro": {
+        "wer": 0.3697674418604651,
+        "cer": 0.17150275789226616,
+        "ser": 0.832
+      }
+    }
+  ]
+}

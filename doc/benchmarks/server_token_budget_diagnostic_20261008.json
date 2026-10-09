@@ -1,0 +1,526 @@
+{
+  "id": "server-token-budget-diagnostic-v1-20261008",
+  "status": "completed",
+  "date": "2026-10-08",
+  "question": "Does increasing the generation budget resolve pilot cap termination with improved transcription, or mainly extend repetitive output?",
+  "stage": "diagnostic_exploratory_not_leaderboard",
+  "authorization": "User requested checking server availability and running the necessary experiments on 2026-10-08.",
+  "source_protocol": "doc/benchmarks/server_speed_protocol_20261006.json",
+  "source_protocol_sha256": "b3d2c9a97dff37efe8ae6b11520b729a84030f94aec63b8e0ab7d9b4757eaaf2",
+  "source_protocol_snapshot": "results/token-budget-diagnostic-20261008/source-protocol.json",
+  "environment": "linux-server",
+  "image_id": "sha256:0a9137a3340e739e366b75a795954e8bae5afa4e325d4300b019e178305360c9",
+  "source_sha256": "70163d2a746a24dc19b4f7db6a9530ccecbf6526c77415fa5a012d1ac8e1fd17",
+  "models": [
+    "openai/whisper-tiny",
+    "openai/whisper-base",
+    "openai/whisper-small"
+  ],
+  "max_new_tokens": [
+    128,
+    256,
+    440
+  ],
+  "tracks": [
+    "latency-b1"
+  ],
+  "samples_per_model_condition": 192,
+  "warmup_samples_per_model_condition": 48,
+  "repetitions": 1,
+  "total_measured_generations": 1728,
+  "total_warmup_generations": 432,
+  "input_manifest_sha256": "f5a2173091f13876eb4d82d666e163942d43d019cecec23fc39524009b5fc7b9",
+  "selection": "Entire previously frozen pilot, no omission of failed outputs. Models selected because the prior pilot showed cap termination; this is not independent confirmatory evidence.",
+  "fixed": [
+    "BF16",
+    "checkpoint and processor revisions",
+    "offline immutable image",
+    "192 original inputs and order",
+    "greedy Korean transcription settings",
+    "batch 1",
+    "one model load per condition",
+    "48 single-sample warmups",
+    "synchronized transcribe-call timing",
+    "kspon normalization and CER edit counts"
+  ],
+  "changed": "Only max_new_tokens: 128 baseline, 256, 440. Formal protocol remains unchanged.",
+  "budget_440_reason": "A near-decoder-capacity check, with room for the four-token Korean transcription prompt within 448 positions; verify actual model capacity before execution.",
+  "outcomes": [
+    "EOS termination count",
+    "paired prediction and baseline-prefix agreement",
+    "all-sample corpus CER from summed edit counts and reference characters, without CER filtering",
+    "CER changes on baseline-capped samples",
+    "processing seconds as diagnostic cost, not a formal latency result"
+  ],
+  "decision_rules": {
+    "recovered_and_quality_improves": "Consider a separately versioned higher budget; quantify cost and qualify selection on this pilot.",
+    "repetition_extends_or_quality_worsens": "Retain the current bounded budget recommendation; cap terminations should remain visible rather than be dropped.",
+    "baseline_not_reproduced_or_conditions_drift": "Stop interpretation and investigate the mismatch before further experiments."
+  },
+  "stop_conditions": [
+    "Competing GPU work",
+    "Image/input/package identity mismatch",
+    "Missing output or incomplete workload",
+    "Runtime exception or OOM"
+  ],
+  "limitations": "One runtime observation per condition, batch 1 only, three selected models, development pilot already inspected; no formal speed or full-corpus quality claim.",
+  "server_idle_observation": {
+    "observed_at_utc": "2026-10-08T06:24:04+00:00",
+    "gpu_utilization_percent": 0,
+    "gpu_memory_used_mib": 302,
+    "gpu_compute_processes": 0,
+    "running_containers": 0
+  },
+  "published": false,
+  "variants": [
+    {
+      "max_new_tokens": 128,
+      "protocol_id": "server-token-budget-diagnostic-v1-20261008-cap-128",
+      "artifact": "results/token-budget-diagnostic-20261008/protocol-cap-128.json",
+      "sha256": "e911b9ff9b6ce5049bbfa788dbf0fbf2fdc6d0fa4b2d85e40b24f63df0889f2c"
+    },
+    {
+      "max_new_tokens": 256,
+      "protocol_id": "server-token-budget-diagnostic-v1-20261008-cap-256",
+      "artifact": "results/token-budget-diagnostic-20261008/protocol-cap-256.json",
+      "sha256": "8754948554ec60899ee859506b967ac74a47faa3f9420c91b4d8c74545093c84"
+    },
+    {
+      "max_new_tokens": 440,
+      "protocol_id": "server-token-budget-diagnostic-v1-20261008-cap-440",
+      "artifact": "results/token-budget-diagnostic-20261008/protocol-cap-440.json",
+      "sha256": "1a4c3e5eb2f5550e934571d9dafc237001089f7d622c0463cd2d62e2d049031a"
+    }
+  ],
+  "started_at_utc": "2026-10-08T06:28:30.234876+00:00",
+  "completed_at_utc": "2026-10-08T06:32:50.788176+00:00",
+  "elapsed_inference_matrix_seconds": 260.5533,
+  "fresh_preflight": {
+    "artifact": "results/token-budget-diagnostic-20261008/preflight.json",
+    "sha256": "d124a877d78a23fbc18f0411ed3c0f9678c27fbb319866e6272a9eb4c94076ef",
+    "observed_at_utc": "2026-10-08T06:26:32.867523+00:00",
+    "status": "passed",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "torch_threads": 8
+  },
+  "analysis_artifact": "results/token-budget-diagnostic-20261008/analysis.json",
+  "analysis_sha256": "5206e51b1ee889a2cd59c7b1332c39a6d049f9f038bc531ce8dfd64abca0a8ce",
+  "analysis_code_sha256": "44bcbde2e291eabd1f1bbf01089da3a17f5250b01255e253e44fec15772000e0",
+  "verified_artifacts": [
+    {
+      "model": "openai/whisper-tiny",
+      "max_new_tokens": 128,
+      "folder": "cap-128/linux-server/20261008T062828168035Z/openai--whisper-tiny/latency-b1/run",
+      "sha256": {
+        "summary.json": "579e833edb92730522701a8a56d349287aa2d0e7cd8018d2b483432e0520ed40",
+        "metadata.json": "eed5c06ec26053f5908185043901ca67a2cf62dcb52ffaab69ab9b9404244148",
+        "requests.jsonl": "e2e470489e81657ac69c21574b603415760d08c7ff0543187d718d56188ea6fb",
+        "warmup.jsonl": "dfc91a1a6d61422476c8cb808a0e1482fe15367780f488be511b882b747379fb"
+      },
+      "protocol_sha256": "e911b9ff9b6ce5049bbfa788dbf0fbf2fdc6d0fa4b2d85e40b24f63df0889f2c"
+    },
+    {
+      "model": "openai/whisper-base",
+      "max_new_tokens": 128,
+      "folder": "cap-128/linux-server/20261008T062828168035Z/openai--whisper-base/latency-b1/run",
+      "sha256": {
+        "summary.json": "7b4a38605457dfe33e19d913611d968bfe56a0466699880ca71d8d421e42a5f4",
+        "metadata.json": "c3d85575f363691ae6725e3310063ebd5ee4e9fb7f881964284e3e49f3c8eeb9",
+        "requests.jsonl": "9380110a2ee894e301aaf9f402956f842944b4a13c0209a12f75e649648d7111",
+        "warmup.jsonl": "1d565b12f8ddbe2c455e5212a467850c91e0977272ac653661298988c6bd8c70"
+      },
+      "protocol_sha256": "e911b9ff9b6ce5049bbfa788dbf0fbf2fdc6d0fa4b2d85e40b24f63df0889f2c"
+    },
+    {
+      "model": "openai/whisper-small",
+      "max_new_tokens": 128,
+      "folder": "cap-128/linux-server/20261008T062828168035Z/openai--whisper-small/latency-b1/run",
+      "sha256": {
+        "summary.json": "602611123e78fedb143c5af9b1e72c745dbe46b3a62c24f1ed7607f9775731ec",
+        "metadata.json": "3a5841642be0ca37362332e3ac604dbbbacbdd6b549b6b76b0af1b4009185314",
+        "requests.jsonl": "ea958856684963c85bbb667ed788f4b7864509e618afd7c6138cb11c1ea212c3",
+        "warmup.jsonl": "6e4c1a6f5ef9259f7898624068f904dd7f6e626dc8301ea4e0a7b7dd31774ac5"
+      },
+      "protocol_sha256": "e911b9ff9b6ce5049bbfa788dbf0fbf2fdc6d0fa4b2d85e40b24f63df0889f2c"
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "max_new_tokens": 256,
+      "folder": "cap-256/linux-server/20261008T063005338008Z/openai--whisper-tiny/latency-b1/run",
+      "sha256": {
+        "summary.json": "023bb46e0fc4ddc7a67849e3e5f3defdba2b5c790079497f6d3353cc5939b669",
+        "metadata.json": "8280526a7ff33be14fc7ba7b0f95b1608b1b2cd2125de404a4d3b8b5bc2b2cc7",
+        "requests.jsonl": "c3d84a100afdb73bec9448e0a458c93f035e7ec09a50ab528b9670bdf125a645",
+        "warmup.jsonl": "6b0a1997c5eb3fc2d6407119edbdf3f4e210dd98974f3e764d96a9a5d4807d58"
+      },
+      "protocol_sha256": "8754948554ec60899ee859506b967ac74a47faa3f9420c91b4d8c74545093c84"
+    },
+    {
+      "model": "openai/whisper-base",
+      "max_new_tokens": 256,
+      "folder": "cap-256/linux-server/20261008T063005338008Z/openai--whisper-base/latency-b1/run",
+      "sha256": {
+        "summary.json": "56785df2cdbdbbe53f11b2a0fd94dce3098bc0c812170a9cd27fd43ac11726c6",
+        "metadata.json": "f45a1ad62e2483964181257b3cf53d1fce95c1e8031aaf65b7b25b99f9c2a495",
+        "requests.jsonl": "63a4f4c329b6add600b8ca360a412ecd5ce16896807349c3236276004161c80e",
+        "warmup.jsonl": "1c9d4b401e1b910bdbe51ee7e3eaa4e85dbe2c4db12a04ff9817823369db2c8a"
+      },
+      "protocol_sha256": "8754948554ec60899ee859506b967ac74a47faa3f9420c91b4d8c74545093c84"
+    },
+    {
+      "model": "openai/whisper-small",
+      "max_new_tokens": 256,
+      "folder": "cap-256/linux-server/20261008T063005338008Z/openai--whisper-small/latency-b1/run",
+      "sha256": {
+        "summary.json": "0e93a447e6596e874b729d3562f7a8aea69d3a2ee82fb60cdee8aa352ca081ed",
+        "metadata.json": "05ce701ea071628a81fe2774d1edce82aa8516a6e40174a3bd0b2f9f50d4c01e",
+        "requests.jsonl": "94c42ba99d819e67ee1bbba0ab8f32336f4f2fda8ea7ceb8eef47fc70450bc27",
+        "warmup.jsonl": "6e4c1a6f5ef9259f7898624068f904dd7f6e626dc8301ea4e0a7b7dd31774ac5"
+      },
+      "protocol_sha256": "8754948554ec60899ee859506b967ac74a47faa3f9420c91b4d8c74545093c84"
+    },
+    {
+      "model": "openai/whisper-tiny",
+      "max_new_tokens": 440,
+      "folder": "cap-440/linux-server/20261008T063126675624Z/openai--whisper-tiny/latency-b1/run",
+      "sha256": {
+        "summary.json": "dfb635b64480ca5388b333edab9f39e052459f3bd68e5beacacd2d6b6df49f1e",
+        "metadata.json": "12df89ee58638b03b498111b78c4dfd8902ecbd564568ab76fe763aa7e3482c1",
+        "requests.jsonl": "07217f296dc4bf65a51735f28a005dea32c9ad5a6557c9be68d4263b3fe47092",
+        "warmup.jsonl": "8b143aa4c781b1f7a98705306c3a8bad04c6f1b2eee4e7284894a8f80c86a9a0"
+      },
+      "protocol_sha256": "1a4c3e5eb2f5550e934571d9dafc237001089f7d622c0463cd2d62e2d049031a"
+    },
+    {
+      "model": "openai/whisper-base",
+      "max_new_tokens": 440,
+      "folder": "cap-440/linux-server/20261008T063126675624Z/openai--whisper-base/latency-b1/run",
+      "sha256": {
+        "summary.json": "1a5ba8c4f44813a27c09b94147f02933af9b4df7445907ccfe0a8d3738e84eab",
+        "metadata.json": "5201df2d65eab3640e40e62566aa90984d180d20fce854ab82f0798c5f0cc7b2",
+        "requests.jsonl": "53616e75e82db42aaf4e385a9f203d5eb28298a5fe37b4668b7ed097f47e5cb9",
+        "warmup.jsonl": "240db25e36c602fe69a52c21c319f821dae4af2b3eae18e9356769d7b6e617e4"
+      },
+      "protocol_sha256": "1a4c3e5eb2f5550e934571d9dafc237001089f7d622c0463cd2d62e2d049031a"
+    },
+    {
+      "model": "openai/whisper-small",
+      "max_new_tokens": 440,
+      "folder": "cap-440/linux-server/20261008T063126675624Z/openai--whisper-small/latency-b1/run",
+      "sha256": {
+        "summary.json": "ef58a7e8d2b1a7aec4590a9b35d7455d0825efb15c235a4e137111e1fbb914f6",
+        "metadata.json": "98fe8af107becaa2c2c16e9125cfb5b6bc9ad1baca92f5187c4beed60fba9d4a",
+        "requests.jsonl": "1d2b18886bb3b551e12a40cbbe749006d7171033e5cee106e1af303bbf37ef71",
+        "warmup.jsonl": "6e4c1a6f5ef9259f7898624068f904dd7f6e626dc8301ea4e0a7b7dd31774ac5"
+      },
+      "protocol_sha256": "1a4c3e5eb2f5550e934571d9dafc237001089f7d622c0463cd2d62e2d049031a"
+    }
+  ],
+  "results": [
+    {
+      "model": "openai/whisper-tiny",
+      "baseline_reproduction": {
+        "raw_prediction_exact_matches": 192,
+        "samples": 192,
+        "prior_requests_sha256": "621793d10180493d2a5cd84c620704633ff61d4a6cc968f91e244043a797933f"
+      },
+      "conditions": [
+        {
+          "max_new_tokens": 128,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 2458,
+          "corpus_cer": 0.4531710914454277,
+          "capped": 3,
+          "prediction_characters": 5350,
+          "processing_seconds": 9.4229388250169,
+          "generated_tokens": 3399,
+          "warmup_capped": 1,
+          "baseline_capped_subset": {
+            "samples": 3,
+            "reference_characters": 93,
+            "character_errors": 505,
+            "corpus_cer": 5.43010752688172,
+            "capped": 3,
+            "prediction_characters": 534,
+            "processing_seconds": 0.9146293669982697,
+            "generated_tokens": 384
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 3,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 0,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.0
+        },
+        {
+          "max_new_tokens": 256,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 3101,
+          "corpus_cer": 0.5717182890855457,
+          "capped": 3,
+          "prediction_characters": 5993,
+          "processing_seconds": 10.374361505026172,
+          "generated_tokens": 3783,
+          "warmup_capped": 1,
+          "baseline_capped_subset": {
+            "samples": 3,
+            "reference_characters": 93,
+            "character_errors": 1148,
+            "corpus_cer": 12.344086021505376,
+            "capped": 3,
+            "prediction_characters": 1177,
+            "processing_seconds": 1.823606275000202,
+            "generated_tokens": 768
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 3,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 3,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.1009687845455758
+        },
+        {
+          "max_new_tokens": 440,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 4057,
+          "corpus_cer": 0.74797197640118,
+          "capped": 3,
+          "prediction_characters": 6949,
+          "processing_seconds": 11.557586127986724,
+          "generated_tokens": 4335,
+          "warmup_capped": 1,
+          "baseline_capped_subset": {
+            "samples": 3,
+            "reference_characters": 93,
+            "character_errors": 2104,
+            "corpus_cer": 22.623655913978496,
+            "capped": 3,
+            "prediction_characters": 2133,
+            "processing_seconds": 3.0812847029956174,
+            "generated_tokens": 1320
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 3,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 3,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.2265373194721974
+        }
+      ]
+    },
+    {
+      "model": "openai/whisper-base",
+      "baseline_reproduction": {
+        "raw_prediction_exact_matches": 192,
+        "samples": 192,
+        "prior_requests_sha256": "c0f8e360be7f645bba3060b2bfc418b2591b1f434723da1be653f86b761dbb26"
+      },
+      "conditions": [
+        {
+          "max_new_tokens": 128,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 2121,
+          "corpus_cer": 0.39103982300884954,
+          "capped": 3,
+          "prediction_characters": 5425,
+          "processing_seconds": 12.119111306972627,
+          "generated_tokens": 3421,
+          "warmup_capped": 1,
+          "baseline_capped_subset": {
+            "samples": 3,
+            "reference_characters": 49,
+            "character_errors": 563,
+            "corpus_cer": 11.489795918367347,
+            "capped": 3,
+            "prediction_characters": 575,
+            "processing_seconds": 1.1891879010036064,
+            "generated_tokens": 384
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 3,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 0,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.0
+        },
+        {
+          "max_new_tokens": 256,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 2697,
+          "corpus_cer": 0.49723451327433627,
+          "capped": 3,
+          "prediction_characters": 6001,
+          "processing_seconds": 13.387626641022507,
+          "generated_tokens": 3805,
+          "warmup_capped": 1,
+          "baseline_capped_subset": {
+            "samples": 3,
+            "reference_characters": 49,
+            "character_errors": 1139,
+            "corpus_cer": 23.244897959183675,
+            "capped": 3,
+            "prediction_characters": 1151,
+            "processing_seconds": 2.36830703999658,
+            "generated_tokens": 768
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 3,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 3,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.1046706562815418
+        },
+        {
+          "max_new_tokens": 440,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 3525,
+          "corpus_cer": 0.6498893805309734,
+          "capped": 3,
+          "prediction_characters": 6829,
+          "processing_seconds": 14.967188756974792,
+          "generated_tokens": 4357,
+          "warmup_capped": 1,
+          "baseline_capped_subset": {
+            "samples": 3,
+            "reference_characters": 49,
+            "character_errors": 1967,
+            "corpus_cer": 40.142857142857146,
+            "capped": 3,
+            "prediction_characters": 1979,
+            "processing_seconds": 4.042362865999166,
+            "generated_tokens": 1320
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 3,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 3,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.2350071203953337
+        }
+      ]
+    },
+    {
+      "model": "openai/whisper-small",
+      "baseline_reproduction": {
+        "raw_prediction_exact_matches": 192,
+        "samples": 192,
+        "prior_requests_sha256": "612743de0bce9eed0aae948a997c351db2afc423fa7ec0402a2d751f99072422"
+      },
+      "conditions": [
+        {
+          "max_new_tokens": 128,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 1397,
+          "corpus_cer": 0.2575589970501475,
+          "capped": 1,
+          "prediction_characters": 5105,
+          "processing_seconds": 19.166390200014575,
+          "generated_tokens": 3166,
+          "warmup_capped": 0,
+          "baseline_capped_subset": {
+            "samples": 1,
+            "reference_characters": 52,
+            "character_errors": 177,
+            "corpus_cer": 3.4038461538461537,
+            "capped": 1,
+            "prediction_characters": 191,
+            "processing_seconds": 0.6753295870003058,
+            "generated_tokens": 128
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 1,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 0,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.0
+        },
+        {
+          "max_new_tokens": 256,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 1589,
+          "corpus_cer": 0.2929572271386431,
+          "capped": 1,
+          "prediction_characters": 5297,
+          "processing_seconds": 20.360211035022076,
+          "generated_tokens": 3294,
+          "warmup_capped": 0,
+          "baseline_capped_subset": {
+            "samples": 1,
+            "reference_characters": 52,
+            "character_errors": 369,
+            "corpus_cer": 7.096153846153846,
+            "capped": 1,
+            "prediction_characters": 383,
+            "processing_seconds": 1.3785480420010572,
+            "generated_tokens": 256
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 1,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 1,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.0622872028874062
+        },
+        {
+          "max_new_tokens": 440,
+          "samples": 192,
+          "reference_characters": 5424,
+          "character_errors": 1865,
+          "corpus_cer": 0.34384218289085544,
+          "capped": 1,
+          "prediction_characters": 5573,
+          "processing_seconds": 21.150173705998895,
+          "generated_tokens": 3478,
+          "warmup_capped": 0,
+          "baseline_capped_subset": {
+            "samples": 1,
+            "reference_characters": 52,
+            "character_errors": 645,
+            "corpus_cer": 12.403846153846153,
+            "capped": 1,
+            "prediction_characters": 659,
+            "processing_seconds": 2.3384522319975076,
+            "generated_tokens": 440
+          },
+          "baseline_capped_reached_eos": 0,
+          "baseline_capped_text_prefix_matches": 1,
+          "baseline_capped_cer_improved": 0,
+          "baseline_capped_cer_worsened": 1,
+          "baseline_uncapped_raw_prediction_changes": 0,
+          "new_capped_samples": 0,
+          "processing_time_ratio_to_128": 1.1035032411049845
+        }
+      ]
+    }
+  ],
+  "findings": {
+    "baseline_exact_predictions_reproduced": 576,
+    "baseline_capped_outputs": 7,
+    "recovered_at_256": 0,
+    "recovered_at_440": 0,
+    "baseline_uncapped_outputs": 569,
+    "uncapped_output_changes_at_either_larger_budget": 0,
+    "capped_cer_worsened_at_256": 7,
+    "capped_cer_worsened_at_440": 7,
+    "interpretation": "For these seven failures, the higher budgets extended bad output without restoring EOS or improving CER; a merely too-small 128-token budget is not supported as the remedy.",
+    "recommendation": "Retain Whisper 128; Qwen 256 remains unchanged and was not varied in this study. Keep capped outputs in measurement denominators and report their rate, subject to an explicit termination-policy revision before formal measurement.",
+    "unresolved": "The current formal gate still rejects no-EOS outputs. This diagnostic does not validate a new formal failure policy or full-corpus accuracy."
+  },
+  "formal_inference_and_gate_conditions_modified": false
+}

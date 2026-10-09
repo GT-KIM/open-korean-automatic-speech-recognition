@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import math
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
+
+if __package__:
+    from .validate_leaderboard_data import validate_rows
+else:
+    from validate_leaderboard_data import validate_rows
 
 
 STATIC_FILES = (
@@ -60,6 +66,12 @@ def build_pages(
 
     rows = _normalize_rows(_load_rows(data_path))
     ondevice_rows = _normalize_rows(_load_rows(ondevice_data_path))
+    problems = []
+    validate_rows(data_path, rows, problems)
+    if problems:
+        raise ValueError("Leaderboard validation failed:\n" + "\n".join(problems))
+    data_json = json.dumps(rows, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+    ondevice_json = json.dumps(ondevice_rows, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
 
     if output_dir.exists():
         shutil.rmtree(output_dir)
@@ -72,11 +84,11 @@ def build_pages(
         shutil.copy2(source, output_dir / filename)
 
     (output_dir / "leaderboard_data.json").write_text(
-        json.dumps(rows, ensure_ascii=False, indent=2) + "\n",
+        data_json,
         encoding="utf-8",
     )
     (output_dir / "ondevice_leaderboard_data.json").write_text(
-        json.dumps(ondevice_rows, ensure_ascii=False, indent=2) + "\n",
+        ondevice_json,
         encoding="utf-8",
     )
     if markdown_path:
@@ -122,8 +134,10 @@ def _normalize_row(row):
     if isinstance(macro, dict):
         macro = dict(macro)
         rtf = macro.pop("rtf", None)
-        if "rtfx" not in macro and isinstance(rtf, (int, float)) and rtf > 0:
-            macro["rtfx"] = 1 / rtf
+        if type(rtf) in (int, float) and math.isfinite(rtf) and rtf > 0:
+            macro.setdefault("rtfx", 1 / rtf)
+        elif rtf is not None:
+            macro["rtf"] = rtf
         metrics["macro"] = macro
     row["metrics"] = metrics
     return row

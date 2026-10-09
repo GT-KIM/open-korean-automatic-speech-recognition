@@ -103,3 +103,30 @@ GitHub Pages 리더보드는 저장소에 커밋된 `doc/leaderboard_data.json`�
 - GitHub Pages workflow가 성공했는지
 - https://gt-kim.github.io/open-korean-automatic-speech-recognition/ 에 새 행이 보이는지
 - `Overall` 탭과 데이터셋별 탭에서 정렬과 metric 값이 예상대로 표시되는지
+
+## 2026-10-09 검증 결과 게시
+
+전체 정확도 48개 조합·367,328개 출력과 8개 전화음성 통합 집계의 최종 검증을 통과했습니다.
+공개 64행 중 56행을 새 정확도로 교체하고 clean·other·전화음성 all의 24행에 curated batch 1·4 속도를 연결했습니다.
+기존 API·참고 결과 8행을 보존하며, curated 속도를 D01–D04에 복제하지 않습니다.
+
+- [전체 정확도 검증](benchmarks/server_accuracy_results_20261008.json)
+- [curated 속도 검증](benchmarks/server_speed_results_20261008.json)
+- [측정 조건](benchmarks/server_accuracy_protocol_20261008.json)
+
+재생성할 때는 검증 보고서를 명시합니다. 새 전체 평가의 개별 행은 일반 결과 폴더 스캔에서 제외합니다.
+이미지·소스·모델 revision·BF16·디코딩 상한이 일치하는 검증 결과에만 속도를 연결합니다.
+과거 README fallback 중복을 먼저 제거한 뒤 repository ID 기준으로 새 정확도 행을 교체합니다.
+
+```bash
+python scripts/generate_leaderboard.py --results_dir results \
+  --submitted_rows_path doc/leaderboard_data.json \
+  --verified_accuracy_path doc/benchmarks/server_accuracy_results_20261008.json \
+  --speed_results_path doc/benchmarks/server_speed_results_20261008.json
+python scripts/build_pages.py --output_dir _site
+```
+
+사이트의 Overall은 필수 세 구간을 동일 가중치로 평균냅니다. 표의 RTFx는 기존 전체 평가 macro 지표이며,
+Accuracy vs. Speed의 curated 처리량은 고정 256개/그룹을 3회 반복한 결과입니다.
+Main CER와 전체 샘플 micro CER를 구분하고, 속도 반복 범위·B1 p95·상한 종료 비율을 함께 표시합니다.
+원본 오디오·전사·샘플별 예측과 호스트 접속 정보는 배포하지 않습니다.

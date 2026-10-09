@@ -1,0 +1,649 @@
+{
+  "id": "korean-asr-speed-768-v1",
+  "date": "2026-10-06",
+  "seed": "openkoasr-speed-20261006",
+  "selection_script_sha256": "739003a9963470af95a55143ee390c26f8c4d0acfc388d000e01537d4170cb20",
+  "eligible_for_accuracy_leaderboard": false,
+  "status": "selection_fixed_original_content_verification_pending",
+  "selection_sha256": "fc543c7aa62eba596bdb31dc1a5ccd70ad4d7bee08ed06af004722048652a24c",
+  "pilot_selection_sha256": "61b5737f48bd7a5d57af9bee85b314e18e6458bf1a4b3091b445606dac4b9c36",
+  "audio_reference_content_sha256": null,
+  "sampling": {
+    "main_samples": 768,
+    "pilot_samples": 192,
+    "duration_quantile_boundaries": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      0.95,
+      1
+    ],
+    "rules": [
+      "Equal 256-sample weight for clean, other and telephone; 64 each in nested pilot.",
+      "Telephone domain quotas follow corpus sample proportions, rounded by largest remainder in units of four.",
+      "Within each domain: duration-rank strata, then lower/upper reference-character-density halves.",
+      "At least one per duration stratum when quota >= 6; SHA-256 selection priority, no seed search.",
+      "At most one sample per AIHub ID parent path; this is not a verified speaker-identity constraint.",
+      "No CER, outlier, prediction, model rank or measured speed is used in selection.",
+      "Reference length is CER hits+substitutions+deletions, cross-checked across all eight models.",
+      "Hash-shuffled order within each workload group, no length bucketing; same ordered samples for batch 1 and 4.",
+      "Pilot selection is nested but has its own fixed order; it is diagnostic, not the formal reported workload."
+    ]
+  },
+  "total_audio_seconds": 3306.714,
+  "pilot_audio_seconds": 813.931,
+  "main_batches_per_pass": {
+    "batch_1": 768,
+    "batch_4": 192
+  },
+  "pilot_batches_per_pass": {
+    "batch_1": 192,
+    "batch_4": 48
+  },
+  "input_evidence": [
+    {
+      "dataset": "KsponSpeech",
+      "subset": "clean",
+      "run_id": "20260613T094423596588Z",
+      "samples_sha256": "3d4b518f85289c2ff9d552945e626d5c4a1becd4901e588cc20dfd2132bf1055",
+      "cross_checked_runs": 8,
+      "population": {
+        "samples": 3000,
+        "audio_seconds": 9518.369,
+        "mean_duration_seconds": 3.172789666666667,
+        "duration_quantiles_seconds": {
+          "0": 0.286,
+          "0.25": 1.2335,
+          "0.5": 2.095,
+          "0.75": 4.1195,
+          "0.9": 7.2211,
+          "0.95": 9.42574999999999,
+          "1": 19.357
+        },
+        "duration_strata_counts": [
+          750,
+          750,
+          750,
+          450,
+          150,
+          150
+        ],
+        "reference_density_half_counts": [
+          1500,
+          1500
+        ],
+        "mean_reference_characters": 22.722666666666665,
+        "unique_parent_groups": 3000
+      },
+      "selected": {
+        "samples": 256,
+        "audio_seconds": 812.798,
+        "mean_duration_seconds": 3.1749921875,
+        "duration_quantiles_seconds": {
+          "0": 0.32,
+          "0.25": 1.23475,
+          "0.5": 2.091,
+          "0.75": 4.14525,
+          "0.9": 7.272,
+          "0.95": 9.448,
+          "1": 19.357
+        },
+        "duration_strata_counts": [
+          64,
+          64,
+          64,
+          38,
+          13,
+          13
+        ],
+        "reference_density_half_counts": [
+          129,
+          127
+        ],
+        "mean_reference_characters": 22.390625,
+        "unique_parent_groups": 256
+      },
+      "pilot": {
+        "samples": 64,
+        "audio_seconds": 200.794,
+        "mean_duration_seconds": 3.13740625,
+        "duration_quantiles_seconds": {
+          "0": 0.469,
+          "0.25": 1.23475,
+          "0.5": 2.067,
+          "0.75": 3.7405,
+          "0.9": 6.7112000000000025,
+          "0.95": 9.291649999999995,
+          "1": 19.357
+        },
+        "duration_strata_counts": [
+          16,
+          16,
+          16,
+          10,
+          3,
+          3
+        ],
+        "reference_density_half_counts": [
+          33,
+          31
+        ],
+        "mean_reference_characters": 21.046875,
+        "unique_parent_groups": 64
+      }
+    },
+    {
+      "dataset": "KsponSpeech",
+      "subset": "other",
+      "run_id": "20260613T095716065626Z",
+      "samples_sha256": "59aa1d89a3bcfb8a49c38fd4838cecab63f1ae0e3685791e4046f5f5dede39e2",
+      "cross_checked_runs": 8,
+      "population": {
+        "samples": 3000,
+        "audio_seconds": 13689.631,
+        "mean_duration_seconds": 4.563210333333333,
+        "duration_quantiles_seconds": {
+          "0": 0.399,
+          "0.25": 1.874,
+          "0.5": 3.391,
+          "0.75": 6.24175,
+          "0.9": 9.8364,
+          "0.95": 11.94925,
+          "1": 20.093
+        },
+        "duration_strata_counts": [
+          750,
+          750,
+          750,
+          450,
+          150,
+          150
+        ],
+        "reference_density_half_counts": [
+          1500,
+          1500
+        ],
+        "mean_reference_characters": 31.925,
+        "unique_parent_groups": 3000
+      },
+      "selected": {
+        "samples": 256,
+        "audio_seconds": 1172.297,
+        "mean_duration_seconds": 4.57928515625,
+        "duration_quantiles_seconds": {
+          "0": 0.506,
+          "0.25": 1.88,
+          "0.5": 3.4085,
+          "0.75": 6.23625,
+          "0.9": 9.867999999999999,
+          "0.95": 11.900500000000001,
+          "1": 17.81
+        },
+        "duration_strata_counts": [
+          64,
+          64,
+          64,
+          38,
+          13,
+          13
+        ],
+        "reference_density_half_counts": [
+          129,
+          127
+        ],
+        "mean_reference_characters": 32.2890625,
+        "unique_parent_groups": 256
+      },
+      "pilot": {
+        "samples": 64,
+        "audio_seconds": 293.172,
+        "mean_duration_seconds": 4.5808125,
+        "duration_quantiles_seconds": {
+          "0": 0.718,
+          "0.25": 1.91425,
+          "0.5": 3.46,
+          "0.75": 6.0435,
+          "0.9": 9.037900000000002,
+          "0.95": 10.848349999999996,
+          "1": 17.81
+        },
+        "duration_strata_counts": [
+          16,
+          16,
+          16,
+          10,
+          3,
+          3
+        ],
+        "reference_density_half_counts": [
+          33,
+          31
+        ],
+        "mean_reference_characters": 32.0,
+        "unique_parent_groups": 64
+      }
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D01",
+      "run_id": "20260613T103157818700Z",
+      "samples_sha256": "1b8d52b1c4b7e5f9426d4e5d75ea80c8bd7618dcab78f66621c37a65eb3ee316",
+      "cross_checked_runs": 8,
+      "population": {
+        "samples": 8664,
+        "audio_seconds": 44056.167,
+        "mean_duration_seconds": 5.08496849030471,
+        "duration_quantiles_seconds": {
+          "0": 1.533,
+          "0.25": 3.04775,
+          "0.5": 4.301,
+          "0.75": 6.328,
+          "0.9": 8.787,
+          "0.95": 10.640500000000003,
+          "1": 21.384
+        },
+        "duration_strata_counts": [
+          2166,
+          2166,
+          2166,
+          1299,
+          433,
+          434
+        ],
+        "reference_density_half_counts": [
+          4331,
+          4333
+        ],
+        "mean_reference_characters": 31.977493074792243,
+        "unique_parent_groups": 440
+      },
+      "selected": {
+        "samples": 56,
+        "audio_seconds": 280.11,
+        "mean_duration_seconds": 5.001964285714286,
+        "duration_quantiles_seconds": {
+          "0": 1.629,
+          "0.25": 3.04175,
+          "0.5": 4.4635,
+          "0.75": 6.206,
+          "0.9": 8.7915,
+          "0.95": 10.393749999999999,
+          "1": 12.549
+        },
+        "duration_strata_counts": [
+          14,
+          14,
+          14,
+          8,
+          3,
+          3
+        ],
+        "reference_density_half_counts": [
+          28,
+          28
+        ],
+        "mean_reference_characters": 32.464285714285715,
+        "unique_parent_groups": 56
+      },
+      "pilot": {
+        "samples": 12,
+        "audio_seconds": 61.127,
+        "mean_duration_seconds": 5.093916666666667,
+        "duration_quantiles_seconds": {
+          "0": 1.987,
+          "0.25": 3.1712499999999997,
+          "0.5": 4.4455,
+          "0.75": 5.61825,
+          "0.9": 8.5647,
+          "0.95": 10.462349999999997,
+          "1": 12.499
+        },
+        "duration_strata_counts": [
+          3,
+          3,
+          3,
+          1,
+          1,
+          1
+        ],
+        "reference_density_half_counts": [
+          8,
+          4
+        ],
+        "mean_reference_characters": 32.25,
+        "unique_parent_groups": 12
+      }
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D02",
+      "run_id": "20260613T114723504497Z",
+      "samples_sha256": "2671621f58bf9626a645f3fa6b6689e1474bd8b61c8629d1927d06ee47a79f68",
+      "cross_checked_runs": 8,
+      "population": {
+        "samples": 15211,
+        "audio_seconds": 82930.226,
+        "mean_duration_seconds": 5.451990401682992,
+        "duration_quantiles_seconds": {
+          "0": 1.549,
+          "0.25": 3.043,
+          "0.5": 4.428,
+          "0.75": 6.824,
+          "0.9": 9.788,
+          "0.95": 12.273,
+          "1": 25.051
+        },
+        "duration_strata_counts": [
+          3802,
+          3803,
+          3803,
+          2281,
+          761,
+          761
+        ],
+        "reference_density_half_counts": [
+          7603,
+          7608
+        ],
+        "mean_reference_characters": 33.13871540332654,
+        "unique_parent_groups": 632
+      },
+      "selected": {
+        "samples": 96,
+        "audio_seconds": 521.538,
+        "mean_duration_seconds": 5.4326875,
+        "duration_quantiles_seconds": {
+          "0": 2.003,
+          "0.25": 3.0467500000000003,
+          "0.5": 4.4295,
+          "0.75": 6.57,
+          "0.9": 9.893,
+          "0.95": 11.8675,
+          "1": 16.205
+        },
+        "duration_strata_counts": [
+          24,
+          24,
+          24,
+          14,
+          5,
+          5
+        ],
+        "reference_density_half_counts": [
+          47,
+          49
+        ],
+        "mean_reference_characters": 33.520833333333336,
+        "unique_parent_groups": 96
+      },
+      "pilot": {
+        "samples": 24,
+        "audio_seconds": 127.425,
+        "mean_duration_seconds": 5.309375,
+        "duration_quantiles_seconds": {
+          "0": 2.024,
+          "0.25": 3.0587500000000003,
+          "0.5": 4.5045,
+          "0.75": 6.76725,
+          "0.9": 9.323699999999999,
+          "0.95": 10.224549999999999,
+          "1": 13.922
+        },
+        "duration_strata_counts": [
+          6,
+          6,
+          6,
+          4,
+          1,
+          1
+        ],
+        "reference_density_half_counts": [
+          11,
+          13
+        ],
+        "mean_reference_characters": 34.375,
+        "unique_parent_groups": 24
+      }
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D03",
+      "run_id": "20260613T122228281671Z",
+      "samples_sha256": "418dc05ce87cd0b6dde35592722be9818c3e0accf080b0becb4eff8bbd34293f",
+      "cross_checked_runs": 8,
+      "population": {
+        "samples": 1936,
+        "audio_seconds": 12914.41,
+        "mean_duration_seconds": 6.67066632231405,
+        "duration_quantiles_seconds": {
+          "0": 1.704,
+          "0.25": 3.572,
+          "0.5": 5.352,
+          "0.75": 8.83375,
+          "0.9": 12.96,
+          "0.95": 15.587,
+          "1": 20.509
+        },
+        "duration_strata_counts": [
+          484,
+          484,
+          484,
+          290,
+          97,
+          97
+        ],
+        "reference_density_half_counts": [
+          967,
+          969
+        ],
+        "mean_reference_characters": 44.06404958677686,
+        "unique_parent_groups": 85
+      },
+      "selected": {
+        "samples": 12,
+        "audio_seconds": 83.56,
+        "mean_duration_seconds": 6.963333333333334,
+        "duration_quantiles_seconds": {
+          "0": 1.91,
+          "0.25": 3.78725,
+          "0.5": 5.989,
+          "0.75": 8.74875,
+          "0.9": 14.062200000000002,
+          "0.95": 15.10535,
+          "1": 15.701
+        },
+        "duration_strata_counts": [
+          3,
+          3,
+          3,
+          1,
+          1,
+          1
+        ],
+        "reference_density_half_counts": [
+          7,
+          5
+        ],
+        "mean_reference_characters": 46.916666666666664,
+        "unique_parent_groups": 12
+      },
+      "pilot": {
+        "samples": 4,
+        "audio_seconds": 23.409,
+        "mean_duration_seconds": 5.85225,
+        "duration_quantiles_seconds": {
+          "0": 2.026,
+          "0.25": 3.51625,
+          "0.5": 6.1615,
+          "0.75": 8.4975,
+          "0.9": 8.835,
+          "0.95": 8.9475,
+          "1": 9.06
+        },
+        "duration_strata_counts": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "reference_density_half_counts": [
+          4,
+          0
+        ],
+        "mean_reference_characters": 34.75,
+        "unique_parent_groups": 4
+      }
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D04",
+      "run_id": "20260613T131335399592Z",
+      "samples_sha256": "421452068afbc0b512ebc42a121f2df71cc146f0729d3c090c863bf079d2de73",
+      "cross_checked_runs": 8,
+      "population": {
+        "samples": 14105,
+        "audio_seconds": 65740.996,
+        "mean_duration_seconds": 4.660829209500177,
+        "duration_quantiles_seconds": {
+          "0": 1.501,
+          "0.25": 2.765,
+          "0.5": 3.865,
+          "0.75": 5.714,
+          "0.9": 8.168,
+          "0.95": 10.010799999999998,
+          "1": 21.736
+        },
+        "duration_strata_counts": [
+          3526,
+          3526,
+          3526,
+          2116,
+          705,
+          706
+        ],
+        "reference_density_half_counts": [
+          7052,
+          7053
+        ],
+        "mean_reference_characters": 30.325487415809995,
+        "unique_parent_groups": 769
+      },
+      "selected": {
+        "samples": 92,
+        "audio_seconds": 436.411,
+        "mean_duration_seconds": 4.7435978260869565,
+        "duration_quantiles_seconds": {
+          "0": 1.592,
+          "0.25": 2.769,
+          "0.5": 3.856,
+          "0.75": 5.68675,
+          "0.9": 7.296400000000002,
+          "0.95": 9.942350000000001,
+          "1": 17.32
+        },
+        "duration_strata_counts": [
+          23,
+          23,
+          23,
+          14,
+          4,
+          5
+        ],
+        "reference_density_half_counts": [
+          48,
+          44
+        ],
+        "mean_reference_characters": 30.97826086956522,
+        "unique_parent_groups": 92
+      },
+      "pilot": {
+        "samples": 24,
+        "audio_seconds": 108.004,
+        "mean_duration_seconds": 4.500166666666667,
+        "duration_quantiles_seconds": {
+          "0": 1.939,
+          "0.25": 2.8125,
+          "0.5": 3.9665,
+          "0.75": 5.5195,
+          "0.9": 7.1813,
+          "0.95": 8.690099999999996,
+          "1": 10.263
+        },
+        "duration_strata_counts": [
+          6,
+          6,
+          6,
+          4,
+          1,
+          1
+        ],
+        "reference_density_half_counts": [
+          13,
+          11
+        ],
+        "mean_reference_characters": 28.25,
+        "unique_parent_groups": 24
+      }
+    }
+  ],
+  "checks": [
+    {
+      "dataset": "KsponSpeech",
+      "subset": "clean",
+      "unique_ids": 256,
+      "pilot_nested": true
+    },
+    {
+      "dataset": "KsponSpeech",
+      "subset": "other",
+      "unique_ids": 256,
+      "pilot_nested": true
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D01",
+      "unique_ids": 56,
+      "pilot_nested": true
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D02",
+      "unique_ids": 96,
+      "pilot_nested": true
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D03",
+      "unique_ids": 12,
+      "pilot_nested": true
+    },
+    {
+      "dataset": "AIHubLowQualityTelephone",
+      "subset": "D04",
+      "unique_ids": 92,
+      "pilot_nested": true
+    }
+  ],
+  "measurement_policy": {
+    "repetitions": 3,
+    "warmup_samples_per_group": 16,
+    "pilot_repetitions": 1,
+    "warmup": "Use first 16 samples again before each measured group/pass; exclude warmup times, not those samples from the measured population.",
+    "summary": "Per-group latency p50/p95 and throughput; median and min/max across repeats. Overall uses equal mean of the three group throughputs.",
+    "coverage": "Short-utterance workload only; no per-telephone-domain p95 claim, no whole-corpus representativeness claim.",
+    "process_policy": "Load a model once per track, then reuse it for all three workload groups and repeats; measure warmed inference, not cold starts.",
+    "quality": "Full-corpus accuracy once under the fixed batch-4 condition, separate from curated speed measurements; retain curated CER as a diagnostic only.",
+    "expansion": "Report repeat spread. If model ordering is unresolved at that spread, report unresolved; do not silently grow or reselect this set."
+  },
+  "limitations": [
+    "Historical dataset roots were absent at selection time. Membership and order are fixed from saved metadata, not yet audio-content-verified.",
+    "Kspon IDs are historical zero-based row indices; bind to the original eval TRN before execution. Speaker diversity is unverified.",
+    "Before execution, verify source membership, audio duration and normalized reference length; seal audio/reference SHA-256 and do not silently replace missing samples.",
+    "Public report contains no original transcript, audio, private sample IDs or local filesystem paths.",
+    "Selection files are private selection records, not directly executable ManifestSpeechDataset files."
+  ]
+}
