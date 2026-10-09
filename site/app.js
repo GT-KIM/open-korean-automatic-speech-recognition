@@ -755,7 +755,7 @@ function tradeoffSpeedValue(row) {
 
 function tradeoffSpeedLabel() {
   if (state.activeTab === ON_DEVICE_TAB) return "QNN RTFx";
-  return ["b1", "b4"].includes(state.tradeoff.speed) ? `처리량 ${state.tradeoff.speed.toUpperCase()}` : "RTFx";
+  return "RTFx";
 }
 
 // Equality in both coordinates is a tie; improvement in one is required to dominate.
@@ -772,7 +772,7 @@ function renderTradeoff() {
   const hasCurated = state.activeTab !== ON_DEVICE_TAB && source.some((row) => row.curated_speed?.status === "verified");
   if (!chart.configured && hasCurated) chart.speed = "b4";
   if (!hasCurated || !["rtfx", "b1", "b4"].includes(chart.speed)) chart.speed = "rtfx";
-  els.tradeoffSpeed.innerHTML = `${hasCurated ? '<option value="b4">처리량 · batch 4 · curated</option><option value="b1">처리량 · batch 1 · curated</option>' : ""}<option value="rtfx">${state.activeTab === ON_DEVICE_TAB ? "QNN RTFx" : "RTFx · 전체 평가 · outlier 제외"}</option>`;
+  els.tradeoffSpeed.innerHTML = `${hasCurated ? '<option value="b4">RTFx · batch 4 · curated</option><option value="b1">RTFx · batch 1 · curated</option>' : ""}<option value="rtfx">${state.activeTab === ON_DEVICE_TAB ? "QNN RTFx" : "RTFx · 전체 평가 · outlier 제외"}</option>`;
   els.tradeoffSpeed.value = chart.speed;
   els.tradeoffSpeed.disabled = !hasCurated;
   const slices = new Map(source.map((row) => [tradeoffSliceKey(row), compactDatasetLabel(row)]));
@@ -874,7 +874,7 @@ function renderTradeoffSvg(points, frontier, metric) {
     <desc id="tradeoffSvgDesc">오른쪽은 빠른 속도, 아래쪽은 낮은 오류율입니다. 각 점은 키보드로 선택할 수 있으며 아래 모델 목록에서도 같은 결과를 확인할 수 있습니다.</desc>
     <g class="tradeoff-grid">${gridX}${gridY}</g>
     <text class="tradeoff-axis" x="${left}" y="22">${label} (%) ↓</text>
-    <text class="tradeoff-axis" x="${width - right}" y="${height - 12}" text-anchor="end">${speedLabel} (×, 로그 눈금) →</text>
+    <text class="tradeoff-axis" x="${width - right}" y="${height - 12}" text-anchor="end">${speedLabel} (×)</text>
     ${line}${markers}</svg>`;
 }
 
