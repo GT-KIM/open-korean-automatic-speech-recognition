@@ -44,7 +44,7 @@ test("curated tracks use separate measured speed, matching cohorts, cap counts a
   p.run("state.rows = rows; renderTradeoff()");
   assert.equal(p.run("state.tradeoff.speed"), "b4");
   assert.deepEqual(p.json("state.tradeoff.points.map(p => p.speed)"), [45, 45]);
-  assert.match(p.elements.tradeoffPlot.innerHTML, /처리량 B4/);
+  assert.match(p.elements.tradeoffPlot.innerHTML, /RTFx \(×\)/);
   assert.match(p.elements.tradeoffDetail.innerHTML, /120.0 ms/);
   assert.match(p.elements.tradeoffDetail.innerHTML, /6 \/ 768/);
   p.run("state.tradeoff.configured = true; state.tradeoff.condition = speedCondition(rows[0], 'b4').key; renderTradeoff()");
