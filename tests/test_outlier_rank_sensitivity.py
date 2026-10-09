@@ -1,4 +1,5 @@
 import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -62,8 +63,29 @@ class OutlierSensitivityTest(unittest.TestCase):
             with self.assertRaises(ValueError):
                 read_verified(path, seal)
 
-    def test_checkout_matches_executed_source_and_harness(self):
-        verify(Path(__file__).resolve().parents[1])
+    def test_source_verifier_rejects_changed_source(self):
+        # A fixture keeps future development free to differ from the historical release.
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            for name in ('openkoasr', 'scripts', 'docker', 'doc/benchmarks'):
+                (root / name).mkdir(parents=True)
+            source = root / 'openkoasr/example.py'
+            source.write_bytes(b'pass\r\n')
+            harness = root / 'scripts/run_full_accuracy.py'
+            harness.write_bytes(b'pass\r\n')
+            packages = {'example': '1.0'}
+            inventory_hash = hashlib.sha256(json.dumps(packages, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+            inventory = {'packages': packages, 'python': '3.12.3', 'image_id': 'fixture',
+                         'package_inventory_sha256': inventory_hash}
+            (root / 'docker/benchmark-package-inventory.json').write_text(json.dumps(inventory))
+            source_hash = hashlib.sha256(b'openkoasr/example.py\0pass\n\0').hexdigest()
+            protocol = {'environment': {**inventory, 'source_sha256': source_hash},
+                        'harness_sha256': hashlib.sha256(harness.read_bytes()).hexdigest()}
+            (root / 'doc/benchmarks/server_accuracy_protocol_20261008.json').write_text(json.dumps(protocol))
+            verify(root)
+            source.write_bytes(b'changed\n')
+            with self.assertRaisesRegex(ValueError, 'source_sha256'):
+                verify(root)
 
 
 if __name__ == '__main__':

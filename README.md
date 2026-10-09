@@ -21,6 +21,8 @@ OpenKoASR은 한국어 자동 음성 인식(ASR) 모델을 동일한 평가 파�
 | 리더보드 JSON | [leaderboard_data.json](https://gt-kim.github.io/open-korean-automatic-speech-recognition/leaderboard_data.json) |
 | Markdown 리더보드 | [leaderboard.md](leaderboard.md) |
 | 결과 제출 가이드 | [doc/result_submission.md](doc/result_submission.md) |
+| 측정 코드·환경 재현 | [docker/README.md](docker/README.md) |
+| CER 제외 기준 민감도 | [분석 보고서](doc/benchmarks/outlier_rank_sensitivity_20261009.md) |
 | 외부 링크/배지 스니펫 | [doc/external_links.md](doc/external_links.md) |
 
 ## 리더보드

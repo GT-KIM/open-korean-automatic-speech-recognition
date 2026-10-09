@@ -5,6 +5,8 @@
 저장소 루트에서 `python scripts/verify_benchmark_release.py`를 실행하면 공개 규약의
 소스 해시, 정확도 실행 스크립트의 원본 바이트 해시, 172개 패키지 목록 해시를 대조합니다.
 Python 표준 라이브러리만 필요합니다. Windows/Linux checkout 모두 같은 검사를 사용합니다.
+해시 검증은 이 측정 소스를 공개한 커밋의 checkout을 대상으로 합니다. 이후 개발 버전이 과거 측정 코드와
+달라지면 실패하는 것이 정상이며, 과거 규약의 해시를 새 코드에 맞춰 덮어쓰지 않습니다.
 `run_full_accuracy.py`는 실행 당시 CRLF 바이트를 보존하므로 자동 줄바꿈 변환을 하지 마세요.
 
 - [정확도 규약](../doc/benchmarks/server_accuracy_protocol_20261008.json): 모델 revision·디코딩·입력 수·환경.
@@ -22,6 +24,19 @@ Python 표준 라이브러리만 필요합니다. Windows/Linux checkout 모두 
 따라서 해당 archive를 가진 환경에서는 정확한 이미지를 재사용할 수 있지만, 소스만 받은 환경에서
 동일 image ID를 확보했다고 주장할 수는 없습니다. 재빌드 결과는 새 이미지·preflight로 별도 봉인해야 하며,
 기존 규약의 image ID를 임의로 대체해 기존 측정과 동일하다고 처리하지 않습니다.
+
+### 공개 코드 확인 결과 (2026-10-09)
+
+커밋 `34be02a6bf2236f317d50f83f8da42441b175914`에서 추출한 소스를 기존 봉인 이미지의
+별도 CPU 컨테이너(네트워크·GPU 접근 없음, CPU 2개·메모리 4 GiB 제한)에서 확인했습니다.
+
+- 측정 소스·harness·172개 실제 설치 패키지 inventory 일치, `pip check` 통과.
+- offline wheel 빌드·별도 경로 설치 후 Whisper/Qwen backend import 통과.
+- 오디오 decode/resample, 평가·속도·정확도 CLI 도움말, 128개 Python 테스트 통과(생략 없음).
+- 게시 데이터 검증과 정적 사이트 빌드 통과.
+
+호스트 launcher의 48개 조합·읽기 전용 mount·GPU 사용 중 중단은 모의 테스트로 검증했습니다.
+이 점검에서는 전체 GPU 평가와 Dockerfile의 외부 패키지 다운로드를 통한 신규 이미지 빌드를 다시 실행하지 않았습니다.
 
 로컬 Windows/WSL2와 Linux 서버에서 **한 번 빌드한 동일한 Linux 이미지**를 사용합니다.
 각 호스트의 GPU·드라이버·커널은 달라질 수 있으므로 결과를 환경별로 분리합니다.

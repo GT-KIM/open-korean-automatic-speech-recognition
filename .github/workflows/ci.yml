@@ -27,8 +27,6 @@ jobs:
         run: python scripts/public_readiness_check.py
       - name: Validate leaderboard data
         run: python scripts/validate_leaderboard_data.py
-      - name: Verify published benchmark source seals
-        run: python scripts/verify_benchmark_release.py
       - name: Run tests
         run: python -m unittest discover -s tests
       - name: Compile Python source
