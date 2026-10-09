@@ -1,2 +1,3 @@
-# Benchmark evidence is bound by byte-level SHA-256 hashes.
-doc/benchmarks/*.json -text
+# Preserve byte hashes of sealed server reports; other JSON keeps normal text handling.
+doc/benchmarks/server_*.json -text
+doc/benchmarks/speed_curated_set_*.json -text
