@@ -26,7 +26,7 @@ COLUMNS = [
     ("mer", "MER"),
     ("jer", "JER"),
     ("ser", "SER"),
-    ("rtfx", "RTFx"),
+    ("rtfx", "Macro RTFx"),
     ("latency", "Latency"),
     ("gpu", "GPU"),
     ("run_id", "Run"),
@@ -48,6 +48,7 @@ def main():
     parser.add_argument("--data_path", default="doc/leaderboard_data.json")
     parser.add_argument("--verified_accuracy_path", help="Completed full-accuracy validation report; replaces matching older model aliases.")
     parser.add_argument("--speed_results_path", help="Verified curated speed report to attach to compatible full-accuracy rows.")
+    parser.add_argument("--nemotron_results_path", help="Completed and admitted Nemotron validation report.")
     parser.add_argument(
         "--submitted_rows_path",
         default="doc/submitted_results.json",
@@ -72,6 +73,14 @@ def main():
         speed_path = Path(args.speed_results_path)
         raw = speed_path.read_bytes()
         rows = attach_curated_speed(rows, json.loads(raw), hashlib.sha256(raw).hexdigest(), speed_path.as_posix())
+    if args.nemotron_results_path:
+        import hashlib
+        import sys
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+        from scripts.leaderboard_nemotron import merge_verified_nemotron
+        path = Path(args.nemotron_results_path)
+        raw = path.read_bytes()
+        rows = merge_verified_nemotron(rows, json.loads(raw), hashlib.sha256(raw).hexdigest(), path.as_posix())
     rows = [sanitize_public_row(row) for row in rows]
     rows = dedupe_rows(rows)
     if not args.include_partial:
@@ -221,9 +230,9 @@ def render_markdown(rows):
             f"[Submit a result]({RESULT_SUBMISSION_URL})"
         ),
         "",
-        "Error rates are shown in %, RTFx in ×, and latency in ms. JSON retains ratios and seconds.",
+        "Error rates are shown in %, Macro RTFx in ×, and latency in ms. JSON retains ratios and seconds.",
         "",
-        "RTFx is the mean of per-sample audio duration / processing time after outlier exclusion, not total audio duration / total processing time.",
+        "Macro RTFx is the mean of per-sample audio duration / processing time after outlier exclusion, not total audio duration / total processing time.",
         "",
     ]
     if not rows:

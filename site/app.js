@@ -36,7 +36,7 @@ const metricLabels = {
   mer: "MER",
   jer: "JER",
   ser: "SER",
-  rtfx: "RTFx",
+  rtfx: "Macro RTFx",
   latency: "Latency",
   outlier_rate: "Outlier rate",
 };
@@ -47,7 +47,7 @@ const datasetColumns = [
   "Main CER ↓",
   "Outlier rate ↓",
   "All-sample CER ↓",
-  "RTFx ↑",
+  "Macro RTFx ↑",
   "평가 범위",
 ];
 
@@ -57,7 +57,7 @@ const overallColumns = [
   "Main CER ↓",
   "Outlier rate ↓",
   "All-sample CER ↓",
-  "RTFx ↑",
+  "Macro RTFx ↑",
   "평가 범위",
 ];
 
@@ -67,7 +67,7 @@ const onDeviceColumns = [
   "Main CER ↓",
   "Outlier rate ↓",
   "All-sample CER ↓",
-  "QNN RTFx ↑",
+  "QNN Macro RTFx ↑",
   "Device",
   "평가 범위",
 ];
@@ -548,7 +548,7 @@ function renderComparison() {
   const runs = selected.map((row) => overall ? row.rows : [row]);
   const slices = new Map(runs.flat().map((row) => [tradeoffSliceKey(row), compactDatasetLabel(row)]));
   const metricRows = [["cer", "Main CER ↓"], ["all_samples_cer", "All-sample CER ↓"],
-    ["outlier_rate", "Outlier rate ↓"], ["rtfx", device ? "QNN RTFx ↑" : "RTFx ↑"]];
+    ["outlier_rate", "Outlier rate ↓"], ["rtfx", device ? "QNN Macro RTFx ↑" : "Macro RTFx ↑"]];
   const rowHtml = (label, values, numeric = false) => `<tr><th scope="row">${escapeHtml(label)}</th>${values.map((value) =>
     `<td${numeric ? ' class="numeric"' : ""}>${escapeHtml(value)}</td>`).join("")}</tr>`;
   const groupHtml = (label, note = "") => `<tr class="comparison-group"><th colspan="${count + 1}">${escapeHtml(label)}${note ? `<span>${escapeHtml(note)}</span>` : ""}</th></tr>`;
@@ -705,7 +705,7 @@ function tradeoffCondition(row) {
         && Number.isInteger(innerBatch) && innerBatch > 0);
     const first = configurations[0] || [];
     label = signatures.length > 1 ? `${row.gpu || "기기 미확인"} · 구간별 조건 혼합`
-      : `${first[0] || "GPU 미확인 / API"} · batch ${first[3] ?? "미확인"} · PyTorch ${first[1] || "미확인"}`;
+      : `${first[0] || "GPU 미확인 / API"} · batch ${first[3] ?? "미확인"} · PyTorch ${first[1] || "미확인"}${first[12] ? ` · Transformers ${first[12]}` : ""}`;
   }
   return {
     key: JSON.stringify([dimensions, policy, row.evaluated_samples]),
@@ -745,7 +745,21 @@ function speedCondition(row, speed = "rtfx") {
     measured?.executed_protocol_sha256, measured?.group, measured?.samples_per_repeat, measured?.repetitions, track?.batch_size];
   return {key: JSON.stringify(["curated", dimensions, row.evaluation_protocol, row.evaluated_samples]),
     complete: measured?.status === "verified" && dimensions.every(Boolean),
-    label: `${measured?.gpu || "GPU 미확인"} · BF16 · batch ${track?.batch_size ?? "미확인"} · curated 256 × 3`};
+    label: `${measured?.gpu || "GPU 미확인"} · BF16 · batch ${track?.batch_size ?? "미확인"} · Transformers ${transformersVersion(row) || "미기록"} · curated 256 × 3`};
+}
+
+function transformersVersion(row) {
+  const rep = row.reproducibility || {};
+  const records = rep.source_runs ? rep.source_runs.map(source => source.reproducibility || {}) : [rep];
+  return [...new Set(records.map(record => record.environment?.packages?.transformers).filter(Boolean))].join(" / ");
+}
+
+function renderEvaluationNotes(rows) {
+  const measured = rows.filter(row => row.evaluation_mode === "offline_full_utterance" && row.batch_dependent_outputs);
+  if (!measured.length) return "";
+  const empty = measured.reduce((sum, row) => sum + (row.prediction_diagnostics?.empty_predictions || 0), 0);
+  const total = measured.reduce((sum, row) => sum + row.evaluated_samples, 0);
+  return `<p class="detail-note">전체 발화 · B4 정확도 · 빈 출력 ${empty.toLocaleString()} / ${total.toLocaleString()} (${formatPercent(empty / total)}). 스트리밍 지연 미측정; B1·B4 출력 차이 있음.</p>`;
 }
 
 function tradeoffSpeedValue(row) {
@@ -754,8 +768,8 @@ function tradeoffSpeedValue(row) {
 }
 
 function tradeoffSpeedLabel() {
-  if (state.activeTab === ON_DEVICE_TAB) return "QNN RTFx";
-  return "RTFx";
+  if (state.activeTab === ON_DEVICE_TAB) return "QNN Macro RTFx";
+  return ["b1", "b4"].includes(state.tradeoff.speed) ? "RTFx" : "Macro RTFx";
 }
 
 // Equality in both coordinates is a tie; improvement in one is required to dominate.
@@ -772,7 +786,7 @@ function renderTradeoff() {
   const hasCurated = state.activeTab !== ON_DEVICE_TAB && source.some((row) => row.curated_speed?.status === "verified");
   if (!chart.configured && hasCurated) chart.speed = "b4";
   if (!hasCurated || !["rtfx", "b1", "b4"].includes(chart.speed)) chart.speed = "rtfx";
-  els.tradeoffSpeed.innerHTML = `${hasCurated ? '<option value="b4">RTFx · batch 4 · curated</option><option value="b1">RTFx · batch 1 · curated</option>' : ""}<option value="rtfx">${state.activeTab === ON_DEVICE_TAB ? "QNN RTFx" : "RTFx · 전체 평가 · outlier 제외"}</option>`;
+  els.tradeoffSpeed.innerHTML = `${hasCurated ? '<option value="b4">RTFx · batch 4 · curated</option><option value="b1">RTFx · batch 1 · curated</option>' : ""}<option value="rtfx">${state.activeTab === ON_DEVICE_TAB ? "QNN Macro RTFx" : "Macro RTFx · 전체 평가 · outlier 제외"}</option>`;
   els.tradeoffSpeed.value = chart.speed;
   els.tradeoffSpeed.disabled = !hasCurated;
   const slices = new Map(source.map((row) => [tradeoffSliceKey(row), compactDatasetLabel(row)]));
@@ -796,10 +810,14 @@ function renderTradeoff() {
   }
   const conditions = [...groups.values()].sort((a, b) => b.count - a.count || a.key.localeCompare(b.key));
   if (!groups.has(chart.condition)) chart.condition = "all";
+  // Resolve the only verified condition without pinning it when filters widen again.
+  const soleCondition = conditions.length === 1 && conditions[0].complete ? conditions[0] : null;
+  const selectedCondition = chart.condition === "all" ? soleCondition : groups.get(chart.condition);
   fillSelect(els.tradeoffCondition, "all", "모든 실행 조건", conditions.map((group, index) => ({
     value: group.key, label: `${index + 1}. ${group.label} · ${group.count}개 결과`,
   })));
-  els.tradeoffCondition.value = chart.condition;
+  els.tradeoffCondition.value = selectedCondition?.key || "all";
+  els.tradeoffCondition.disabled = Boolean(soleCondition);
   els.tradeoffMetric.value = chart.metric;
   const candidates = sliceRows.filter((row) => (chart.condition === "all" || speedCondition(row, chart.speed).key === chart.condition)
     && (state.model === "all" || canonicalModelId(row) === state.model)
@@ -808,19 +826,18 @@ function renderTradeoff() {
     .filter((point) => Number.isFinite(point.speed) && point.speed > 0 && Number.isFinite(point.error) && point.error >= 0)
     .sort((a, b) => displayModelName(a.row.model).localeCompare(displayModelName(b.row.model))
       || String(a.row.run_id).localeCompare(String(b.row.run_id)));
-  const canCompare = chart.points.length >= 2 && groups.get(chart.condition)?.complete === true;
+  const canCompare = chart.points.length >= 2 && selectedCondition?.complete === true;
   const frontier = canCompare ? paretoFrontier(chart.points) : [];
   chart.points.forEach((point) => { point.frontier = frontier.includes(point); });
   if (!chart.points.some((point) => point.row.run_id === chart.selected)) chart.selected = chart.points[0]?.row.run_id || null;
   const omitted = candidates.length - chart.points.length;
   els.tradeoffStatus.textContent = omitted ? `CER 또는 유효한 RTFx가 없는 ${omitted}개 결과 제외` : "";
   els.tradeoffStatus.hidden = !omitted;
-  els.tradeoffNote.textContent = canCompare ? "파레토 경계"
-    : chart.condition !== "all" && chart.points.length && !groups.get(chart.condition)?.complete
+  els.tradeoffNote.textContent = selectedCondition && chart.points.length && !selectedCondition.complete
       ? "실행 조건 미확인·혼합: 파레토 비교 제외" : "";
-  els.tradeoffNote.className = canCompare ? "tradeoff-note tradeoff-legend" : "tradeoff-note";
+  els.tradeoffNote.className = "tradeoff-note";
   els.tradeoffNote.hidden = !els.tradeoffNote.textContent;
-  els.tradeoffPlot.innerHTML = chart.points.length ? renderTradeoffSvg(chart.points, frontier, chart.metric)
+  els.tradeoffPlot.innerHTML = chart.points.length ? renderTradeoffSvg(chart.points, chart.metric)
     : '<p class="empty-state">조건에 맞는 CER·RTFx 결과가 없습니다.</p>';
   els.tradeoffModels.innerHTML = chart.points.map((point, index) => `
     <button type="button" class="tradeoff-model${point.frontier ? " on-frontier" : ""}${point.row.run_id === chart.selected ? " selected" : ""}"
@@ -831,7 +848,7 @@ function renderTradeoff() {
   renderTradeoffDetail();
 }
 
-function renderTradeoffSvg(points, frontier, metric) {
+function renderTradeoffSvg(points, metric) {
   const width = 760, height = 380, left = 72, right = 28, top = 42, bottom = 64;
   const speeds = points.map((point) => Math.log10(point.speed));
   let minX = Math.min(...speeds), maxX = Math.max(...speeds);
@@ -860,7 +877,6 @@ function renderTradeoffSvg(points, frontier, metric) {
     <text x="${left - 12}" y="${y(value) + 4}" text-anchor="end">${tickLabel(value * 100)}%</text>`).join("");
   const label = metric === "cer" ? "Main CER" : "All-sample CER";
   const speedLabel = tradeoffSpeedLabel();
-  const line = frontier.length >= 2 ? `<polyline class="tradeoff-frontier" points="${frontier.map((point) => `${x(point.speed)},${y(point.error)}`).join(" ")}"/>` : "";
   const markers = points.map((point, index) => {
     const selected = point.row.run_id === state.tradeoff.selected;
     const description = `${displayModelName(point.row.model)} · ${label} ${formatPercent(point.error)} · ${speedLabel} ${formatMetric("rtfx", point.speed)}${point.frontier ? " · 파레토 경계" : ""}`;
@@ -875,7 +891,7 @@ function renderTradeoffSvg(points, frontier, metric) {
     <g class="tradeoff-grid">${gridX}${gridY}</g>
     <text class="tradeoff-axis" x="${left}" y="22">${label} (%) ↓</text>
     <text class="tradeoff-axis" x="${width - right}" y="${height - 12}" text-anchor="end">${speedLabel} (×)</text>
-    ${line}${markers}</svg>`;
+    ${markers}</svg>`;
 }
 
 function handleTradeoffPoint(event) {
@@ -913,14 +929,16 @@ function renderTradeoffDetail() {
       ${definition(tradeoffSpeedLabel(), formatMetric("rtfx", point.speed))}
       ${track ? definition("3회 최솟값–최댓값", throughputRange) : ""}
       ${track ? definition("단건 p95 · B1", `${measured.tracks.b1.request_latency_p95_ms.median.toFixed(1)} ms`) : ""}
-      ${track ? definition("속도 측정 상한 종료", `${track.token_limit} / ${track.measured_generations} (${formatPercent(track.token_limit_rate)})`) : ""}
+      ${track?.termination === "encoder_exhaustion" ? definition("프레임 강제 진행", `${track.frame_guard_advances}회 · ${track.measured_generations}개 출력`) : track ? definition("속도 측정 상한 종료", `${track.token_limit} / ${track.measured_generations} (${formatPercent(track.token_limit_rate)})`) : ""}
       ${definition("Outlier rate", formatPercent(outlierRate(row)))}
       ${definition(device ? "기기" : "GPU", row.device || row.gpu || "미확인 / API")}
       ${definition("런타임", row.runtime || (row.torch ? `PyTorch ${row.torch}${row.cuda ? ` · CUDA ${row.cuda}` : ""}` : "미기록"))}
       ${definition(track ? "정확도 / 속도 batch" : "Batch size", track ? `4 / ${track.batch_size}` : batchSizeLabel(row) || "미기록")}
       ${definition("정밀도", executionValues(row, "precision").map(value => value === UNKNOWN_EXECUTION ? "미기록" : value).join(" / "))}
+      ${transformersVersion(row) ? definition("Transformers", transformersVersion(row)) : ""}
     </dl>
     ${track ? '<p class="detail-note">정확도: 전체 데이터 · 속도: 고정 256개, 3회 중앙값</p>' : ""}
+    ${renderEvaluationNotes([row])}
     ${device ? '<p class="detail-note">QNN 그래프 실행 시간 기준. 전처리·전송·토큰화 제외.</p>' : ""}`;
 }
 
@@ -992,7 +1010,7 @@ function canRankSpeed(rows) {
 
 function renderHeader(columns) {
   const sortable = {"Main CER ↓": "cer", "Outlier rate ↓": "outlier_rate",
-    "All-sample CER ↓": "all_samples_cer", "RTFx ↑": "rtfx", "QNN RTFx ↑": "rtfx"};
+    "All-sample CER ↓": "all_samples_cer", "Macro RTFx ↑": "rtfx", "QNN Macro RTFx ↑": "rtfx"};
   return `<tr>${columns
     .map((column) => {
       const numeric = isNumericColumn(column) ? ' class="numeric"' : "";
@@ -1279,6 +1297,7 @@ function displayModelName(model) {
   return String(model || "-")
     .replace(/^openai\/whisper-/i, "Whisper ")
     .replace(/^Qwen\/Qwen3-ASR-/i, "Qwen3-ASR ")
+    .replace(/^nvidia\/nemotron-3\.5-asr-streaming-/i, "Nemotron 3.5 ASR ")
     .replace(/^whisper[_-]/, "Whisper ")
     .replace(/^qwen3_asr_/, "Qwen3-ASR ")
     .replace(/^google_speech_recognition$/, "Google Speech Recognition")
@@ -1326,6 +1345,7 @@ function renderOverallDetailRow(row) {
             <h3>평가 구간별 성능</h3>
             <div class="coverage-list">${coverage}</div>
             <p class="detail-note">Kspon 정규화 · CER 100% 초과 제외</p>
+            ${renderEvaluationNotes(row.rows)}
             <a class="artifact-link" href="leaderboard_data.json">원본 JSON · 재현 정보</a>
           </div>
           <div class="detail-group">
@@ -1372,6 +1392,7 @@ function renderDatasetDetailRow(row) {
               ${definition("정규화", normalizationLabel(row.normalization_preset))}
               ${definition("Outlier 기준", outlierPolicy(row))}
             </dl>
+            ${renderEvaluationNotes([row])}
             <div class="artifact-links"><a class="artifact-link" href="leaderboard_data.json">원본 JSON · 재현 정보</a></div>
           </div>
         </div>

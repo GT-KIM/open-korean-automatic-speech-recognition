@@ -34,6 +34,20 @@ function suite(model, cer = 0.1) {
   ];
 }
 
+test("published Nemotron enters Overall once with all six source runs", () => {
+  const rows = JSON.parse(fs.readFileSync("doc/leaderboard_data.json", "utf8"));
+  const results = overall(rows);
+  const nemotron = results.find(row => row.model_id === "nvidia/nemotron-3.5-asr-streaming-0.6b");
+  assert.ok(nemotron);
+  assert.ok(Math.abs(nemotron.metrics.cer - .31354459611898633) < 1e-12);
+  assert.equal(nemotron.rows.length, 3);
+  assert.equal(rows.filter(row => row.model_repo === nemotron.model_id).length, 7);
+  context.nemotron = nemotron;
+  const html = vm.runInContext("renderOverallDetailRow(nemotron)", context);
+  assert.match(html, /6,923 \/ 45,916/);
+  assert.match(html, /스트리밍 지연 미측정/);
+});
+
 test("AIHub all and its domains contribute only once, without changing dataset rows", () => {
   const rows = [
     row("model-a", "KsponSpeech", "clean", 0.1),
@@ -122,12 +136,12 @@ test("each required slice must have a full run, expected sample count and finite
   }
 });
 
-test("published data ranks eight complete models and retains distinct protocol records", () => {
+test("published data ranks nine complete models and retains distinct protocol records", () => {
   const rows = JSON.parse(fs.readFileSync("doc/leaderboard_data.json", "utf8"));
   const original = JSON.stringify(rows);
   const results = overall(rows);
-  assert.equal(results.length, 8);
-  assert.equal(new Set(results.map((result) => result.model_id)).size, 8);
+  assert.equal(results.length, 9);
+  assert.equal(new Set(results.map((result) => result.model_id)).size, 9);
   const whisper = results.find((result) => result.model_id === "openai/whisper-large-v3");
   const report = JSON.parse(fs.readFileSync("doc/benchmarks/server_accuracy_results_20261008.json", "utf8"));
   const verifiedSlices = report.rows.filter(row => row.model_repo === whisper.model_id
@@ -139,9 +153,9 @@ test("published data ranks eight complete models and retains distinct protocol r
   assert.ok(Math.abs(whisper.metrics.cer - expectedCER) < 1e-12);
   assert.equal(whisper.rows.some((run) => run.run_id.startsWith("readme-legacy")), false);
   assert.equal(vm.runInContext('buildOverallLeaderboard().incomplete[0].model', context), "google_speech_recognition");
-  assert.equal(vm.runInContext('modelOptions(state.rows).length', context), 9);
+  assert.equal(vm.runInContext('modelOptions(state.rows).length', context), 10);
   assert.equal(JSON.stringify(rows), original);
-  assert.equal(rows.length, 64);
+  assert.equal(rows.length, 71);
   assert.equal(rows.filter((row) => row.evaluation_protocol === "v1/punctuation_agnostic/cer>1.0").length, 2);
 });
 
@@ -361,13 +375,13 @@ test("all-subset views never rank different populations, even after filtering or
 test("individual dataset slices restore ranks and keep reference results unranked", () => {
   const {elements, run} = interactivePage();
   run('state.activeTab = "KsponSpeech"; state.subsetByDataset.KsponSpeech = "clean"; render()');
-  assert.equal((elements.leaderboardBody.innerHTML.match(/class="rank-number/g) || []).length, 9);
-  assert.equal(elements.rowCount.textContent, "9개 순위 결과");
+  assert.equal((elements.leaderboardBody.innerHTML.match(/class="rank-number/g) || []).length, 10);
+  assert.equal(elements.rowCount.textContent, "10개 순위 결과");
   assert.match(elements.leaderboardBody.innerHTML, /rank-leading">1<\/span>/);
   assert.doesNotMatch(elements.referenceBody.innerHTML, /rank-number|rank-leading/);
   run('state.activeTab = AIHUB_DATASET; render()');
-  assert.equal((elements.leaderboardBody.innerHTML.match(/class="rank-number/g) || []).length, 8);
-  assert.equal(elements.rowCount.textContent, "8개 순위 결과");
+  assert.equal((elements.leaderboardBody.innerHTML.match(/class="rank-number/g) || []).length, 9);
+  assert.equal(elements.rowCount.textContent, "9개 순위 결과");
 });
 
 test("table is the default view and chart switching preserves filters and selection", () => {
@@ -407,7 +421,7 @@ test("column sorting and the sort menu agree on rank direction across device and
   assert.match(elements.leaderboardHead.innerHTML, /aria-sort="ascending"><button[^>]+data-sort-metric="all_samples_cer"/);
   run('state.activeTab = "on_device"; render()');
   sortBy("rtfx");
-  assert.match(elements.leaderboardHead.innerHTML, /data-sort-metric="rtfx">QNN RTFx ↑/);
+  assert.match(elements.leaderboardHead.innerHTML, /data-sort-metric="rtfx">QNN Macro RTFx ↑/);
   assert.equal((elements.leaderboardHead.innerHTML.match(/aria-sort=/g) || []).length, 1);
   elements.sortMetric.listeners.change({target: {value: "wer"}});
   assert.doesNotMatch(elements.leaderboardHead.innerHTML, /aria-sort=/);

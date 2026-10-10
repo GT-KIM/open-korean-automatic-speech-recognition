@@ -156,3 +156,20 @@ Transformers 5.13.0이 필요한 전용 런타임이며, 기존 Qwen 런타임�
 
 전체 45,916개 정확도와 768개×3회×B1·B4 속도 결과는 `validate_nemotron_results.py`로 검증합니다.
 부분 결과나 파일럿 CER는 순위표에 반영하지 않으며, 새 속도 런타임을 기존 측정 조건과 합치지 않습니다.
+
+전체 평가와 속도 검증은 완료됐으며 [공개 검증 보고서](benchmarks/nemotron_results_20261010.json)를 통해
+정확도 7행(6개 원본 구간과 전화음성 통합), curated 속도 3행을 반영합니다. 기존 64행은 보존합니다.
+위 프로토콜 파일은 검증 당시의 해시를 유지한 동결본이며, 최종 완료 상태는 결과 보고서에 있습니다.
+
+```bash
+python scripts/generate_leaderboard.py --results_dir results \
+  --submitted_rows_path doc/leaderboard_data.json \
+  --verified_accuracy_path doc/benchmarks/server_accuracy_results_20261008.json \
+  --speed_results_path doc/benchmarks/server_speed_results_20261008.json \
+  --nemotron_results_path doc/benchmarks/nemotron_results_20261010.json
+python scripts/build_pages.py --output_dir _site
+```
+
+Nemotron Overall Main CER은 31.35%입니다. 빈 출력 6,923개를 보존했고 기존 CER > 100% 제외 규칙을 유지합니다.
+B1·B4 속도는 별도 Transformers 5.13.0 조건으로 표시합니다. RNN-T 프레임 강제 진행은 토큰 상한 종료가 아니므로
+별도 항목으로 제공하며, B1 속도에 B4 정확도를 연결한 화면에는 배치별 출력 차이를 명시합니다.

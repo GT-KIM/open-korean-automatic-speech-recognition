@@ -31,6 +31,27 @@ function row(model, error, speed, extra = {}) {
   };
 }
 
+test("published Nemotron remains a distinct runtime and shows native RNNT diagnostics", () => {
+  const p = page();
+  p.context.rows = JSON.parse(fs.readFileSync("doc/leaderboard_data.json", "utf8"))
+    .filter(row => row.dataset === "KsponSpeech" && row.subset === "clean" && row.curated_speed);
+  p.run("state.rows = rows; renderTradeoff()");
+  const nemotron = p.context.rows.find(row => row.model_repo.startsWith("nvidia/nemotron"));
+  p.context.nemotron = nemotron;
+  assert.match(p.elements.tradeoffCondition.innerHTML, /Transformers 5.13.0/);
+  assert.match(p.elements.tradeoffCondition.innerHTML, /Transformers 4.57.6/);
+  assert.equal(p.run("state.tradeoff.points.filter(p => p.frontier).length"), 0);
+  p.run("state.tradeoff.selected = nemotron.run_id; renderTradeoffDetail()");
+  assert.match(p.elements.tradeoffDetail.innerHTML, /프레임 강제 진행/);
+  assert.match(p.elements.tradeoffDetail.innerHTML, /B1·B4 출력 차이/);
+  assert.doesNotMatch(p.elements.tradeoffDetail.innerHTML, /상한 종료|undefined|NaN/);
+  p.run("state.tradeoff.condition = speedCondition(nemotron, 'b4').key; renderTradeoff()");
+  assert.equal(p.run("state.tradeoff.points.length"), 1);
+  p.run("state.tradeoff.configured = true; state.tradeoff.speed = 'b1'; state.tradeoff.condition = 'all'; renderTradeoff(); state.tradeoff.selected = nemotron.run_id; renderTradeoffDetail()");
+  assert.match(p.elements.tradeoffDetail.innerHTML, /4 \/ 1/);
+  assert.match(p.elements.tradeoffDetail.innerHTML, /B4 정확도/);
+});
+
 test("curated tracks use separate measured speed, matching cohorts, cap counts and batch-1 latency", () => {
   const p = page();
   const measured = {status: "verified", environment_id: "server", image_id: "image", source_sha256: "source",
@@ -45,6 +66,9 @@ test("curated tracks use separate measured speed, matching cohorts, cap counts a
   assert.equal(p.run("state.tradeoff.speed"), "b4");
   assert.deepEqual(p.json("state.tradeoff.points.map(p => p.speed)"), [45, 45]);
   assert.match(p.elements.tradeoffPlot.innerHTML, /RTFx \(×\)/);
+  assert.doesNotMatch(p.elements.tradeoffPlot.innerHTML, /Macro RTFx/);
+  assert.equal(p.elements.tradeoffCondition.value, p.run("speedCondition(rows[0], 'b4').key"));
+  assert.deepEqual(p.json("state.tradeoff.points.filter(p => p.frontier).map(p => p.row.model)"), ["a"]);
   assert.match(p.elements.tradeoffDetail.innerHTML, /120.0 ms/);
   assert.match(p.elements.tradeoffDetail.innerHTML, /6 \/ 768/);
   p.run("state.tradeoff.configured = true; state.tradeoff.condition = speedCondition(rows[0], 'b4').key; renderTradeoff()");
@@ -61,8 +85,53 @@ test("curated tracks use separate measured speed, matching cohorts, cap counts a
   assert.equal(p.run("state.tradeoff.speed"), 'b1');
   p.run("state.tradeoff.speed = 'rtfx'; renderTradeoff()");
   assert.deepEqual(p.json("state.tradeoff.points.map(p => p.speed)"), [123, 999, 9999]);
+  assert.match(p.elements.tradeoffPlot.innerHTML, /Macro RTFx \(×\)/);
+  assert.match(p.elements.tradeoffDetail.innerHTML, /<dt>Macro RTFx<\/dt>/);
   p.run("state.activeTab = 'on_device'; state.onDeviceRows = rows; renderTradeoff()");
   assert.equal(p.run("state.tradeoff.speed"), "rtfx");
+});
+
+test("single verified condition is selected automatically without pinning later filters", () => {
+  const p = page();
+  p.context.rows = [row("a", .1, 10), row("b", .2, 20)];
+  p.run("state.rows = rows; renderTradeoff()");
+  const key = p.run("tradeoffCondition(rows[0]).key");
+  assert.equal(p.elements.tradeoffCondition.value, key);
+  assert.equal(p.elements.tradeoffCondition.disabled, true);
+  assert.match(p.elements.tradeoffPlot.innerHTML, /class="tradeoff-point on-frontier/);
+  assert.match(p.elements.tradeoffModels.innerHTML, /class="tradeoff-model on-frontier/);
+  assert.doesNotMatch(p.elements.tradeoffPlot.innerHTML, /<polyline/);
+  assert.equal(p.elements.tradeoffNote.hidden, true);
+
+  p.context.extra = row("c", .15, 50, {gpu: "GPU B"});
+  p.run("state.rows = [...rows, extra]; renderTradeoff()");
+  assert.equal(p.elements.tradeoffCondition.value, "all");
+  assert.equal(p.elements.tradeoffCondition.disabled, false);
+  assert.equal(p.run("state.tradeoff.points.length"), 3);
+  assert.doesNotMatch(p.elements.tradeoffPlot.innerHTML, /on-frontier/);
+
+  p.context.key = key;
+  p.run("state.tradeoff.condition = key; renderTradeoff()");
+  assert.equal(p.elements.tradeoffCondition.value, key);
+  assert.equal(p.run("state.tradeoff.points.length"), 2);
+  assert.match(p.elements.tradeoffPlot.innerHTML, /class="tradeoff-point on-frontier/);
+  p.run("state.rows = [extra]; renderTradeoff()");
+  assert.equal(p.elements.tradeoffCondition.value, p.run("tradeoffCondition(extra).key"));
+  assert.equal(p.run("state.tradeoff.points.length"), 1);
+  assert.doesNotMatch(p.elements.tradeoffPlot.innerHTML, /on-frontier/);
+});
+
+test("single incomplete condition is not selected or compared automatically", () => {
+  const p = page();
+  p.context.rows = [row("a", .1, 10, {reproducibility: {}}), row("b", .2, 20, {reproducibility: {}})];
+  p.run("state.rows = rows; renderTradeoff()");
+  assert.equal(p.elements.tradeoffCondition.value, "all");
+  assert.equal(p.elements.tradeoffCondition.disabled, false);
+  assert.equal(p.run("state.tradeoff.points.some(p => p.frontier)"), false);
+  assert.doesNotMatch(p.elements.tradeoffPlot.innerHTML, /on-frontier/);
+  p.run("state.rows = []; renderTradeoff()");
+  assert.equal(p.elements.tradeoffCondition.value, "all");
+  assert.equal(p.run("state.tradeoff.points.length"), 0);
 });
 
 test("Pareto minimizes CER and maximizes speed, preserves ties and raw precision", () => {
@@ -100,10 +169,10 @@ test("chart separates slices and conditions and selects latest runs without scor
   const original = JSON.stringify(p.context.rows);
   p.run("state.rows = rows; renderTradeoff()");
   assert.deepEqual(p.json("state.tradeoff.points.map(p => p.row.run_id)"), [latest.run_id, "different-device", "b-20261001T000000Z"]);
-  assert.doesNotMatch(p.elements.tradeoffPlot.innerHTML, /class="tradeoff-frontier"/);
+  assert.doesNotMatch(p.elements.tradeoffPlot.innerHTML, /on-frontier/);
   p.run("state.tradeoff.condition = tradeoffCondition(rows[0]).key; renderTradeoff()");
   assert.equal(p.run("state.tradeoff.points.length"), 2);
-  assert.match(p.elements.tradeoffPlot.innerHTML, /class="tradeoff-frontier"/);
+  assert.match(p.elements.tradeoffPlot.innerHTML, /class="tradeoff-point on-frontier/);
   p.run('state.tradeoff.slice = tradeoffSliceKey(rows[4]); state.tradeoff.condition = "all"; renderTradeoff()');
   assert.equal(p.run("state.tradeoff.points.length"), 1);
   assert.equal(p.run("state.tradeoff.points[0].row.subset"), "other");
@@ -180,7 +249,7 @@ test("published device results separate precision and retain QNN measurement sco
   p.context.rows = JSON.parse(fs.readFileSync("doc/ondevice_leaderboard_data.json", "utf8"));
   p.run("state.activeTab = 'on_device'; state.onDeviceRows = rows; renderTradeoff()");
   assert.equal(p.run("state.tradeoff.points.length"), 5);
-  assert.match(p.elements.tradeoffPlot.innerHTML, /QNN RTFx/);
+  assert.match(p.elements.tradeoffPlot.innerHTML, /QNN Macro RTFx/);
   p.run("state.tradeoff.condition = tradeoffCondition(rows.find(r => r.precision === 'float')).key; renderTradeoff()");
   assert.equal(p.run("state.tradeoff.points.length"), 4);
   assert.match(p.elements.tradeoffDetail.innerHTML, /전처리·전송·토큰화 제외/);
@@ -190,7 +259,7 @@ test("published server results stay per-slice; metadata is escaped in accessible
   const p = page();
   p.context.rows = JSON.parse(fs.readFileSync("doc/leaderboard_data.json", "utf8"));
   p.run("state.rows = rows; state.tradeoff.speed = 'rtfx'; state.tradeoff.configured = true; renderTradeoff()");
-  assert.equal(p.run("state.tradeoff.points.length"), 9);
+  assert.equal(p.run("state.tradeoff.points.length"), 10);
   assert.ok(p.run("state.tradeoff.points.every(p => p.row.subset === 'clean')"));
   for (const condition of p.json("[...new Set(state.tradeoff.points.map(p => tradeoffCondition(p.row).key))]")) {
     p.context.condition = condition;
