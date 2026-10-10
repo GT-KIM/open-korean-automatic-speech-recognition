@@ -99,13 +99,15 @@ def validate_speed(root, manifest, protocol):
     return tracks
 
 
-def validate_accuracy(root, inputs, protocol):
+def validate_accuracy(root, inputs, protocol, partial=False):
     inventory_path = inputs / "inventory.json"
     check(sha(inventory_path) == "83b29a2264edaa4d9ad6b8e11d4458656d87d4fa23b8d2e0edf21f7dcb275526", "Accuracy inventory changed")
     inventory = json.loads(inventory_path.read_bytes())
     rows, proofs, phone = [], [], []
     for entry in inventory["datasets"]:
         folder = root / "accuracy" / entry["id"]
+        if partial and not (folder / "completion.json").exists():
+            continue
         completion = json.loads((folder / "completion.json").read_bytes())
         run = folder / completion["run_id"]
         summary_path = run / "summary.json"
@@ -141,7 +143,8 @@ def validate_accuracy(root, inputs, protocol):
                 check(normalize_text(sample[raw], preset="kspon") == sample[normalized], "Normalization mismatch")
             cer = character_error_rate(sample["normalized_prediction"], sample["normalized_reference"])
             for key, value in cer.items():
-                same(public_numbers(value), public_numbers(sample["metrics"][key]))
+                metric_key = key if key == "cer" else "cer_" + key
+                same(public_numbers(value), public_numbers(sample["metrics"][metric_key]))
             check(sample["is_outlier"] == OutlierPolicy("cer", 1.0).is_outlier(sample["metrics"]), "Outlier policy mismatch")
             check(math.isfinite(sample["processing_time"]) and sample["processing_time"] > 0, "Invalid accuracy timing")
             detail = sample["metadata"]["rnnt_generation"]
@@ -161,13 +164,22 @@ def validate_accuracy(root, inputs, protocol):
         same(public_numbers(row["metrics"]["all_samples_micro"]), public_numbers(aggregate["all_samples_micro_average"]))
         row["_artifact"] = "results/nemotron-20261010/accuracy/" + entry["id"] + "/" + completion["run_id"] + "/leaderboard_row.json"
         row["source"] = "verified Nemotron full evaluation (native Linux, BF16, B4; unpublished)"
+        # Executed source 4d381b8 recorded static generation_config defaults in
+        # resolved_parameters. Correct only the derived report; retain raw files.
+        decoding = row["reproducibility"]["inference"]["decoding"]
+        decoding["resolved_parameters"].pop("max_length", None)
+        decoding["dynamic_length"] = {"policy": "encoder_exhaustion",
+                                      "output_buffer_bound": "max_symbols_per_step * padded_encoder_frames"}
         rows.append(row)
         proofs.append({"dataset": entry["id"], "samples": len(journal), "forced_frame_advances": forced,
                        "summary_sha256": sha(summary_path), "samples_sha256": sha(run / "samples.jsonl")})
         if entry["dataset"] == "AIHubLowQualityTelephone":
             phone.append({"row": row, "row_path": row_path, "sample_path": run / "samples.jsonl"})
-    check(sum(r["samples"] for r in proofs) == 45916, "Incomplete full corpus")
-    rows.append(_aggregate_runs((MODEL, MODEL), phone))
+    check(bool(proofs), "No completed accuracy slices")
+    if not partial:
+        check(sum(r["samples"] for r in proofs) == 45916, "Incomplete full corpus")
+    if len(phone) == 4:
+        rows.append(_aggregate_runs((MODEL, MODEL), phone))
     return rows, proofs
 
 
@@ -178,16 +190,19 @@ def main():
     p.add_argument("--accuracy-inputs", type=Path)
     p.add_argument("--protocol", type=Path, required=True)
     p.add_argument("--speed-only", action="store_true")
+    p.add_argument("--partial-accuracy", action="store_true")
     p.add_argument("--output", type=Path, required=True)
     args = p.parse_args()
     protocol = json.loads(args.protocol.read_bytes())
-    report = {"status": "speed_verified" if args.speed_only else "completed_and_verified",
+    report = {"status": "speed_verified" if args.speed_only else (
+                  "partial_accuracy_verified" if args.partial_accuracy else "completed_and_verified"),
               "validated_at_utc": datetime.now(timezone.utc).isoformat(),
               "protocol_sha256": sha(args.protocol), "validator_sha256": sha(Path(__file__)),
               "official_leaderboard_eligible": False, "published": False,
+              "metadata_note": "Raw generation_config max_length=20 is a Transformers default, replaced dynamically by native RNNT. Derived accuracy rows describe encoder exhaustion; raw artifacts are unchanged.",
               "speed": validate_speed(args.root, args.speed_manifest, protocol)}
     if not args.speed_only:
-        report["accuracy_rows"], report["accuracy_proofs"] = validate_accuracy(args.root, args.accuracy_inputs, protocol)
+        report["accuracy_rows"], report["accuracy_proofs"] = validate_accuracy(args.root, args.accuracy_inputs, protocol, partial=args.partial_accuracy)
     write_json(args.output, public_numbers(report))
     print(report["status"])
 

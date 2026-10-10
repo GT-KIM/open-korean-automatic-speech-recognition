@@ -99,7 +99,8 @@ def load_rows(results_dir, include_partial=False):
             row = json.load(handle)
         # Audited full-corpus runs enter through their completed validation report.
         # A finished subset alone must not bypass the matrix verification gate.
-        if row.get("reproducibility", {}).get("full_accuracy"):
+        provenance = row.get("reproducibility", {})
+        if provenance.get("full_accuracy") or provenance.get("nemotron_accuracy"):
             continue
         if not include_partial and not row.get("is_full_evaluation", False):
             continue

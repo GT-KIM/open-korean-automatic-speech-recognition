@@ -19,6 +19,9 @@ docker build -f docker/Dockerfile.nemotron -t openkoasr-nemotron:20261010 .
 ```
 
 실측 이미지 ID와 전체 패키지 버전은 [inventory](nemotron-package-inventory.json)에 있습니다.
+2026-10-10 실측 소스는 `4d381b8caf6503010fae8f05efa41c7948982148` 커밋입니다.
+재현 시 해당 커밋의 소스를 사용합니다. 이후 RNNT 동적 길이의 메타데이터 표기만 보완했으며,
+실측 원시 아티팩트와 추론 코드는 보존했습니다.
 이 이미지는 소스를 `/app:ro`로 마운트해 사용하는 전용 런타임입니다.
 `openkoasr` 전체 의존성을 다시 설치하면 구버전 Transformers를 요구하는 Qwen SDK와 충돌합니다.
 컨테이너 작업 디렉터리는 `/tmp`로 지정해 로그가 소스 마운트에 기록되지 않도록 합니다.

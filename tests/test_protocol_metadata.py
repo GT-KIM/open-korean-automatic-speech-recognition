@@ -125,6 +125,19 @@ class ProtocolMetadataTest(unittest.TestCase):
         self.assertRegex(data["source_sha256"], r"^[0-9a-f]{64}$")
 
     @patch("openkoasr.evaluation.provenance.code_metadata", return_value={})
+    def test_rnnt_does_not_misreport_default_length_as_an_executed_token_limit(self, _code):
+        backend = SimpleNamespace(config=SimpleNamespace(), generation_config=SimpleNamespace(
+            max_length=20, max_new_tokens=None, do_sample=False))
+        model = SimpleNamespace(model=backend, supports_batch_transcribe=True)
+        config = SimpleNamespace(family="nemotron_asr")
+        result = capture_reproducibility(model, config, {"batch_size": 4}, {})
+        self.assertEqual(result["generation_config"]["max_length"], 20)
+        decoding = result["inference"]["decoding"]
+        self.assertNotIn("max_length", decoding["resolved_parameters"])
+        self.assertEqual(decoding["dynamic_length"]["policy"], "encoder_exhaustion")
+        self.assertEqual(result["inference"]["backend_batch_size"], 4)
+
+    @patch("openkoasr.evaluation.provenance.code_metadata", return_value={})
     def test_observed_dtype_and_call_overrides_do_not_copy_requested_defaults(self, _code):
         backend = SimpleNamespace(
             config=SimpleNamespace(_commit_hash="b" * 40),

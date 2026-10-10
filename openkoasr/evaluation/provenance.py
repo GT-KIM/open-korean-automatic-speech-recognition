@@ -72,6 +72,16 @@ def capture_reproducibility(model, config, execution, environment):
     effective_dtype = next(iter(dtypes)) if len(dtypes) == 1 else (
         "mixed:" + "+".join(sorted(dtypes)) if dtypes else None)
     family = getattr(config, "family", None)
+    dynamic_length = {}
+    if family == "nemotron_asr" and resolved.get("max_new_tokens") is None:
+        # The RNNT mixin replaces the Transformers max_length=20 default on
+        # every call. Preserve that raw default above, but do not report it as
+        # the effective limit of the evaluated utterance.
+        resolved.pop("max_length", None)
+        dynamic_length = {"dynamic_length": {
+            "policy": "encoder_exhaustion",
+            "output_buffer_bound": "max_symbols_per_step * padded_encoder_frames",
+        }}
     local = family in {"whisper", "qwen3_asr", "hf_ctc", "nemotron_asr"}
     scope = "asr_transcribe_call" if local else (
         "api_request_reported" if family == "commercial_api" else None)
@@ -102,6 +112,7 @@ def capture_reproducibility(model, config, execution, environment):
                 "native" if local and getattr(model, "supports_batch_transcribe", False) else "sequential"),
             "decoding": {
                 "call_overrides": overrides, "resolved_parameters": resolved,
+                **dynamic_length,
                 "inactive_sampling_parameters": inactive,
                 "transcription_options": {key: value for key, value in
                     getattr(model, "transcription_options", {}).items()

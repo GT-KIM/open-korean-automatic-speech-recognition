@@ -1,6 +1,6 @@
 {
   "id": "nemotron35-offline-bf16-20261010",
-  "status": "pilot_validated_expansion_ready",
+  "status": "speed_verified_full_accuracy_running",
   "decision": "Determine whether the pinned multilingual RNN-T can enter the existing Korean ASR full-accuracy and curated-speed evaluation without missing or truncated inputs.",
   "model": "nvidia/nemotron-3.5-asr-streaming-0.6b",
   "revision": "ea30d66debe3740a08b573244286791d423d6b3e",
@@ -27,7 +27,10 @@
     "harness_sha256": {
       "run_nemotron_benchmark.py": "f6f184e0efb86543d2f699df14979b93ca4b15cec1f24df2d5c8267a5b2e4a53",
       "run_nemotron_accuracy.py": "f836c2028305594e78d2ec2e62ca8ad85d4e37f8649346038a9ce1393ef05474"
-    }
+    },
+    "executed_source_commit": "4d381b8caf6503010fae8f05efa41c7948982148",
+    "executed_source_archive_sha256": "936e9f7d1aa72b2d5d4a1476b45f275d8e3b0cb78cc2f90333575a77785f659a",
+    "metadata_correction": "The original resolved_parameters retained max_length=20 from static generation_config. Native RNNT computes a per-input buffer bound and uses encoder exhaustion. Later metadata code and derived reports describe that behavior; raw artifacts and actual decoding are unchanged."
   },
   "pilot": {
     "purpose": "Implementation, input/scorer validity and runtime feasibility; not a quality ranking.",
@@ -145,5 +148,21 @@
     },
     "raw_artifact_root": "results/nemotron-20261010",
     "validated_at_utc": "2026-10-10T04:45:31.242074+00:00"
+  },
+  "speed_validation": {
+    "status": "completed_and_verified",
+    "artifact": "results/nemotron-20261010/speed-validation.json",
+    "sha256": "b477b2036ad281d8779ecf7ed0fda264def648139a52760bdbc90ca66113cddb",
+    "measured_outputs": 4608,
+    "warmup_outputs": 288,
+    "overall_b1_rtfx_median": 61.6358756992964,
+    "overall_b4_rtfx_median": 135.20209158562136
+  },
+  "accuracy_execution": {
+    "status": "running",
+    "started_at_utc": "2026-10-10T04:52:30.207Z",
+    "verified_partial_artifact": "results/nemotron-20261010/partial-validation.json",
+    "verified_partial_samples": 3000,
+    "observed_at_utc": "2026-10-10T05:00:30.673935+00:00"
   }
 }
