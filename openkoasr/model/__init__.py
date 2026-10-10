@@ -22,6 +22,11 @@ try:
 except Exception:
     CommercialApiASRInferenceModel = None
 
+try:
+    from openkoasr.model.nemotron_asr import NemotronASRInferenceModel
+except ImportError:
+    NemotronASRInferenceModel = None
+
 __all__ = [
     "BaseASRInferenceModel",
     "MockASRInferenceModel",
@@ -35,6 +40,8 @@ if HfCtcASRInferenceModel is not None:
     __all__.append("HfCtcASRInferenceModel")
 if CommercialApiASRInferenceModel is not None:
     __all__.append("CommercialApiASRInferenceModel")
+if NemotronASRInferenceModel is not None:
+    __all__.append("NemotronASRInferenceModel")
 
 model_registry = Registry("model")
 model_registry.register("mock", MockASRInferenceModel)
@@ -54,6 +61,8 @@ if Qwen3ASRInferenceModel is not None:
 
 if HfCtcASRInferenceModel is not None:
     model_registry.register("hf_ctc", HfCtcASRInferenceModel)
+if NemotronASRInferenceModel is not None:
+    model_registry.register("nemotron_asr", NemotronASRInferenceModel)
 
 if CommercialApiASRInferenceModel is not None:
     model_registry.register("commercial_api", CommercialApiASRInferenceModel)
@@ -74,6 +83,11 @@ class ModelFactory:
             model_class = model_registry.get(config.name, None)
 
         if model_class is None:
+            if family == "nemotron_asr":
+                raise ValueError(
+                    "Nemotron 3.5 ASR requires Transformers >=5.13.0. "
+                    "Use the separate docker/Dockerfile.nemotron runtime."
+                )
             if family == "qwen3_asr" or str(getattr(config, "name", "")).startswith("qwen3_asr"):
                 raise ValueError(
                     "Qwen3-ASR model is requested but unavailable. "

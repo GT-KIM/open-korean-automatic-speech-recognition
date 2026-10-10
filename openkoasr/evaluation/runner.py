@@ -91,7 +91,7 @@ class EvaluationRunner:
         if model_overrides:
             from openkoasr.model.revisions import pinned_revisions
             pinned_revisions(model_config)
-            if getattr(model_config, "family", None) not in {"whisper", "qwen3_asr", "hf_ctc"}:
+            if getattr(model_config, "family", None) not in {"whisper", "qwen3_asr", "hf_ctc", "nemotron_asr"}:
                 raise ValueError("Model overrides require a local Transformers model")
             inner_batch = getattr(model_config, "max_inference_batch_size", None)
             if inner_batch is not None and (type(inner_batch) is not int or inner_batch < 1):

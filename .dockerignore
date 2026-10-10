@@ -14,6 +14,7 @@
 !docker/Dockerfile
 !docker/Dockerfile.benchmark
 !docker/Dockerfile.speed
+!docker/Dockerfile.nemotron
 !docker/benchmark-constraints.txt
 !docker/benchmark-requirements.txt
 **/__pycache__/

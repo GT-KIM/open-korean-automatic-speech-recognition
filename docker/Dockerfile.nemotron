@@ -1,0 +1,12 @@
+# Verify this local tag resolves to the sealed f9995a10077e image before building.
+ARG BASE_IMAGE=openkoasr-nemotron-parent:f9995a10077e
+FROM ${BASE_IMAGE}
+WORKDIR /runtime
+ENV PYTHONPATH=/runtime
+# Qwen 0.0.6 pins Transformers 4.57.6. This is an isolated source runtime.
+RUN python -m pip uninstall -y openkoasr qwen-asr \
+    && python -m pip install --no-cache-dir transformers==5.13.0 huggingface-hub==1.5.0 click==8.3.3 \
+    && python -m pip check
+ENV PYTHONPATH=/app
+WORKDIR /app
+CMD ["python", "-c", "from transformers import AutoModelForRNNT, AutoProcessor; print('Nemotron runtime ready')"]

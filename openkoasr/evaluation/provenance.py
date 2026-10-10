@@ -9,6 +9,7 @@ MODEL_SETTINGS = (
     "family", "repo_name", "dtype", "device", "language", "task", "max_new_tokens",
     "num_beams", "temperature", "condition_on_prev_tokens", "max_inference_batch_size",
     "provider", "api_model", "model_revision", "processor_revision",
+    "num_lookahead_tokens",
 )
 GENERATION_SETTINGS = (
     "language", "task", "max_new_tokens", "max_length", "num_beams", "do_sample",
@@ -71,7 +72,7 @@ def capture_reproducibility(model, config, execution, environment):
     effective_dtype = next(iter(dtypes)) if len(dtypes) == 1 else (
         "mixed:" + "+".join(sorted(dtypes)) if dtypes else None)
     family = getattr(config, "family", None)
-    local = family in {"whisper", "qwen3_asr", "hf_ctc"}
+    local = family in {"whisper", "qwen3_asr", "hf_ctc", "nemotron_asr"}
     scope = "asr_transcribe_call" if local else (
         "api_request_reported" if family == "commercial_api" else None)
     wrapper = getattr(model, "model", None)
@@ -104,7 +105,8 @@ def capture_reproducibility(model, config, execution, environment):
                 "inactive_sampling_parameters": inactive,
                 "transcription_options": {key: value for key, value in
                     getattr(model, "transcription_options", {}).items()
-                    if key in {"language", "return_time_stamps"}},
+                    if key in {"language", "return_time_stamps", "mode",
+                               "num_lookahead_tokens", "max_symbols_per_step"}},
             },
         },
         "execution": execution,
