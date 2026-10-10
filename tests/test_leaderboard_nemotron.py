@@ -44,6 +44,7 @@ class NemotronPublicationTest(unittest.TestCase):
         for mutate in (
             lambda r: r.update(status="partial_accuracy_verified"),
             lambda r: r.update(official_leaderboard_eligible=False),
+            lambda r: r["runtime"].update(transformers="different"),
             lambda r: r["accuracy_rows"].pop(),
             lambda r: r["accuracy_proofs"][0].update(samples=2999),
             lambda r: r["accuracy_rows"][0]["reproducibility"]["nemotron_accuracy"].update(image_id="other"),
@@ -62,6 +63,17 @@ class NemotronPublicationTest(unittest.TestCase):
         self.assertEqual(sum(r["prediction_diagnostics"]["empty_predictions"] for r in main), 6923)
         for row, source in zip(rows, self.report["accuracy_rows"]):
             self.assertEqual(row["metrics"], source["metrics"])
+
+    def test_published_report_hashes_bind_the_actual_artifact_bytes(self):
+        rows = json.loads(Path("doc/leaderboard_data.json").read_bytes())
+        for row in rows:
+            if row["model_repo"] != MODEL:
+                continue
+            self.assertEqual(row["accuracy_validation"]["report_sha256"], self.sha)
+            if "curated_speed" in row:
+                self.assertEqual(row["curated_speed"]["report_sha256"], self.sha)
+        protocol = Path("doc/benchmarks/nemotron_protocol_20261010.json")
+        self.assertEqual(hashlib.sha256(protocol.read_bytes()).hexdigest(), self.report["protocol_sha256"])
 
 
 if __name__ == "__main__":

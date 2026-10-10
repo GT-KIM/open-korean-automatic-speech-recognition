@@ -173,3 +173,6 @@ python scripts/build_pages.py --output_dir _site
 Nemotron Overall Main CER은 31.35%입니다. 빈 출력 6,923개를 보존했고 기존 CER > 100% 제외 규칙을 유지합니다.
 B1·B4 속도는 별도 Transformers 5.13.0 조건으로 표시합니다. RNN-T 프레임 강제 진행은 토큰 상한 종료가 아니므로
 별도 항목으로 제공하며, B1 속도에 B4 정확도를 연결한 화면에는 배치별 출력 차이를 명시합니다.
+
+정규화 후 빈 정답 4개 중 빈 출력 3개는 CER 0으로 포함되고, 비어 있지 않은 출력 1개는 CER 무한대로
+기존 outlier 규칙에 따라 Main CER에서 제외됩니다. 전체 샘플 micro CER에는 해당 편집 오류도 포함됩니다.

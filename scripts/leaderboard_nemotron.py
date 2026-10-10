@@ -28,6 +28,7 @@ def merge_verified_nemotron(rows, report, report_sha256, artifact):
     require(len(proofs) == 6 and {p["dataset"]: p["samples"] for p in proofs} == expected,
             "Incomplete Nemotron accuracy proofs")
     runtime = report["runtime"]
+    require(runtime["transformers"] == "5.13.0", "Nemotron speed cohort requires Transformers 5.13.0")
     by_id = {r["run_id"]: r for r in new}
     require(len(by_id) == 7, "Duplicate Nemotron run IDs")
     for row in new:
