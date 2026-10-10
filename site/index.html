@@ -181,7 +181,7 @@
               <option value="mer">MER 낮은순</option>
               <option value="jer">JER 낮은순</option>
               <option value="ser">SER 낮은순</option>
-              <option value="rtfx">RTFx 높은순</option>
+              <option value="rtfx">Macro RTFx 높은순</option>
               <option value="latency">Latency 낮은순</option>
               <option value="outlier_rate">Outlier rate 낮은순</option>
             </select>
@@ -255,7 +255,7 @@
             </label>
             <label class="control-field">
               <span>속도 지표</span>
-              <select id="tradeoffSpeed"><option value="rtfx">RTFx · 전체 평가 · outlier 제외</option></select>
+              <select id="tradeoffSpeed"><option value="rtfx">Macro RTFx · 전체 평가 · outlier 제외</option></select>
             </label>
           </div>
           <p class="tradeoff-status" id="tradeoffStatus" role="status" hidden></p>
@@ -267,7 +267,7 @@
           <p class="tradeoff-note" id="tradeoffNote" hidden></p>
           <details class="method-details">
             <summary>집계·비교 기준</summary>
-            <p>Curated 처리량은 고정 입력의 음성 길이 합 / 처리 시간 합이며, 3회 중앙값입니다. 정확도는 전체 데이터 평가값입니다. 기존 RTFx는 outlier를 제외한 샘플별 배속 평균입니다. 단건 p95는 batch 1에서 측정합니다.</p>
+            <p>RTFx는 고정 입력의 오디오 길이 합 / 처리 시간 합의 3회 중앙값입니다. Macro RTFx는 전체 평가에서 outlier를 제외한 샘플별 배속 평균입니다. 정확도는 전체 데이터 평가값이며, 단건 p95는 batch 1에서 측정합니다.</p>
             <p>모델·정밀도·실행 조건별 최신 전체 평가 결과를 사용합니다.</p>
             <p>파레토 경계는 선택한 실행 조건 안의 비지배점입니다. 미기록 조건·모델 구현·디코딩 설정의 동일성이나 통계적 유의성을 보장하지 않습니다.</p>
           </details>
@@ -291,8 +291,8 @@
               <dd>Outlier를 포함한 전체 편집 오류 수를 정답 글자 수로 나눈 corpus CER입니다. Main CER와 가중 방식도 달라 두 값의 차이가 outlier의 영향만을 나타내지는 않습니다.</dd>
             </div>
             <div>
-              <dt>RTFx</dt>
-              <dd>샘플별 ‘오디오 길이 / 처리 시간’의 outlier 제외 평균입니다. ‘총 오디오 길이 / 총 처리 시간’과는 다를 수 있습니다.</dd>
+              <dt>Macro RTFx · RTFx</dt>
+              <dd>표의 Macro RTFx는 outlier를 제외한 샘플별 ‘오디오 길이 / 처리 시간’의 평균입니다. Curated 그래프의 RTFx는 ‘총 오디오 길이 / 총 처리 시간’의 3회 중앙값입니다.</dd>
             </div>
           </dl>
           <details class="method-details">
@@ -303,7 +303,7 @@
               <p><strong>평가 규약:</strong> Overall과 서버 데이터셋 순위는 Kspon 정규화와 CER 100% 초과 제외 기준을 적용합니다. 다른 규약·미확인 결과는 순위에서 제외합니다.</p>
               <p><strong>모델·대표 결과:</strong> 같은 모델의 별칭을 묶고, 구간별로 표준 규약을 충족하는 실행 아티팩트 중 최신 결과를 선택합니다. 정렬 지표를 바꿔도 기여하는 실행은 고정됩니다. 전체 CER와 보조 지표의 평균은 세 구간 모두에 해당 통계가 있을 때만 제공합니다.</p>
               <p><strong>보조 지표:</strong> Macro는 샘플별 평균이고 corpus는 편집 카운터 합산 값입니다. 전체 CER 외의 품질 지표는 outlier를 제외합니다. 재현 명령·코드 버전·전체 실행 설정은 원본 JSON에 제공합니다.</p>
-              <p><strong>지연·기기 조건:</strong> 배치 실행의 지연은 배치 시간을 샘플 수로 나눈 값입니다. 온디바이스 QNN RTFx는 QNN 그래프 실행 범위이며, 기기·정밀도·런타임을 맞춰 비교해야 합니다.</p>
+              <p><strong>지연·기기 조건:</strong> 배치 실행의 지연은 배치 시간을 샘플 수로 나눈 값입니다. 온디바이스 QNN Macro RTFx는 QNN 그래프 실행 범위이며, 기기·정밀도·런타임을 맞춰 비교해야 합니다.</p>
               <p><strong>순위 제한:</strong> Outlier 비율에 따른 참가 제한은 없습니다.</p>
             </div>
           </details>

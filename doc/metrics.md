@@ -34,12 +34,13 @@ Micro 집계는 전체 정답 단어 수가 0이면 WER를 생략합니다.
 
 ## 2. 성능 지표
 
-- **RTFx (Real-Time Factor times, 실시간 배속)**
+- **RTFx (Inverse Real-Time Factor, 실시간 배속)**
   - 샘플별 계산: `RTFx_i = 오디오 길이_i / 처리 시간_i`
-  - 순위표의 값: outlier를 제외한 유효 샘플 집합 `V`에 대해 `sum(RTFx_i) / |V|`로 계산한 **macro 평균**입니다. 값이 클수록 빠릅니다.
-  - 전체 처리량인 `sum(오디오 길이_i) / sum(처리 시간_i)`과 다릅니다. 동일한 유효 샘플에서도 Whisper small의 KsponSpeech clean 결과는 macro **61.00×**, 합계 비율 **59.09×**입니다.
+  - 순위표의 **Macro RTFx**: outlier를 제외한 유효 샘플 집합 `V`에 대해 `sum(RTFx_i) / |V|`로 계산한 **macro 평균**입니다. 값이 클수록 빠릅니다.
+  - Curated 그래프의 **RTFx**: 고정 입력에서 `sum(오디오 길이_i) / sum(처리 시간_i)`를 계산한 뒤 3회 반복의 중앙값을 표시합니다. 전체 평가 속도를 선택하면 그래프에도 **Macro RTFx**를 표시합니다.
+  - Macro RTFx는 전체 처리량인 `sum(오디오 길이_i) / sum(처리 시간_i)`과 다릅니다. 동일한 유효 샘플에서도 Whisper small의 KsponSpeech clean 결과는 macro **61.00×**, 합계 비율 **59.09×**입니다.
   - 개별 샘플의 RTFx는 RTF(`처리 시간 / 오디오 길이`)의 역수입니다. 평균 RTFx가 평균 RTF의 역수인 것은 아닙니다.
-  - Overall은 세 평가 구간의 macro RTFx를 각각 1/3로 평균냅니다. On-device 표의 QNN RTFx도 outlier 제외 macro이며, 원본의 `performance.qnn_rtfx_all_samples`는 전체 샘플의 합계 비율입니다.
+  - Overall은 세 평가 구간의 macro RTFx를 각각 1/3로 평균냅니다. On-device 표의 QNN Macro RTFx도 outlier 제외 macro이며, 원본의 `performance.qnn_rtfx_all_samples`는 전체 샘플의 합계 비율입니다.
 - **Latency**
   - Outlier를 제외한 샘플별 처리 시간의 평균입니다. JSON은 초, 화면은 ms로 표시합니다. 배치 실행에서는 배치 시간을 샘플 수로 나누므로 요청 1개의 응답 지연과 다를 수 있습니다.
 

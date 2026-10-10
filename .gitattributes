@@ -1,3 +1,9 @@
 # Preserve byte hashes of sealed server reports; other JSON keeps normal text handling.
 doc/benchmarks/server_*.json -text
 doc/benchmarks/speed_curated_set_*.json -text
+# The executed accuracy harness is bound by its raw byte SHA-256.
+scripts/run_full_accuracy.py -text
+# Nemotron validation binds the protocol, reports and harnesses by raw bytes too.
+doc/benchmarks/nemotron_*.json -text
+scripts/run_nemotron_*.py -text
+scripts/validate_nemotron_results.py -text

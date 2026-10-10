@@ -1,0 +1,168 @@
+{
+  "id": "nemotron35-offline-bf16-20261010",
+  "status": "speed_verified_full_accuracy_running",
+  "decision": "Determine whether the pinned multilingual RNN-T can enter the existing Korean ASR full-accuracy and curated-speed evaluation without missing or truncated inputs.",
+  "model": "nvidia/nemotron-3.5-asr-streaming-0.6b",
+  "revision": "ea30d66debe3740a08b573244286791d423d6b3e",
+  "dtype": "bfloat16",
+  "language": "ko-KR",
+  "prompt_id": 14,
+  "mode": "offline_full_utterance",
+  "num_lookahead_tokens": 3,
+  "max_symbols_per_step": 10,
+  "decoding": "Greedy native RNN-T; no manually imposed max_new_tokens, no chunking or per-sample fallback. Require full encoder exhaustion; record forced frame advances.",
+  "runtime": {
+    "transformers": "5.13.0",
+    "huggingface-hub": "1.5.0",
+    "parent_image_id": "sha256:f9995a10077eb8bbd739388ff97c54f68e7656e6524183d1f76553c6f03c7e14",
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "gpu_count": 1,
+    "torch_threads": 8,
+    "torch_interop_threads": 8,
+    "policy": "New isolated image, source SHA and package inventory recorded per run; do not pool timing with the older Transformers cohort.",
+    "image_id": "sha256:0d71dae438ea8b29a70042a194cc5ceb9da56e77cda93a02cae2c0245f37f699",
+    "python": "3.12.3",
+    "package_inventory_sha256": "623fa4ffe3bb9ee68e2ab91db6d2579ba23ddeae39fdd6f949fcd7bdd6b405c5",
+    "source_sha256": "88da739efea00f03dd3635499d3b49e41ac0e73b3dbb4fe25b74b6b6976a6814",
+    "harness_sha256": {
+      "run_nemotron_benchmark.py": "f6f184e0efb86543d2f699df14979b93ca4b15cec1f24df2d5c8267a5b2e4a53",
+      "run_nemotron_accuracy.py": "f836c2028305594e78d2ec2e62ca8ad85d4e37f8649346038a9ce1393ef05474"
+    },
+    "executed_source_commit": "4d381b8caf6503010fae8f05efa41c7948982148",
+    "executed_source_archive_sha256": "936e9f7d1aa72b2d5d4a1476b45f275d8e3b0cb78cc2f90333575a77785f659a",
+    "metadata_correction": "The original resolved_parameters retained max_length=20 from static generation_config. Native RNNT computes a per-input buffer bound and uses encoder exhaustion. Later metadata code and derived reports describe that behavior; raw artifacts and actual decoding are unchanged."
+  },
+  "pilot": {
+    "purpose": "Implementation, input/scorer validity and runtime feasibility; not a quality ranking.",
+    "samples": 192,
+    "groups": {
+      "clean": 64,
+      "other": 64,
+      "telephone": 64
+    },
+    "manifest_sha256": "f5a2173091f13876eb4d82d666e163942d43d019cecec23fc39524009b5fc7b9",
+    "batch_sizes": [
+      1,
+      4
+    ],
+    "repetitions": 1,
+    "warmup_samples_per_group": 16,
+    "max_minutes_per_track": 30,
+    "gate": "Both tracks complete with exact identities/order/counts, prompt 14, full frame consumption, no errors/OOM, inspected Korean predictions and diagnostic CER. Investigate forced frame advances and batch-dependent output differences before expansion."
+  },
+  "expanded_evaluation": {
+    "condition": "Passing pilot and reconciled independent review; freeze configuration without selecting on observed CER.",
+    "accuracy": {
+      "samples": 45916,
+      "batch_size": 4,
+      "repetitions": 1,
+      "max_hours": 12,
+      "protocol": "v1/kspon/cer>1.0",
+      "input_contract": "server_accuracy_protocol_20261008.json"
+    },
+    "speed": {
+      "samples": 768,
+      "batch_sizes": [
+        1,
+        4
+      ],
+      "repetitions": 3,
+      "warmup_samples_per_group_per_repeat": 16,
+      "max_hours": 2,
+      "manifest_sha256": "feab69a04d1de01f00190bcacb1c81a4e4049b82e9b6ebc1510e8019956cbfe1"
+    }
+  },
+  "strongest_confound": "Different Transformers runtime and RNN-T decoding behavior from existing Whisper/Qwen rows. Report full provenance and a separate speed cohort; no claimed architectural cause of any quality or speed difference.",
+  "comparison_policy": "Existing full-corpus Whisper large-v3/turbo and Qwen3-ASR rows remain fixed reference baselines. Pilot CER cannot replace full accuracy. Preserve all raw predictions including outliers and empty references.",
+  "authorization": {
+    "date": "2026-10-10",
+    "request": "Nemotron 작업 진행",
+    "scope": "Nemotron integration and staged server evaluation; no training, other model sweep, API spend or public deployment."
+  },
+  "pilot_validation": {
+    "status": "pilot_validated_for_native_b4_expansion",
+    "tracks": {
+      "b1": {
+        "requests": 192,
+        "samples": 192,
+        "warmups": 48,
+        "rtfx": 59.02765373269976,
+        "peak_allocated_gib": 1.2900242805480957,
+        "forced_frame_advances": 1,
+        "empty_predictions": 24,
+        "diagnostic_macro_cer": 0.3299893846475783,
+        "requests_sha256": "1e5c3cec7ba01d2bcc43f0594eca2a6504c9e804971896638642d1d2ecc03160"
+      },
+      "b4": {
+        "requests": 48,
+        "samples": 192,
+        "warmups": 48,
+        "rtfx": 120.88488512957157,
+        "peak_allocated_gib": 1.5728874206542969,
+        "forced_frame_advances": 1,
+        "empty_predictions": 23,
+        "diagnostic_macro_cer": 0.32275314231485336,
+        "requests_sha256": "11b144cbe5a0f28076a66b852dd815c5450e8e2af6f43a811e2452afd906c3b8"
+      }
+    },
+    "bf16_batch_output_differences": 33,
+    "fp32_batch_output_differences": 8,
+    "feature_differences": 0,
+    "actual_encoder_length_mismatches": 0,
+    "bf16_b1_repeat_output_differences": 0,
+    "contracts": [
+      {
+        "top_level_length_method": true,
+        "encoder_length_method": true,
+        "processor_input_type": "BatchFeature",
+        "prompt_shape": [
+          1
+        ],
+        "prompt_dtype": "torch.int64",
+        "prompt_value": [
+          14
+        ],
+        "prompt_mapping": 14,
+        "generation_max_new_tokens": null,
+        "max_symbols_per_step": 10
+      }
+    ],
+    "interpretation": "Precision contributes to batch-dependent output, but does not explain all differences. Upstream native batch behavior remains a limitation. Empty outputs also occur with FP32 and are preserved. No claim of architecture superiority or streaming latency.",
+    "decision": "Keep predeclared BF16 / ko-KR / lookahead 3 and native B4 for full accuracy. No tuning or sample removal. Keep speed in its separate Transformers 5.13.0 cohort.",
+    "review_reconciliation": {
+      "independent_review": "cross-review-focused/review.md",
+      "accepted": [
+        "Hard-code prompt 14 and max_symbols_per_step 10 in benchmark launch checks.",
+        "Compare computed lengths with actual encoder attention mask: matched all 768 diagnostic outputs."
+      ],
+      "resolved_by_gpu_evidence": [
+        "Top-level length method exists (also present in pinned Nemotron model source).",
+        "BatchFeature preserves int64 prompt [14]; durations include zero prefix and align with tokens.",
+        "max_new_tokens is None; all frames consumed.",
+        "Blank/pad filtering inspected in raw Korean predictions; no leaked special tokens."
+      ],
+      "remaining_limitations": [
+        "B1/B4 native outputs differ on 33/192 BF16 and 8/192 FP32 cases; do not equate B1 quality with B4 full accuracy.",
+        "One input reaches the native 10-symbol frame guard in each BF16 pilot; all input frames are consumed and output retained."
+      ]
+    },
+    "raw_artifact_root": "results/nemotron-20261010",
+    "validated_at_utc": "2026-10-10T04:45:31.242074+00:00"
+  },
+  "speed_validation": {
+    "status": "completed_and_verified",
+    "artifact": "results/nemotron-20261010/speed-validation.json",
+    "sha256": "b477b2036ad281d8779ecf7ed0fda264def648139a52760bdbc90ca66113cddb",
+    "measured_outputs": 4608,
+    "warmup_outputs": 288,
+    "overall_b1_rtfx_median": 61.6358756992964,
+    "overall_b4_rtfx_median": 135.20209158562136
+  },
+  "accuracy_execution": {
+    "status": "running",
+    "started_at_utc": "2026-10-10T04:52:30.207Z",
+    "verified_partial_artifact": "results/nemotron-20261010/partial-validation.json",
+    "verified_partial_samples": 3000,
+    "observed_at_utc": "2026-10-10T05:00:30.673935+00:00"
+  }
+}

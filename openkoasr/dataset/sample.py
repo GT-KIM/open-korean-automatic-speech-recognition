@@ -86,7 +86,17 @@ def get_sample_rate(sample, default=DEFAULT_SAMPLE_RATE):
     else:
         sample_rate = default
     sample_rate = _to_python_scalar(sample_rate)
-    return int(sample_rate or default)
+    try:
+        rate = int(sample_rate)
+        if (
+            isinstance(sample_rate, bool)
+            or rate <= 0
+            or (not isinstance(sample_rate, str) and rate != sample_rate)
+        ):
+            raise ValueError
+    except (TypeError, ValueError, OverflowError) as error:
+        raise ValueError("sample_rate must be a positive integer.") from error
+    return rate
 
 
 def get_sample_metadata(sample):
@@ -114,6 +124,7 @@ def get_audio_duration_seconds(audio, sample_rate):
         length = len(audio)
     else:
         length = 0
-    if sample_rate <= 0:
-        return 0.0
+    if length <= 0:
+        raise ValueError("Audio must contain at least one sample.")
+    sample_rate = get_sample_rate({"sample_rate": sample_rate})
     return float(length) / float(sample_rate)

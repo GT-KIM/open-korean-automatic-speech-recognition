@@ -46,6 +46,8 @@ class RunMetadata:
     log_interval: int
     command: str
     environment: Dict[str, Any] = field(default_factory=dict)
+    evaluation_protocol: Optional[str] = None
+    reproducibility: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self):
         data = asdict(self)
@@ -71,10 +73,12 @@ class SampleResult:
     def to_dict(self, include_predictions=True):
         data = asdict(self)
         if not include_predictions:
-            data.pop("reference", None)
-            data.pop("prediction", None)
-            data.pop("normalized_reference", None)
-            data.pop("normalized_prediction", None)
+            for key in (
+                "reference", "prediction", "normalized_reference", "normalized_prediction",
+                "text", "transcript", "sentence",
+            ):
+                data.pop(key, None)
+                data["metadata"].pop(key, None)
         return data
 
 
@@ -86,6 +90,7 @@ class AggregateResult:
     macro_average: Dict[str, float]
     micro_average: Dict[str, float]
     latency_percentiles: Dict[str, float]
+    all_samples_micro_average: Dict[str, float] = field(default_factory=dict)
 
     def to_dict(self):
         return asdict(self)
@@ -105,6 +110,7 @@ class AggregateResult:
             macro_average=macro_average,
             micro_average=micro_average,
             latency_percentiles=latency_percentiles,
+            all_samples_micro_average=_micro_average(samples),
         )
 
 

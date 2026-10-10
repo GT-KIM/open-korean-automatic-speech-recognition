@@ -11,6 +11,19 @@ from scripts.generate_leaderboard import dedupe_rows, normalize_metric_schema, s
 
 
 class GenerateLeaderboardTest(unittest.TestCase):
+    def test_raw_nemotron_subsets_cannot_bypass_completed_report_review(self):
+        from scripts.generate_leaderboard import load_rows
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for name, provenance in (("regular", {}), ("nemotron", {"nemotron_accuracy": {"termination": {}}})):
+                folder = root / name
+                folder.mkdir()
+                (folder / "leaderboard_row.json").write_text(json.dumps({
+                    "model": name, "is_full_evaluation": True, "reproducibility": provenance,
+                }), encoding="utf-8")
+            for include_partial in (False, True):
+                self.assertEqual([row["model"] for row in load_rows(root, include_partial)], ["regular"])
+
     def test_verified_report_does_not_revive_legacy_aliases(self):
         report_path = Path('doc/benchmarks/server_accuracy_results_20261008.json')
         report = json.loads(report_path.read_bytes())

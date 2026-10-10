@@ -177,15 +177,6 @@ table:has(th:nth-child(7)[aria-sort]) tr:not(.detail-row) > td:nth-child(7) { ba
 
 .tradeoff-layout { display: grid; grid-template-columns: minmax(0, 1fr) 256px; gap: 20px; align-items: start; margin-top: 20px; }
 
-.tradeoff-legend::before {
-  content: "";
-  display: inline-block;
-  width: 24px;
-  margin-right: 8px;
-  border-top: 2px dashed var(--accent);
-  vertical-align: middle;
-}
-
 .tradeoff-plot { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; padding: 14px 0; background: #fcfdff; }
 
 .tradeoff-plot svg {
@@ -205,13 +196,6 @@ table:has(th:nth-child(7)[aria-sort]) tr:not(.detail-row) > td:nth-child(7) { ba
 .tradeoff-axis {
   fill: var(--text);
   font-weight: 700;
-}
-
-.tradeoff-frontier {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 2;
-  stroke-dasharray: 6 5;
 }
 
 .tradeoff-point {

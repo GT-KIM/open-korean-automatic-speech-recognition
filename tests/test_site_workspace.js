@@ -103,7 +103,7 @@ test("float and quantized runs remain distinct comparison columns with QNN scope
   p.run('state.activeTab = "on_device"; state.comparison = state.onDeviceRows.filter(row => row.model.includes("small")).map(comparisonKey); state.comparisonOpen = true; render()');
   assert.equal(p.run("state.comparison.length"), 2);
   const html = p.elements.comparisonContent.innerHTML;
-  for (const label of ["w8a16", "float", "QNN RTFx", "전처리·전송·토큰화 제외", "실행 조건 다름"]) assert.ok(html.includes(label), label);
+  for (const label of ["w8a16", "float", "QNN Macro RTFx", "전처리·전송·토큰화 제외", "실행 조건 다름"]) assert.ok(html.includes(label), label);
   assert.equal(p.elements.comparisonSection.hidden, false);
 });
 

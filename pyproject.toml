@@ -35,7 +35,7 @@ dependencies = [
   "jiwer",
   "librosa",
   "numpy",
-  "torch==2.14.0",
+  "torch>=2.13.0,<2.15",
   "torchvision",
   "torchaudio",
   "torchcodec",

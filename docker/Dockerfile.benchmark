@@ -1,0 +1,32 @@
+# Resolved from pytorch/pytorch:2.13.0-cuda13.0-cudnn9-runtime on 2026-10-06.
+FROM pytorch/pytorch@sha256:db80a41f8428644cebcb3d75b0b62df334ab6c0e75785951eb25f48bfbd42407
+
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 HF_HOME=/cache/huggingface
+
+RUN apt-get update -qq \
+    && apt-get install -y --no-install-recommends ffmpeg libsndfile1 \
+    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq \
+    && apt-get install -y --no-install-recommends python3-venv \
+    && rm -rf /var/lib/apt/lists/* \
+    && python -m venv --system-site-packages /opt/openkoasr
+# Reuse the image's CUDA wheels while keeping benchmark installs out of system Python.
+ENV VIRTUAL_ENV=/opt/openkoasr PATH=/opt/openkoasr/bin:$PATH
+COPY docker/benchmark-requirements.txt ./requirements.txt
+COPY docker/benchmark-constraints.txt ./docker/benchmark-constraints.txt
+RUN python -m pip install --no-cache-dir -c docker/benchmark-constraints.txt \
+        torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130 \
+    && python -m pip install --no-cache-dir -c docker/benchmark-constraints.txt \
+        torchcodec --index-url https://download.pytorch.org/whl/cpu \
+    && python -m pip install --no-cache-dir -c docker/benchmark-constraints.txt -r requirements.txt \
+    && python -m pip check
+
+COPY pyproject.toml README.md ./
+COPY openkoasr ./openkoasr
+COPY scripts/check_runtime.py scripts/check_benchmark_environment.py ./scripts/
+RUN python -m pip install --no-cache-dir --no-deps . \
+    && python scripts/check_runtime.py
+
+# No model downloads or evaluation on startup.
+CMD ["python", "scripts/check_benchmark_environment.py", "--output", "/results/environment.json"]

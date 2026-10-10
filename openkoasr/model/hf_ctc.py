@@ -3,6 +3,7 @@ from transformers import AutoModelForCTC, AutoProcessor
 
 from openkoasr.dataset.sample import get_sample_audio
 from openkoasr.model.base import BaseASRInferenceModel
+from openkoasr.model.revisions import pinned_revisions, verify_loaded_revision, verify_processor_revision
 
 
 class HfCtcASRInferenceModel(BaseASRInferenceModel):
@@ -15,16 +16,24 @@ class HfCtcASRInferenceModel(BaseASRInferenceModel):
         self.model = self.initialize_model()
 
     def initialize_model(self):
+        revision, _ = pinned_revisions(self.model_config)
         model = AutoModelForCTC.from_pretrained(
             self.model_config.repo_name,
+            **({"revision": revision} if revision else {}),
             torch_dtype=self.TORCH_DTYPE[self.model_config.dtype],
         )
+        verify_loaded_revision(model, revision)
         model.to(self.model_config.device)
         model.eval()
         return model
 
     def initialize_processor(self):
-        return AutoProcessor.from_pretrained(self.model_config.repo_name)
+        _, revision = pinned_revisions(self.model_config)
+        processor = AutoProcessor.from_pretrained(
+            self.model_config.repo_name, **({"revision": revision} if revision else {}))
+        self.processor_revision = revision
+        self.processor_revision_source = verify_processor_revision(processor, revision)
+        return processor
 
     def inference_sample(self, sample, sampling_rate):
         return self.transcribe_batch([sample], [sampling_rate])[0]

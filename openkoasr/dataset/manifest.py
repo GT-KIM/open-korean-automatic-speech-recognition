@@ -2,7 +2,7 @@ import csv
 import json
 from pathlib import Path
 
-from openkoasr.dataset.sample import identity_collate
+from openkoasr.dataset.sample import get_sample_rate, identity_collate
 
 
 class ManifestSpeechDataset:
@@ -11,7 +11,6 @@ class ManifestSpeechDataset:
         self.manifest_path = Path(getattr(config, "manifest_path", ""))
         if not self.manifest_path:
             raise ValueError("ManifestSpeechDataset requires config.manifest_path.")
-        self.default_sample_rate = int(getattr(config, "sample_rate", 16000))
         self.rootpath = Path(getattr(config, "rootpath", "") or ".")
         self.data = self._load_manifest()
 
@@ -86,6 +85,15 @@ class ManifestSpeechDataset:
         row = self.data[index]
         audio_path = self._resolve_audio_path(row)
         audio, sample_rate = self._load_audio(audio_path)
+        sample_rate = get_sample_rate({"sample_rate": sample_rate})
+        if row.get("sample_rate") not in (None, ""):
+            declared_rate = get_sample_rate(row)
+            if declared_rate != sample_rate:
+                raise ValueError(
+                    f"Manifest sample_rate {declared_rate} does not match decoded audio "
+                    f"sample_rate {sample_rate}: {audio_path}. Resample the audio file "
+                    "before changing its declared sample_rate."
+                )
         text = row.get("text") or row.get("transcript") or row.get("sentence") or ""
         metadata = dict(row)
         metadata.setdefault("id", row.get("id") or audio_path.stem)
@@ -93,6 +101,6 @@ class ManifestSpeechDataset:
         return {
             "audio": audio,
             "text": text,
-            "sample_rate": int(row.get("sample_rate") or sample_rate or self.default_sample_rate),
+            "sample_rate": sample_rate,
             "metadata": metadata,
         }

@@ -130,3 +130,49 @@ python scripts/build_pages.py --output_dir _site
 Accuracy vs. Speed의 curated 처리량은 고정 256개/그룹을 3회 반복한 결과입니다.
 Main CER와 전체 샘플 micro CER를 구분하고, 속도 반복 범위·B1 p95·상한 종료 비율을 함께 표시합니다.
 원본 오디오·전사·샘플별 예측과 호스트 접속 정보는 배포하지 않습니다.
+
+## 2026-10-09 재현성 공개와 제외 기준 민감도
+
+측정 당시 소스·정확도 harness 해시를 보존하고 Docker 실행기·입력 봉인·검증 코드와
+172개 패키지 inventory를 공개 코드로 정리했습니다. [재현 절차](../docker/README.md)를 참고하세요.
+
+[민감도 보고서](benchmarks/outlier_rank_sensitivity_20261009.md)는 48개 보존 출력의 해시와
+56개 기존 filtered CER를 대조한 CPU 재집계입니다. 정규화 후 빈 정답 4개 때문에 전체 샘플 macro CER는
+정의할 수 없습니다. 공통 45,912개 보조 분석에서 Overall 순위는 유지되지만 clean 구간의 2·3위는 바뀝니다.
+공식 순위·제외 정책·사이트 데이터는 변경하지 않았습니다. 새 평가 프로토콜에서는 빈 정답 처리와
+CER 초과 출력의 보존 여부를 측정 전에 명시해야 합니다.
+
+## 2026-10-10 Nemotron 평가
+
+`nvidia/nemotron-3.5-asr-streaming-0.6b`의 [고정 조건과 파일럿 검증](benchmarks/nemotron_protocol_20261010.json)을 추가했습니다.
+한국어 `ko-KR`, BF16, 기본 lookahead 3을 사용한 전체 발화 추론입니다.
+스트리밍 지연을 측정한 결과로 해석하지 않습니다. RNN-T 종료는 EOS 대신 유효 인코더 프레임의 소진을 검사하고,
+프레임당 10개 토큰 제한에 의한 강제 진행 횟수를 별도로 보존합니다.
+
+Transformers 5.13.0이 필요한 전용 런타임이며, 기존 Qwen 런타임과 분리합니다.
+[재현 명령](../docker/NEMOTRON.md)과 [170개 패키지 목록](../docker/nemotron-package-inventory.json)을 참고하세요.
+192개 파일럿은 B1·B4 모두 완료됐습니다. 특징 추출과 실제 인코더 길이도 확인했지만 배치별 출력 차이는 남아 있으므로,
+전체 정확도는 고정 B4 조건으로 평가하고 속도 조건별 출력도 보존합니다.
+
+전체 45,916개 정확도와 768개×3회×B1·B4 속도 결과는 `validate_nemotron_results.py`로 검증합니다.
+부분 결과나 파일럿 CER는 순위표에 반영하지 않으며, 새 속도 런타임을 기존 측정 조건과 합치지 않습니다.
+
+전체 평가와 속도 검증은 완료됐으며 [공개 검증 보고서](benchmarks/nemotron_results_20261010.json)를 통해
+정확도 7행(6개 원본 구간과 전화음성 통합), curated 속도 3행을 반영합니다. 기존 64행은 보존합니다.
+위 프로토콜 파일은 검증 당시의 해시를 유지한 동결본이며, 최종 완료 상태는 결과 보고서에 있습니다.
+
+```bash
+python scripts/generate_leaderboard.py --results_dir results \
+  --submitted_rows_path doc/leaderboard_data.json \
+  --verified_accuracy_path doc/benchmarks/server_accuracy_results_20261008.json \
+  --speed_results_path doc/benchmarks/server_speed_results_20261008.json \
+  --nemotron_results_path doc/benchmarks/nemotron_results_20261010.json
+python scripts/build_pages.py --output_dir _site
+```
+
+Nemotron Overall Main CER은 31.35%입니다. 빈 출력 6,923개를 보존했고 기존 CER > 100% 제외 규칙을 유지합니다.
+B1·B4 속도는 별도 Transformers 5.13.0 조건으로 표시합니다. RNN-T 프레임 강제 진행은 토큰 상한 종료가 아니므로
+별도 항목으로 제공하며, B1 속도에 B4 정확도를 연결한 화면에는 배치별 출력 차이를 명시합니다.
+
+정규화 후 빈 정답 4개 중 빈 출력 3개는 CER 0으로 포함되고, 비어 있지 않은 출력 1개는 CER 무한대로
+기존 outlier 규칙에 따라 Main CER에서 제외됩니다. 전체 샘플 micro CER에는 해당 편집 오류도 포함됩니다.

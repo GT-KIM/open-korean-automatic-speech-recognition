@@ -46,6 +46,8 @@ def infer_model_family(model_name: str):
         return "whisper"
     if "qwen3-asr" in normalized or "qwen3_asr" in normalized:
         return "qwen3_asr"
+    if normalized == "nvidia/nemotron-3.5-asr-streaming-0.6b":
+        return "nemotron_asr"
     if "wav2vec2" in normalized or "xlsr" in normalized or "ctc" in normalized:
         return "hf_ctc"
     if normalized == "mock" or normalized.startswith("mock_"):
@@ -166,7 +168,6 @@ def _create_commercial_api_config(model_name: str):
             "cache_dir": ".openkoasr_cache/api_asr",
             "min_interval_seconds": 1.0,
             "timeout_seconds": 120,
-            "empty_on_error": True,
             "evaluation": {"metrics": metrics},
         }
         return ConfigParser(config)
@@ -203,6 +204,15 @@ def get_model_config(model_name: str):
         return _create_qwen3_asr_config(model_name)
     if family == "hf_ctc":
         return _create_hf_ctc_config(model_name)
+    if family == "nemotron_asr":
+        config = _create_hf_ctc_config(model_name)
+        config.family = "nemotron_asr"
+        config.dtype = "bfloat16"
+        config.language = "ko-KR"
+        config.num_lookahead_tokens = 3
+        config.model_revision = "ea30d66debe3740a08b573244286791d423d6b3e"
+        config.processor_revision = config.model_revision
+        return config
     if family == "commercial_api":
         return _create_commercial_api_config(model_name)
     if family == "mock":

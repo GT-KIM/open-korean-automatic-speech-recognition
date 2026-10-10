@@ -1,0 +1,9 @@
+# Extend the already-verified package environment without resolving dependencies again.
+# docker/benchmark.py build-speed assigns this local tag from the verified image ID.
+FROM openkoasr-sealed-base:f1379555b571
+WORKDIR /app
+COPY openkoasr ./openkoasr
+COPY scripts/check_runtime.py scripts/check_benchmark_environment.py scripts/seal_speed_inputs.py scripts/run_speed_benchmark.py scripts/download_speed_models.py ./scripts/
+ENV PYTHONPATH=/app
+WORKDIR /tmp
+CMD ["python", "/app/scripts/check_benchmark_environment.py", "--output", "/results/environment.json"]

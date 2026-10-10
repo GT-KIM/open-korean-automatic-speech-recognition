@@ -35,9 +35,11 @@ class BaseASRInferenceModel(ABC):
         raise NotImplementedError
 
     def transcribe(self, sample, sampling_rate=16000):
+        """Return a transcript string (possibly empty); raise on inference failure."""
         return self.inference_sample(sample, sampling_rate=sampling_rate)
 
     def transcribe_batch(self, samples, sampling_rates=None):
+        """Return one transcript string per sample in input order; raise on failure."""
         if sampling_rates is None:
             sampling_rates = [16000] * len(samples)
         return [
