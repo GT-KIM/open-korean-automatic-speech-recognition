@@ -2,7 +2,7 @@
 torch==2.14.1
 torchvision==0.28.0+cu130
 torchaudio==2.11.0+cu130
-torchcodec==0.14.0
+torchcodec==0.17.0
 transformers==4.57.6
 qwen-asr==0.0.6
 accelerate==1.12.0
