@@ -4,7 +4,7 @@ numpy
 torch==2.14.1
 torchvision==0.28.0
 torchaudio==2.11.0
-torchcodec==0.14.0
+torchcodec==0.17.0
 soundfile
 tqdm
 transformers
