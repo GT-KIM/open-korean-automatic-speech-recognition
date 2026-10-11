@@ -1,5 +1,5 @@
 # Requested benchmark versions. The built image also seals transitive dependencies.
-torch==2.13.0+cu130
+torch==2.14.1
 torchvision==0.28.0+cu130
 torchaudio==2.11.0+cu130
 torchcodec==0.14.0
