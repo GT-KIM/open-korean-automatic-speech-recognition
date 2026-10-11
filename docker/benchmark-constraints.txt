@@ -16,5 +16,5 @@ kiwipiepy==0.23.1
 jamo==0.4.1
 calflops==0.3.2
 openai-whisper==20250625
-SpeechRecognition==3.16.1
+SpeechRecognition==3.17.0
 tqdm==4.68.2
